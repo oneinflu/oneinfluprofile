@@ -1,49 +1,158 @@
-"use client";
+import type { FC, HTMLAttributes } from "react";
+import { ChartBreakoutSquare, MessageChatCircle, ZapFast } from "@untitledui/icons";
+import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
+import { TagCheckbox } from "@/components/base/tags/base-components/tag-checkbox";
+import { cx } from "@/utils/cx";
 
-import { BackgroundPattern } from "@/components/shared-assets/background-patterns";
-
-export const HomeShift = () => {
+const AlternateImageMockup: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     return (
-        <section className="root-theme relative overflow-hidden bg-linear-to-b from-[var(--root-bg-primary)] to-[var(--root-bg-secondary)]">
-           
-            <div className="relative z-10 mx-auto max-w-4xl px-4 py-20 text-center">
-                
-                <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#0f172a] dark:text-[#e5e7eb]">
-                    Selling your work needs more than links.
-                </h2>
-                <div className="mx-auto mt-5 max-w-3xl space-y-3">
-                    <p className="text-md text-[#334155] dark:text-[#cbd5e1]">
-                        When you sell services — whether you’re a creator, freelancer, or agency — clients need clarity before they message you.
+        <div
+            className={cx(
+                "size-full rounded-[9.03px] bg-primary p-[0.9px] shadow-modern-mockup-outer-md ring-[0.56px] ring-utility-gray-300 ring-inset md:rounded-[20.08px] md:p-0.5 md:shadow-modern-mockup-outer-lg md:ring-[1.25px] lg:absolute lg:w-auto lg:max-w-none",
+                props.className,
+            )}
+        >
+            <div className="size-full rounded-[7.9px] bg-primary p-0.5 shadow-modern-mockup-inner-md md:rounded-[17.57px] md:p-[3.5px] md:shadow-modern-mockup-inner-lg">
+                <div className="relative size-full overflow-hidden rounded-[6.77px] ring-[0.56px] ring-utility-gray-200 md:rounded-[15.06px] md:ring-[1.25px]">
+                    {props.children}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const FeaturesAlternatingLayout01 = () => {
+    return (
+        <section className="flex flex-col gap-12 overflow-hidden bg-primary py-16 sm:gap-16 md:gap-20 md:py-24 lg:gap-24">
+            <div className="mx-auto w-full max-w-container px-4 md:px-8">
+                <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+                    
+                    <h2 className="mt-3 text-display-sm font-semibold text-primary md:text-display-md">Built to help you get hired and paid</h2>
+                    <p className="mt-4 text-lg text-tertiary md:mt-5 md:text-xl">
+                       INFLU replaces scattered links and DMs with a clear, business-ready profile that helps clients understand your work, contact you instantly, and pay without friction.
                     </p>
-                    <p className="text-md text-[#334155] dark:text-[#cbd5e1]">They want to know:</p>
-                    <div className="relative mx-auto max-w-3xl overflow-hidden">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-linear-to-r from-[var(--root-bg-primary)] to-transparent" />
-                        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-[var(--root-bg-primary)] to-transparent" />
-                        <div aria-label="What clients need" className="flex items-center gap-3 whitespace-nowrap will-change-transform [animation:scroll-x_28s_linear_infinite]">
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">What you offer</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Whether it fits their budget</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">How to contact you</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">How to move forward</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">What’s included</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Delivery timeline</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Revision policy</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Upfront vs milestone payments</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Where to message</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Next steps</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">What you offer</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">Whether it fits their budget</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">How to contact you</span>
-                            <span className="inline-flex items-center rounded-full px-4 py-2 text-md ring-1 ring-[var(--root-border)] bg-[var(--root-card-bg)] text-[#334155] dark:text-[#cbd5e1]">How to move forward</span>
-                        </div>
-                        <style jsx>{`
-                            @keyframes scroll-x {
-                                0% { transform: translateX(0); }
-                                100% { transform: translateX(-50%); }
-                            }
-                        `}</style>
+                </div>
+            </div>
+
+            <div className="mx-auto flex w-full max-w-container flex-col gap-12 px-4 sm:gap-16 md:gap-20 md:px-8 lg:gap-24">
+                <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
+                    <div className="max-w-xl flex-1 self-center">
+                        <FeaturedIcon icon={MessageChatCircle} size="lg" color="brand" theme="light" />
+                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Sell your services with clarity</h2>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                           Clients shouldn’t have to message you just to understand what you offer.
+INFLU lets you present your services clearly, professionally, and confidently — right from your bio link.
+                        </p>
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                            {[
+                                "List services with descriptions & pricing",
+                                "Set starting prices or fixed packages",
+                                "One clear call-to-action",
+                            ].map((feat) => (
+                                <li key={feat} className="flex items-start gap-3">
+                                    <TagCheckbox size="lg" isSelected className="rounded-full" />
+                                    <span className="text-md text-primary">{feat}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
-                    <p className="text-md text-[#334155] dark:text-[#cbd5e1]">A list of links doesn’t answer these questions.</p>
-                   
+
+                    <div className="relative w-full flex-1 lg:h-128">
+                        <AlternateImageMockup className="lg:left-0">
+                            {/* Light mode image (hidden in dark mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                className="size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
+                            />
+                            {/* Dark mode image (hidden in light mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                className="size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
+                            />
+                        </AlternateImageMockup>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
+                    <div className="max-w-xl flex-1 self-center lg:order-last">
+                        <FeaturedIcon icon={ZapFast} size="lg" color="brand" theme="light" />
+                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Build trust with your work</h2>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                            Before clients message you, they want proof.
+INFLU gives you space to showcase your best work — so trust is built even before the first conversation.
+                        </p>
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                            {[
+                                "Upload and manage your portfolio easily",
+                                "Up to 15 GB free storage included",
+                                "Share your profile anywhere",
+                            ].map((feat) => (
+                                <li key={feat} className="flex items-start gap-3">
+                                    <TagCheckbox size="lg" isSelected className="rounded-full" />
+                                    <span className="text-md text-primary">{feat}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="relative w-full flex-1 lg:h-128">
+                        <AlternateImageMockup className="lg:right-0">
+                            {/* Light mode image (hidden in dark mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                className="size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
+                            />
+                            {/* Dark mode image (hidden in light mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                className="size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
+                            />
+                        </AlternateImageMockup>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-24">
+                    <div className="max-w-xl flex-1 self-center">
+                        <FeaturedIcon icon={ChartBreakoutSquare} size="lg" color="brand" theme="light" />
+                        <h2 className="mt-5 text-display-xs font-semibold text-primary md:text-display-sm">Turn interest into conversations and payments</h2>
+                        <p className="mt-2 text-md text-tertiary md:mt-4 md:text-lg">
+                           When someone is interested, timing matters.
+INFLU helps you move from enquiry to payment without friction, follow-ups, or awkward messages.
+                        </p>
+                        <ul className="mt-8 flex flex-col gap-4 pl-2 md:gap-5 md:pl-4">
+                            {[
+                                "Instant WhatsApp connection",
+                                "Generate and share payment links",
+                                "Track enquiries in one place",
+                            ].map((feat) => (
+                                <li key={feat} className="flex items-start gap-3">
+                                    <TagCheckbox size="lg" isSelected className="rounded-full" />
+                                    <span className="text-md text-primary">{feat}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="relative w-full flex-1 lg:h-128">
+                        <AlternateImageMockup className="lg:left-0">
+                            {/* Light mode image (hidden in dark mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                className="size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
+                            />
+                            {/* Dark mode image (hidden in light mode) */}
+                            <img
+                                alt="Dashboard mockup showing application interface"
+                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                className="size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
+                            />
+                        </AlternateImageMockup>
+                    </div>
                 </div>
             </div>
         </section>

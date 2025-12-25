@@ -8,8 +8,8 @@ export const HomePain = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 p-8 md:p-12">
                         <div className="flex flex-col gap-4">
                             <span className="inline-flex size-11 md:size-12 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25">≠</span>
-                            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight">Your bio link wasn’t built for business.</h2>
-                            <p className="text-md leading-relaxed text-white/85">Most link-in-bio tools are great for sharing links.
+                            <h2 className="text-display-sm md:text-display-md font-semibold leading-tight">Your bio link wasn’t built for business.</h2>
+                            <p className="mt-3 text-md md:text-lg leading-relaxed text-white/85">Most link-in-bio tools are great for sharing links.
 But the moment you start selling services, collaborating with brands, or charging money — they begin to fall apart.</p>
                         </div>
                         <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">

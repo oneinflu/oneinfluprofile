@@ -4,6 +4,7 @@ import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import { ThemeFab } from "@/components/application/theme-toggle/theme-fab";
 import { SiteHeader } from "@/components/application/site-header";
+import { MarketingFooter } from "@/components/marketing/footer";
 import "@/styles/globals.css";
 import { cx } from "@/utils/cx";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
                     <Theme>
                         <SiteHeader />
                         {children}
+                        <MarketingFooter />
                         <ThemeFab />
                     </Theme>
                 </RouteProvider>
