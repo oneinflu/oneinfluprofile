@@ -38,7 +38,7 @@ export default function ProfilePage() {
 
     return (
         <>
-            <section className="lg:hidden flex min-h-screen pt-5 bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
+            <section className="lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
                 <ProfileCard username={username} payEnabled={payEnabled} upiId={upiId} offers={offers} onRequest={openRequest} />
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} variant="mobile" onRequest={openRequest} />
             </section>
@@ -74,7 +74,7 @@ function ProfileCard({ username, payEnabled, upiId, offers, onRequest }: { usern
     const themeLabel = isDark ? "Switch to light" : "Switch to dark";
     return (
         <div className="w-full max-w-sm">
-            <div className="relative flex flex-col gap-3 rounded-2xl bg-primary p-0 shadow-none">
+            <div className="relative flex flex-col gap-3 rounded-2xl bg-primary p-0 pb-5 shadow-none">
                 <div className="relative h-44 w-full overflow-hidden rounded-t-2xl sm:h-56">
                     <img src="/profile.jpg" alt="Cover" className="size-full object-cover" />
                     <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-b from-transparent to-primary dark:to-[#0b0f14]" />
