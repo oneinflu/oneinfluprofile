@@ -33,7 +33,7 @@ export const HomeHero = ({ demoUsername = "suurya" }: { demoUsername?: string })
                         transition={{ delay: 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         className="text-md text-[#334155] dark:text-[#cbd5e1]"
                     >
-                        Turn your link in bio into a professional profile with services, WhatsApp, and payments.
+                        Turn your link in bio into a professional business profile — with services, WhatsApp, and payments built in.
                     </motion.p>
                     <motion.div
                         initial={{ x: -20, opacity: 0 }}
@@ -42,7 +42,7 @@ export const HomeHero = ({ demoUsername = "suurya" }: { demoUsername?: string })
                         className="flex items-center gap-3"
                     >
                         <Button href="/register" size="md" color="secondary" className="rounded-full !bg-[#FFD400] !text-black hover:!bg-[#F2C400] !ring-transparent px-5">Create your free INFLU link</Button>
-                        <Button href={`/${demoUsername}`} size="md" color="link-gray" className="text-[#cbd5e1]">View demo profile →</Button>
+                        <Button href={`/${demoUsername}`} size="md" color="link-gray" className="text-[#334155] hover:text-[#0f172a] dark:text-[#cbd5e1] dark:hover:text-[#e5e7eb]">View demo profile →</Button>
                     </motion.div>
                     <motion.div
                         initial={{ x: -20, opacity: 0 }}
@@ -51,19 +51,19 @@ export const HomeHero = ({ demoUsername = "suurya" }: { demoUsername?: string })
                         className="mt-4 flex items-center gap-5"
                     >
                         <div className="flex -space-x-2">
-                            <img src="/avatar.svg" alt="" className="size-8 rounded-full ring-2 ring-white" />
-                            <img src="/avatar.svg" alt="" className="size-8 rounded-full ring-2 ring-white" />
-                            <img src="/avatar.svg" alt="" className="size-8 rounded-full ring-2 ring-white" />
+                            <img src="/avatar.svg" alt="" className="size-8 rounded-full ring-2 ring-white dark:ring-white" />
+                            <img src="/avatar.svg" alt="" className="size-8 rounded-full ring-2 ring-white dark:ring-white" />
+                            <img src="/avatar.svg" alt="" className="size-8 rounded-full ring-2 ring-white dark:ring-white" />
                         </div>
                         <div className="flex items-center gap-6 text-sm">
                             <div className="flex items-center gap-2">
-                                <span className="font-semibold text-[#e5e7eb]">64,739</span>
-                                <span className="text-[#94a3b8]">Happy Customers</span>
+                                <span className="font-semibold text-[#0f172a] dark:text-[#e5e7eb]">64,739</span>
+                                <span className="text-[#475569] dark:text-[#94a3b8]">Happy Customers</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="font-semibold text-[#e5e7eb]">4.8/5</span>
-                                <span className="text-[#16a34a]">★★★★★</span>
-                                <span className="text-[#94a3b8]">Rating</span>
+                                <span className="font-semibold text-[#0f172a] dark:text-[#e5e7eb]">4.8/5</span>
+                                <span className="text-[#16a34a] dark:text-[#22c55e]">★★★★★</span>
+                                <span className="text-[#475569] dark:text-[#94a3b8]">Rating</span>
                             </div>
                         </div>
                     </motion.div>
