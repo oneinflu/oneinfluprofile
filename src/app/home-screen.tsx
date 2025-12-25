@@ -10,7 +10,7 @@ import { NewsletterIPhoneMockup01 } from "@/components/marketing/home-cta";
 
 export const HomeScreen = () => {
     return (
-        <div className="min-h-screen w-full bg-primary">
+        <div className="min-h-screen w-full">
             <HomeHero />
             <HomePain />
             <FeaturesAlternatingLayout01 />

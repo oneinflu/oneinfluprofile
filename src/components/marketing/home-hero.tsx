@@ -6,7 +6,7 @@ import { BackgroundPattern } from "@/components/shared-assets/background-pattern
 
 export const HomeHero = ({ demoUsername = "suurya" }: { demoUsername?: string }) => {
     return (
-        <section className="root-theme relative overflow-hidden bg-linear-to-b from-[var(--root-bg-primary)] to-[var(--root-bg-secondary)]">
+        <section className="relative overflow-hidden">
             <BackgroundPattern
                 pattern="grid-check"
                 size="md"

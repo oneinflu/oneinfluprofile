@@ -25,8 +25,9 @@ export const SiteHeader = () => {
     if (isAdmin || disallow.has(firstSegment) || isDynamicProfile) return null;
 
     return (
-        <header className="sticky top-0 z-40 w-full bg-primary/90 backdrop-blur ring-1 ring-secondary_alt">
-            <div className="mx-auto max-w-6xl px-4 py-3">
+        <header className="sticky top-1.5 z-40">
+            <div className="mx-auto max-w-6xl px-1">
+                <div className="rounded-2xl bg-primary shadow-xs backdrop-blur px-4 py-3">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <img src="/light.svg" alt="INFLU" className="h-8 w-auto dark:hidden" />
@@ -36,6 +37,7 @@ export const SiteHeader = () => {
                         <Button href="/login" size="sm" color="link-gray">Login</Button>
                         <Button href="/register" size="sm" color="primary">Get started</Button>
                     </div>
+                </div>
                 </div>
             </div>
         </header>

@@ -915,8 +915,8 @@
     --root-border: rgba(0, 0, 0, 0.08);
 }
 .dark-mode .root-theme {
-    --root-bg-primary: #0B0E11;
-    --root-bg-secondary: #12161C;
+    --root-bg-primary: #000000;
+    --root-bg-secondary: #0A0D12;
     --root-card-bg: rgba(255, 255, 255, 0.04);
     --root-border: rgba(255, 255, 255, 0.08);
 }
