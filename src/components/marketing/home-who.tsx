@@ -12,10 +12,9 @@ export const HomeWho = () => {
         <section className="flex flex-col gap-10 overflow-hidden py-16 md:gap-12 md:py-24">
             <div ref={ref} className="mx-auto w-full max-w-6xl px-4">
                 <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-                    <h2 className="text-display-sm md:text-display-md font-semibold tracking-tight text-primary">Built for people who sell their work</h2>
+                    <h2 className="text-display-sm md:text-display-md font-semibold tracking-tight text-primary">Built for modern professionals and teams</h2>
                     <p className="mt-4 text-md md:text-lg text-tertiary">
-                        INFLU is designed for individuals and teams who turn skills, services, and creativity into income—without building a website or
-                        managing multiple tools.
+                       INFLU brings services, portfolios, enquiries, and payments into one simple link—no website required.
                     </p>
                 </div>
             </div>
