@@ -26,7 +26,7 @@ export const SiteHeader = () => {
 
     return (
         <header className="sticky top-1.5 z-40">
-            <div className="mx-auto max-w-6xl px-1">
+            <div className="mx-auto max-w-6xl px-4">
                 <div className="rounded-2xl bg-primary shadow-xs backdrop-blur px-4 py-3">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">

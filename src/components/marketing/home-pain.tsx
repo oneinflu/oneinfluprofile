@@ -7,8 +7,8 @@ export const HomePain = () => {
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
     const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
     return (
-        <section className="relative overflow-hidden ">
-            <div ref={ref} className="mx-auto max-w-6xl px-4 py-16 md:py-24 bg-brand-solid rounded-3xl">
+        <section className="relative overflow-hidden  px-4">
+            <div ref={ref} className="mx-auto  max-w-6xl px-4 py-16 md:py-24 bg-brand-solid rounded-3xl">
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
