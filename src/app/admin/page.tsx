@@ -13,6 +13,7 @@ import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
+import { PhonePreview } from "@/components/application/preview/phone-preview";
 
 export default function AdminHomePage() {
     return (
@@ -66,17 +67,7 @@ export default function AdminHomePage() {
     );
 }
 
-const AdminPreviewPhone = () => {
-    const params = useSearchParams();
-    const username = params.get("username") || "guest";
-    return (
-        <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#222] via-[#000] to-[#444] dark:from-[#d4d7da] dark:via-[#bfc3c7] dark:to-[#eceff1] p-1 shadow-2xl">
-            <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary">
-                <iframe title="Profile preview" src={`/${username}`} className="size-full border-0" />
-            </div>
-        </div>
-    );
-};
+const AdminPreviewPhone = () => <PhonePreview />;
 
 const ProfileLinkCTA = () => {
     const params = useSearchParams();

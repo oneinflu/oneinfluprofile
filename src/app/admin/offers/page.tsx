@@ -11,6 +11,7 @@ import { Badge } from "@/components/base/badges/badges";
 import { Suspense, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
+import { PhonePreview } from "@/components/application/preview/phone-preview";
 
 export default function AdminOffersPage() {
     const [offers, setOffers] = useState<Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean; includes?: string[]; cta?: "request" | "pay" | "request_pay_later"; delivery?: string }>>([
@@ -100,7 +101,7 @@ export default function AdminOffersPage() {
                     <div className="hidden lg:block">
                         <div className="lg:sticky top-6">
                             <Suspense fallback={null}>
-                                <AndroidPreviewPhone />
+                                <PhonePreview />
                             </Suspense>
                         </div>
                     </div>
@@ -281,14 +282,4 @@ const OffersList = ({ offers, setOffers, onEdit, onAdd }: { offers: Array<{ id: 
     );
 };
 
-const AndroidPreviewPhone = () => {
-    const params = useSearchParams();
-    const username = params.get("username") || "guest";
-    return (
-        <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#222] via-[#000] to-[#444] dark:from-[#d4d7da] dark:via-[#bfc3c7] dark:to-[#eceff1] p-1 shadow-2xl">
-            <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary">
-                <iframe title="Profile preview" src={`/${username}`} className="size-full border-0" />
-            </div>
-        </div>
-    );
-};
+// replaced with shared PhonePreview component

@@ -11,6 +11,7 @@ import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as Aria
 import { Edit01, Trash01 } from "@untitledui/icons";
 import { Suspense, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { PhonePreview } from "@/components/application/preview/phone-preview";
 
 export default function AdminPortfolioPage() {
     const [items, setItems] = useState<Array<{ id: string; title: string; brand?: string; platform: string; thumbnail?: string; visible: boolean; topWork?: boolean; sponsored?: boolean; pinned?: boolean; description?: string; contentType?: "image" | "video" | "link"; externalUrl?: string }>>([
@@ -106,7 +107,7 @@ export default function AdminPortfolioPage() {
                     <div className="hidden lg:block">
                         <div className="lg:sticky top-6">
                             <Suspense fallback={null}>
-                                <AndroidPreviewPhone />
+                                <PhonePreview />
                             </Suspense>
                         </div>
                     </div>
@@ -297,14 +298,4 @@ const PortfolioGrid = ({ items, setItems, onEdit, onAdd }: { items: Array<{ id: 
     );
 };
 
-const AndroidPreviewPhone = () => {
-    const params = useSearchParams();
-    const username = params.get("username") || "guest";
-    return (
-        <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#222] via-[#000] to-[#444] dark:from-[#d4d7da] dark:via-[#bfc3c7] dark:to-[#eceff1] p-1 shadow-2xl">
-            <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary">
-                <iframe title="Profile preview" src={`/${username}`} className="size-full border-0" />
-            </div>
-        </div>
-    );
-};
+// replaced with shared PhonePreview component

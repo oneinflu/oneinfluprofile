@@ -21,7 +21,7 @@ export default function LoginPage() {
 
                             <Input label="Email" placeholder="Enter your email" />
 
-                            <Button size="lg">Continue</Button>
+                            <Button size="lg" href="/admin">Continue</Button>
 
                             <div className="flex items-center gap-3">
                                 <div className="h-px w-full bg-border-secondary" />

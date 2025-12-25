@@ -2,13 +2,15 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import { Button } from "@/components/base/buttons/button";
-import { MessageChatCircle, CurrencyDollarCircle, Stars02 } from "@untitledui/icons";
-import { useMemo, useState } from "react";
+import { ButtonUtility } from "@/components/base/buttons/button-utility";
+import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01 } from "@untitledui/icons";
+import { useMemo, useState, useEffect } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
 import { Input } from "@/components/base/input/input";
 import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { RadioGroup, RadioButton } from "@/components/base/radio-buttons/radio-buttons";
+import { useTheme } from "next-themes";
 
 export default function ProfilePage() {
     const params = useParams();
@@ -36,14 +38,14 @@ export default function ProfilePage() {
 
     return (
         <>
-            <section className="lg:hidden flex min-h-screen bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto">
+            <section className="lg:hidden flex min-h-screen pt-5 bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
                 <ProfileCard username={username} payEnabled={payEnabled} upiId={upiId} offers={offers} onRequest={openRequest} />
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} variant="mobile" onRequest={openRequest} />
             </section>
             <section className="hidden lg:flex min-h-screen items-center justify-center bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4">
                 <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#ffffff] via-[#F4EBFF] to-[#EDE6FF] dark:from-[#0b0f14] dark:via-[#1b103f] dark:to-[#000000] p-1 shadow-2xl">
                     <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary relative">
-                        <div className="size-full overflow-y-auto bg-primary p-3 pb-20">
+                        <div className="size-full overflow-y-auto scrollbar-hide bg-primary p-3 pb-20">
                             <ProfileCard username={username} payEnabled={payEnabled} upiId={upiId} offers={offers} onRequest={openRequest} />
                         </div>
                         <div className="absolute inset-x-3 bottom-3">
@@ -65,20 +67,70 @@ export default function ProfilePage() {
 }
 
 function ProfileCard({ username, payEnabled, upiId, offers, onRequest }: { username: string; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string; priceType: "fixed" | "starting" | "custom"; price?: number; cta: "request" | "pay" | "request_pay_later" }>; onRequest: (service?: string) => void }) {
+    const { resolvedTheme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+    const isDark = mounted && resolvedTheme === "dark";
+    const themeLabel = isDark ? "Switch to light" : "Switch to dark";
     return (
         <div className="w-full max-w-sm">
-            <div className="flex flex-col items-center gap-4 rounded-2xl bg-primary p-6 shadow-xs-skeumorphic ring-1 ring-secondary_alt">
-                <div className="relative">
-                    <div className="absolute inset-0 -z-10 size-24 rounded-full bg-linear-to-b from-[#7F56D9]/30 to-transparent blur-xl" />
-                    <img src="/avatar.svg" alt="Avatar" className="size-22 rounded-full ring-2 ring-secondary_alt shadow-lg" />
+            <div className="relative flex flex-col gap-3 rounded-2xl bg-primary p-0 shadow-none">
+                <div className="relative h-44 w-full overflow-hidden rounded-t-2xl sm:h-56">
+                    <img src="/profile.jpg" alt="Cover" className="size-full object-cover" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-b from-transparent to-primary dark:to-[#0b0f14]" />
+                    <div className="absolute left-3 top-3">
+                        <span className="inline-flex items-center justify-center rounded-md bg-primary/75 backdrop-blur p-1.5 shadow-xs">
+                            <img
+                                src={isDark ? "/faviconwhite.png" : "/favicon.png"}
+                                alt="Brand"
+                                className="size-5"
+                                onError={(e) => {
+                                    e.currentTarget.src = "/favicon.png";
+                                }}
+                            />
+                        </span>
+                    </div>
+                    <div className="absolute right-3 top-3">
+                        <div className="flex items-center gap-2">
+                            <ButtonUtility
+                                tooltip="Share profile"
+                                size="sm"
+                                color="secondary"
+                                icon={Share04}
+                                onClick={() => {
+                                    const url = typeof window !== "undefined" ? window.location.href : `/${username}`;
+                                    const text = `Check out ${username}'s profile`;
+                                    if (typeof navigator !== "undefined" && (navigator as any).share) {
+                                        (navigator as any)
+                                            .share({ title: text, text, url })
+                                            .catch(() => {});
+                                    } else {
+                                        const wa = `https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`;
+                                        window.open(wa, "_blank");
+                                    }
+                                }}
+                            />
+                            {mounted && (
+                                <ButtonUtility
+                                    tooltip={themeLabel}
+                                    size="sm"
+                                    color="secondary"
+                                    icon={isDark ? Sun : Moon01}
+                                    onClick={() => setTheme(isDark ? "light" : "dark")}
+                                />
+                            )}
+                        </div>
+                    </div>
                 </div>
-            <div className="flex flex-col items-center gap-0.5">
-                <h1 className="text-xl font-semibold text-primary">{username}</h1>
-                <p className="text-xs font-medium uppercase tracking-wide text-secondary">Fashion Creator | Reels & Brand Collabs</p>
-            </div>
-            <p className="text-sm text-tertiary text-center leading-relaxed">
-                {truncateBio(`Hi, I’m ${username}. I create fashion content and collaborate with brands through short-form video.`)}
-            </p>
+                <div className="px-6 pb-6">
+                    <div className="flex flex-col items-center gap-1">
+                        <h1 className="text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-primary text-center">{username}</h1>
+                        <p className="text-sm font-medium uppercase tracking-wide text-secondary text-center">Fashion Creator | Reels & Brand Collabs</p>
+                    </div>
+                    <p className="mt-1 text-base text-tertiary text-center leading-relaxed">
+                        {truncateBio(`Hi, I’m ${username}. I create fashion content and collaborate with brands through short-form video.`)}
+                    </p>
+                </div>
             <div className="mt-1 flex items-center justify-center gap-2">
                 <a href={`https://instagram.com/${username}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary">
                     <img src="/instagram.png" alt="Instagram" className="size-5" />
@@ -311,8 +363,8 @@ function PrimaryCTAStrip({ username, payEnabled, upiId, variant, onRequest }: { 
             <div className={`${inner}`}>
                 <div className="rounded-3xl bg-primary/90 dark:bg-linear-to-r dark:from-[#1f143d]/90 dark:to-[#4b2e8b]/90 backdrop-blur p-2 shadow-xl ring-1 ring-secondary_alt dark:ring-brand overflow-hidden">
                     <div className={`grid ${cols} gap-2 min-w-0`}>
-                        <Button className="w-full" size="sm" color="primary" iconLeading={Stars02} onClick={() => onRequest()}>Request Service</Button>
-                        <Button className="w-full" size="sm" color="secondary" iconLeading={MessageChatCircle} onClick={() => {
+                        <Button className="w-full" size="sm" color="secondary" onClick={() => onRequest()}>Make Payment</Button>
+                        <Button className="w-full !bg-[#47AE4C] !text-white hover:!bg-[#10887B] !ring-transparent" size="sm" color="secondary" onClick={() => {
                             const url = `https://wa.me/?text=${waText}`;
                             window.open(url, "_blank");
                         }}>Chat on WhatsApp</Button>
