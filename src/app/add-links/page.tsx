@@ -64,8 +64,8 @@ const AddLinksContent = () => {
     };
 
     return (
-        <section className="flex min-h-screen flex-col bg-primary">
-            <div className="sticky top-0 z-20 bg-primary px-4 md:px-8 pt-6 pb-4">
+        <section className="flex min-h-screen flex-col">
+            <div className="sticky top-0 z-20 px-4 md:px-8 pt-6 pb-4">
                 <div className="mx-auto w-full max-w-xl text-center">
                     <div className="w-full">
                         <ProgressBarBase value={3} min={0} max={4} />
@@ -168,7 +168,7 @@ const AddLinksContent = () => {
                 </div>
             </div>
 
-            <div className="sticky bottom-0 bg-primary px-4 md:px-8 py-4 text-center">
+            <div className="sticky bottom-0 px-4 md:px-8 py-4 text-center">
                 <Button size="lg" className="mx-auto w-full max-w-xl" href="/onboarding">Continue</Button>
                 <div className="mt-2">
                     <Button color="link-gray" size="sm" href="/onboarding">Skip for now</Button>

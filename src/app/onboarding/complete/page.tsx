@@ -19,11 +19,11 @@ const CompleteContent = () => {
     }, []);
 
     return (
-        <section className="flex min-h-screen flex-col bg-primary">
+        <section className="flex min-h-screen flex-col">
             <div className="pointer-events-none fixed inset-0 z-0">
                 <Confetti width={size.width} height={size.height} numberOfPieces={180} recycle={true} />
             </div>
-            <div className="sticky top-0 z-10 bg-primary px-4 md:px-8 pt-6 pb-4">
+            <div className="sticky top-0 z-10 px-4 md:px-8 pt-6 pb-4">
                 <div className="mx-auto w-full max-w-xl text-center">
                    
                     <div className="mt-6 flex flex-col items-center gap-2">
@@ -43,7 +43,7 @@ const CompleteContent = () => {
                 </div>
             </div>
 
-            <div className="sticky bottom-0 bg-primary px-4 md:px-8 py-4 text-center">
+            <div className="sticky bottom-0 px-4 md:px-8 py-4 text-center">
                 <Button size="lg" className="mx-auto w-full max-w-xl" href="/admin">Continue to profile</Button>
               
             </div>

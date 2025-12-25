@@ -10,7 +10,7 @@ export default function SelectCategoryPage() {
     const [value, setValue] = useState<string | null>(null);
 
     return (
-        <section className="flex min-h-screen items-center justify-center bg-primary px-4 md:px-8">
+        <section className="flex min-h-screen items-center justify-center px-4 md:px-8">
             <div className="w-full max-w-xl">
                 <div className="flex flex-col items-center gap-8 text-center">
                     <div className="w-full">

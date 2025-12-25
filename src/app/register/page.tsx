@@ -12,7 +12,7 @@ export default function RegisterPage() {
     const nextHref = email ? `/username?email=${encodeURIComponent(email)}` : "/username";
 
     return (
-        <section className="flex min-h-screen bg-primary">
+        <section className="flex min-h-screen">
             <div className="flex w-full flex-col md:grid md:grid-cols-2">
                 <div className="flex min-h-screen w-full flex-col px-4 py-12 md:px-12 lg:px-16 xl:px-20">
                     <div className="flex w-full items-start justify-start">

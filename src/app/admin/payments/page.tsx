@@ -74,8 +74,8 @@ export default function AdminPaymentsPage() {
     const [recordTargetId, setRecordTargetId] = useState<string | null>(null);
     const [recordDraft, setRecordDraft] = useState<{ amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; notes?: string }>({ amount: undefined, mode: "UPI", txId: "", date: new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short" }), proofUrl: undefined, notes: "" });
     return (
-        <section className="flex min-h-screen flex-col bg-primary lg:pl-[300px]">
-            <div className="sticky top-0 z-10 bg-primary px-4 md:px-8 pt-6 pb-4">
+        <section className="flex min-h-screen flex-col lg:pl-[300px]">
+            <div className="sticky top-0 z-10 px-4 md:px-8 pt-6 pb-4">
                 <div className="w-full max-w-8xl">
                     <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">

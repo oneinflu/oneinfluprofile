@@ -7,8 +7,29 @@ export const HomePain = () => {
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
     const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
     return (
-        <section className="relative overflow-hidden  px-4">
-            <div ref={ref} className="mx-auto  max-w-6xl px-4 py-16 md:py-24 bg-brand-solid rounded-3xl">
+        <section className="relative overflow-hidden px-4">
+            <motion.div
+                aria-hidden
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="pointer-events-none absolute inset-0"
+            >
+                <motion.div
+                    initial={{ x: -80, y: -40, opacity: 0.25 }}
+                    animate={{ x: [ -80, 40, -20 ], y: [ -40, -20, -60 ], opacity: [0.25, 0.35, 0.3] }}
+                    transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+                    className="absolute left-0 top-0 h-80 w-80 rounded-full bg-gradient-to-br from-[#7C3AED]/40 via-[#A855F7]/30 to-transparent blur-3xl"
+                />
+                <motion.div
+                    initial={{ x: 80, y: 60, opacity: 0.25 }}
+                    animate={{ x: [ 80, -30, 60 ], y: [ 60, 20, 80 ], opacity: [0.25, 0.35, 0.3] }}
+                    transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: 0.4 }}
+                    className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-gradient-to-br from-[#6366F1]/35 via-[#A855F7]/25 to-transparent blur-3xl"
+                />
+            </motion.div>
+            <div ref={ref} className="mx-auto max-w-6xl px-4 py-16 md:py-24 bg-brand-solid rounded-3xl">
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}

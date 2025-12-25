@@ -47,7 +47,7 @@
                          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                          viewport={{ once: true, margin: "-10%" }}
                          style={{ y: yImage }}
-                         className="relative hidden md:flex items-end justify-center md:min-h-100 md:w-full md:-mb-12"
+                         className="relative hidden md:flex items-end justify-center md:min-h-100 md:w-full md:-mb-17"
                      >
                          <img
                              src="/mockup.png"

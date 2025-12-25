@@ -10,7 +10,7 @@ const VerifyContent = () => {
     const email = params.get("email") || "your email";
 
     return (
-        <section className="flex min-h-screen items-center justify-center bg-primary px-4 md:px-8">
+        <section className="flex min-h-screen items-center justify-center px-4 md:px-8">
             <div className="w-full max-w-sm md:max-w-md">
                 <div className="flex w-full flex-col items-center gap-6 text-center">
                     <div className="flex flex-col gap-2">
