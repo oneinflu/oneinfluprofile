@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import { ThemeFab } from "@/components/application/theme-toggle/theme-fab";
+import { SiteHeader } from "@/components/application/site-header";
 import "@/styles/globals.css";
 import { cx } from "@/utils/cx";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             <body className={cx(inter.variable, "bg-primary antialiased")}>
                 <RouteProvider>
                     <Theme>
+                        <SiteHeader />
                         {children}
                         <ThemeFab />
                     </Theme>

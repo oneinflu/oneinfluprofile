@@ -907,6 +907,20 @@
     --outline-color-brand_alt: var(--color-border-brand_alt);
 }
 
+/* Root pages palette (scoped) */
+.root-theme {
+    --root-bg-primary: #f7f9fc;
+    --root-bg-secondary: #eef2f7;
+    --root-card-bg: rgba(0, 0, 0, 0.04);
+    --root-border: rgba(0, 0, 0, 0.08);
+}
+.dark-mode .root-theme {
+    --root-bg-primary: #0B0E11;
+    --root-bg-secondary: #12161C;
+    --root-card-bg: rgba(255, 255, 255, 0.04);
+    --root-border: rgba(255, 255, 255, 0.08);
+}
+
 @layer base {
     /* DARK MODE VARIABLES */
 

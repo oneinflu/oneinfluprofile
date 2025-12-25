@@ -28,6 +28,22 @@
     transition-timing-function: inherit;
 }
 
+@utility bg-root-primary {
+    background-color: var(--root-bg-primary);
+}
+@utility bg-root-secondary {
+    background-color: var(--root-bg-secondary);
+}
+@utility bg-root-card {
+    background-color: var(--root-card-bg);
+}
+@utility border-root {
+    border-color: var(--root-border);
+}
+@utility ring-root {
+    --tw-ring-color: var(--root-border);
+}
+
 html,
 body {
     font-family: var(--font-body);
