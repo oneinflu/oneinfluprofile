@@ -85,7 +85,7 @@ function ProfileCard({ username, payEnabled, upiId, offers, onRequest }: { usern
                                 alt="Brand"
                                 className="size-5"
                                 onError={(e) => {
-                                    e.currentTarget.src = "/favicon.png";
+                                    e.currentTarget.src = "/faviconwhite.png";
                                 }}
                             />
                         </span>
