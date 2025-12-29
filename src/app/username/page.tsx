@@ -5,7 +5,7 @@ import { ArrowLeft } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const Prefix = ({ className }: { className?: string }) => (
     <span className={className}>oneinflu.com/</span>
@@ -14,8 +14,58 @@ const Prefix = ({ className }: { className?: string }) => (
 const UsernameContent = () => {
     const params = useSearchParams();
     const emailParam = params.get("email") || "";
-    const initialHandle = emailParam.split("@")[0] || "";
-    const verifyHref = emailParam ? `/verify?email=${encodeURIComponent(emailParam)}` : "/verify";
+    const [email, setEmail] = useState("");
+    useEffect(() => {
+        try {
+            const stored = localStorage.getItem("influu_register_email") || "";
+            setEmail(stored || emailParam);
+        } catch {
+            setEmail(emailParam);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    const [handle, setHandle] = useState("");
+    useEffect(() => {
+        const suggested = email.split("@")[0] || "";
+        setHandle(suggested);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [email]);
+    const verifyHref = email ? `/verify?to=${encodeURIComponent(email)}` : "/verify";
+    const [available, setAvailable] = useState<null | boolean>(null);
+    const [checking, setChecking] = useState(false);
+
+    useEffect(() => {
+        const name = handle.trim();
+        if (!name) {
+            setAvailable(null);
+            return;
+        }
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const controller = new AbortController();
+        setChecking(true);
+        const url = `${API_BASE}/auth/username/check?username=${encodeURIComponent(name)}`;
+        console.group("USERNAME_CHECK");
+        console.log("REQUEST GET", url);
+        console.log("EXPECTED_RESPONSE_SHAPES", {
+            available: { success: true, status: "ok", data: { available: true } },
+            unavailable: { success: true, status: "ok", data: { available: false } },
+        });
+        console.groupEnd();
+        fetch(url, { signal: controller.signal })
+            .then(async (res) => {
+                const data = await res.json().catch(() => ({}));
+                console.group("USERNAME_CHECK_RESPONSE");
+                console.log("STATUS", res.status);
+                console.log("BODY", data);
+                console.groupEnd();
+                const isAvailable = Boolean(data && data.data && typeof data.data.available !== "undefined" ? data.data.available : true);
+                setAvailable(isAvailable);
+            })
+            .catch(() => {})
+            .finally(() => setChecking(false));
+        return () => controller.abort();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [handle]);
 
     return (
         <section className="flex min-h-screen">
@@ -44,7 +94,10 @@ const UsernameContent = () => {
                                 iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                 inputClassName="pl-36"
                                 placeholder="your-handle"
-                                defaultValue={initialHandle}
+                                value={handle}
+                                onChange={(v) => setHandle(String(v))}
+                                isInvalid={available === false}
+                                hint={available === false ? "Username not available" : undefined}
                             />
 
                             <Button size="lg" href={verifyHref}>Continue</Button>

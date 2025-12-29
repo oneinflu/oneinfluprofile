@@ -59,6 +59,42 @@ export default function AdminPortfolioPage() {
 
     const saveDraft = () => {
         if (!draft.title.trim()) return;
+        const action = editIndex === null ? "create" : "update";
+        const payload = {
+            contentType: draft.contentType,
+            fileUrl: draft.fileUrl || null,
+            externalUrl: draft.externalUrl?.trim() || null,
+            title: draft.title.trim(),
+            brand: draft.brand?.trim() || null,
+            description: (draft.description || "").slice(0, 120),
+            platform: draft.platform,
+            visible: draft.visible,
+            pinned: draft.pinned || false,
+        };
+        const expected = {
+            success: true,
+            status: "ok",
+            message: action === "create" ? "Work added" : "Work updated",
+            data: {
+                work: {
+                    id: action === "create" ? "pf_generated_id" : items[editIndex!].id,
+                    title: payload.title,
+                    brand: payload.brand || undefined,
+                    platform: payload.platform,
+                    thumbnail: payload.fileUrl || undefined,
+                    visible: payload.visible,
+                    description: payload.description,
+                    contentType: payload.contentType,
+                    externalUrl: payload.externalUrl || undefined,
+                    pinned: payload.pinned,
+                },
+            },
+            traceId: "trace_portfolio",
+        };
+        console.group("PORTFOLIO_API");
+        console.log(action === "create" ? "REQUEST POST /api/portfolio" : `REQUEST PUT /api/portfolio/${action === "update" ? items[editIndex!].id : ""}`, payload);
+        console.log("EXPECTED_RESPONSE_SHAPE", expected);
+        console.groupEnd();
         const nextItem = {
             id: editIndex === null ? `pf-${Date.now()}` : items[editIndex].id,
             title: draft.title.trim(),

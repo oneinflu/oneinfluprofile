@@ -18,6 +18,42 @@ export default function ProfilePage() {
     const username = (params?.username as string) || "guest";
     const payEnabled = searchParams.get("pay") === "1";
     const upiId = "sonia@upi";
+    useEffect(() => {
+        const payload = { username, include: ["profile", "offers", "links", "payment", "theme"] };
+        const expected = {
+            success: true,
+            status: "ok",
+            message: "Profile fetched",
+            data: {
+                profile: {
+                    id: "u_1",
+                    username,
+                    name: "Sonia",
+                    role: "Creator",
+                    bio: "Creating content that converts.",
+                    avatarUrl: "/avatar-placeholder.png",
+                    coverUrl: "/profile.jpg",
+                    verified: false,
+                },
+                offers: [
+                    { title: "Instagram Reel Promotion", description: "1 Reel + 3 Stories", priceType: "fixed", price: 8000, cta: "request" },
+                    { title: "YouTube Integration", description: "Mention or mid-roll", priceType: "starting", price: 15000, cta: "request_pay_later" },
+                    { title: "Custom Campaign", description: "Tailored deliverables", priceType: "custom", cta: "request" },
+                ],
+                links: [
+                    { platform: "instagram", icon: "/instagram.png", url: "https://instagram.com/sonia", visible: true },
+                    { platform: "youtube", icon: "/youtube.png", url: "https://youtube.com/@sonia", visible: true },
+                ],
+                payment: { upiId: "sonia@upi", payEnabled: payEnabled },
+                theme: "light",
+            },
+            traceId: "trace_profile",
+        };
+        console.group("PROFILE_API");
+        console.log(`REQUEST GET /api/profile/${username}`, payload);
+        console.log("EXPECTED_RESPONSE_SHAPE", expected);
+        console.groupEnd();
+    }, [username, payEnabled]);
     const offers = useMemo(
         () => (
             [

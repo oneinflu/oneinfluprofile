@@ -45,7 +45,7 @@ export default function SelectPlatformsPage() {
 
             <div className="flex-1 overflow-y-auto px-4 md:px-8 pt-8 pb-28">
                 <div className="mx-auto w-full max-w-xl">
-                    <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3 justify-items-center gap-y-6" aria-label="Platforms selection">
+                    <div className="grid w-full grid-cols-3 gap-4 justify-items-center gap-y-6" aria-label="Platforms selection">
                         {items.map((item) => (
                             <Checkbox
                                 key={item.value}

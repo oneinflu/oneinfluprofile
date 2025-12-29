@@ -5,11 +5,59 @@ import { Input } from "@/components/base/input/input";
 import { Button } from "@/components/base/buttons/button";
 import { SocialButton } from "@/components/base/buttons/social-button";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
-    const nextHref = email ? `/username?email=${encodeURIComponent(email)}` : "/username";
+    const nextHref = "/username";
+
+    const handleContinue = async () => {
+        if (!email.trim() || loading) return;
+        setLoading(true);
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const payload = { email: email.trim() };
+        const expected = {
+            success: true,
+            status: "ok",
+            message: "OTP sent",
+            data: { delivery: "email", otp: "164962" },
+        };
+        console.group("REGISTER_OTP_SEND");
+        console.log("REQUEST POST", `${API_BASE}/auth/register/otp/send`, payload);
+        console.log("EXPECTED_RESPONSE_SHAPE", expected);
+        console.groupEnd();
+        try {
+            const res = await fetch(`${API_BASE}/auth/register/otp/send`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json().catch(() => ({}));
+            console.group("REGISTER_OTP_SEND_RESPONSE");
+            console.log("STATUS", res.status);
+            console.log("BODY", data);
+            console.groupEnd();
+            const requestId = data && data.data && data.data.id ? String(data.data.id) : "";
+            if (requestId) {
+                try {
+                    localStorage.setItem("influu_register_request_id", requestId);
+                } catch {}
+            }
+            try {
+                localStorage.setItem("influu_register_email", payload.email);
+            } catch {}
+            router.push(nextHref);
+        } catch (e) {
+            console.group("REGISTER_OTP_SEND_ERROR");
+            console.error(e);
+            console.groupEnd();
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <section className="flex min-h-screen">
@@ -26,9 +74,11 @@ export default function RegisterPage() {
                                 <p className="text-md text-tertiary">Create your account with your email.</p>
                             </div>
 
-                            <Input label="Email" placeholder="Enter your email" onChange={setEmail} defaultValue={email} />
+                            <Input label="Email" placeholder="Enter your email" value={email} onChange={setEmail} />
 
-                            <Button size="lg" href={nextHref}>Continue</Button>
+                            <Button size="lg" onClick={handleContinue} isDisabled={!email.trim() || loading}>
+                                {loading ? "Sending..." : "Continue"}
+                            </Button>
 
                             <div className="flex items-center gap-3">
                                 <div className="h-px w-full bg-border-secondary" />

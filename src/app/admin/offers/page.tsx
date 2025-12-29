@@ -54,6 +54,42 @@ export default function AdminOffersPage() {
 
     const saveDraft = () => {
         if (!draft.title.trim()) return;
+        const action = editIndex === null ? "create" : "update";
+        const payload = {
+            title: draft.title.trim(),
+            description: draft.description.slice(0, 120),
+            priceType: draft.priceType,
+            price: draft.priceType === "custom" ? null : Math.max(0, Number(draft.price || 0)),
+            includes: draft.includes,
+            cta: draft.cta,
+            delivery: draft.delivery || "",
+            visible: draft.visible,
+            currency: "INR",
+        };
+        const expected = {
+            success: true,
+            status: "ok",
+            message: action === "create" ? "Offer created" : "Offer updated",
+            data: {
+                offer: {
+                    id: action === "create" ? "offer_generated_id" : offers[editIndex!].id,
+                    title: payload.title,
+                    description: payload.description,
+                    priceType: payload.priceType,
+                    price: payload.price,
+                    includes: payload.includes,
+                    cta: payload.cta,
+                    delivery: payload.delivery,
+                    visible: payload.visible,
+                    currency: payload.currency,
+                },
+            },
+            traceId: "trace_offer",
+        };
+        console.group("OFFERS_API");
+        console.log(action === "create" ? "REQUEST POST /api/offers" : `REQUEST PUT /api/offers/${action === "update" ? offers[editIndex!].id : ""}`, payload);
+        console.log("EXPECTED_RESPONSE_SHAPE", expected);
+        console.groupEnd();
         const nextItem = {
             id: editIndex === null ? `offer-${Date.now()}` : offers[editIndex].id,
             title: draft.title.trim(),

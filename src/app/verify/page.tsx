@@ -7,7 +7,7 @@ import { PinInput } from "@/components/base/pin-input/pin-input";
 
 const VerifyContent = () => {
     const params = useSearchParams();
-    const email = params.get("email") || "your email";
+    const to = params.get("to") || params.get("email") || params.get("identifier") || "your email";
 
     return (
         <section className="flex min-h-screen items-center justify-center px-4 md:px-8">
@@ -15,7 +15,7 @@ const VerifyContent = () => {
                 <div className="flex w-full flex-col items-center gap-6 text-center">
                     <div className="flex flex-col gap-2">
                         <h1 className="text-display-sm font-semibold text-primary">Check your inbox</h1>
-                        <p className="text-md text-tertiary">We sent a temporary 6-digit code to {email}.</p>
+                        <p className="text-md text-tertiary">We sent a temporary 6-digit code to {to}.</p>
                     </div>
 
                     <PinInput size="sm" className="w-full">
