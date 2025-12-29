@@ -51,17 +51,6 @@ export const HomeScreen = () => {
                                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                                 className="h-12 w-auto drop-shadow"
                             />
-                            <div className="flex items-end justify-center gap-1">
-                                {[0, 1, 2, 3, 4].map((i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ scaleY: 0.6, opacity: 0.9 }}
-                                        animate={{ scaleY: [0.6, 1.2, 0.8, 1.4, 0.7], opacity: [0.9, 1, 0.95, 1, 0.92] }}
-                                        transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut", delay: i * 0.08 }}
-                                        className="h-10 w-2 origin-bottom rounded-full bg-gradient-to-b from-[#7C3AED] via-[#A855F7] to-[#6366F1]"
-                                    />
-                                ))}
-                            </div>
                             <motion.p
                                 initial={{ y: 8, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
