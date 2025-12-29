@@ -1,19 +1,16 @@
 {
     "name": "untitledui-nextjs-starter-kit",
     "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start"
-  },
-  "engines": {
-    "node": "22.x"
-  },
-  "dependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
-    "@tailwindcss/typography": "^0.5.19",
-    "@untitledui/file-icons": "^0.0.8",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start"
+    },
+    "dependencies": {
+        "@tailwindcss/postcss": "^4.1.18",
+        "@tailwindcss/typography": "^0.5.19",
+        "@untitledui/file-icons": "^0.0.8",
         "@untitledui/icons": "^0.0.19",
         "input-otp": "^1.4.2",
         "motion": "^12.23.26",
