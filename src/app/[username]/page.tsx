@@ -11,8 +11,10 @@ import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { RadioGroup, RadioButton } from "@/components/base/radio-buttons/radio-buttons";
 import { useTheme } from "next-themes";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { api } from "@/utils/api";
+import { PhonePreview } from "@/components/application/preview/phone-preview";
+import { useBreakpoint } from "@/hooks/use-breakpoint";
 
 type PublicProfileResponse = {
     profile: { id: string; username: string; name: string | null; role: string | null; bio: string | null; avatarUrl: string | null; coverUrl: string | null; verified: boolean };
@@ -103,6 +105,7 @@ function PaymentBottomSheet({ isOpen, onOpenChange, name, upiId }: { isOpen: boo
 export default function ProfilePage() {
     const [username, setUsername] = useState<string>("");
     const params = useParams();
+    const search = useSearchParams();
     const [isLandscape, setIsLandscape] = useState(false);
     useEffect(() => {
         let alive = true;
@@ -252,9 +255,11 @@ export default function ProfilePage() {
     const [requestSuccessOpen, setRequestSuccessOpen] = useState(false);
     const [requestSuccessService, setRequestSuccessService] = useState<string>("");
 
+    const disableLock = (search.get("nolock") || "").trim() === "1";
+    const isLg = useBreakpoint("lg");
     return (
         <>
-            {isLandscape && (
+            {isLandscape && !disableLock && !isLg && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
                     <div className="mx-4 w-full max-w-sm rounded-2xl bg-primary p-4 text-center shadow-xl ring-1 ring-secondary_alt">
                         <p className="text-md font-semibold text-primary">Please rotate your device to portrait</p>
@@ -268,13 +273,8 @@ export default function ProfilePage() {
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
             </section>
             <section className="hidden lg:flex min-h-screen items-center justify-center bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4">
-                <div className="mx-auto w-full max-w-4xl">
-                    <div className="rounded-2xl bg-primary p-4 ring-1 ring-secondary_alt">
-                        <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
-                    </div>
-                    <div className="mt-4">
-                        <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
-                    </div>
+                <div className="mx-auto w-full max-w-sm">
+                    <PhonePreview username={username ? `${username}?nolock=1` : undefined} />
                 </div>
             </section>
 

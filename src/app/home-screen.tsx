@@ -44,18 +44,26 @@ export const HomeScreen = () => {
                             className="relative flex flex-col items-center gap-5 text-center"
                         >
                             <motion.img
+                                src="/light.svg"
+                                alt="INFLU"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                className="h-12 w-auto drop-shadow dark:hidden"
+                            />
+                            <motion.img
                                 src="/logo.svg"
                                 alt="INFLU"
                                 initial={{ scale: 0.9, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                                className="h-12 w-auto drop-shadow"
+                                className="hidden h-12 w-auto drop-shadow dark:block"
                             />
                             <motion.p
                                 initial={{ y: 8, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                                className="text-md font-semibold text-primary"
+                                className="text-md font-semibold text-black dark:text-white"
                             >
                                 {typed}
                                 <span className="inline-block w-3 align-bottom animate-pulse">|</span>

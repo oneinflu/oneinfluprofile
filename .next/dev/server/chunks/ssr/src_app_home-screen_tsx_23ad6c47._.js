@@ -87,6 +87,32 @@ const HomeScreen = ()=>{
                             className: "relative flex flex-col items-center gap-5 text-center",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].img, {
+                                    src: "/light.svg",
+                                    alt: "INFLU",
+                                    initial: {
+                                        scale: 0.9,
+                                        opacity: 0
+                                    },
+                                    animate: {
+                                        scale: 1,
+                                        opacity: 1
+                                    },
+                                    transition: {
+                                        duration: 0.5,
+                                        ease: [
+                                            0.22,
+                                            1,
+                                            0.36,
+                                            1
+                                        ]
+                                    },
+                                    className: "h-12 w-auto drop-shadow dark:hidden"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/home-screen.tsx",
+                                    lineNumber: 46,
+                                    columnNumber: 29
+                                }, ("TURBOPACK compile-time value", void 0)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].img, {
                                     src: "/logo.svg",
                                     alt: "INFLU",
                                     initial: {
@@ -106,10 +132,10 @@ const HomeScreen = ()=>{
                                             1
                                         ]
                                     },
-                                    className: "h-12 w-auto drop-shadow"
+                                    className: "hidden h-12 w-auto drop-shadow dark:block"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/home-screen.tsx",
-                                    lineNumber: 46,
+                                    lineNumber: 54,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -131,7 +157,7 @@ const HomeScreen = ()=>{
                                             1
                                         ]
                                     },
-                                    className: "text-md font-semibold text-primary",
+                                    className: "text-md font-semibold text-black dark:text-white",
                                     children: [
                                         typed,
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -139,13 +165,13 @@ const HomeScreen = ()=>{
                                             children: "|"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/home-screen.tsx",
-                                            lineNumber: 61,
+                                            lineNumber: 69,
                                             columnNumber: 33
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/home-screen.tsx",
-                                    lineNumber: 54,
+                                    lineNumber: 62,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -175,12 +201,12 @@ const HomeScreen = ()=>{
                                         className: "h-full w-full bg-brand"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/home-screen.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 77,
                                         columnNumber: 33
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/home-screen.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 71,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
@@ -193,21 +219,21 @@ const HomeScreen = ()=>{
                             className: "pointer-events-none absolute -top-16 left-10 h-80 w-80 rounded-full bg-gradient-to-br from-[#7C3AED]/35 via-[#A855F7]/25 to-transparent blur-3xl animate-pulse"
                         }, void 0, false, {
                             fileName: "[project]/src/app/home-screen.tsx",
-                            lineNumber: 72,
+                            lineNumber: 80,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "pointer-events-none absolute bottom-6 right-8 h-72 w-72 rounded-full bg-gradient-to-br from-[#6366F1]/30 via-[#A855F7]/20 to-transparent blur-3xl animate-pulse"
                         }, void 0, false, {
                             fileName: "[project]/src/app/home-screen.tsx",
-                            lineNumber: 73,
+                            lineNumber: 81,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "pointer-events-none absolute left-1/3 top-1/2 h-56 w-56 rounded-full bg-gradient-to-br from-[#7C3AED]/25 via-[#A855F7]/15 to-transparent blur-3xl animate-pulse"
                         }, void 0, false, {
                             fileName: "[project]/src/app/home-screen.tsx",
-                            lineNumber: 74,
+                            lineNumber: 82,
                             columnNumber: 25
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
@@ -223,27 +249,27 @@ const HomeScreen = ()=>{
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$marketing$2f$home$2d$hero$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HomeHero"], {}, void 0, false, {
                 fileName: "[project]/src/app/home-screen.tsx",
-                lineNumber: 78,
+                lineNumber: 86,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$marketing$2f$home$2d$pain$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HomePain"], {}, void 0, false, {
                 fileName: "[project]/src/app/home-screen.tsx",
-                lineNumber: 79,
+                lineNumber: 87,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$marketing$2f$home$2d$shift$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FeaturesAlternatingLayout01"], {}, void 0, false, {
                 fileName: "[project]/src/app/home-screen.tsx",
-                lineNumber: 80,
+                lineNumber: 88,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$marketing$2f$home$2d$who$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HomeWho"], {}, void 0, false, {
                 fileName: "[project]/src/app/home-screen.tsx",
-                lineNumber: 81,
+                lineNumber: 89,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$marketing$2f$home$2d$cta$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["NewsletterIPhoneMockup01"], {}, void 0, false, {
                 fileName: "[project]/src/app/home-screen.tsx",
-                lineNumber: 82,
+                lineNumber: 90,
                 columnNumber: 10
             }, ("TURBOPACK compile-time value", void 0))
         ]

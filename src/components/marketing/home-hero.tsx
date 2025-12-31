@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/base/buttons/button";
 import { BackgroundPattern } from "@/components/shared-assets/background-patterns";
 
-export const HomeHero = ({ demoUsername = "suurya" }: { demoUsername?: string }) => {
+export const HomeHero = ({ demoUsername = "oneinflu" }: { demoUsername?: string }) => {
     return (
         <section className="relative overflow-hidden">
             <BackgroundPattern

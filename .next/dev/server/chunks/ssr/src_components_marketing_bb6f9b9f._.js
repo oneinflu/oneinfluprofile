@@ -15,7 +15,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$shared$
 ;
 ;
 ;
-const HomeHero = ({ demoUsername = "suurya" })=>{
+const HomeHero = ({ demoUsername = "oneinflu" })=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "relative overflow-hidden",
         children: [
@@ -1161,7 +1161,7 @@ const FeaturesAlternatingLayout01 = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Dashboard mockup showing application interface",
-                                            src: "https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp",
+                                            src: "./screen2.png",
                                             className: "size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/marketing/home-shift.tsx",
@@ -1170,7 +1170,7 @@ const FeaturesAlternatingLayout01 = ()=>{
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Dashboard mockup showing application interface",
-                                            src: "https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp",
+                                            src: "./screen2.png",
                                             className: "size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/marketing/home-shift.tsx",
@@ -1324,7 +1324,7 @@ const FeaturesAlternatingLayout01 = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Dashboard mockup showing application interface",
-                                            src: "https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp",
+                                            src: "./screen1.png",
                                             className: "size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/marketing/home-shift.tsx",
@@ -1333,7 +1333,7 @@ const FeaturesAlternatingLayout01 = ()=>{
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Dashboard mockup showing application interface",
-                                            src: "https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp",
+                                            src: "./screen1.png",
                                             className: "size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/marketing/home-shift.tsx",
@@ -1487,7 +1487,7 @@ const FeaturesAlternatingLayout01 = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Dashboard mockup showing application interface",
-                                            src: "https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp",
+                                            src: "./screen3.png",
                                             className: "size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/marketing/home-shift.tsx",
@@ -1496,7 +1496,7 @@ const FeaturesAlternatingLayout01 = ()=>{
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             alt: "Dashboard mockup showing application interface",
-                                            src: "https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp",
+                                            src: "./screen3.png",
                                             className: "size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/marketing/home-shift.tsx",

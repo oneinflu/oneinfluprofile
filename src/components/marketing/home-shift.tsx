@@ -96,13 +96,13 @@ INFLU lets you present your services clearly, professionally, and confidently â€
                             {/* Light mode image (hidden in dark mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                src="./screen2.png"
                                 className="size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
                             />
                             {/* Dark mode image (hidden in light mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                src="./screen2.png"
                                 className="size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
                             />
                         </AlternateImageMockup>
@@ -150,13 +150,13 @@ INFLU gives you space to showcase your best work â€” so trust is built even befo
                             {/* Light mode image (hidden in dark mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                src="./screen1.png"
                                 className="size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
                             />
                             {/* Dark mode image (hidden in light mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                src="./screen1.png"
                                 className="size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
                             />
                         </AlternateImageMockup>
@@ -204,13 +204,13 @@ INFLU helps you move from enquiry to payment without friction, follow-ups, or aw
                             {/* Light mode image (hidden in dark mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-light-01.webp"
+                                src="./screen3.png"
                                 className="size-full object-contain lg:w-auto lg:max-w-none dark:hidden"
                             />
                             {/* Dark mode image (hidden in light mode) */}
                             <img
                                 alt="Dashboard mockup showing application interface"
-                                src="https://www.untitledui.com/marketing/screen-mockups/dashboard-desktop-mockup-dark-01.webp"
+                                src="./screen3.png"
                                 className="size-full object-contain not-dark:hidden lg:w-auto lg:max-w-none"
                             />
                         </AlternateImageMockup>
