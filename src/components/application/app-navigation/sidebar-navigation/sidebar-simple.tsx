@@ -42,14 +42,16 @@ export const SidebarNavigationSimple = ({
     const MAIN_SIDEBAR_WIDTH = 296;
     const { setToken, setUser } = useAuth();
     const router = useRouter();
-    const handleFooterClick = (item: NavItemType) => {
-        if (item.href === "/logout") {
-            try {
-                setToken(null);
-                setUser(null);
-            } finally {
-                router.push("/login");
-            }
+    const handleLogout: React.MouseEventHandler = (e) => {
+        e.preventDefault();
+        try {
+            setToken(null);
+            setUser(null);
+            try { localStorage.removeItem("influu_username"); } catch {}
+            try { localStorage.removeItem("influu_user_id"); } catch {}
+            try { localStorage.removeItem("influu_token"); } catch {}
+        } finally {
+            router.push("/login");
         }
     };
 
@@ -78,9 +80,15 @@ export const SidebarNavigationSimple = ({
                     <ul className="flex flex-col">
                         {footerItems.map((item) => (
                             <li key={item.label} className="py-0.5">
-                                <NavItemBase badge={item.badge} icon={item.icon} href={item.href} type="link" current={item.href === activeUrl}>
-                                    {item.label}
-                                </NavItemBase>
+                                {item.href === "/logout" ? (
+                                    <NavItemBase badge={item.badge} icon={item.icon} href={"#"} type="link" onClick={handleLogout}>
+                                        {item.label}
+                                    </NavItemBase>
+                                ) : (
+                                    <NavItemBase badge={item.badge} icon={item.icon} href={item.href} type="link" current={item.href === activeUrl}>
+                                        {item.label}
+                                    </NavItemBase>
+                                )}
                             </li>
                         ))}
                     </ul>
