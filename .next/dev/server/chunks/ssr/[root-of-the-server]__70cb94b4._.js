@@ -87,7 +87,7 @@ __turbopack_context__.s([
     "request",
     ()=>request
 ]);
-const BASE_URL = ("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app/") ?? "https://newyearbackendcode-zrp62.ondigitalocean.app/";
+const BASE_URL = ("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app") ?? "https://newyearbackendcode-zrp62.ondigitalocean.app";
 async function request(path, { method = "GET", body, token, headers = {}, signal } = {}) {
     const url = path.startsWith("http") ? path : `${BASE_URL}${path}`;
     const finalHeaders = {
@@ -309,7 +309,7 @@ function AuthProvider({ children }) {
                 } else {
                     const fd = new FormData();
                     fd.append("avatar", fileOrUrl);
-                    const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app/")}/users/${username}/avatar`;
+                    const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${username}/avatar`;
                     const res = await fetch(url, {
                         method: "POST",
                         headers: {
@@ -334,7 +334,7 @@ function AuthProvider({ children }) {
                 } else {
                     const fd = new FormData();
                     fd.append("avatar", fileOrUrl);
-                    const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app/")}/users/id/${id}/avatar`;
+                    const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/id/${id}/avatar`;
                     const res = await fetch(url, {
                         method: "POST",
                         headers: {

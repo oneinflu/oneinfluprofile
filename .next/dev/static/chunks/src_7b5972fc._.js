@@ -83,7 +83,7 @@ __turbopack_context__.s([
     ()=>request
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
-const BASE_URL = ("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app/") ?? "https://newyearbackendcode-zrp62.ondigitalocean.app/";
+const BASE_URL = ("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app") ?? "https://newyearbackendcode-zrp62.ondigitalocean.app";
 async function request(path, { method = "GET", body, token, headers = {}, signal } = {}) {
     const url = path.startsWith("http") ? path : `${BASE_URL}${path}`;
     const finalHeaders = {
@@ -328,7 +328,7 @@ function AuthProvider({ children }) {
                     } else {
                         const fd = new FormData();
                         fd.append("avatar", fileOrUrl);
-                        const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app/")}/users/${username}/avatar`;
+                        const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${username}/avatar`;
                         const res = await fetch(url, {
                             method: "POST",
                             headers: {
@@ -355,7 +355,7 @@ function AuthProvider({ children }) {
                     } else {
                         const fd = new FormData();
                         fd.append("avatar", fileOrUrl);
-                        const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app/")}/users/id/${id}/avatar`;
+                        const url = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/id/${id}/avatar`;
                         const res = await fetch(url, {
                             method: "POST",
                             headers: {
