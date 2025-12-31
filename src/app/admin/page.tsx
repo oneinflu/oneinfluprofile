@@ -10,10 +10,10 @@ import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-ic
 import { Badge, BadgeWithIcon } from "@/components/base/badges/badges";
 import { Table, TableCard } from "@/components/application/table/table";
 import { Suspense, useMemo } from "react";
-import { useSearchParams } from "next/navigation";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { PhonePreview } from "@/components/application/preview/phone-preview";
+import { useAuth } from "@/providers/auth";
 
 export default function AdminHomePage() {
     return (
@@ -67,12 +67,15 @@ export default function AdminHomePage() {
     );
 }
 
-const AdminPreviewPhone = () => <PhonePreview />;
+const AdminPreviewPhone = () => {
+    const { user } = useAuth();
+    return <PhonePreview username={user?.username || undefined} />;
+};
 
 const ProfileLinkCTA = () => {
-    const params = useSearchParams();
     const clipboard = useClipboard();
-    const username = params.get("username") || "suurya";
+    const { user } = useAuth();
+    const username = user?.username || "";
 
     const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
     const profileUrl = useMemo(() => `${origin}/${username}`, [origin, username]);

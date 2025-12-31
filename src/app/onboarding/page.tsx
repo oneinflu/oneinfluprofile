@@ -6,14 +6,19 @@ import { Input } from "@/components/base/input/input";
 import { TextArea } from "@/components/base/textarea/textarea";
 import { useRef, useState } from "react";
 import { Plus } from "@untitledui/icons";
+import { useAuth } from "@/providers/auth";
+import { useRouter } from "next/navigation";
 
 export default function OnboardingPage() {
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [displayName, setDisplayName] = useState("");
     const [bio, setBio] = useState("");
     const [tags, setTags] = useState<string[]>([]);
     const [tagInput, setTagInput] = useState("");
+    const { user, updateUserById, uploadAvatarById } = useAuth();
+    const router = useRouter();
 
     const addTag = () => {
         const v = tagInput.trim();
@@ -40,9 +45,13 @@ export default function OnboardingPage() {
         if (!file) return;
         const url = URL.createObjectURL(file);
         setAvatarUrl(url);
+        setAvatarFile(file);
     };
 
-    const clearAvatar = () => setAvatarUrl(null);
+    const clearAvatar = () => {
+        setAvatarUrl(null);
+        setAvatarFile(null);
+    };
 
     return (
         <section className="flex min-h-screen flex-col">
@@ -63,7 +72,7 @@ export default function OnboardingPage() {
                 <div className="mx-auto w-full max-w-xl">
                     <div className="flex flex-col items-center gap-8">
                         <div className="relative">
-                            <img src={avatarUrl || "/avatar-placeholder.png"} alt="Profile" className="size-24 rounded-full object-cover ring-1 ring-primary" />
+                            <img src={avatarUrl || "/avatar.svg"} alt="Profile" className="size-24 rounded-full object-cover ring-1 ring-primary" />
                             <button
                                 type="button"
                                 className="absolute -bottom-1 -right-1 inline-flex size-7 items-center justify-center rounded-full bg-primary ring-1 ring-primary shadow-xs"
@@ -89,14 +98,26 @@ export default function OnboardingPage() {
                 <Button
                     size="lg"
                     className="mx-auto w-full max-w-xl"
-                    href={displayName.trim() ? `/onboarding/complete?username=${encodeURIComponent(displayName.trim().toLowerCase().replace(/[^a-z0-9]+/g, ""))}` : undefined}
-                    isDisabled={!displayName.trim()}
+                    onClick={async () => {
+                        if (!user) return;
+                        const uname = user.username;
+                        const data: Record<string, unknown> = {};
+                        if (displayName.trim()) data.name = displayName.trim();
+                        if (bio.trim()) data.shortBio = bio.trim();
+                        if (avatarUrl && avatarUrl.startsWith("http")) data.avatarUrl = avatarUrl;
+                        if (Object.keys(data).length) await updateUserById(user.id, data);
+                        if (avatarFile) {
+                            try {
+                                await uploadAvatarById(user.id, avatarFile);
+                            } catch {}
+                        }
+                        router.push(`/onboarding/complete`);
+                    }}
+                    isDisabled={!displayName.trim() && !bio.trim() && !avatarUrl}
                 >
                     Continue
                 </Button>
-                <div className="mt-2">
-                    <Button color="link-gray" size="sm" href="/onboarding/complete?username=guest">Skip for now</Button>
-                </div>
+               
             </div>
         </section>
     );

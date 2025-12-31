@@ -8,17 +8,21 @@ import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { Rows01, Trash01, Edit01 } from "@untitledui/icons";
 import { Badge } from "@/components/base/badges/badges";
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
 import { PhonePreview } from "@/components/application/preview/phone-preview";
+import { api } from "@/utils/api";
+import { useAuth } from "@/providers/auth";
 
 export default function AdminOffersPage() {
-    const [offers, setOffers] = useState<Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean; includes?: string[]; cta?: "request" | "pay" | "request_pay_later"; delivery?: string }>>([
-        { id: "offer-1", title: "Instagram Reel Promotion", description: "1 Reel + 3 Stories", price: 8000, priceType: "fixed", visible: true, includes: ["1 Instagram Reel", "3 Stories", "Link in bio"], cta: "request" },
-    ]);
+    const { token, user } = useAuth();
+    const [offers, setOffers] = useState<Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean; includes?: string[]; cta?: "request" | "pay" | "request_pay_later"; delivery?: string }>>([]);
     const [editorOpen, setEditorOpen] = useState(false);
     const [editIndex, setEditIndex] = useState<number | null>(null);
+    const [confirmOpen, setConfirmOpen] = useState(false);
+    const [confirmIndex, setConfirmIndex] = useState<number | null>(null);
+    const [previewVersion, setPreviewVersion] = useState(0);
     const [draft, setDraft] = useState<{ title: string; description: string; priceType: "fixed" | "starting" | "custom"; price?: number; delivery?: string; includes: string[]; cta: "request" | "pay" | "request_pay_later"; visible: boolean }>({
         title: "",
         description: "",
@@ -29,6 +33,39 @@ export default function AdminOffersPage() {
         cta: "request",
         visible: true,
     });
+
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!user?.id || !token) return;
+                const res = await api.get<{
+                    success: boolean;
+                    status: string;
+                    data: {
+                        offers: Array<{ _id: string; title: string; description: string; priceType: "fixed" | "starting" | "custom"; price?: number | null; includes?: string[]; cta?: "request" | "pay" | "request_pay_later" | null; delivery?: string | null; visible: boolean }>;
+                    };
+                }>(`/users/id/${user.id}/offers`, { token });
+                if (!alive) return;
+                setOffers(
+                    (res.data?.offers || []).map((o) => ({
+                        id: String((o as any)._id || (o as any).id),
+                        title: o.title,
+                        description: o.description,
+                        price: typeof o.price === "number" ? o.price : 0,
+                        priceType: o.priceType,
+                        visible: o.visible,
+                        includes: o.includes || [],
+                        cta: o.cta || undefined,
+                        delivery: o.delivery || undefined,
+                    })),
+                );
+            } catch {}
+        })();
+        return () => {
+            alive = false;
+        };
+    }, [user?.id, token]);
 
     const openAdd = () => {
         setEditIndex(null);
@@ -52,7 +89,7 @@ export default function AdminOffersPage() {
         setEditorOpen(true);
     };
 
-    const saveDraft = () => {
+    const saveDraft = async () => {
         if (!draft.title.trim()) return;
         const action = editIndex === null ? "create" : "update";
         const payload = {
@@ -66,48 +103,53 @@ export default function AdminOffersPage() {
             visible: draft.visible,
             currency: "INR",
         };
-        const expected = {
-            success: true,
-            status: "ok",
-            message: action === "create" ? "Offer created" : "Offer updated",
-            data: {
-                offer: {
-                    id: action === "create" ? "offer_generated_id" : offers[editIndex!].id,
-                    title: payload.title,
-                    description: payload.description,
-                    priceType: payload.priceType,
-                    price: payload.price,
-                    includes: payload.includes,
-                    cta: payload.cta,
-                    delivery: payload.delivery,
-                    visible: payload.visible,
-                    currency: payload.currency,
-                },
-            },
-            traceId: "trace_offer",
-        };
-        console.group("OFFERS_API");
-        console.log(action === "create" ? "REQUEST POST /api/offers" : `REQUEST PUT /api/offers/${action === "update" ? offers[editIndex!].id : ""}`, payload);
-        console.log("EXPECTED_RESPONSE_SHAPE", expected);
-        console.groupEnd();
-        const nextItem = {
-            id: editIndex === null ? `offer-${Date.now()}` : offers[editIndex].id,
-            title: draft.title.trim(),
-            description: draft.description.slice(0, 120),
-            price: draft.priceType === "custom" ? 0 : Math.max(0, Number(draft.price || 0)),
-            priceType: draft.priceType,
-            visible: draft.visible,
-            includes: draft.includes,
-            cta: draft.cta,
-            delivery: draft.delivery,
-        } as { id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean; includes?: string[]; cta?: "request" | "pay" | "request_pay_later"; delivery?: string };
-
-        if (editIndex === null) {
-            setOffers((prev) => [nextItem, ...prev]);
-        } else {
-            setOffers((prev) => prev.map((o, i) => (i === editIndex ? nextItem : o)));
+        try {
+            if (!user?.id || !token) throw new Error("unauthorized");
+            if (editIndex === null) {
+                const res = await api.post<{ success: boolean; status: string; data: { offer: { _id: string; title: string; description: string; priceType: "fixed" | "starting" | "custom"; price?: number | null; includes?: string[]; cta?: "request" | "pay" | "request_pay_later" | null; delivery?: string | null; visible: boolean } } }>(
+                    `/users/id/${user.id}/offers`,
+                    payload,
+                    { token },
+                );
+                const o = res.data.offer;
+                const nextItem = {
+                    id: String((o as any)._id || (o as any).id),
+                    title: o.title,
+                    description: o.description,
+                    price: typeof o.price === "number" ? o.price : 0,
+                    priceType: o.priceType,
+                    visible: o.visible,
+                    includes: o.includes || [],
+                    cta: o.cta || undefined,
+                    delivery: o.delivery || undefined,
+                };
+                setOffers((prev) => [nextItem, ...prev]);
+                setPreviewVersion((v) => v + 1);
+            } else {
+                const id = offers[editIndex].id;
+                const res = await api.patch<{ success: boolean; status: string; data: { offer: { _id: string; title: string; description: string; priceType: "fixed" | "starting" | "custom"; price?: number | null; includes?: string[]; cta?: "request" | "pay" | "request_pay_later" | null; delivery?: string | null; visible: boolean } } }>(
+                    `/users/id/${user.id}/offers/${id}`,
+                    payload,
+                    { token },
+                );
+                const o = res.data.offer;
+                const nextItem = {
+                    id: String((o as any)._id || (o as any).id),
+                    title: o.title,
+                    description: o.description,
+                    price: typeof o.price === "number" ? o.price : 0,
+                    priceType: o.priceType,
+                    visible: o.visible,
+                    includes: o.includes || [],
+                    cta: o.cta || undefined,
+                    delivery: o.delivery || undefined,
+                };
+                setOffers((prev) => prev.map((ov, i) => (i === editIndex ? nextItem : ov)));
+                setPreviewVersion((v) => v + 1);
+            }
+        } catch {} finally {
+            setEditorOpen(false);
         }
-        setEditorOpen(false);
     };
 
     return (
@@ -129,7 +171,37 @@ export default function AdminOffersPage() {
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
                 <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
                     <div className="flex flex-col gap-6">
-                        <OffersList offers={offers} setOffers={setOffers} onEdit={openEdit} onAdd={openAdd} />
+                        <OffersList
+                            offers={offers}
+                            setOffers={setOffers}
+                            onEdit={openEdit}
+                            onAdd={openAdd}
+                            onDelete={(index) => {
+                                setConfirmIndex(index);
+                                setConfirmOpen(true);
+                            }}
+                            onReorder={async (next) => {
+                                setOffers(next);
+                                try {
+                                    if (!user?.id || !token) return;
+                                    await Promise.all(
+                                        next.map((o, i) =>
+                                            api.patch(`/users/id/${user.id}/offers/${o.id}`, { order: i + 1 }, { token }),
+                                        ),
+                                    );
+                                    setPreviewVersion((v) => v + 1);
+                                } catch {}
+                            }}
+                            onToggle={async (index, isSelected) => {
+                                setOffers((prev) => prev.map((o, i) => (i === index ? { ...o, visible: isSelected } : o)));
+                                try {
+                                    if (!user?.id || !token) return;
+                                    const id = offers[index].id;
+                                    await api.patch(`/users/id/${user.id}/offers/${id}`, { visible: isSelected }, { token });
+                                    setPreviewVersion((v) => v + 1);
+                                } catch {}
+                            }}
+                        />
                     </div>
 
                     <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
@@ -137,12 +209,57 @@ export default function AdminOffersPage() {
                     <div className="hidden lg:block">
                         <div className="lg:sticky top-6">
                             <Suspense fallback={null}>
-                                <PhonePreview />
+                                <PhonePreview username={user?.username ? `${user.username}?v=${previewVersion}` : undefined} />
                             </Suspense>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <AriaDialogTrigger isOpen={confirmOpen} onOpenChange={setConfirmOpen}>
+                <Button slot="trigger" className="hidden">Open</Button>
+                <AriaModalOverlay
+                    isDismissable
+                    className={({ isEntering, isExiting }) =>
+                        `fixed inset-0 z-50 bg-overlay/40 backdrop-blur-sm ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`
+                    }
+                >
+                    {({ state }) => (
+                        <AriaModal className="w-full h-dvh cursor-auto flex items-center justify-center p-4">
+                            <AriaDialog className="w-full max-w-sm overflow-hidden rounded-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
+                                <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
+                                    <h2 className="text-lg font-semibold text-primary">Delete offer?</h2>
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            size="sm"
+                                            color="secondary"
+                                            onClick={async () => {
+                                                if (confirmIndex === null) return;
+                                                try {
+                                                    if (!user?.id || !token) throw new Error("unauthorized");
+                                                    const id = offers[confirmIndex].id;
+                                                    await api.delete(`/users/id/${user.id}/offers/${id}`, { token });
+                                                    setOffers((prev) => prev.filter((_, i) => i !== confirmIndex));
+                                                    setPreviewVersion((v) => v + 1);
+                                                } catch {} finally {
+                                                    setConfirmIndex(null);
+                                                    state.close();
+                                                }
+                                            }}
+                                        >
+                                            Delete
+                                        </Button>
+                                        <Button size="sm" onClick={() => state.close()}>Cancel</Button>
+                                    </div>
+                                </div>
+                                <div className="px-4 py-4">
+                                    <p className="text-sm text-tertiary">This removes it from your profile immediately.</p>
+                                </div>
+                            </AriaDialog>
+                        </AriaModal>
+                    )}
+                </AriaModalOverlay>
+            </AriaDialogTrigger>
 
             <AriaDialogTrigger isOpen={editorOpen} onOpenChange={setEditorOpen}>
                 <Button slot="trigger" className="hidden">Open</Button>
@@ -237,7 +354,27 @@ export default function AdminOffersPage() {
     );
 }
 
-const OffersList = ({ offers, setOffers, onEdit, onAdd }: { offers: Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean }>; setOffers: React.Dispatch<React.SetStateAction<Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean }>>>; onEdit: (index: number) => void; onAdd: () => void }) => {
+const OffersList = ({
+    offers,
+    setOffers,
+    onEdit,
+    onAdd,
+    onDelete,
+    onReorder,
+    onToggle,
+}: {
+    offers: Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean }>;
+    setOffers: React.Dispatch<
+        React.SetStateAction<
+            Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean }>
+        >
+    >;
+    onEdit: (index: number) => void;
+    onAdd: () => void;
+    onDelete: (index: number) => void;
+    onReorder: (next: Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean }>) => void | Promise<void>;
+    onToggle: (index: number, isSelected: boolean) => void | Promise<void>;
+}) => {
     const [dragIndex, setDragIndex] = useState<number | null>(null);
     const formatINR = useMemo(() => new Intl.NumberFormat("en-IN"), []);
 
@@ -265,12 +402,12 @@ const OffersList = ({ offers, setOffers, onEdit, onAdd }: { offers: Array<{ id: 
                             draggable
                             onDragStart={() => setDragIndex(index)}
                             onDragOver={(e) => e.preventDefault()}
-                            onDrop={() => {
+                            onDrop={async () => {
                                 if (dragIndex === null || dragIndex === index) return;
                                 const next = [...offers];
                                 const [moved] = next.splice(dragIndex, 1);
                                 next.splice(index, 0, moved);
-                                setOffers(next);
+                                await onReorder(next);
                                 setDragIndex(null);
                             }}
                             className="flex items-center justify-between gap-3 rounded-xl bg-primary p-3 ring-1 ring-secondary"
@@ -280,7 +417,7 @@ const OffersList = ({ offers, setOffers, onEdit, onAdd }: { offers: Array<{ id: 
                                 <div className="flex min-w-0 flex-col">
                                     <p className="text-md font-semibold text-primary flex items-center gap-2">
                                         {offer.title}
-                                        {index === 0 && <Badge color="brand" size="sm">Highlighted</Badge>}
+                                       
                                     </p>
                                     <div className="flex items-center gap-2">
                                         <p className="text-sm text-tertiary truncate">{offer.description}</p>
@@ -295,20 +432,11 @@ const OffersList = ({ offers, setOffers, onEdit, onAdd }: { offers: Array<{ id: 
                                     slim
                                     size="md"
                                     isSelected={offer.visible}
-                                    onChange={(isSelected) => {
-                                        setOffers((prev) => prev.map((o, i) => (i === index ? { ...o, visible: isSelected } : o)));
-                                    }}
+                                    onChange={(isSelected) => onToggle(index, isSelected)}
                                     aria-label={`Show ${offer.title} on profile`}
                                 />
                                 <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => onEdit(index)} />
-                                <ButtonUtility
-                                    aria-label="Delete"
-                                    icon={Trash01}
-                                    size="sm"
-                                    onClick={() => {
-                                        setOffers((prev) => prev.filter((_, i) => i !== index));
-                                    }}
-                                />
+                                <ButtonUtility aria-label="Delete" icon={Trash01} size="sm" onClick={() => onDelete(index)} />
                             </div>
                         </li>
                     ))}
@@ -317,5 +445,3 @@ const OffersList = ({ offers, setOffers, onEdit, onAdd }: { offers: Array<{ id: 
         </div>
     );
 };
-
-// replaced with shared PhonePreview component

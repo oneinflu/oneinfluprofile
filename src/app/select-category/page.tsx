@@ -5,9 +5,23 @@ import { RadioButton, RadioGroup } from "@/components/base/radio-buttons/radio-b
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 import { useState } from "react";
+import { useAuth } from "@/providers/auth";
+import { useRouter } from "next/navigation";
 
 export default function SelectCategoryPage() {
     const [value, setValue] = useState<string | null>(null);
+    const { user, updateUserById } = useAuth();
+    const router = useRouter();
+    const onNext = async () => {
+        if (!user || !value) return;
+        const category =
+            value === "creator" ? "Creator" :
+            value === "business" ? "Business" :
+            value === "personal" ? "Personal" : null;
+        if (!category) return;
+        await updateUserById(user.id, { category });
+        router.push("/select-platforms");
+    };
 
     return (
         <section className="flex min-h-screen items-center justify-center px-4 md:px-8">
@@ -82,7 +96,7 @@ export default function SelectCategoryPage() {
                         />
                     </RadioGroup>
 
-                    <Button size="lg" className="w-full" href="/select-platforms" isDisabled={!value}>Continue</Button>
+                    <Button size="lg" className="w-full" onClick={onNext} isDisabled={!value}>Continue</Button>
                 </div>
             </div>
         </section>

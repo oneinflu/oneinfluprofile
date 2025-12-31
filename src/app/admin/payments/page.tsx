@@ -6,15 +6,31 @@ import { Input } from "@/components/base/input/input";
 import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { api } from "@/utils/api";
+import { useAuth } from "@/providers/auth";
 
 export default function AdminPaymentsPage() {
+    const { token, user } = useAuth();
     const formatINR = useMemo(() => new Intl.NumberFormat("en-IN"), []);
-    const [payments, setPayments] = useState<Array<{ id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string; proofUrl?: string }>>([
-        { id: "pay-1", date: "12 Dec", brand: "BrandX", service: "Reel Promo", amount: 8000, mode: "UPI", status: "received", txId: "UPI123456" },
-        { id: "pay-2", date: "10 Dec", brand: "Acme", service: "YouTube Integration", amount: 15000, mode: "Bank", status: "pending" },
-        { id: "pay-3", date: "08 Dec", brand: "Nova", service: "Story Set", amount: 5000, mode: "Cash", status: "received" },
-    ]);
+    const [payments, setPayments] = useState<Array<{ id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string; proofUrl?: string }>>([]);
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!user?.username) return;
+                const res = await api.get<{
+                    payments: Array<{ id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string | null; proofUrl?: string | null }>;
+                }>(`/users/${user.username}/payments`, { token });
+                if (!alive) return;
+                setPayments((res.payments || []).map((p) => ({ ...p, txId: p.txId || undefined, proofUrl: p.proofUrl || undefined })));
+            } catch {}
+        })();
+        return () => {
+            alive = false;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user?.username, token]);
     const totals = useMemo(() => {
         const now = new Date();
         const mon = now.getMonth();
@@ -147,20 +163,39 @@ export default function AdminPaymentsPage() {
                 onOpenChange={setAddOpen}
                 draft={draft}
                 setDraft={setDraft}
-                onSave={() => {
+                onSave={async () => {
                     if (!draft.brand.trim() || !draft.service.trim() || typeof draft.amount !== "number") return;
-                    const next = {
-                        id: `pay-${Date.now()}`,
-                        date: draft.date,
-                        brand: draft.brand.trim(),
-                        service: draft.service.trim(),
-                        amount: draft.amount,
-                        mode: draft.mode,
-                        status: draft.status,
-                        txId: draft.txId || undefined,
-                    } as typeof payments[number];
-                    setPayments((prev) => [next, ...prev]);
-                    setAddOpen(false);
+                    try {
+                        if (!user?.username || !token) throw new Error("unauthorized");
+                        const res = await api.post<{ payment: { id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string | null } }>(
+                            `/users/${user.username}/payments`,
+                            {
+                                brand: draft.brand.trim(),
+                                service: draft.service.trim(),
+                                amount: draft.amount,
+                                mode: draft.mode,
+                                txId: draft.txId || null,
+                                date: draft.date,
+                                status: draft.status,
+                                notes: draft.notes || null,
+                            },
+                            { token },
+                        );
+                        const p = res.payment;
+                        const next = {
+                            id: p.id,
+                            date: p.date,
+                            brand: p.brand,
+                            service: p.service,
+                            amount: p.amount,
+                            mode: p.mode,
+                            status: p.status,
+                            txId: p.txId || undefined,
+                        } as typeof payments[number];
+                        setPayments((prev) => [next, ...prev]);
+                    } catch {} finally {
+                        setAddOpen(false);
+                    }
                 }}
             />
             <GenerateRequestModal
@@ -174,7 +209,7 @@ export default function AdminPaymentsPage() {
                 offerOptions={offerOptions}
                 creator={creator}
                 generatedLink={generatedLink}
-                onGenerate={() => {
+                onGenerate={async () => {
                     if (typeof genDraft.amount !== "number" || !genDraft.amount || !genDraft.purpose.trim()) return;
                     const pn = creator.name;
                     const pa = genDraft.upiId;
@@ -182,16 +217,34 @@ export default function AdminPaymentsPage() {
                     const tn = genDraft.purpose.trim();
                     const link = `upi://pay?pa=${encodeURIComponent(pa)}&pn=${encodeURIComponent(pn)}&am=${encodeURIComponent(String(am))}&tn=${encodeURIComponent(tn)}`;
                     setGeneratedLink(link);
-                    const next = {
-                        id: `pay-${Date.now()}`,
-                        date: new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short" }),
-                        brand: (genDraft.payer || "").trim(),
-                        service: genDraft.service === "Custom" ? genDraft.purpose.trim() : genDraft.service,
-                        amount: am,
-                        mode: "UPI" as const,
-                        status: "pending" as const,
-                    } as typeof payments[number];
-                    setPayments((prev) => [next, ...prev]);
+                    try {
+                        if (!user?.username || !token) throw new Error("unauthorized");
+                        const res = await api.post<{ payment: { id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending" } }>(
+                            `/users/${user.username}/payments/request`,
+                            {
+                                amount: am,
+                                purpose: tn,
+                                service: genDraft.service === "Custom" ? tn : genDraft.service,
+                                payer: (genDraft.payer || "").trim(),
+                                method: "UPI",
+                                upiId: pa,
+                            },
+                            { token },
+                        );
+                        const p = res.payment;
+                        setPayments((prev) => [
+                            {
+                                id: p.id,
+                                date: p.date,
+                                brand: p.brand,
+                                service: p.service,
+                                amount: p.amount,
+                                mode: p.mode,
+                                status: p.status,
+                            },
+                            ...prev,
+                        ]);
+                    } catch {}
                 }}
             />
             {receiptItem && (
@@ -230,11 +283,45 @@ export default function AdminPaymentsPage() {
                 onOpenChange={(open) => setRecordOpen(open)}
                 draft={recordDraft}
                 setDraft={setRecordDraft}
-                onSave={() => {
+                onSave={async () => {
                     if (!recordTargetId) return;
-                    setPayments((prev) => prev.map((p) => (p.id === recordTargetId ? { ...p, amount: typeof recordDraft.amount === "number" ? recordDraft.amount : p.amount, mode: recordDraft.mode, txId: recordDraft.txId || undefined, date: recordDraft.date, status: "received", proofUrl: recordDraft.proofUrl } : p)));
-                    setRecordOpen(false);
-                    setRecordTargetId(null);
+                    try {
+                        if (!user?.username || !token) throw new Error("unauthorized");
+                        const res = await api.patch<{ payment: { id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string | null; proofUrl?: string | null } }>(
+                            `/users/${user.username}/payments/${recordTargetId}`,
+                            {
+                                amount: typeof recordDraft.amount === "number" ? recordDraft.amount : undefined,
+                                mode: recordDraft.mode,
+                                txId: recordDraft.txId || null,
+                                date: recordDraft.date,
+                                status: "received",
+                                proofUrl: recordDraft.proofUrl || null,
+                                notes: recordDraft.notes || null,
+                            },
+                            { token },
+                        );
+                        const p = res.payment;
+                        setPayments((prev) =>
+                            prev.map((pv) =>
+                                pv.id === recordTargetId
+                                    ? {
+                                          id: p.id,
+                                          date: p.date,
+                                          brand: p.brand,
+                                          service: p.service,
+                                          amount: p.amount,
+                                          mode: p.mode,
+                                          status: p.status,
+                                          txId: p.txId || undefined,
+                                          proofUrl: p.proofUrl || undefined,
+                                      }
+                                    : pv,
+                            ),
+                        );
+                    } catch {} finally {
+                        setRecordOpen(false);
+                        setRecordTargetId(null);
+                    }
                 }}
             />
         </section>

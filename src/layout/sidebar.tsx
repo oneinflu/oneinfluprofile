@@ -24,6 +24,9 @@ import { FeaturedCardProgressBar } from "@/components/application/app-navigation
 import type { NavItemType } from "@/components/application/app-navigation/config";
 import { SidebarNavigationSimple } from "@/components/application/app-navigation/sidebar-navigation/sidebar-simple";
 import { BadgeWithDot } from "@/components/base/badges/badges";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/providers/auth";
+import { api } from "@/utils/api";
 
 const navItemsSimple: NavItemType[] = [
     { label: "Home", href: "/admin", icon: HomeLine },
@@ -33,41 +36,66 @@ const navItemsSimple: NavItemType[] = [
     { label: "Enquiries", href: "/admin/enquiries", icon: MessageChatCircle },
     { label: "Payments", href: "/admin/payments", icon: CurrencyDollarCircle },
 ];
-export const AppSidebar = () => (
-    <SidebarNavigationSimple
-        items={navItemsSimple}
-        footerItems={[
-            {
-                label: "Settings",
-                href: "/settings",
-                icon: Settings01,
-            },
-            {
-                label: "Support",
-                href: "/support",
-                icon: MessageChatCircle,
-                badge: (
-                    <BadgeWithDot color="success" type="modern" size="sm">
-                        Online
-                    </BadgeWithDot>
-                ),
-            },
-            {
-                label: "Share your profile",
-                href: "/suurya",
-                icon: LayoutAlt01,
-            },
-        ]}
-        featureCard={
-            <FeaturedCardProgressBar
-                title="Used space"
-                description="Your team has used 80% of your available space. Need more?"
-                confirmLabel="Upgrade plan"
-                progress={80}
-                className="hidden md:flex"
-                onDismiss={() => {}}
-                onConfirm={() => {}}
-            />
-        }
-    />
-);
+export const AppSidebar = () => {
+    const { user, token } = useAuth();
+    const [progress, setProgress] = useState(0);
+    const [desc, setDesc] = useState("Loading storage…");
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!user?.username || !token) return;
+                const res = await api.get<{ success: boolean; status: string; data: { usedBytes: number; limitBytes: number; remainingBytes: number } }>(`/users/${user.username}/storage`, { token });
+                if (!alive) return;
+                const used = Number(res.data?.usedBytes || 0);
+                const limit = Number(res.data?.limitBytes || 15 * 1024 * 1024 * 1024);
+                const pct = Math.max(0, Math.min(100, Math.round((used / Math.max(1, limit)) * 100)));
+                const gb = (v: number) => (v / (1024 * 1024 * 1024));
+                setProgress(pct);
+                setDesc(`You have used ${gb(used).toFixed(1)}GB of ${(gb(limit)).toFixed(0)}GB`);
+            } catch {
+                if (!alive) return;
+                setProgress(0);
+                setDesc("Unable to load storage");
+            }
+        })();
+        return () => { alive = false; };
+    }, [user?.username, token]);
+    return (
+        <SidebarNavigationSimple
+            items={navItemsSimple}
+            footerItems={[
+                {
+                    label: "Settings",
+                    href: "/settings",
+                    icon: Settings01,
+                },
+                {
+                    label: "Support",
+                    href: "/support",
+                    icon: MessageChatCircle,
+                    badge: (
+                        <BadgeWithDot color="success" type="modern" size="sm">
+                            Online
+                        </BadgeWithDot>
+                    ),
+                },
+                {
+                    label: "Share your profile",
+                    href: "/suurya",
+                    icon: LayoutAlt01,
+                },
+            ]}
+            featureCard={
+                <FeaturedCardProgressBar
+                    title="Used space"
+                    description={desc}
+                    progress={progress}
+                    className="hidden md:flex"
+                    showClose={false}
+                    showActions={false}
+                />
+            }
+        />
+    );
+};

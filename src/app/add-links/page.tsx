@@ -6,6 +6,7 @@ import { Input } from "@/components/base/input/input";
 import { Plus, Trash01 } from "@untitledui/icons";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useAuth } from "@/providers/auth";
 
 const AddLinksContent = () => {
     const params = useSearchParams();
@@ -52,6 +53,8 @@ const AddLinksContent = () => {
 
     const initial = (selected.length ? order.filter((k) => selected.includes(k)) : order).map((key) => ({ key, img: images[key] }));
     const [rows, setRows] = useState(initial);
+    const [urls, setUrls] = useState<Record<string, string>>({});
+    const { user, createSocialLink } = useAuth();
     const allKeys = order;
     const remaining = allKeys.filter((k) => !rows.some((r) => r.key === k)).map((key) => ({ key, img: images[key] }));
     const [showAdd, setShowAdd] = useState(false);
@@ -115,6 +118,8 @@ const AddLinksContent = () => {
                                         iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                         inputClassName="pl-12"
                                         className="flex-1"
+                                        value={urls[key] ?? ""}
+                                        onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))}
                                     />
                                 ) : key === "facebook" ? (
                                     <Input
@@ -124,6 +129,8 @@ const AddLinksContent = () => {
                                         iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                         inputClassName="pl-32"
                                         className="flex-1"
+                                        value={urls[key] ?? ""}
+                                        onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))}
                                     />
                                 ) : key === "pinterest"  ? (
                                     <Input
@@ -133,6 +140,8 @@ const AddLinksContent = () => {
                                         iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                         inputClassName="pl-32"
                                         className="flex-1"
+                                        value={urls[key] ?? ""}
+                                        onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))}
                                     />
                                 ) : key === "youtube" ? (
                                     <Input
@@ -142,6 +151,8 @@ const AddLinksContent = () => {
                                         iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                         inputClassName="pl-32"
                                         className="flex-1"
+                                        value={urls[key] ?? ""}
+                                        onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))}
                                     />
                                 ) : key === "website" ? (
                                     <Input
@@ -151,13 +162,15 @@ const AddLinksContent = () => {
                                         iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                         inputClassName="pl-20"
                                         className="flex-1"
+                                        value={urls[key] ?? ""}
+                                        onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))}
                                     />
                                 ) : key === "google-business" ? (
-                                    <Input size="md" placeholder="Business profile URL" className="flex-1" type="url" />
+                                    <Input size="md" placeholder="Business profile URL" className="flex-1" type="url" value={urls[key] ?? ""} onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))} />
                                 ) : key === "whatsapp" ? (
-                                    <Input size="md" placeholder="WhatsApp phone number" className="flex-1" type="tel" inputMode="numeric" defaultValue={"+91 "} pattern="^\+?\d[\d\s-]{6,14}$" />
+                                    <Input size="md" placeholder="WhatsApp phone number" className="flex-1" type="tel" inputMode="numeric" defaultValue={urls[key] ?? "+91 "} onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))} pattern="^\\+?\\d[\\d\\s-]{6,14}$" />
                                 ) : (
-                                    <Input size="md" placeholder="url" className="flex-1" type="url" />
+                                    <Input size="md" placeholder="url" className="flex-1" type="url" value={urls[key] ?? ""} onChange={(v) => setUrls((u) => ({ ...u, [key]: String(v) }))} />
                                 )}
                                 <Button size="sm" color="tertiary" iconLeading={Trash01} onClick={() => removeRow(key)} className="shrink-0">
                                     Delete
@@ -169,7 +182,30 @@ const AddLinksContent = () => {
             </div>
 
             <div className="sticky bottom-0 px-4 md:px-8 py-4 text-center">
-                <Button size="lg" className="mx-auto w-full max-w-xl" href="/onboarding">Continue</Button>
+                <Button
+                    size="lg"
+                    className="mx-auto w-full max-w-xl"
+                    onClick={async () => {
+                        if (!user) return;
+                        for (const { key } of rows) {
+                            const val = urls[key];
+                            if (val) {
+                                const fullUrl =
+                                    key === "instagram" ? `https://instagram.com/${val}` :
+                                    key === "facebook" ? `https://facebook.com/${val}` :
+                                    key === "youtube" ? `https://youtube.com/${val.startsWith("@") ? val : "@"+val}` :
+                                    key === "x" ? `https://x.com/${val}` :
+                                    key === "pinterest" ? `https://pinterest.com/${val}` :
+                                    key === "website" ? (val.startsWith("http") ? val : `https://${val}`) :
+                                    val;
+                                await createSocialLink(user.username, key, fullUrl);
+                            }
+                        }
+                        window.location.href = "/onboarding";
+                    }}
+                >
+                    Continue
+                </Button>
                 <div className="mt-2">
                     <Button color="link-gray" size="sm" href="/onboarding">Skip for now</Button>
                 </div>

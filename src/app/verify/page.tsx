@@ -1,13 +1,49 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
 import { Button } from "@/components/base/buttons/button";
 import { PinInput } from "@/components/base/pin-input/pin-input";
+import { useAuth } from "@/providers/auth";
 
 const VerifyContent = () => {
     const params = useSearchParams();
     const to = params.get("to") || params.get("email") || params.get("identifier") || "your email";
+    const mode = params.get("mode") || "register";
+    const identifier = params.get("identifier") || "";
+    const id = params.get("id") || "";
+    const router = useRouter();
+    const { registerSendOtp, registerVerifyOtp, loginSendOtp, loginVerifyOtp } = useAuth();
+    useEffect(() => {
+        if (mode === "login") {
+            if (!identifier) return;
+            loginSendOtp(identifier);
+            return;
+        }
+        if (!id) return;
+        registerSendOtp(id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    async function send() {
+        if (mode === "login") {
+            if (!identifier) return;
+            await loginSendOtp(identifier);
+            return;
+        }
+        if (!id) return;
+        await registerSendOtp(id);
+    }
+    async function submit(code: string) {
+        if (mode === "login") {
+            if (!identifier) return;
+            await loginVerifyOtp(identifier, code);
+            router.push("/admin");
+            return;
+        }
+        if (!id) return;
+        await registerVerifyOtp(id, code);
+        router.push("/select-category");
+    }
 
     return (
         <section className="flex min-h-screen items-center justify-center px-4 md:px-8">
@@ -19,7 +55,7 @@ const VerifyContent = () => {
                     </div>
 
                     <PinInput size="sm" className="w-full">
-                        <PinInput.Group width={6} maxLength={6} containerClassName="justify-center" inputClassName="w-full">
+                        <PinInput.Group width={6} maxLength={6} containerClassName="justify-center" inputClassName="w-full" onComplete={(v: string) => submit(v)}>
                             <PinInput.Slot index={0} className="size-12 text-md font-semibold" />
                             <PinInput.Slot index={1} className="size-12 text-md font-semibold" />
                             <PinInput.Slot index={2} className="size-12 text-md font-semibold" />
@@ -29,9 +65,8 @@ const VerifyContent = () => {
                         </PinInput.Group>
                     </PinInput>
 
-                    <Button size="lg" className="w-full" href="/select-category">Submit</Button>
+                    <Button size="lg" className="w-full" onClick={() => send()}>Resend code</Button>
 
-                    <Button color="link-gray" size="sm">Resend code</Button>
                 </div>
             </div>
         </section>

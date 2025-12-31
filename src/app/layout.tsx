@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
+import { AuthProvider } from "@/providers/auth";
 import { ThemeFab } from "@/components/application/theme-toggle/theme-fab";
 import { SiteHeader } from "@/components/application/site-header";
 import { MarketingFooter } from "@/components/marketing/footer";
@@ -39,10 +40,12 @@ export default function RootLayout({
             <body className={cx(inter.variable, "bg-primary antialiased")}>
                 <RouteProvider>
                     <Theme>
-                        <SiteHeader />
-                        {children}
-                        <MarketingFooter />
-                        <ThemeFab />
+                        <AuthProvider>
+                            <SiteHeader />
+                            {children}
+                            <MarketingFooter />
+                            <ThemeFab />
+                        </AuthProvider>
                     </Theme>
                 </RouteProvider>
             </body>

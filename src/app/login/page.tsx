@@ -8,12 +8,14 @@ import { Button } from "@/components/base/buttons/button";
 import { SocialButton } from "@/components/base/buttons/social-button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { Edit01 } from "@untitledui/icons";
+import { useAuth } from "@/providers/auth";
 
 export default function LoginPage() {
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
+    const { loginPassword, loginSendOtp, loginVerifyOtp } = useAuth();
 
     const handleContinue = () => {
         if (!showPassword) {
@@ -36,44 +38,9 @@ export default function LoginPage() {
         handleLogin();
     };
 
-    const handleLogin = () => {
-        const payload = {
-            identifier: identifier.trim(),
-            method: "password",
-            password: password,
-            device: {
-                userAgent: typeof window !== "undefined" ? window.navigator.userAgent : "server",
-                language: typeof window !== "undefined" ? window.navigator.language : "en",
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            },
-        };
-        const expected = {
-            success: {
-                success: true,
-                status: "ok",
-                message: "Login successful",
-                data: {
-                    user: { id: "u_1", identifier: payload.identifier, name: "Your Name", roles: ["creator"], profileComplete: false },
-                    tokens: { accessToken: "jwt_access", refreshToken: "jwt_refresh", expiresIn: 3600 },
-                },
-                traceId: "trace_def",
-            },
-            error: {
-                success: false,
-                status: "error",
-                message: "Invalid credentials",
-                errors: [{ code: "invalid_credentials", field: "identifier", detail: "Check your username/email and password" }],
-                traceId: "trace_err",
-            },
-        };
-        // eslint-disable-next-line no-console
-        console.group("LOGIN_PASSWORD_API");
-        // eslint-disable-next-line no-console
-        console.log("REQUEST POST /api/auth/login/password", payload);
-        // eslint-disable-next-line no-console
-        console.log("EXPECTED_RESPONSE_SHAPES", expected);
-        // eslint-disable-next-line no-console
-        console.groupEnd();
+    const handleLogin = async () => {
+        await loginPassword(identifier.trim(), password);
+        router.push("/admin");
     };
 
     const handleGoogle = () => {
@@ -99,26 +66,10 @@ export default function LoginPage() {
         console.groupEnd();
     };
 
-    const handleOtp = () => {
-        const payload = {
-            identifier: identifier.trim(),
-            method: "otp",
-            channel: identifier.includes("@") ? "email" : "whatsapp",
-        };
-        const expected = {
-            success: true,
-            status: "challenge",
-            message: "OTP sent",
-            challenge: { type: "otp", channel: payload.channel, expiresIn: 300, requestId: "req_otp_123" },
-            traceId: "trace_otp",
-        };
-        console.group("LOGIN_OTP_API");
-        console.log("REQUEST POST /api/auth/login/otp", payload);
-        console.log("EXPECTED_RESPONSE_SHAPE", expected);
-        console.groupEnd();
-        const to = encodeURIComponent(payload.identifier);
-        const channel = payload.channel;
-        router.push(`/verify?to=${to}&channel=${channel}`);
+    const handleOtp = async () => {
+        await loginSendOtp(identifier.trim());
+        const to = encodeURIComponent(identifier.trim());
+        router.push(`/verify?mode=login&identifier=${to}`);
     };
 
     return (

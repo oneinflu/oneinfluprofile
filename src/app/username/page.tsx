@@ -4,24 +4,22 @@ import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { ArrowLeft } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import { useAuth } from "@/providers/auth";
 
 const Prefix = ({ className }: { className?: string }) => (
     <span className={className}>oneinflu.com/</span>
 );
 
 const UsernameContent = () => {
+    const router = useRouter();
     const params = useSearchParams();
     const emailParam = params.get("email") || "";
+    const idParam = params.get("id") || "";
     const [email, setEmail] = useState("");
     useEffect(() => {
-        try {
-            const stored = localStorage.getItem("influu_register_email") || "";
-            setEmail(stored || emailParam);
-        } catch {
-            setEmail(emailParam);
-        }
+        setEmail(emailParam);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const [handle, setHandle] = useState("");
@@ -30,9 +28,11 @@ const UsernameContent = () => {
         setHandle(suggested);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [email]);
-    const verifyHref = email ? `/verify?to=${encodeURIComponent(email)}` : "/verify";
+    const verifyHref = email ? `/verify?id=${encodeURIComponent(idParam)}&to=${encodeURIComponent(email)}` : "/verify";
     const [available, setAvailable] = useState<null | boolean>(null);
     const [checking, setChecking] = useState(false);
+    const { registerSaveUsername } = useAuth();
+    const [saving, setSaving] = useState(false);
 
     useEffect(() => {
         const name = handle.trim();
@@ -67,6 +67,21 @@ const UsernameContent = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [handle]);
 
+    const onContinue = async () => {
+        if (!available) return;
+        const id = idParam;
+        const uname = handle.trim().toLowerCase();
+        if (!id || !uname) return;
+        setSaving(true);
+        try {
+            await registerSaveUsername(id, uname);
+            router.push(verifyHref);
+        } catch {
+        } finally {
+            setSaving(false);
+        }
+    };
+
     return (
         <section className="flex min-h-screen">
             <div className="flex w-full flex-col md:grid md:grid-cols-2">
@@ -100,7 +115,7 @@ const UsernameContent = () => {
                                 hint={available === false ? "Username not available" : undefined}
                             />
 
-                            <Button size="lg" href={verifyHref}>Continue</Button>
+                            <Button size="lg" onClick={onContinue} isDisabled={!available || saving}>Continue</Button>
                         </div>
                     </div>
                 </div>
