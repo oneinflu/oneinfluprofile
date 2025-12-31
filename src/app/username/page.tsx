@@ -75,6 +75,7 @@ const UsernameContent = () => {
         setSaving(true);
         try {
             await registerSaveUsername(id, uname);
+            try { localStorage.setItem("influu_username", uname); } catch {}
             router.push(verifyHref);
         } catch {
         } finally {

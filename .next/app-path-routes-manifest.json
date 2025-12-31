@@ -1,0 +1,22 @@
+{
+  "/[username]/page": "/[username]",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/add-links/page": "/add-links",
+  "/admin/enquiries/page": "/admin/enquiries",
+  "/admin/my-porifle/page": "/admin/my-porifle",
+  "/admin/offers/page": "/admin/offers",
+  "/admin/page": "/admin",
+  "/admin/payments/page": "/admin/payments",
+  "/admin/portfolio/page": "/admin/portfolio",
+  "/icon.png/route": "/icon.png",
+  "/login/page": "/login",
+  "/onboarding/complete/page": "/onboarding/complete",
+  "/onboarding/page": "/onboarding",
+  "/page": "/",
+  "/register/page": "/register",
+  "/select-category/page": "/select-category",
+  "/select-platforms/page": "/select-platforms",
+  "/username/page": "/username",
+  "/verify/page": "/verify"
+}

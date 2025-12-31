@@ -8,7 +8,18 @@ import Confetti from "react-confetti";
 
 const CompleteContent = () => {
     const params = useSearchParams();
-    const username = params.get("username") || "guest";
+    const [username, setUsername] = useState("guest");
+    useEffect(() => {
+        const fromParam = params.get("username");
+        if (fromParam && fromParam.trim()) {
+            setUsername(fromParam.trim());
+            return;
+        }
+        try {
+            const stored = localStorage.getItem("influu_username");
+            if (stored && stored.trim()) setUsername(stored.trim());
+        } catch {}
+    }, [params]);
     const [size, setSize] = useState({ width: 0, height: 0 });
 
     useEffect(() => {

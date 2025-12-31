@@ -11,6 +11,7 @@ import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { RadioGroup, RadioButton } from "@/components/base/radio-buttons/radio-buttons";
 import { useTheme } from "next-themes";
+import { useParams } from "next/navigation";
 import { api } from "@/utils/api";
 
 type PublicProfileResponse = {
@@ -101,11 +102,24 @@ function PaymentBottomSheet({ isOpen, onOpenChange, name, upiId }: { isOpen: boo
 
 export default function ProfilePage() {
     const [username, setUsername] = useState<string>("");
+    const params = useParams();
     useEffect(() => {
         let alive = true;
         (async () => {
             try {
                 if (username) return;
+                const fromRoute = (params as any)?.username ? String((params as any).username) : "";
+                if (fromRoute && fromRoute.trim()) {
+                    setUsername(fromRoute.trim());
+                    return;
+                }
+                try {
+                    const stored = typeof window !== "undefined" ? window.localStorage.getItem("influu_username") : null;
+                    if (stored && stored.trim()) {
+                        setUsername(stored.trim());
+                        return;
+                    }
+                } catch {}
                 let token: string | null = null;
                 let userId: string | null = null;
                 if (typeof window !== "undefined") {
@@ -121,7 +135,7 @@ export default function ProfilePage() {
             }
         })();
         return () => { alive = false; };
-    }, []);
+    }, [params, username]);
     const [profile, setProfile] = useState<{ name?: string | null; bio?: string | null; avatarUrl?: string | null } | null>(null);
     const [offers, setOffers] = useState<Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>>([]);
     const [links, setLinks] = useState<Array<{ platform: string; icon: string; url: string }>>([]);
@@ -173,6 +187,30 @@ export default function ProfilePage() {
         return () => { alive = false; };
     }, [username]);
 
+    const [publicData, setPublicData] = useState<any>(null);
+    const [publicError, setPublicError] = useState<string | null>(null);
+    useEffect(() => {
+        if (!username) return;
+        const url = `http://192.168.0.6:3000/${encodeURIComponent(username)}`;
+        console.group("PUBLIC_PROFILE_GET");
+        console.log("REQUEST GET", url);
+        console.groupEnd();
+        let alive = true;
+        api.get(url)
+            .then((data) => {
+                if (!alive) return;
+                console.group("PUBLIC_PROFILE_RESPONSE");
+                console.log("BODY", data);
+                console.groupEnd();
+                setPublicData(data);
+                setPublicError(null);
+            })
+            .catch((err) => {
+                if (!alive) return;
+                setPublicError(String(err?.message || "Error"));
+            });
+        return () => { alive = false; };
+    }, [username]);
     const [requestOpen, setRequestOpen] = useState(false);
     const [prefillService, setPrefillService] = useState<string | null>(null);
     const openRequest = (service?: string) => {
@@ -185,6 +223,7 @@ export default function ProfilePage() {
     return (
         <>
             <section className="lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
+                
                 <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
             </section>
@@ -192,6 +231,7 @@ export default function ProfilePage() {
                 <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#ffffff] via-[#F4EBFF] to-[#EDE6FF] dark:from-[#0b0f14] dark:via-[#1b103f] dark:to-[#000000] p-1 shadow-2xl">
                     <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary relative">
                         <div className="size-full overflow-y-auto scrollbar-hide bg-primary p-3 pb-20">
+                            
                             <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
                         </div>
                         <div className="absolute inset-x-3 bottom-3">
