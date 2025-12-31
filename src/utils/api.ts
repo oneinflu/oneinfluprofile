@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://backendinflulatest-rbi46.ondigitalocean.app";
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://newyearbackendcode-zrp62.ondigitalocean.app/";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
