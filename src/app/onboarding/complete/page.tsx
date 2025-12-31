@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/base/buttons/button";
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Confetti from "react-confetti";
 
 const CompleteContent = () => {
@@ -21,6 +21,8 @@ const CompleteContent = () => {
         } catch {}
     }, [params]);
     const [size, setSize] = useState({ width: 0, height: 0 });
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const update = () => setSize({ width: window.innerWidth, height: window.innerHeight });
@@ -55,7 +57,19 @@ const CompleteContent = () => {
             </div>
 
             <div className="sticky bottom-0 px-4 md:px-8 py-4 text-center">
-                <Button size="lg" className="mx-auto w-full max-w-xl" href="/admin">Continue to profile</Button>
+                <Button
+                    size="lg"
+                    className="mx-auto w-full max-w-xl"
+                    onClick={() => {
+                        if (loading) return;
+                        setLoading(true);
+                        router.push("/admin");
+                    }}
+                    isLoading={loading}
+                    isDisabled={loading}
+                >
+                    Continue to profile
+                </Button>
               
             </div>
         </section>

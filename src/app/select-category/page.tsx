@@ -12,6 +12,7 @@ export default function SelectCategoryPage() {
     const [value, setValue] = useState<string | null>(null);
     const { user, updateUserById } = useAuth();
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const onNext = async () => {
         if (!user || !value) return;
         const category =
@@ -19,8 +20,14 @@ export default function SelectCategoryPage() {
             value === "business" ? "Business" :
             value === "personal" ? "Personal" : null;
         if (!category) return;
-        await updateUserById(user.id, { category });
-        router.push("/select-platforms");
+        if (loading) return;
+        setLoading(true);
+        try {
+            await updateUserById(user.id, { category });
+            router.push("/select-platforms");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -96,7 +103,7 @@ export default function SelectCategoryPage() {
                         />
                     </RadioGroup>
 
-                    <Button size="lg" className="w-full" onClick={onNext} isDisabled={!value}>Continue</Button>
+                    <Button size="lg" className="w-full" onClick={onNext} isDisabled={!value || loading} isLoading={loading}>Continue</Button>
                 </div>
             </div>
         </section>

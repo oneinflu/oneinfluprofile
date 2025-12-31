@@ -98,7 +98,7 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/admin/my-porifle": {
+    "/admin/my-profile": {
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -111,8 +111,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/admin/my-porifle",
-      "dataRoute": "/admin/my-porifle.rsc",
+      "srcRoute": "/admin/my-profile",
+      "dataRoute": "/admin/my-profile.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -262,6 +262,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/login",
       "dataRoute": "/login.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/logout": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/logout",
+      "dataRoute": "/logout.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/base/buttons/button";
 import { PinInput } from "@/components/base/pin-input/pin-input";
 import { useAuth } from "@/providers/auth";
@@ -14,6 +14,8 @@ const VerifyContent = () => {
     const id = params.get("id") || "";
     const router = useRouter();
     const { registerSendOtp, registerVerifyOtp, loginSendOtp, loginVerifyOtp } = useAuth();
+    const [resendLoading, setResendLoading] = useState(false);
+    const [toast, setToast] = useState<string | null>(null);
     useEffect(() => {
         if (mode === "login") {
             if (!identifier) return;
@@ -25,13 +27,24 @@ const VerifyContent = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     async function send() {
-        if (mode === "login") {
-            if (!identifier) return;
-            await loginSendOtp(identifier);
-            return;
+        if (resendLoading) return;
+        setResendLoading(true);
+        try {
+            if (mode === "login") {
+                if (!identifier) return;
+                await loginSendOtp(identifier);
+            } else {
+                if (!id) return;
+                await registerSendOtp(id);
+            }
+            setToast("New OTP has been sent");
+            setTimeout(() => setToast(null), 3000);
+        } catch {
+            setToast("Failed to send OTP");
+            setTimeout(() => setToast(null), 3000);
+        } finally {
+            setResendLoading(false);
         }
-        if (!id) return;
-        await registerSendOtp(id);
     }
     async function submit(code: string) {
         if (mode === "login") {
@@ -65,7 +78,13 @@ const VerifyContent = () => {
                         </PinInput.Group>
                     </PinInput>
 
-                    <Button size="lg" className="w-full" onClick={() => send()}>Resend code</Button>
+                    <Button size="lg" className="w-full" onClick={() => send()} isLoading={resendLoading} isDisabled={resendLoading}>Resend code</Button>
+
+                    {toast && (
+                        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] w-[min(92vw,640px)] rounded-2xl bg-secondary px-6 py-4 text-lg font-semibold text-primary shadow-2xl ring-1 ring-secondary_alt">
+                            {toast}
+                        </div>
+                    )}
 
                 </div>
             </div>

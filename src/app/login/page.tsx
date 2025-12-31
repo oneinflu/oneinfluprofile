@@ -14,6 +14,8 @@ export default function LoginPage() {
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [loginLoading, setLoginLoading] = useState(false);
+    const [otpLoading, setOtpLoading] = useState(false);
     const router = useRouter();
     const { loginPassword, loginSendOtp, loginVerifyOtp } = useAuth();
 
@@ -39,8 +41,14 @@ export default function LoginPage() {
     };
 
     const handleLogin = async () => {
-        await loginPassword(identifier.trim(), password);
-        router.push("/admin");
+        if (loginLoading) return;
+        setLoginLoading(true);
+        try {
+            await loginPassword(identifier.trim(), password);
+            router.push("/admin");
+        } finally {
+            setLoginLoading(false);
+        }
     };
 
     const handleGoogle = () => {
@@ -67,9 +75,15 @@ export default function LoginPage() {
     };
 
     const handleOtp = async () => {
-        await loginSendOtp(identifier.trim());
-        const to = encodeURIComponent(identifier.trim());
-        router.push(`/verify?mode=login&identifier=${to}`);
+        if (otpLoading) return;
+        setOtpLoading(true);
+        try {
+            await loginSendOtp(identifier.trim());
+            const to = encodeURIComponent(identifier.trim());
+            router.push(`/verify?mode=login&identifier=${to}`);
+        } finally {
+            setOtpLoading(false);
+        }
     };
 
     return (
@@ -94,8 +108,25 @@ export default function LoginPage() {
 
                             {showPassword && <Input label="Password" type="password" placeholder="Enter your password" value={password} onChange={(v) => setPassword(String(v))} />}
 
-                            <Button size="lg" onClick={handleContinue} isDisabled={!identifier.trim() || (showPassword && !password.trim())}>Continue</Button>
-                            {showPassword && <Button size="lg" color="secondary" onClick={handleOtp}>Continue with one-time password</Button>}
+                            <Button
+                                size="lg"
+                                onClick={handleContinue}
+                                isDisabled={!identifier.trim() || (showPassword && !password.trim()) || loginLoading}
+                                isLoading={showPassword ? loginLoading : false}
+                            >
+                                Continue
+                            </Button>
+                            {showPassword && (
+                                <Button
+                                    size="lg"
+                                    color="secondary"
+                                    onClick={handleOtp}
+                                    isDisabled={otpLoading}
+                                    isLoading={otpLoading}
+                                >
+                                    Continue with one-time password
+                                </Button>
+                            )}
 
                             <div className="flex items-center gap-3">
                                 <div className="h-px w-full bg-border-secondary" />

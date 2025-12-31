@@ -58,6 +58,7 @@ const AddLinksContent = () => {
     const allKeys = order;
     const remaining = allKeys.filter((k) => !rows.some((r) => r.key === k)).map((key) => ({ key, img: images[key] }));
     const [showAdd, setShowAdd] = useState(false);
+    const [saving, setSaving] = useState(false);
 
     const removeRow = (key: string) => setRows((prev) => prev.filter((r) => r.key !== key));
     const addRow = (key: string) => {
@@ -186,23 +187,30 @@ const AddLinksContent = () => {
                     size="lg"
                     className="mx-auto w-full max-w-xl"
                     onClick={async () => {
-                        if (!user) return;
-                        for (const { key } of rows) {
-                            const val = urls[key];
-                            if (val) {
-                                const fullUrl =
-                                    key === "instagram" ? `https://instagram.com/${val}` :
-                                    key === "facebook" ? `https://facebook.com/${val}` :
-                                    key === "youtube" ? `https://youtube.com/${val.startsWith("@") ? val : "@"+val}` :
-                                    key === "x" ? `https://x.com/${val}` :
-                                    key === "pinterest" ? `https://pinterest.com/${val}` :
-                                    key === "website" ? (val.startsWith("http") ? val : `https://${val}`) :
-                                    val;
-                                await createSocialLink(user.username, key, fullUrl);
+                        if (!user || saving) return;
+                        setSaving(true);
+                        try {
+                            for (const { key } of rows) {
+                                const val = urls[key];
+                                if (val) {
+                                    const fullUrl =
+                                        key === "instagram" ? `https://instagram.com/${val}` :
+                                        key === "facebook" ? `https://facebook.com/${val}` :
+                                        key === "youtube" ? `https://youtube.com/${val.startsWith("@") ? val : "@"+val}` :
+                                        key === "x" ? `https://x.com/${val}` :
+                                        key === "pinterest" ? `https://pinterest.com/${val}` :
+                                        key === "website" ? (val.startsWith("http") ? val : `https://${val}`) :
+                                        val;
+                                    await createSocialLink(user.username, key, fullUrl);
+                                }
                             }
+                            window.location.href = "/onboarding";
+                        } finally {
+                            setSaving(false);
                         }
-                        window.location.href = "/onboarding";
                     }}
+                    isDisabled={saving}
+                    isLoading={saving}
                 >
                     Continue
                 </Button>

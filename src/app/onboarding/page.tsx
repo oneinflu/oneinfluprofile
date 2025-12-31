@@ -19,6 +19,7 @@ export default function OnboardingPage() {
     const [tagInput, setTagInput] = useState("");
     const { user, updateUserById, uploadAvatarById } = useAuth();
     const router = useRouter();
+    const [saving, setSaving] = useState(false);
 
     const addTag = () => {
         const v = tagInput.trim();
@@ -99,21 +100,27 @@ export default function OnboardingPage() {
                     size="lg"
                     className="mx-auto w-full max-w-xl"
                     onClick={async () => {
-                        if (!user) return;
+                        if (!user || saving) return;
+                        setSaving(true);
                         const uname = user.username;
                         const data: Record<string, unknown> = {};
                         if (displayName.trim()) data.name = displayName.trim();
                         if (bio.trim()) data.shortBio = bio.trim();
                         if (avatarUrl && avatarUrl.startsWith("http")) data.avatarUrl = avatarUrl;
-                        if (Object.keys(data).length) await updateUserById(user.id, data);
-                        if (avatarFile) {
-                            try {
-                                await uploadAvatarById(user.id, avatarFile);
-                            } catch {}
+                        try {
+                            if (Object.keys(data).length) await updateUserById(user.id, data);
+                            if (avatarFile) {
+                                try {
+                                    await uploadAvatarById(user.id, avatarFile);
+                                } catch {}
+                            }
+                            router.push(`/onboarding/complete`);
+                        } finally {
+                            setSaving(false);
                         }
-                        router.push(`/onboarding/complete`);
                     }}
-                    isDisabled={!displayName.trim() && !bio.trim() && !avatarUrl}
+                    isDisabled={(!displayName.trim() && !bio.trim() && !avatarUrl) || saving}
+                    isLoading={saving}
                 >
                     Continue
                 </Button>

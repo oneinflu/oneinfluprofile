@@ -116,7 +116,7 @@ const UsernameContent = () => {
                                 hint={available === false ? "Username not available" : undefined}
                             />
 
-                            <Button size="lg" onClick={onContinue} isDisabled={!available || saving}>Continue</Button>
+                            <Button size="lg" onClick={onContinue} isDisabled={!available || saving} isLoading={saving}>Continue</Button>
                         </div>
                     </div>
                 </div>

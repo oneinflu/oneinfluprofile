@@ -1712,6 +1712,7 @@ function PaymentBottomSheet({ isOpen, onOpenChange, name, upiId }) {
 function ProfilePage() {
     const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useParams"])();
+    const [isLandscape, setIsLandscape] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         let alive = true;
         (async ()=>{
@@ -1748,6 +1749,28 @@ function ProfilePage() {
         params,
         username
     ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        let q = null;
+        const update = ()=>{
+            try {
+                const m = window.matchMedia("(orientation: landscape)");
+                q = m;
+                setIsLandscape(Boolean(m.matches));
+            } catch  {}
+        };
+        update();
+        const handler = ()=>update();
+        try {
+            window.addEventListener("orientationchange", handler);
+            window.addEventListener("resize", handler);
+        } catch  {}
+        return ()=>{
+            try {
+                window.removeEventListener("orientationchange", handler);
+                window.removeEventListener("resize", handler);
+            } catch  {}
+        };
+    }, []);
     const [profile, setProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [offers, setOffers] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [links, setLinks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -1771,7 +1794,9 @@ function ProfilePage() {
                         description: o.description || null,
                         priceType: o.priceType === "fixed" ? "fixed" : o.priceType === "starting" ? "starting" : "custom",
                         price: o.price,
-                        cta: toCta(o.cta)
+                        cta: toCta(o.cta),
+                        delivery: o.delivery || null,
+                        includes: Array.isArray(o.includes) ? o.includes : []
                     })));
                 setLinks(res.links.map((l)=>({
                         platform: l.platform,
@@ -1785,6 +1810,13 @@ function ProfilePage() {
                 setContactEmail(res.contact?.email || "");
                 setContactWhatsapp(res.contact?.whatsapp || "");
                 setPortfolioItems(Array.isArray(res.portfolio) ? res.portfolio : []);
+                try {
+                    const origin = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : "";
+                    const url = `${origin}/${username}`;
+                    await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/analytics/view`, {
+                        url
+                    }).catch(()=>{});
+                } catch  {}
             } catch  {
                 if (!alive) return;
             }
@@ -1829,8 +1861,42 @@ function ProfilePage() {
     };
     const [paymentOpen, setPaymentOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const openPayment = ()=>setPaymentOpen(true);
+    const [requestSuccessOpen, setRequestSuccessOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [requestSuccessService, setRequestSuccessService] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
+            isLandscape && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-50 flex items-center justify-center bg-black/70",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mx-4 w-full max-w-sm rounded-2xl bg-primary p-4 text-center shadow-xl ring-1 ring-secondary_alt",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-md font-semibold text-primary",
+                            children: "Please rotate your device to portrait"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/[username]/page.tsx",
+                            lineNumber: 260,
+                            columnNumber: 25
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "mt-1 text-sm text-tertiary",
+                            children: "This page is optimized for portrait orientation."
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/[username]/page.tsx",
+                            lineNumber: 261,
+                            columnNumber: 25
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/[username]/page.tsx",
+                    lineNumber: 259,
+                    columnNumber: 21
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/[username]/page.tsx",
+                lineNumber: 258,
+                columnNumber: 17
+            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 className: "lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide",
                 children: [
@@ -1845,7 +1911,7 @@ function ProfilePage() {
                         onRequest: openRequest
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 227,
+                        lineNumber: 267,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PrimaryCTAStrip, {
@@ -1860,13 +1926,13 @@ function ProfilePage() {
                         onPay: openPayment
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 228,
+                        lineNumber: 268,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 225,
+                lineNumber: 265,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1889,12 +1955,12 @@ function ProfilePage() {
                                     onRequest: openRequest
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 235,
+                                    lineNumber: 275,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 233,
+                                lineNumber: 273,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1911,28 +1977,28 @@ function ProfilePage() {
                                     onPay: openPayment
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 278,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 237,
+                                lineNumber: 277,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 232,
+                        lineNumber: 272,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/[username]/page.tsx",
-                    lineNumber: 231,
+                    lineNumber: 271,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 230,
+                lineNumber: 270,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(RequestServiceBottomSheet, {
@@ -1940,10 +2006,15 @@ function ProfilePage() {
                 onOpenChange: setRequestOpen,
                 username: username,
                 services: offers.map((o)=>o.title),
-                prefillService: prefillService
+                offers: offers,
+                prefillService: prefillService,
+                onSuccess: (service)=>{
+                    setRequestSuccessService(service || "");
+                    setRequestSuccessOpen(true);
+                }
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 244,
+                lineNumber: 284,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(PaymentBottomSheet, {
@@ -1953,7 +2024,20 @@ function ProfilePage() {
                 upiId: upiId
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 251,
+                lineNumber: 296,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(RequestSuccessBottomSheet, {
+                isOpen: requestSuccessOpen,
+                onOpenChange: setRequestSuccessOpen,
+                username: username,
+                service: requestSuccessService,
+                contactMethod: contactMethod,
+                email: contactEmail,
+                whatsapp: contactWhatsapp
+            }, void 0, false, {
+                fileName: "[project]/src/app/[username]/page.tsx",
+                lineNumber: 302,
                 columnNumber: 13
             }, this)
         ]
@@ -1981,20 +2065,20 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                 className: "size-full object-cover"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 272,
+                                lineNumber: 326,
                                 columnNumber: 25
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "size-full bg-primary_hover animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 274,
+                                lineNumber: 328,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-x-0 bottom-0 h-28 bg-linear-to-b from-transparent to-primary dark:to-[#0b0f14]"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 276,
+                                lineNumber: 330,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2010,17 +2094,17 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 279,
+                                        lineNumber: 333,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 278,
+                                    lineNumber: 332,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 277,
+                                lineNumber: 331,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2049,7 +2133,7 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 291,
+                                            lineNumber: 345,
                                             columnNumber: 29
                                         }, this),
                                         mounted && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2d$utility$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ButtonUtility"], {
@@ -2060,24 +2144,24 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                             onClick: ()=>setTheme(isDark ? "light" : "dark")
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 310,
+                                            lineNumber: 364,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 290,
+                                    lineNumber: 344,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 289,
+                                lineNumber: 343,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 270,
+                        lineNumber: 324,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2090,12 +2174,12 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                     children: profile?.name || username
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 323,
+                                    lineNumber: 377,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 322,
+                                lineNumber: 376,
                                 columnNumber: 21
                             }, this),
                             profile?.bio && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2103,13 +2187,13 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                 children: truncateBio(profile.bio)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 326,
+                                lineNumber: 380,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 321,
+                        lineNumber: 375,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2120,18 +2204,38 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                 rel: "noopener noreferrer",
                                 "aria-label": l.platform,
                                 className: "rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary",
+                                onClick: ()=>{
+                                    try {
+                                        const payload = {
+                                            category: "social",
+                                            label: l.platform,
+                                            url: l.url
+                                        };
+                                        const endpoint = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${encodeURIComponent(username)}/analytics/click`;
+                                        const blob = new Blob([
+                                            JSON.stringify(payload)
+                                        ], {
+                                            type: "application/json"
+                                        });
+                                        if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+                                            navigator.sendBeacon(endpoint, blob);
+                                        } else {
+                                            __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/analytics/click`, payload).catch(()=>{});
+                                        }
+                                    } catch  {}
+                                },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                     src: l.icon,
                                     alt: l.platform,
                                     className: "size-5"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 333,
+                                    lineNumber: 406,
                                     columnNumber: 29
                                 }, this)
                             }, `${l.platform}:${l.url}`, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 332,
+                                lineNumber: 386,
                                 columnNumber: 25
                             }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                             children: [
@@ -2139,41 +2243,41 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                                     className: "rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 338,
+                                    lineNumber: 411,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 339,
+                                    lineNumber: 412,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 340,
+                                    lineNumber: 413,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 341,
+                                    lineNumber: 414,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 329,
+                        lineNumber: 383,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 269,
+                lineNumber: 323,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileServices, {
@@ -2184,7 +2288,7 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                 onRequest: onRequest
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 346,
+                lineNumber: 419,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfilePortfolio, {
@@ -2192,18 +2296,18 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                 items: portfolio
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 347,
+                lineNumber: 420,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileFooter, {}, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 348,
+                lineNumber: 421,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/[username]/page.tsx",
-        lineNumber: 268,
+        lineNumber: 322,
         columnNumber: 9
     }, this);
 }
@@ -2231,7 +2335,7 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                 children: "Services"
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 372,
+                lineNumber: 445,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2250,7 +2354,7 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                                 children: o.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 379,
+                                                lineNumber: 452,
                                                 columnNumber: 37
                                             }, this),
                                             o.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2258,13 +2362,13 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                                 children: o.description
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 380,
+                                                lineNumber: 453,
                                                 columnNumber: 55
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 378,
+                                        lineNumber: 451,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2274,18 +2378,18 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                             children: labelFor(o)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 383,
+                                            lineNumber: 456,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 382,
+                                        lineNumber: 455,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 377,
+                                lineNumber: 450,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2298,28 +2402,47 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                     children: "Pay Now"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 388,
+                                    lineNumber: 461,
                                     columnNumber: 37
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                     size: "sm",
                                     color: "primary",
                                     className: "w-full",
-                                    onClick: ()=>onRequest(o.title),
+                                    onClick: ()=>{
+                                        try {
+                                            const payload = {
+                                                category: "request",
+                                                label: o.title
+                                            };
+                                            const endpoint = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${encodeURIComponent(username)}/analytics/click`;
+                                            const blob = new Blob([
+                                                JSON.stringify(payload)
+                                            ], {
+                                                type: "application/json"
+                                            });
+                                            if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+                                                navigator.sendBeacon(endpoint, blob);
+                                            } else {
+                                                __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/analytics/click`, payload).catch(()=>{});
+                                            }
+                                        } catch  {}
+                                        onRequest(o.title);
+                                    },
                                     children: "Request Service"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 392,
+                                    lineNumber: 465,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 386,
+                                lineNumber: 459,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, o.title, true, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 376,
+                        lineNumber: 449,
                         columnNumber: 25
                     }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
@@ -2336,20 +2459,20 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                                     className: "h-4 w-36 bg-primary_hover rounded animate-pulse"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 404,
+                                                    lineNumber: 494,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "h-3 w-56 bg-primary_hover rounded animate-pulse"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 405,
+                                                    lineNumber: 495,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 403,
+                                            lineNumber: 493,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2358,18 +2481,18 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                                 className: "h-4 w-24 bg-primary_hover rounded animate-pulse"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 408,
+                                                lineNumber: 498,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 407,
+                                            lineNumber: 497,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 402,
+                                    lineNumber: 492,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2378,18 +2501,18 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                         className: "h-8 w-full bg-primary_hover rounded-md animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 412,
+                                        lineNumber: 502,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 411,
+                                    lineNumber: 501,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 401,
+                            lineNumber: 491,
                             columnNumber: 25
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2405,20 +2528,20 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                                     className: "h-4 w-28 bg-primary_hover rounded animate-pulse"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 418,
+                                                    lineNumber: 508,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "h-3 w-44 bg-primary_hover rounded animate-pulse"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 419,
+                                                    lineNumber: 509,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 417,
+                                            lineNumber: 507,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2427,18 +2550,18 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                                 className: "h-4 w-20 bg-primary_hover rounded animate-pulse"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 422,
+                                                lineNumber: 512,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 421,
+                                            lineNumber: 511,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 416,
+                                    lineNumber: 506,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2447,31 +2570,31 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }) {
                                         className: "h-8 w-full bg-primary_hover rounded-md animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 426,
+                                        lineNumber: 516,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 425,
+                                    lineNumber: 515,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 415,
+                            lineNumber: 505,
                             columnNumber: 25
                         }, this)
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 373,
+                lineNumber: 446,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/[username]/page.tsx",
-        lineNumber: 371,
+        lineNumber: 444,
         columnNumber: 9
     }, this);
 }
@@ -2501,7 +2624,7 @@ function ProfilePortfolio({ username, items }) {
                         children: "Work & Collaborations"
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 471,
+                        lineNumber: 561,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2511,13 +2634,13 @@ function ProfilePortfolio({ username, items }) {
                         children: "View all"
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 472,
+                        lineNumber: 562,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 470,
+                lineNumber: 560,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2547,7 +2670,7 @@ function ProfilePortfolio({ username, items }) {
                                             onContextMenu: (e)=>e.preventDefault()
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 490,
+                                            lineNumber: 580,
                                             columnNumber: 41
                                         }, this) : it.contentType === "image" && urlFor(it) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             src: urlFor(it),
@@ -2557,7 +2680,7 @@ function ProfilePortfolio({ username, items }) {
                                             onContextMenu: (e)=>e.preventDefault()
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 501,
+                                            lineNumber: 591,
                                             columnNumber: 41
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex size-full items-center justify-center bg-primary_hover",
@@ -2567,12 +2690,12 @@ function ProfilePortfolio({ username, items }) {
                                                 className: "size-10 opacity-90"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 510,
+                                                lineNumber: 600,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 509,
+                                            lineNumber: 599,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2590,18 +2713,18 @@ function ProfilePortfolio({ username, items }) {
                                                 children: it.contentType === "video" ? "Play" : "View"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 514,
+                                                lineNumber: 604,
                                                 columnNumber: 41
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 513,
+                                            lineNumber: 603,
                                             columnNumber: 37
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 488,
+                                    lineNumber: 578,
                                     columnNumber: 33
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2612,7 +2735,7 @@ function ProfilePortfolio({ username, items }) {
                                             children: it.brand
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 530,
+                                            lineNumber: 620,
                                             columnNumber: 50
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -2621,19 +2744,19 @@ function ProfilePortfolio({ username, items }) {
                                             className: "size-4 opacity-80"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 531,
+                                            lineNumber: 621,
                                             columnNumber: 37
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 529,
+                                    lineNumber: 619,
                                     columnNumber: 33
                                 }, this)
                             ]
                         }, it.id, true, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 478,
+                            lineNumber: 568,
                             columnNumber: 29
                         }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                         children: [
@@ -2644,7 +2767,7 @@ function ProfilePortfolio({ username, items }) {
                                         className: "aspect-square w-full bg-primary_hover animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 538,
+                                        lineNumber: 628,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2653,18 +2776,18 @@ function ProfilePortfolio({ username, items }) {
                                             className: "h-3 w-24 bg-primary_hover rounded animate-pulse"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 540,
+                                            lineNumber: 630,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 539,
+                                        lineNumber: 629,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 537,
+                                lineNumber: 627,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2674,7 +2797,7 @@ function ProfilePortfolio({ username, items }) {
                                         className: "aspect-square w-full bg-primary_hover animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 544,
+                                        lineNumber: 634,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2683,18 +2806,18 @@ function ProfilePortfolio({ username, items }) {
                                             className: "h-3 w-20 bg-primary_hover rounded animate-pulse"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 546,
+                                            lineNumber: 636,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 545,
+                                        lineNumber: 635,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 543,
+                                lineNumber: 633,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2704,7 +2827,7 @@ function ProfilePortfolio({ username, items }) {
                                         className: "aspect-square w-full bg-primary_hover animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 550,
+                                        lineNumber: 640,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2713,30 +2836,30 @@ function ProfilePortfolio({ username, items }) {
                                             className: "h-3 w-16 bg-primary_hover rounded animate-pulse"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 552,
+                                            lineNumber: 642,
                                             columnNumber: 37
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                        lineNumber: 551,
+                                        lineNumber: 641,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 549,
+                                lineNumber: 639,
                                 columnNumber: 29
                             }, this)
                         ]
                     }, void 0, true)
                 }, void 0, false, {
                     fileName: "[project]/src/app/[username]/page.tsx",
-                    lineNumber: 475,
+                    lineNumber: 565,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 474,
+                lineNumber: 564,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Dialog$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogTrigger"], {
@@ -2749,7 +2872,7 @@ function ProfilePortfolio({ username, items }) {
                         children: "Open"
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 561,
+                        lineNumber: 651,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Modal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ModalOverlay"], {
@@ -2769,7 +2892,7 @@ function ProfilePortfolio({ username, items }) {
                                                     children: active?.brand || "Preview"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 572,
+                                                    lineNumber: 662,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2780,18 +2903,18 @@ function ProfilePortfolio({ username, items }) {
                                                         children: "Back"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                        lineNumber: 574,
+                                                        lineNumber: 664,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 573,
+                                                    lineNumber: 663,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 571,
+                                            lineNumber: 661,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2809,7 +2932,7 @@ function ProfilePortfolio({ username, items }) {
                                                     onContextMenu: (e)=>e.preventDefault()
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 581,
+                                                    lineNumber: 671,
                                                     columnNumber: 45
                                                 }, this) : active.contentType === "image" && urlFor(active) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                     src: urlFor(active),
@@ -2819,7 +2942,7 @@ function ProfilePortfolio({ username, items }) {
                                                     onContextMenu: (e)=>e.preventDefault()
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 592,
+                                                    lineNumber: 682,
                                                     columnNumber: 45
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex size-full items-center justify-center",
@@ -2829,44 +2952,44 @@ function ProfilePortfolio({ username, items }) {
                                                         className: "size-16 opacity-90"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                        lineNumber: 601,
+                                                        lineNumber: 691,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 600,
+                                                    lineNumber: 690,
                                                     columnNumber: 45
                                                 }, this) : null
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 578,
+                                                lineNumber: 668,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 577,
+                                            lineNumber: 667,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 570,
+                                    lineNumber: 660,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 569,
+                                lineNumber: 659,
                                 columnNumber: 25
                             }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 562,
+                        lineNumber: 652,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 560,
+                lineNumber: 650,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Dialog$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogTrigger"], {
@@ -2879,7 +3002,7 @@ function ProfilePortfolio({ username, items }) {
                         children: "Open"
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 614,
+                        lineNumber: 704,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Modal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ModalOverlay"], {
@@ -2899,7 +3022,7 @@ function ProfilePortfolio({ username, items }) {
                                                     children: "Work & Collaborations"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 625,
+                                                    lineNumber: 715,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2908,13 +3031,13 @@ function ProfilePortfolio({ username, items }) {
                                                     children: "Close"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 626,
+                                                    lineNumber: 716,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 624,
+                                            lineNumber: 714,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2944,7 +3067,7 @@ function ProfilePortfolio({ username, items }) {
                                                                         onContextMenu: (e)=>e.preventDefault()
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 644,
+                                                                        lineNumber: 734,
                                                                         columnNumber: 61
                                                                     }, this) : it.contentType === "image" && urlFor(it) ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                         src: urlFor(it),
@@ -2954,7 +3077,7 @@ function ProfilePortfolio({ username, items }) {
                                                                         onContextMenu: (e)=>e.preventDefault()
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 655,
+                                                                        lineNumber: 745,
                                                                         columnNumber: 61
                                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                         className: "flex size-full items-center justify-center bg-primary_hover",
@@ -2964,12 +3087,12 @@ function ProfilePortfolio({ username, items }) {
                                                                             className: "size-10 opacity-90"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                                            lineNumber: 664,
+                                                                            lineNumber: 754,
                                                                             columnNumber: 65
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 663,
+                                                                        lineNumber: 753,
                                                                         columnNumber: 61
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2987,18 +3110,18 @@ function ProfilePortfolio({ username, items }) {
                                                                             children: it.contentType === "video" ? "Play" : "View"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                                            lineNumber: 668,
+                                                                            lineNumber: 758,
                                                                             columnNumber: 61
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 667,
+                                                                        lineNumber: 757,
                                                                         columnNumber: 57
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                                lineNumber: 642,
+                                                                lineNumber: 732,
                                                                 columnNumber: 53
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3009,7 +3132,7 @@ function ProfilePortfolio({ username, items }) {
                                                                         children: it.brand || ""
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 684,
+                                                                        lineNumber: 774,
                                                                         columnNumber: 57
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -3018,19 +3141,19 @@ function ProfilePortfolio({ username, items }) {
                                                                         className: "size-4 opacity-80"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 685,
+                                                                        lineNumber: 775,
                                                                         columnNumber: 57
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                                lineNumber: 683,
+                                                                lineNumber: 773,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
                                                     }, it.id, true, {
                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                        lineNumber: 632,
+                                                        lineNumber: 722,
                                                         columnNumber: 49
                                                     }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                     children: [
@@ -3041,7 +3164,7 @@ function ProfilePortfolio({ username, items }) {
                                                                     className: "aspect-square w-full bg-primary_hover animate-pulse"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                                    lineNumber: 692,
+                                                                    lineNumber: 782,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3050,18 +3173,18 @@ function ProfilePortfolio({ username, items }) {
                                                                         className: "h-3 w-24 bg-primary_hover rounded animate-pulse"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 694,
+                                                                        lineNumber: 784,
                                                                         columnNumber: 57
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                                    lineNumber: 693,
+                                                                    lineNumber: 783,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                            lineNumber: 691,
+                                                            lineNumber: 781,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3071,7 +3194,7 @@ function ProfilePortfolio({ username, items }) {
                                                                     className: "aspect-square w-full bg-primary_hover animate-pulse"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                                    lineNumber: 698,
+                                                                    lineNumber: 788,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3080,18 +3203,18 @@ function ProfilePortfolio({ username, items }) {
                                                                         className: "h-3 w-20 bg-primary_hover rounded animate-pulse"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 700,
+                                                                        lineNumber: 790,
                                                                         columnNumber: 57
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                                    lineNumber: 699,
+                                                                    lineNumber: 789,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                            lineNumber: 697,
+                                                            lineNumber: 787,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3101,7 +3224,7 @@ function ProfilePortfolio({ username, items }) {
                                                                     className: "aspect-square w-full bg-primary_hover animate-pulse"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                                    lineNumber: 704,
+                                                                    lineNumber: 794,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3110,58 +3233,58 @@ function ProfilePortfolio({ username, items }) {
                                                                         className: "h-3 w-16 bg-primary_hover rounded animate-pulse"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/[username]/page.tsx",
-                                                                        lineNumber: 706,
+                                                                        lineNumber: 796,
                                                                         columnNumber: 57
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                                    lineNumber: 705,
+                                                                    lineNumber: 795,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                            lineNumber: 703,
+                                                            lineNumber: 793,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 629,
+                                                lineNumber: 719,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 628,
+                                            lineNumber: 718,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 623,
+                                    lineNumber: 713,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                lineNumber: 622,
+                                lineNumber: 712,
                                 columnNumber: 25
                             }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 615,
+                        lineNumber: 705,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 613,
+                lineNumber: 703,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/[username]/page.tsx",
-        lineNumber: 469,
+        lineNumber: 559,
         columnNumber: 9
     }, this);
 }
@@ -3179,7 +3302,7 @@ function ProfileFooter() {
                     children: "Powered by INFLU"
                 }, void 0, false, {
                     fileName: "[project]/src/app/[username]/page.tsx",
-                    lineNumber: 731,
+                    lineNumber: 821,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3187,18 +3310,18 @@ function ProfileFooter() {
                     children: "Profiles that convert, not just link"
                 }, void 0, false, {
                     fileName: "[project]/src/app/[username]/page.tsx",
-                    lineNumber: 732,
+                    lineNumber: 822,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/[username]/page.tsx",
-            lineNumber: 725,
+            lineNumber: 815,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/[username]/page.tsx",
-        lineNumber: 724,
+        lineNumber: 814,
         columnNumber: 9
     }, this);
 }
@@ -3217,14 +3340,33 @@ function PrimaryCTAStrip({ username, payEnabled, upiId, contactMethod, email, wh
                     className: `grid ${cols} gap-2 min-w-0`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                            className: "w-full",
+                            className: "w-full !bg-white !text-black hover:!bg-gray-100 !ring-secondary_alt dark:!bg-white dark:!text-black",
                             size: "sm",
                             color: "secondary",
-                            onClick: ()=>onPay(),
+                            onClick: ()=>{
+                                try {
+                                    const payload = {
+                                        category: "pay",
+                                        label: "Make Payment"
+                                    };
+                                    const endpoint = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${encodeURIComponent(username)}/analytics/click`;
+                                    const blob = new Blob([
+                                        JSON.stringify(payload)
+                                    ], {
+                                        type: "application/json"
+                                    });
+                                    if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+                                        navigator.sendBeacon(endpoint, blob);
+                                    } else {
+                                        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/analytics/click`, payload).catch(()=>{});
+                                    }
+                                } catch  {}
+                                onPay();
+                            },
                             children: "Make Payment"
                         }, void 0, false, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 753,
+                            lineNumber: 843,
                             columnNumber: 25
                         }, this),
                         contactMethod === "whatsapp" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3234,12 +3376,30 @@ function PrimaryCTAStrip({ username, payEnabled, upiId, contactMethod, email, wh
                             onClick: ()=>{
                                 const digits = whatsapp.replace(/\D/g, "");
                                 const url = `https://wa.me/${digits}?text=${waText}`;
+                                try {
+                                    const payload = {
+                                        category: "contact",
+                                        label: "whatsapp",
+                                        url
+                                    };
+                                    const endpoint = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${encodeURIComponent(username)}/analytics/click`;
+                                    const blob = new Blob([
+                                        JSON.stringify(payload)
+                                    ], {
+                                        type: "application/json"
+                                    });
+                                    if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+                                        navigator.sendBeacon(endpoint, blob);
+                                    } else {
+                                        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/analytics/click`, payload).catch(()=>{});
+                                    }
+                                } catch  {}
                                 window.open(url, "_blank");
                             },
                             children: "Chat on WhatsApp"
                         }, void 0, false, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 755,
+                            lineNumber: 857,
                             columnNumber: 29
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                             className: "w-full",
@@ -3247,37 +3407,55 @@ function PrimaryCTAStrip({ username, payEnabled, upiId, contactMethod, email, wh
                             color: "secondary",
                             onClick: ()=>{
                                 const url = `mailto:${email}?subject=${encodeURIComponent("Collaboration inquiry")}&body=${encodeURIComponent(`Hi ${username}, I'd like to discuss a collaboration.`)}`;
+                                try {
+                                    const payload = {
+                                        category: "contact",
+                                        label: "email",
+                                        url
+                                    };
+                                    const endpoint = `${("TURBOPACK compile-time value", "https://newyearbackendcode-zrp62.ondigitalocean.app")}/users/${encodeURIComponent(username)}/analytics/click`;
+                                    const blob = new Blob([
+                                        JSON.stringify(payload)
+                                    ], {
+                                        type: "application/json"
+                                    });
+                                    if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+                                        navigator.sendBeacon(endpoint, blob);
+                                    } else {
+                                        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/analytics/click`, payload).catch(()=>{});
+                                    }
+                                } catch  {}
                                 window.location.href = url;
                             },
                             children: "Mail Us"
                         }, void 0, false, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 761,
+                            lineNumber: 873,
                             columnNumber: 29
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/[username]/page.tsx",
-                    lineNumber: 752,
+                    lineNumber: 842,
                     columnNumber: 21
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 751,
+                lineNumber: 841,
                 columnNumber: 17
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/[username]/page.tsx",
-            lineNumber: 750,
+            lineNumber: 840,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/[username]/page.tsx",
-        lineNumber: 749,
+        lineNumber: 839,
         columnNumber: 9
     }, this);
 }
-function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, prefillService }) {
+function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, offers, prefillService, onSuccess }) {
     const [serviceKey, setServiceKey] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(prefillService);
     const [budget, setBudget] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [name, setName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
@@ -3288,26 +3466,31 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
             id: t,
             label: t
         }));
-    const submit = ()=>{
-        const selectedService = serviceKey || services[0] || "Service";
-        if (!name.trim() || !contact.trim()) return;
-        const lines = [
-            `Service: ${selectedService}`,
-            budget.trim() ? `Budget: ₹${budget.trim()}` : undefined,
-            `Name: ${name.trim()}`,
-            `Preferred contact: ${contactMethod === "whatsapp" ? "WhatsApp" : "Email"}`,
-            `Contact: ${contact.trim()}`,
-            message.trim() ? `Message: ${message.trim()}` : undefined
-        ].filter(Boolean);
-        const text = `Request a Service — for ${username}\n\n${lines.join("\n")}`;
-        if (contactMethod === "whatsapp") {
-            const digits = contact.replace(/\D/g, "");
-            const url = `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
-            window.open(url, "_blank");
-        } else {
-            const url = `mailto:${contact}?subject=${encodeURIComponent("Service request")}&body=${encodeURIComponent(text)}`;
-            window.location.href = url;
+    const selectedTitle = serviceKey || services[0] || null;
+    const selectedOffer = offers.find((o)=>o.title === selectedTitle) || null;
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (isOpen) {
+            setServiceKey(prefillService || null);
         }
+    }, [
+        isOpen,
+        prefillService
+    ]);
+    const submit = async ()=>{
+        const selectedService = selectedTitle || "Service";
+        if (!name.trim() || !contact.trim()) return;
+        try {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post(`/users/${username}/enquiries`, {
+                service: selectedService,
+                brand: name.trim(),
+                contactMethod,
+                contact: contact.trim(),
+                message: message.trim(),
+                budget: budget ? Number(budget) : undefined
+            });
+            onOpenChange(false);
+            onSuccess(selectedService);
+        } catch  {}
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Dialog$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogTrigger"], {
         isOpen: isOpen,
@@ -3319,7 +3502,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                 children: "Open"
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 807,
+                lineNumber: 932,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Modal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ModalOverlay"], {
@@ -3328,7 +3511,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                 children: ({ state })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Modal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Modal"], {
                         className: "w-full cursor-auto",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Dialog$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
-                            "aria-label": "Request a Service",
+                            "aria-label": "Request Service",
                             className: "fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3339,24 +3522,24 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                                     className: "text-lg font-semibold text-primary",
-                                                    children: "Request a Service"
+                                                    children: selectedTitle ? `Request to ${selectedTitle}` : "Request a Service"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 819,
+                                                    lineNumber: 944,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-sm text-tertiary",
-                                                    children: "Share a few details to get started"
+                                                    children: selectedTitle ? "Review the service details and share your info" : "Share a few details to get started"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 820,
+                                                    lineNumber: 945,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 818,
+                                            lineNumber: 943,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3365,19 +3548,19 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                             children: "Close"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 822,
+                                            lineNumber: 947,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 817,
+                                    lineNumber: 942,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex flex-col gap-4 px-4 py-4",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$select$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
+                                        !prefillService && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$select$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
                                             size: "md",
                                             label: "Service",
                                             placeholder: "Select a service",
@@ -3389,13 +3572,87 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                                     children: item.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 834,
-                                                    columnNumber: 48
+                                                    lineNumber: 960,
+                                                    columnNumber: 52
                                                 }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 826,
-                                            columnNumber: 33
+                                            lineNumber: 952,
+                                            columnNumber: 37
+                                        }, this),
+                                        selectedOffer && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "rounded-xl bg-primary p-3 ring-1 ring-secondary_alt",
+                                            children: [
+                                                selectedOffer.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-sm text-primary",
+                                                    children: selectedOffer.description
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 967,
+                                                    columnNumber: 45
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "mt-3 grid grid-cols-2 gap-3",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-xs text-secondary",
+                                                                    children: "Delivery"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                                    lineNumber: 971,
+                                                                    columnNumber: 49
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-sm text-primary",
+                                                                    children: selectedOffer.delivery || "—"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                                    lineNumber: 972,
+                                                                    columnNumber: 49
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/app/[username]/page.tsx",
+                                                            lineNumber: 970,
+                                                            columnNumber: 45
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-xs text-secondary",
+                                                                    children: "Includes"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                                    lineNumber: 975,
+                                                                    columnNumber: 49
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-sm text-primary",
+                                                                    children: (selectedOffer.includes || []).slice(0, 3).join(", ") || "—"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                                    lineNumber: 976,
+                                                                    columnNumber: 49
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/app/[username]/page.tsx",
+                                                            lineNumber: 974,
+                                                            columnNumber: 45
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 969,
+                                                    columnNumber: 41
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/[username]/page.tsx",
+                                            lineNumber: 965,
+                                            columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$input$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
                                             label: "Budget (optional)",
@@ -3406,7 +3663,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                             onChange: setBudget
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 837,
+                                            lineNumber: 984,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$input$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3417,7 +3674,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                             onChange: setName
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 839,
+                                            lineNumber: 986,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3428,7 +3685,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                                     children: "Contact Method"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 842,
+                                                    lineNumber: 989,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$radio$2d$buttons$2f$radio$2d$buttons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RadioGroup"], {
@@ -3440,7 +3697,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                                             label: "WhatsApp"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                            lineNumber: 844,
+                                                            lineNumber: 991,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$radio$2d$buttons$2f$radio$2d$buttons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RadioButton"], {
@@ -3448,19 +3705,19 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                                             label: "Email"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                                            lineNumber: 845,
+                                                            lineNumber: 992,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                                    lineNumber: 843,
+                                                    lineNumber: 990,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 841,
+                                            lineNumber: 988,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$input$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3473,7 +3730,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                             onChange: setContact
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 849,
+                                            lineNumber: 996,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$textarea$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TextArea"], {
@@ -3484,7 +3741,7 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                             onChange: setMessage
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 859,
+                                            lineNumber: 1006,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3497,40 +3754,264 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
                                                 children: "Send Request"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/[username]/page.tsx",
-                                                lineNumber: 862,
+                                                lineNumber: 1009,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/[username]/page.tsx",
-                                            lineNumber: 861,
+                                            lineNumber: 1008,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/[username]/page.tsx",
-                                    lineNumber: 825,
+                                    lineNumber: 950,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/[username]/page.tsx",
-                            lineNumber: 816,
+                            lineNumber: 941,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/[username]/page.tsx",
-                        lineNumber: 815,
+                        lineNumber: 940,
                         columnNumber: 21
                     }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/[username]/page.tsx",
-                lineNumber: 808,
+                lineNumber: 933,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/[username]/page.tsx",
-        lineNumber: 806,
+        lineNumber: 931,
+        columnNumber: 9
+    }, this);
+}
+function RequestSuccessBottomSheet({ isOpen, onOpenChange, username, service, contactMethod, email, whatsapp }) {
+    const waText = `Hi ${username}, I just submitted a request for ${service}`;
+    const waLink = whatsapp ? `https://wa.me/${encodeURIComponent(String(whatsapp).replace(/[^0-9+]/g, ""))}?text=${encodeURIComponent(waText)}` : null;
+    const mailLink = email ? `mailto:${email}?subject=${encodeURIComponent("Collaboration inquiry")}&body=${encodeURIComponent(waText)}` : null;
+    const animRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        let alive = true;
+        if (!isOpen || !animRef.current) return;
+        (async ()=>{
+            try {
+                const mod = await __turbopack_context__.A("[project]/node_modules/lottie-web/build/player/lottie.js [app-ssr] (ecmascript, async loader)");
+                if (!alive || !animRef.current) return;
+                const anim = mod.default.loadAnimation({
+                    container: animRef.current,
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: true,
+                    path: "/sent.json"
+                });
+                const t = setTimeout(()=>{
+                    try {
+                        anim.destroy();
+                    } catch  {}
+                }, 3000);
+                return ()=>{
+                    clearTimeout(t);
+                    try {
+                        anim.destroy();
+                    } catch  {}
+                };
+            } catch  {}
+        })();
+        return ()=>{
+            alive = false;
+        };
+    }, [
+        isOpen
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Dialog$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogTrigger"], {
+        isOpen: isOpen,
+        onOpenChange: onOpenChange,
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                slot: "trigger",
+                className: "hidden",
+                children: "Open"
+            }, void 0, false, {
+                fileName: "[project]/src/app/[username]/page.tsx",
+                lineNumber: 1056,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Modal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ModalOverlay"], {
+                isDismissable: true,
+                className: ({ isEntering, isExiting })=>`fixed inset-0 z-50 bg-overlay/40 backdrop-blur-sm ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`,
+                children: ({ state })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Modal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Modal"], {
+                        className: "w-full cursor-auto",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$aria$2d$components$2f$dist$2f$Dialog$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
+                            "aria-label": "Request Submitted",
+                            className: "fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center justify-between border-b border-secondary px-4 py-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex min-w-0 flex-col",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                    className: "text-lg font-semibold text-primary",
+                                                    children: "Request submitted"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 1068,
+                                                    columnNumber: 37
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-sm text-tertiary",
+                                                    children: [
+                                                        "We’ve notified ",
+                                                        username,
+                                                        ". You’ll hear back soon."
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 1069,
+                                                    columnNumber: 37
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/[username]/page.tsx",
+                                            lineNumber: 1067,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                            size: "sm",
+                                            onClick: ()=>state.close(),
+                                            children: "Close"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/[username]/page.tsx",
+                                            lineNumber: 1071,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                    lineNumber: 1066,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "px-4 py-6",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mx-auto flex w-full max-w-sm flex-col items-center gap-4 text-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                ref: animRef,
+                                                className: "inline-flex size-20 items-center justify-center rounded-full bg-secondary/20 ring-1 ring-secondary_alt overflow-hidden"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/[username]/page.tsx",
+                                                lineNumber: 1075,
+                                                columnNumber: 37
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-md font-semibold text-primary",
+                                                children: [
+                                                    "Your request for “",
+                                                    service || "Service",
+                                                    "” has been registered"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/[username]/page.tsx",
+                                                lineNumber: 1076,
+                                                columnNumber: 37
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-tertiary",
+                                                children: "Feel free to reach out directly while we process it."
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/[username]/page.tsx",
+                                                lineNumber: 1077,
+                                                columnNumber: 37
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mt-2 w-full",
+                                                children: contactMethod === "whatsapp" ? waLink ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                                    size: "sm",
+                                                    color: "primary",
+                                                    className: "w-full",
+                                                    onClick: ()=>window.open(waLink, "_blank"),
+                                                    children: "Chat on WhatsApp"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 1081,
+                                                    columnNumber: 49
+                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                                    size: "sm",
+                                                    color: "secondary",
+                                                    className: "w-full",
+                                                    disabled: true,
+                                                    children: "WhatsApp unavailable"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 1083,
+                                                    columnNumber: 49
+                                                }, this) : mailLink ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                                    size: "sm",
+                                                    color: "secondary",
+                                                    className: "w-full",
+                                                    onClick: ()=>{
+                                                        window.location.href = mailLink;
+                                                    },
+                                                    children: "Email Us"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 1086,
+                                                    columnNumber: 45
+                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$base$2f$buttons$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                                    size: "sm",
+                                                    color: "secondary",
+                                                    className: "w-full",
+                                                    disabled: true,
+                                                    children: "Email unavailable"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                                    lineNumber: 1088,
+                                                    columnNumber: 45
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/[username]/page.tsx",
+                                                lineNumber: 1078,
+                                                columnNumber: 37
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/[username]/page.tsx",
+                                        lineNumber: 1074,
+                                        columnNumber: 33
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/[username]/page.tsx",
+                                    lineNumber: 1073,
+                                    columnNumber: 29
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/[username]/page.tsx",
+                            lineNumber: 1065,
+                            columnNumber: 25
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/[username]/page.tsx",
+                        lineNumber: 1064,
+                        columnNumber: 21
+                    }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/[username]/page.tsx",
+                lineNumber: 1057,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/[username]/page.tsx",
+        lineNumber: 1055,
         columnNumber: 9
     }, this);
 }

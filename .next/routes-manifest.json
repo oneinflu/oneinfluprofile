@@ -22,6 +22,14 @@
   },
   "dynamicRoutes": [
     {
+      "page": "/pay/[paymentID]",
+      "regex": "^/pay/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPpaymentID": "nxtPpaymentID"
+      },
+      "namedRegex": "^/pay/(?<nxtPpaymentID>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/[username]",
       "regex": "^/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -68,10 +76,10 @@
       "namedRegex": "^/admin/enquiries(?:/)?$"
     },
     {
-      "page": "/admin/my-porifle",
-      "regex": "^/admin/my\\-porifle(?:/)?$",
+      "page": "/admin/my-profile",
+      "regex": "^/admin/my\\-profile(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/admin/my\\-porifle(?:/)?$"
+      "namedRegex": "^/admin/my\\-profile(?:/)?$"
     },
     {
       "page": "/admin/offers",
@@ -102,6 +110,12 @@
       "regex": "^/login(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/logout",
+      "regex": "^/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/logout(?:/)?$"
     },
     {
       "page": "/onboarding",

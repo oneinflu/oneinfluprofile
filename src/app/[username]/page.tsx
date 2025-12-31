@@ -268,15 +268,12 @@ export default function ProfilePage() {
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
             </section>
             <section className="hidden lg:flex min-h-screen items-center justify-center bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4">
-                <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#ffffff] via-[#F4EBFF] to-[#EDE6FF] dark:from-[#0b0f14] dark:via-[#1b103f] dark:to-[#000000] p-1 shadow-2xl">
-                    <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary relative">
-                        <div className="size-full overflow-y-auto scrollbar-hide bg-primary p-3 pb-20">
-                            
-                            <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
-                        </div>
-                        <div className="absolute inset-x-3 bottom-3">
-                            <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="overlay" onRequest={openRequest} onPay={openPayment} />
-                        </div>
+                <div className="mx-auto w-full max-w-4xl">
+                    <div className="rounded-2xl bg-primary p-4 ring-1 ring-secondary_alt">
+                        <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
+                    </div>
+                    <div className="mt-4">
+                        <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
                     </div>
                 </div>
             </section>

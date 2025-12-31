@@ -5,9 +5,12 @@ import { Checkbox } from "@/components/base/checkbox/checkbox";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SelectPlatformsPage() {
     const [selected, setSelected] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const items = [
         { value: "instagram", label: "Instagram", imgSrc: "/instagram.png" },
@@ -75,8 +78,14 @@ export default function SelectPlatformsPage() {
                 <Button
                     size="lg"
                     className="mx-auto w-full max-w-xl"
-                    href={selected.length ? `/add-links?platforms=${encodeURIComponent(selected.join(","))}` : undefined}
-                    isDisabled={selected.length === 0}
+                    onClick={() => {
+                        if (!selected.length || loading) return;
+                        setLoading(true);
+                        const href = `/add-links?platforms=${encodeURIComponent(selected.join(","))}`;
+                        router.push(href);
+                    }}
+                    isDisabled={selected.length === 0 || loading}
+                    isLoading={loading}
                 >
                     Continue
                 </Button>
