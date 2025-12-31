@@ -1,3 +1,0 @@
-module.exports=[52786,a=>{"use strict";var b=a.i(72131),c=a.i(50944),d=a.i(61240);function e(){let a=(0,c.useRouter)(),{setToken:e,setUser:f}=(0,d.useAuth)();return(0,b.useEffect)(()=>{try{e(null),f(null);try{localStorage.removeItem("influu_username")}catch{}try{localStorage.removeItem("influu_user_id")}catch{}try{localStorage.removeItem("influu_token")}catch{}}catch{}a.replace("/login")},[a,e,f]),null}a.s(["default",()=>e])}];
-
-//# sourceMappingURL=src_app_logout_page_tsx_0dead3bf._.js.map

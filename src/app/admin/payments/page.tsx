@@ -84,7 +84,7 @@ export default function AdminPaymentsPage() {
     };
 
     const [addOpen, setAddOpen] = useState(false);
-    const [draft, setDraft] = useState<{ brand: string; service: string; amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; status: "received" | "pending"; proofUrl?: string; notes?: string }>({
+    const [draft, setDraft] = useState<{ brand: string; service: string; amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; status: "received" | "pending"; proofUrl?: string; proofFile?: File | null; notes?: string }>({
         brand: "",
         service: "Reel Promo",
         amount: undefined,
@@ -93,6 +93,7 @@ export default function AdminPaymentsPage() {
         date: new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short" }),
         status: "received",
         proofUrl: undefined,
+        proofFile: null,
         notes: "",
     });
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -111,7 +112,8 @@ export default function AdminPaymentsPage() {
     const [receiptItem, setReceiptItem] = useState<typeof payments[number] | null>(null);
     const [recordOpen, setRecordOpen] = useState(false);
     const [recordTargetId, setRecordTargetId] = useState<string | null>(null);
-    const [recordDraft, setRecordDraft] = useState<{ amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; notes?: string }>({ amount: undefined, mode: "UPI", txId: "", date: new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short" }), proofUrl: undefined, notes: "" });
+    const [recordDraft, setRecordDraft] = useState<{ amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; proofFile?: File | null; notes?: string }>({ amount: undefined, mode: "UPI", txId: "", date: new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short" }), proofUrl: undefined, proofFile: null, notes: "" });
+    const [recordSaving, setRecordSaving] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
     const [detailsItem, setDetailsItem] = useState<typeof payments[number] | null>(null);
     const [notice, setNotice] = useState<string | null>(null);
@@ -285,32 +287,64 @@ export default function AdminPaymentsPage() {
                     if (!draft.brand.trim() || !draft.service.trim() || typeof draft.amount !== "number") return;
                     try {
                         if (!user?.username || !token) throw new Error("unauthorized");
-                        const res = await api.post<{ payment: { id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string | null } }>(
-                            `/users/${user.username}/payments`,
-                            {
+                        const path = `/users/${user.username}/manual-payments`;
+                        let created: any | null = null;
+                        if (draft.proofFile) {
+                            const fd = new FormData();
+                            fd.append("file", draft.proofFile);
+                            fd.append("brand", draft.brand.trim());
+                            fd.append("service", draft.service.trim());
+                            fd.append("amount", String(draft.amount));
+                            fd.append("mode", String(draft.mode).toLowerCase());
+                            if (draft.txId) fd.append("transactionId", draft.txId);
+                            fd.append("date", draft.date);
+                            fd.append("status", draft.status);
+                            if (draft.notes) fd.append("notes", draft.notes);
+                            const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}${path}`;
+                            const resp = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}` }, body: fd });
+                            const data = await resp.json().catch(() => ({}));
+                            if (!resp.ok) throw new Error((data as any)?.message || `HTTP ${resp.status}`);
+                            created = (data as any)?.data?.payment || (data as any)?.payment || null;
+                        } else if (draft.proofUrl && /^https?:\/\//.test(draft.proofUrl)) {
+                            const res = await api.post<{ payment?: any; data?: { payment?: any } }>(path, {
                                 brand: draft.brand.trim(),
                                 service: draft.service.trim(),
                                 amount: draft.amount,
-                                mode: draft.mode,
-                                txId: draft.txId || null,
+                                mode: String(draft.mode).toLowerCase(),
+                                transactionId: draft.txId || undefined,
                                 date: draft.date,
                                 status: draft.status,
-                                notes: draft.notes || null,
-                            },
-                            { token },
-                        );
-                        const p = res.payment;
-                        const next = {
-                            id: p.id,
-                            date: p.date,
-                            brand: p.brand,
-                            service: p.service,
-                            amount: p.amount,
-                            mode: p.mode,
-                            status: p.status,
-                            txId: p.txId || undefined,
-                        } as typeof payments[number];
-                        setPayments((prev) => [next, ...prev]);
+                                url: draft.proofUrl,
+                                notes: draft.notes || undefined,
+                            }, { token });
+                            created = (res as any)?.payment ?? (res as any)?.data?.payment ?? null;
+                        } else {
+                            const res = await api.post<{ payment?: any; data?: { payment?: any } }>(path, {
+                                brand: draft.brand.trim(),
+                                service: draft.service.trim(),
+                                amount: draft.amount,
+                                mode: String(draft.mode).toLowerCase(),
+                                transactionId: draft.txId || undefined,
+                                date: draft.date,
+                                status: draft.status,
+                                notes: draft.notes || undefined,
+                            }, { token });
+                            created = (res as any)?.payment ?? (res as any)?.data?.payment ?? null;
+                        }
+                        if (created) {
+                            const next = {
+                                id: created.id,
+                                date: created.date || draft.date,
+                                brand: created.brand || draft.brand.trim(),
+                                service: created.service || draft.service.trim(),
+                                amount: typeof created.amount === "number" ? created.amount : draft.amount!,
+                                mode: (typeof created.mode === "string" ? created.mode : draft.mode) as typeof draft.mode,
+                                status: (typeof created.status === "string" ? created.status : draft.status) as typeof draft.status,
+                                txId: created.txId || draft.txId || undefined,
+                                proofUrl: created.proofUrl || draft.proofUrl,
+                            } as typeof payments[number];
+                            setPayments((prev) => [next, ...prev]);
+                        }
                     } catch {} finally {
                         setAddOpen(false);
                     }
@@ -426,42 +460,63 @@ export default function AdminPaymentsPage() {
                 onOpenChange={(open) => setRecordOpen(open)}
                 draft={recordDraft}
                 setDraft={setRecordDraft}
+                saving={recordSaving}
                 onSave={async () => {
                     if (!recordTargetId) return;
                     try {
+                        if (recordSaving) return;
                         if (!user?.username || !token) throw new Error("unauthorized");
-                        const res = await api.patch<{ payment: { id: string; date: string; brand: string; service: string; amount: number; mode: "UPI" | "Bank" | "Cash" | "Other"; status: "received" | "pending"; txId?: string | null; proofUrl?: string | null } }>(
-                            `/users/${user.username}/payments/${recordTargetId}`,
-                            {
+                        setRecordSaving(true);
+                        const path = `/users/${user.username}/payments/${recordTargetId}/transactions`;
+                        let ok = false;
+                        let proofUrl: string | undefined = undefined;
+                        if (recordDraft.proofFile) {
+                            const fd = new FormData();
+                            fd.append("file", recordDraft.proofFile);
+                            if (typeof recordDraft.amount === "number") fd.append("amount", String(recordDraft.amount));
+                            fd.append("mode", String(recordDraft.mode || "UPI").toLowerCase());
+                            if (recordDraft.txId) fd.append("transactionId", recordDraft.txId);
+                            if (recordDraft.notes) fd.append("notes", recordDraft.notes);
+                            const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}${path}`;
+                            const resp = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}` }, body: fd });
+                            const data = await resp.json().catch(() => ({}));
+                            if (!resp.ok) throw new Error((data as any)?.message || `HTTP ${resp.status}`);
+                            ok = true;
+                            proofUrl = (data as any)?.data?.url || (data as any)?.url || undefined;
+                        } else if (recordDraft.proofUrl && /^https?:\/\//.test(recordDraft.proofUrl)) {
+                            await api.post(path, {
                                 amount: typeof recordDraft.amount === "number" ? recordDraft.amount : undefined,
-                                mode: recordDraft.mode,
-                                txId: recordDraft.txId || null,
-                                date: recordDraft.date,
-                                status: "received",
-                                proofUrl: recordDraft.proofUrl || null,
-                                notes: recordDraft.notes || null,
-                            },
-                            { token },
-                        );
-                        const p = res.payment;
+                                mode: String(recordDraft.mode || "UPI").toLowerCase(),
+                                transactionId: recordDraft.txId || undefined,
+                                url: recordDraft.proofUrl,
+                                notes: recordDraft.notes || undefined,
+                            }, { token });
+                            ok = true;
+                            proofUrl = recordDraft.proofUrl;
+                        } else {
+                            await api.post(path, {
+                                amount: typeof recordDraft.amount === "number" ? recordDraft.amount : undefined,
+                                mode: String(recordDraft.mode || "UPI").toLowerCase(),
+                                transactionId: recordDraft.txId || undefined,
+                                notes: recordDraft.notes || undefined,
+                            }, { token });
+                            ok = true;
+                        }
+                        if (!ok) throw new Error("failed");
                         setPayments((prev) =>
                             prev.map((pv) =>
                                 pv.id === recordTargetId
                                     ? {
-                                          id: p.id,
-                                          date: p.date,
-                                          brand: p.brand,
-                                          service: p.service,
-                                          amount: p.amount,
-                                          mode: p.mode,
-                                          status: p.status,
-                                          txId: p.txId || undefined,
-                                          proofUrl: p.proofUrl || undefined,
+                                          ...pv,
+                                          status: "received",
+                                          txId: recordDraft.txId || pv.txId,
+                                          proofUrl: proofUrl || pv.proofUrl,
                                       }
                                     : pv,
                             ),
                         );
                     } catch {} finally {
+                        setRecordSaving(false);
                         setRecordOpen(false);
                         setRecordTargetId(null);
                     }
@@ -486,8 +541,9 @@ function AddPaymentModal({ isOpen, onOpenChange, draft, setDraft, onSave }: { is
     date: string;
     status: "received" | "pending";
     proofUrl?: string;
+    proofFile?: File | null;
     notes?: string;
-}; setDraft: React.Dispatch<React.SetStateAction<{ brand: string; service: string; amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; status: "received" | "pending"; proofUrl?: string; notes?: string }>>; onSave: () => void }) {
+}; setDraft: React.Dispatch<React.SetStateAction<{ brand: string; service: string; amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; status: "received" | "pending"; proofUrl?: string; proofFile?: File | null; notes?: string }>>; onSave: () => void }) {
     const fileInputRef = useRef<HTMLInputElement>(null);
     return (
         <AriaDialogTrigger isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -535,9 +591,10 @@ function AddPaymentModal({ isOpen, onOpenChange, draft, setDraft, onSave }: { is
                                         <Button size="sm" color="secondary" onClick={() => fileInputRef.current?.click()}>Upload screenshot / PDF</Button>
                                         <input ref={fileInputRef} type="file" accept="image/*,application/pdf" className="hidden" onChange={(e) => {
                                             const file = e.target.files?.[0];
-                                            if (file) setDraft((d) => ({ ...d, proofUrl: file.name }));
+                                            if (file) setDraft((d) => ({ ...d, proofFile: file, proofUrl: file.name }));
                                         }} />
                                     </div>
+                                    <Input label="Proof URL" placeholder="https://example.com/receipt.jpg" value={draft.proofUrl || ""} onChange={(v) => setDraft((d) => ({ ...d, proofUrl: v }))} />
                                     <TextArea label="Notes" rows={3} value={draft.notes || ""} onChange={(v) => setDraft((d) => ({ ...d, notes: v }))} />
                                 </div>
                             </div>
@@ -790,11 +847,12 @@ function PaymentDetailsModal({ isOpen, onOpenChange, payment, notify, onRecord, 
         </AriaDialogTrigger>
     );
 }
-function RecordPaymentModal({ isOpen, onOpenChange, draft, setDraft, onSave }: {
+function RecordPaymentModal({ isOpen, onOpenChange, draft, setDraft, saving, onSave }: {
     isOpen: boolean;
     onOpenChange: (open: boolean) => void;
-    draft: { amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; notes?: string };
-    setDraft: React.Dispatch<React.SetStateAction<{ amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; notes?: string }>>;
+    draft: { amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; proofFile?: File | null; notes?: string };
+    setDraft: React.Dispatch<React.SetStateAction<{ amount?: number; mode: "UPI" | "Bank" | "Cash" | "Other"; txId?: string; date: string; proofUrl?: string; proofFile?: File | null; notes?: string }>>;
+    saving?: boolean;
     onSave: () => void;
 }) {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -813,7 +871,7 @@ function RecordPaymentModal({ isOpen, onOpenChange, draft, setDraft, onSave }: {
                             <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
                                 <h2 className="text-lg font-semibold text-primary">Record Payment</h2>
                                 <div className="flex items-center gap-2">
-                                    <Button size="sm" color="secondary" onClick={onSave}>Mark as Received</Button>
+                                    <Button size="sm" color="secondary" onClick={onSave} isDisabled={saving} isLoading={saving}>Mark as Received</Button>
                                     <Button size="sm" onClick={() => state.close()}>Cancel</Button>
                                 </div>
                             </div>
@@ -832,9 +890,10 @@ function RecordPaymentModal({ isOpen, onOpenChange, draft, setDraft, onSave }: {
                                         <Button size="sm" color="secondary" onClick={() => fileInputRef.current?.click()}>Upload screenshot / PDF</Button>
                                         <input ref={fileInputRef} type="file" accept="image/*,application/pdf" className="hidden" onChange={(e) => {
                                             const file = e.target.files?.[0];
-                                            if (file) setDraft((d) => ({ ...d, proofUrl: file.name }));
+                                            if (file) setDraft((d) => ({ ...d, proofFile: file }));
                                         }} />
                                     </div>
+                                    <Input label="Proof URL" placeholder="https://example.com/receipt.jpg" value={draft.proofUrl || ""} onChange={(v) => setDraft((d) => ({ ...d, proofUrl: v }))} />
                                     <TextArea label="Notes" rows={3} value={draft.notes || ""} onChange={(v) => setDraft((d) => ({ ...d, notes: v }))} />
                                 </div>
                             </div>

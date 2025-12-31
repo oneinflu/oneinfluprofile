@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { AppSidebar } from "@/layout/sidebar";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
@@ -13,5 +14,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             router.replace("/login");
         }
     }, [router]);
-    return children as any;
+    return (
+        <>
+            <AppSidebar />
+            {children as any}
+        </>
+    );
 }

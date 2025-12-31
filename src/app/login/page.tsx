@@ -6,50 +6,13 @@ import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { Input } from "@/components/base/input/input";
 import { Button } from "@/components/base/buttons/button";
 import { SocialButton } from "@/components/base/buttons/social-button";
-import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { Edit01 } from "@untitledui/icons";
 import { useAuth } from "@/providers/auth";
 
 export default function LoginPage() {
     const [identifier, setIdentifier] = useState("");
-    const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const [loginLoading, setLoginLoading] = useState(false);
     const [otpLoading, setOtpLoading] = useState(false);
     const router = useRouter();
-    const { loginPassword, loginSendOtp, loginVerifyOtp } = useAuth();
-
-    const handleContinue = () => {
-        if (!showPassword) {
-            if (!identifier.trim()) return;
-            setShowPassword(true);
-            const payload = { identifier: identifier.trim() };
-            const expected = {
-                success: true,
-                status: "ok",
-                message: "Identifier accepted",
-                data: { methods: ["password", "otp"], userExists: true },
-                traceId: "trace_identify",
-            };
-            console.group("LOGIN_IDENTIFY");
-            console.log("REQUEST POST /api/auth/identify", payload);
-            console.log("EXPECTED_RESPONSE_SHAPE", expected);
-            console.groupEnd();
-            return;
-        }
-        handleLogin();
-    };
-
-    const handleLogin = async () => {
-        if (loginLoading) return;
-        setLoginLoading(true);
-        try {
-            await loginPassword(identifier.trim(), password);
-            router.push("/admin");
-        } finally {
-            setLoginLoading(false);
-        }
-    };
+    const { loginSendOtp } = useAuth();
 
     const handleGoogle = () => {
         const payload = {
@@ -102,37 +65,20 @@ export default function LoginPage() {
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <Input label="Email or Username" placeholder="Enter email or handle" value={identifier} onChange={(v) => setIdentifier(String(v))} isReadOnly={showPassword} className="flex-1" />
-                                {showPassword && <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => setShowPassword(false)} />}
+                                <Input label="Email or Username" placeholder="Enter email or handle" value={identifier} onChange={(v) => setIdentifier(String(v))} className="flex-1" />
                             </div>
-
-                            {showPassword && <Input label="Password" type="password" placeholder="Enter your password" value={password} onChange={(v) => setPassword(String(v))} />}
 
                             <Button
                                 size="lg"
-                                onClick={handleContinue}
-                                isDisabled={!identifier.trim() || (showPassword && !password.trim()) || loginLoading}
-                                isLoading={showPassword ? loginLoading : false}
+                                color="secondary"
+                                onClick={handleOtp}
+                                isDisabled={!identifier.trim() || otpLoading}
+                                isLoading={otpLoading}
                             >
-                                Continue
+                                Continue with one-time password
                             </Button>
-                            {showPassword && (
-                                <Button
-                                    size="lg"
-                                    color="secondary"
-                                    onClick={handleOtp}
-                                    isDisabled={otpLoading}
-                                    isLoading={otpLoading}
-                                >
-                                    Continue with one-time password
-                                </Button>
-                            )}
 
-                            <div className="flex items-center gap-3">
-                                <div className="h-px w-full bg-border-secondary" />
-                                <span className="text-sm text-tertiary">or</span>
-                                <div className="h-px w-full bg-border-secondary" />
-                            </div>
+                            
 
                             {/* <SocialButton social="google" size="lg" className="w-full" onClick={handleGoogle}>Continue with Google</SocialButton> */}
 

@@ -1,3 +1,0 @@
-module.exports=[74436,a=>{"use strict";function b({children:a}){return a}async function c({params:a}){let b=a.username,c=null;try{let a=`https://newyearbackendcode-zrp62.ondigitalocean.app/users/${encodeURIComponent(b)}/profile`,d=await fetch(a,{next:{revalidate:300}}),e=await d.json().catch(()=>({}));c=e?.profile?.avatarUrl||null}catch{}let d=c||"https://oneinflu.com/avatar.svg";return{openGraph:{images:[d]},twitter:{images:[d],card:"summary_large_image"}}}a.s(["default",()=>b,"generateMetadata",()=>c])}];
-
-//# sourceMappingURL=src_app_%5Busername%5D_layout_tsx_bebcc1f7._.js.map
