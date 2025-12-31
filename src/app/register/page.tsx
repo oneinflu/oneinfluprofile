@@ -57,8 +57,7 @@ export default function RegisterPage() {
                                 <div className="h-px w-full bg-border-secondary" />
                             </div>
 
-                            <SocialButton social="google" size="lg" className="w-full">Sign up with Google</SocialButton>
-
+                               
                             <p className="text-sm text-tertiary">
                                 By proceeding you agree to T&amp;C and Privacy Policy of INFLU.
                             </p>

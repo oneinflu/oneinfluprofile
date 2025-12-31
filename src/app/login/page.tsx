@@ -103,7 +103,7 @@ export default function LoginPage() {
                                 <div className="h-px w-full bg-border-secondary" />
                             </div>
 
-                            <SocialButton social="google" size="lg" className="w-full" onClick={handleGoogle}>Continue with Google</SocialButton>
+                            {/* <SocialButton social="google" size="lg" className="w-full" onClick={handleGoogle}>Continue with Google</SocialButton> */}
 
                             <div className="flex items-center justify-between">
                                 <Button color="link-gray" size="sm">Forgot password</Button>
