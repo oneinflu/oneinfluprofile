@@ -8,6 +8,7 @@ import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { DropdownMenuSimple } from "@/components/marketing/header-navigation/dropdown-header-navigation";
 import { cx } from "@/utils/cx";
+import { useAuth } from "@/providers/auth";
 
 type HeaderNavItem = {
     label: string;
@@ -65,6 +66,7 @@ const MobileNavItem = (props: { className?: string; label: string; href?: string
 };
 
 const MobileFooter = () => {
+    const { user } = useAuth();
     return (
         <div className="flex flex-col gap-8 border-t border-secondary px-4 py-6">
             <div>
@@ -79,10 +81,14 @@ const MobileFooter = () => {
                 </ul>
             </div>
             <div className="flex flex-col gap-3">
-                <Button size="lg">Sign up</Button>
-                <Button color="secondary" size="lg">
-                    Log in
-                </Button>
+                {user?.username ? (
+                    <Button size="lg" href={`/${user.username}`}>Go to My Profile</Button>
+                ) : (
+                    <>
+                        <Button size="lg" href="/register">Get Started</Button>
+                        <Button color="secondary" size="lg" href="/login">Log in</Button>
+                    </>
+                )}
             </div>
         </div>
     );
@@ -97,6 +103,7 @@ interface HeaderProps {
 
 export const Header = ({ items = headerNavItems, isFullWidth, isFloating, className }: HeaderProps) => {
     const headerRef = useRef<HTMLElement>(null);
+    const { user } = useAuth();
 
     return (
         <header
@@ -176,12 +183,20 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     </div>
 
                     <div className="hidden items-center gap-3 md:flex">
-                        <Button color="secondary" size={isFloating ? "md" : "lg"}>
-                            Log in
-                        </Button>
-                        <Button color="primary" size={isFloating ? "md" : "lg"}>
-                            Sign up
-                        </Button>
+                        {user?.username ? (
+                            <Button color="primary" size={isFloating ? "md" : "lg"} href={`/${user.username}`}>
+                                Go to My Profile
+                            </Button>
+                        ) : (
+                            <>
+                                <Button color="secondary" size={isFloating ? "md" : "lg"} href="/login">
+                                    Log in
+                                </Button>
+                                <Button color="primary" size={isFloating ? "md" : "lg"} href="/register">
+                                    Get Started
+                                </Button>
+                            </>
+                        )}
                     </div>
 
                     {/* Mobile menu and menu trigger */}

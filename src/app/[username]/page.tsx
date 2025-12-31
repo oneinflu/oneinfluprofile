@@ -3,7 +3,7 @@
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01 } from "@untitledui/icons";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import type { MouseEvent } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
 import { Input } from "@/components/base/input/input";
@@ -103,6 +103,7 @@ function PaymentBottomSheet({ isOpen, onOpenChange, name, upiId }: { isOpen: boo
 export default function ProfilePage() {
     const [username, setUsername] = useState<string>("");
     const params = useParams();
+    const [isLandscape, setIsLandscape] = useState(false);
     useEffect(() => {
         let alive = true;
         (async () => {
@@ -136,8 +137,30 @@ export default function ProfilePage() {
         })();
         return () => { alive = false; };
     }, [params, username]);
+    useEffect(() => {
+        let q: MediaQueryList | null = null;
+        const update = () => {
+            try {
+                const m = window.matchMedia("(orientation: landscape)");
+                q = m;
+                setIsLandscape(Boolean(m.matches));
+            } catch {}
+        };
+        update();
+        const handler = () => update();
+        try {
+            window.addEventListener("orientationchange", handler);
+            window.addEventListener("resize", handler);
+        } catch {}
+        return () => {
+            try {
+                window.removeEventListener("orientationchange", handler);
+                window.removeEventListener("resize", handler);
+            } catch {}
+        };
+    }, []);
     const [profile, setProfile] = useState<{ name?: string | null; bio?: string | null; avatarUrl?: string | null } | null>(null);
-    const [offers, setOffers] = useState<Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>>([]);
+    const [offers, setOffers] = useState<Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null; delivery?: string | null; includes?: string[] }>>([]);
     const [links, setLinks] = useState<Array<{ platform: string; icon: string; url: string }>>([]);
     const [payEnabled, setPayEnabled] = useState<boolean>(false);
     const [upiId, setUpiId] = useState<string>("");
@@ -171,6 +194,8 @@ export default function ProfilePage() {
                     priceType: o.priceType === "fixed" ? "fixed" : o.priceType === "starting" ? "starting" : "custom",
                     price: o.price,
                     cta: toCta(o.cta),
+                    delivery: (o as any).delivery || null,
+                    includes: Array.isArray((o as any).includes) ? (o as any).includes : [],
                 })));
                 setLinks(res.links.map((l) => ({ platform: l.platform, icon: l.icon, url: l.url })));
                 setPayEnabled(Boolean(res.payment?.payEnabled));
@@ -180,6 +205,11 @@ export default function ProfilePage() {
                 setContactEmail(res.contact?.email || "");
                 setContactWhatsapp(res.contact?.whatsapp || "");
                 setPortfolioItems(Array.isArray(res.portfolio) ? res.portfolio : []);
+                try {
+                    const origin = typeof window !== "undefined" ? window.location.origin : "";
+                    const url = `${origin}/${username}`;
+                    await api.post(`/users/${username}/analytics/view`, { url }).catch(() => {});
+                } catch {}
             } catch {
                 if (!alive) return;
             }
@@ -219,9 +249,19 @@ export default function ProfilePage() {
     };
     const [paymentOpen, setPaymentOpen] = useState(false);
     const openPayment = () => setPaymentOpen(true);
+    const [requestSuccessOpen, setRequestSuccessOpen] = useState(false);
+    const [requestSuccessService, setRequestSuccessService] = useState<string>("");
 
     return (
         <>
+            {isLandscape && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+                    <div className="mx-4 w-full max-w-sm rounded-2xl bg-primary p-4 text-center shadow-xl ring-1 ring-secondary_alt">
+                        <p className="text-md font-semibold text-primary">Please rotate your device to portrait</p>
+                        <p className="mt-1 text-sm text-tertiary">This page is optimized for portrait orientation.</p>
+                    </div>
+                </div>
+            )}
             <section className="lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
                 
                 <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
@@ -246,13 +286,27 @@ export default function ProfilePage() {
                 onOpenChange={setRequestOpen}
                 username={username}
                 services={offers.map((o) => o.title)}
+                offers={offers}
                 prefillService={prefillService}
+                onSuccess={(service) => {
+                    setRequestSuccessService(service || "");
+                    setRequestSuccessOpen(true);
+                }}
             />
             <PaymentBottomSheet
                 isOpen={paymentOpen}
                 onOpenChange={setPaymentOpen}
                 name={(profile?.name as string) || username}
                 upiId={upiId}
+            />
+            <RequestSuccessBottomSheet
+                isOpen={requestSuccessOpen}
+                onOpenChange={setRequestSuccessOpen}
+                username={username}
+                service={requestSuccessService}
+                contactMethod={contactMethod}
+                email={contactEmail}
+                whatsapp={contactWhatsapp}
             />
         </>
     );
@@ -329,7 +383,26 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
             <div className="mt-1 flex items-center justify-center gap-2">
                 {links.length > 0 ? (
                     links.map((l) => (
-                        <a key={`${l.platform}:${l.url}`} href={l.url} target="_blank" rel="noopener noreferrer" aria-label={l.platform} className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary">
+                        <a
+                            key={`${l.platform}:${l.url}`}
+                            href={l.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={l.platform}
+                            className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary"
+                            onClick={() => {
+                                try {
+                                    const payload = { category: "social", label: l.platform, url: l.url };
+                                    const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                    const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                    if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                        (navigator as any).sendBeacon(endpoint, blob);
+                                    } else {
+                                        api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                    }
+                                } catch {}
+                            }}
+                        >
                             <img src={l.icon} alt={l.platform} className="size-5" />
                         </a>
                     ))
@@ -389,7 +462,24 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                                         Pay Now
                                     </Button>
                                 ) : (
-                                    <Button size="sm" color="primary" className="w-full" onClick={() => onRequest(o.title)}>
+                                    <Button
+                                        size="sm"
+                                        color="primary"
+                                        className="w-full"
+                                        onClick={() => {
+                                            try {
+                                                const payload = { category: "request", label: o.title };
+                                                const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                                const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                                if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                                    (navigator as any).sendBeacon(endpoint, blob);
+                                                } else {
+                                                    api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                                }
+                                            } catch {}
+                                            onRequest(o.title);
+                                        }}
+                                    >
                                         Request Service
                                     </Button>
                                 )}
@@ -750,16 +840,48 @@ function PrimaryCTAStrip({ username, payEnabled, upiId, contactMethod, email, wh
             <div className={`${inner}`}>
                 <div className="rounded-3xl bg-primary/90 dark:bg-linear-to-r dark:from-[#1f143d]/90 dark:to-[#4b2e8b]/90 backdrop-blur p-2 shadow-xl ring-1 ring-secondary_alt dark:ring-brand overflow-hidden">
                     <div className={`grid ${cols} gap-2 min-w-0`}>
-                        <Button className="w-full" size="sm" color="secondary" onClick={() => onPay()}>Make Payment</Button>
+                        <Button className="w-full !bg-white !text-black hover:!bg-gray-100 !ring-secondary_alt dark:!bg-white dark:!text-black" size="sm" color="secondary" onClick={() => {
+                            try {
+                                const payload = { category: "pay", label: "Make Payment" };
+                                const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                    (navigator as any).sendBeacon(endpoint, blob);
+                                } else {
+                                    api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                }
+                            } catch {}
+                            onPay();
+                        }}>Make Payment</Button>
                         {contactMethod === "whatsapp" ? (
                             <Button className="w-full !bg-[#47AE4C] !text-white hover:!bg-[#10887B] !ring-transparent" size="sm" color="secondary" onClick={() => {
                                 const digits = whatsapp.replace(/\D/g, "");
                                 const url = `https://wa.me/${digits}?text=${waText}`;
+                                try {
+                                    const payload = { category: "contact", label: "whatsapp", url };
+                                    const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                    const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                    if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                        (navigator as any).sendBeacon(endpoint, blob);
+                                    } else {
+                                        api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                    }
+                                } catch {}
                                 window.open(url, "_blank");
                             }}>Chat on WhatsApp</Button>
                         ) : (
                             <Button className="w-full" size="sm" color="secondary" onClick={() => {
                                 const url = `mailto:${email}?subject=${encodeURIComponent("Collaboration inquiry")}&body=${encodeURIComponent(`Hi ${username}, I'd like to discuss a collaboration.`)}`;
+                                try {
+                                    const payload = { category: "contact", label: "email", url };
+                                    const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                    const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                    if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                        (navigator as any).sendBeacon(endpoint, blob);
+                                    } else {
+                                        api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                    }
+                                } catch {}
                                 window.location.href = url;
                             }}>Mail Us</Button>
                         )}
@@ -770,7 +892,7 @@ function PrimaryCTAStrip({ username, payEnabled, upiId, contactMethod, email, wh
     );
 }
 
-function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, prefillService }: { isOpen: boolean; onOpenChange: (open: boolean) => void; username: string; services: string[]; prefillService: string | null }) {
+function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, offers, prefillService, onSuccess }: { isOpen: boolean; onOpenChange: (open: boolean) => void; username: string; services: string[]; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null; delivery?: string | null; includes?: string[] }>; prefillService: string | null; onSuccess: (service: string) => void }) {
     const [serviceKey, setServiceKey] = useState<string | null>(prefillService);
     const [budget, setBudget] = useState<string>("");
     const [name, setName] = useState<string>("");
@@ -779,27 +901,30 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
     const [message, setMessage] = useState<string>("");
 
     const items = services.map((t) => ({ id: t, label: t }));
+    const selectedTitle = serviceKey || services[0] || null;
+    const selectedOffer = offers.find((o) => o.title === selectedTitle) || null;
 
-    const submit = () => {
-        const selectedService = serviceKey || services[0] || "Service";
-        if (!name.trim() || !contact.trim()) return;
-        const lines = [
-            `Service: ${selectedService}`,
-            budget.trim() ? `Budget: ₹${budget.trim()}` : undefined,
-            `Name: ${name.trim()}`,
-            `Preferred contact: ${contactMethod === "whatsapp" ? "WhatsApp" : "Email"}`,
-            `Contact: ${contact.trim()}`,
-            message.trim() ? `Message: ${message.trim()}` : undefined,
-        ].filter(Boolean) as string[];
-        const text = `Request a Service — for ${username}\n\n${lines.join("\n")}`;
-        if (contactMethod === "whatsapp") {
-            const digits = contact.replace(/\D/g, "");
-            const url = `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
-            window.open(url, "_blank");
-        } else {
-            const url = `mailto:${contact}?subject=${encodeURIComponent("Service request")}&body=${encodeURIComponent(text)}`;
-            window.location.href = url;
+    useEffect(() => {
+        if (isOpen) {
+            setServiceKey(prefillService || null);
         }
+    }, [isOpen, prefillService]);
+
+    const submit = async () => {
+        const selectedService = selectedTitle || "Service";
+        if (!name.trim() || !contact.trim()) return;
+        try {
+            await api.post(`/users/${username}/enquiries`, {
+                service: selectedService,
+                brand: name.trim(),
+                contactMethod,
+                contact: contact.trim(),
+                message: message.trim(),
+                budget: budget ? Number(budget) : undefined,
+            });
+            onOpenChange(false);
+            onSuccess(selectedService);
+        } catch {}
     };
 
     return (
@@ -813,26 +938,48 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
             >
                 {({ state }) => (
                     <AriaModal className="w-full cursor-auto">
-                        <AriaDialog aria-label="Request a Service" className="fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
+                        <AriaDialog aria-label="Request Service" className="fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
                             <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
                                 <div className="flex min-w-0 flex-col">
-                                    <h2 className="text-lg font-semibold text-primary">Request a Service</h2>
-                                    <p className="text-sm text-tertiary">Share a few details to get started</p>
+                                    <h2 className="text-lg font-semibold text-primary">{selectedTitle ? `Request to ${selectedTitle}` : "Request a Service"}</h2>
+                                    <p className="text-sm text-tertiary">{selectedTitle ? "Review the service details and share your info" : "Share a few details to get started"}</p>
                                 </div>
                                 <Button size="sm" onClick={() => state.close()}>Close</Button>
                             </div>
 
                             <div className="flex flex-col gap-4 px-4 py-4">
-                                <Select
-                                    size="md"
-                                    label="Service"
-                                    placeholder="Select a service"
-                                    items={items}
-                                    selectedKey={serviceKey || undefined}
-                                    onSelectionChange={(key) => setServiceKey(String(key))}
-                                >
-                                    {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
-                                </Select>
+                                {!prefillService && (
+                                    <Select
+                                        size="md"
+                                        label="Service"
+                                        placeholder="Select a service"
+                                        items={items}
+                                        selectedKey={serviceKey || undefined}
+                                        onSelectionChange={(key) => setServiceKey(String(key))}
+                                    >
+                                        {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
+                                    </Select>
+                                )}
+
+                                {selectedOffer && (
+                                    <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt">
+                                        {selectedOffer.description && (
+                                            <p className="text-sm text-primary">{selectedOffer.description}</p>
+                                        )}
+                                        <div className="mt-3 grid grid-cols-2 gap-3">
+                                            <div>
+                                                <p className="text-xs text-secondary">Delivery</p>
+                                                <p className="text-sm text-primary">{selectedOffer.delivery || "—"}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-secondary">Includes</p>
+                                                <p className="text-sm text-primary">
+                                                    {(selectedOffer.includes || []).slice(0, 3).join(", ") || "—"}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
 
                                 <Input label="Budget (optional)" type="number" inputMode="numeric" placeholder="Your budget (optional)" value={budget} onChange={setBudget} />
 
@@ -860,6 +1007,87 @@ function RequestServiceBottomSheet({ isOpen, onOpenChange, username, services, p
 
                                 <div className="flex items-center gap-2 pt-2">
                                     <Button size="sm" color="secondary" className="w-full" onClick={submit}>Send Request</Button>
+                                </div>
+                            </div>
+                        </AriaDialog>
+                    </AriaModal>
+                )}
+            </AriaModalOverlay>
+        </AriaDialogTrigger>
+    );
+}
+
+function RequestSuccessBottomSheet({ isOpen, onOpenChange, username, service, contactMethod, email, whatsapp }: { isOpen: boolean; onOpenChange: (open: boolean) => void; username: string; service: string; contactMethod: "email" | "whatsapp"; email?: string | null; whatsapp?: string | null }) {
+    const waText = `Hi ${username}, I just submitted a request for ${service}`;
+    const waLink = whatsapp ? `https://wa.me/${encodeURIComponent(String(whatsapp).replace(/[^0-9+]/g, ""))}?text=${encodeURIComponent(waText)}` : null;
+    const mailLink = email ? `mailto:${email}?subject=${encodeURIComponent("Collaboration inquiry")}&body=${encodeURIComponent(waText)}` : null;
+    const animRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        let alive = true;
+        if (!isOpen || !animRef.current) return;
+        (async () => {
+            try {
+                const mod = await import("lottie-web");
+                if (!alive || !animRef.current) return;
+                const anim = mod.default.loadAnimation({
+                    container: animRef.current,
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: true,
+                    path: "/sent.json"
+                });
+                const t = setTimeout(() => {
+                    try {
+                        anim.destroy();
+                    } catch {}
+                }, 3000);
+                return () => {
+                    clearTimeout(t);
+                    try {
+                        anim.destroy();
+                    } catch {}
+                };
+            } catch {}
+        })();
+        return () => { alive = false; };
+    }, [isOpen]);
+    return (
+        <AriaDialogTrigger isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Button slot="trigger" className="hidden">Open</Button>
+            <AriaModalOverlay
+                isDismissable
+                className={({ isEntering, isExiting }) =>
+                    `fixed inset-0 z-50 bg-overlay/40 backdrop-blur-sm ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`
+                }
+            >
+                {({ state }) => (
+                    <AriaModal className="w-full cursor-auto">
+                        <AriaDialog aria-label="Request Submitted" className="fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
+                            <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
+                                <div className="flex min-w-0 flex-col">
+                                    <h2 className="text-lg font-semibold text-primary">Request submitted</h2>
+                                    <p className="text-sm text-tertiary">We’ve notified {username}. You’ll hear back soon.</p>
+                                </div>
+                                <Button size="sm" onClick={() => state.close()}>Close</Button>
+                            </div>
+                            <div className="px-4 py-6">
+                                <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-4 text-center">
+                                    <div ref={animRef} className="inline-flex size-20 items-center justify-center rounded-full bg-secondary/20 ring-1 ring-secondary_alt overflow-hidden" />
+                                    <p className="text-md font-semibold text-primary">Your request for “{service || "Service"}” has been registered</p>
+                                    <p className="text-sm text-tertiary">Feel free to reach out directly while we process it.</p>
+                                    <div className="mt-2 w-full">
+                                        {contactMethod === "whatsapp" ? (
+                                            waLink ? (
+                                                <Button size="sm" color="primary" className="w-full" onClick={() => window.open(waLink!, "_blank")}>Chat on WhatsApp</Button>
+                                            ) : (
+                                                <Button size="sm" color="secondary" className="w-full" disabled>WhatsApp unavailable</Button>
+                                            )
+                                        ) : mailLink ? (
+                                            <Button size="sm" color="secondary" className="w-full" onClick={() => { window.location.href = mailLink!; }}>Email Us</Button>
+                                        ) : (
+                                            <Button size="sm" color="secondary" className="w-full" disabled>Email unavailable</Button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </AriaDialog>

@@ -16,8 +16,9 @@ import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
 // no search params needed; preview is driven by local state
 
-export default function MyPoriflePage() {
+export default function MyprofilePage() {
     const { token, user, uploadAvatarById, updateUserById } = useAuth();
+    const [loading, setLoading] = useState(true);
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [originalUsername, setOriginalUsername] = useState("");
@@ -143,6 +144,9 @@ export default function MyPoriflePage() {
                 setLinks(mapped);
                 setPreviewVersion((v) => v + 1);
             } catch {}
+            finally {
+                if (alive) setLoading(false);
+            }
         })();
         return () => { alive = false; };
     }, [token, user?.id]);
@@ -151,7 +155,7 @@ export default function MyPoriflePage() {
 
     return (
         <section className="flex min-h-screen flex-col lg:pl-[300px]">
-            <div className="sticky top-0 z-10 px-4 md:px-8 pt-6 pb-4">
+            <div className=" top-0 z-10 px-4 md:px-8 pt-6 pb-4">
                 <div className="w-full max-w-8xl">
                     <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">
@@ -164,6 +168,35 @@ export default function MyPoriflePage() {
 
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
                 <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
+                    {loading && (
+                        <>
+                            <div className="flex flex-col gap-6">
+                                <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
+                                    <div className="flex items-start gap-4">
+                                        <div className="size-16 rounded-full bg-primary_hover animate-pulse" />
+                                        <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2">
+                                            <div className="h-10 bg-primary_hover animate-pulse rounded" />
+                                            <div className="h-10 bg-primary_hover animate-pulse rounded" />
+                                        </div>
+                                    </div>
+                                    <div className="mt-4">
+                                        <div className="h-10 bg-primary_hover animate-pulse rounded" />
+                                    </div>
+                                    <div className="mt-4">
+                                        <div className="h-24 bg-primary_hover animate-pulse rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
+                            <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
+                                <div className="h-5 w-40 bg-primary_hover animate-pulse rounded" />
+                                <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+                                    <div className="h-10 bg-primary_hover animate-pulse rounded" />
+                                    <div className="h-10 bg-primary_hover animate-pulse rounded" />
+                                </div>
+                            </div>
+                        </>
+                    )}
                     <div className="flex flex-col gap-6">
                         <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
                             <div className="flex items-start gap-4">
@@ -433,15 +466,51 @@ export default function MyPoriflePage() {
                                             setDragIndex(null);
                                             setPreviewVersion((v) => v + 1);
                                         }}
-                                        className="flex items-center justify-between gap-3 rounded-xl bg-primary p-3 ring-1 ring-secondary"
+                                        className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 rounded-xl bg-primary p-3 ring-1 ring-secondary"
                                     >
-                                        <div className="flex items-center gap-3">
+                                        <div className="flex md:hidden items-center justify-between gap-3">
+                                            <div className="flex items-center gap-3">
+                                                <ButtonUtility aria-label="Drag to reorder" icon={Rows01} size="sm" />
+                                                <img src={link.icon} alt={link.platform} className="size-6 rounded" />
+                                                <p className="text-md font-medium text-primary">{link.platform}</p>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <Toggle
+                                                    slim
+                                                    size="md"
+                                                    isSelected={link.visible}
+                                                    onChange={async (isSelected) => {
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, visible: isSelected } : l)));
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { visible: isSelected }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                    aria-label={`Show ${link.platform} link on profile`}
+                                                />
+                                                <ButtonUtility
+                                                    aria-label="Delete"
+                                                    icon={Trash01}
+                                                    size="sm"
+                                                    onClick={async () => {
+                                                        setLinks((prev) => prev.filter((_, i) => i !== index));
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.delete(`/users/id/${user.id}/social-links/${link.linkId}`, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="hidden md:flex items-center gap-3">
                                             <ButtonUtility aria-label="Drag to reorder" icon={Rows01} size="sm" />
                                             <img src={link.icon} alt={link.platform} className="size-6 rounded" />
                                             <p className="text-md font-medium text-primary">{link.platform}</p>
                                         </div>
 
-                                        <div className="flex flex-1 items-center justify-end gap-3">
+                                        <div className="mt-2 md:hidden">
                                             {link.id === "instagram" || link.id === "x" || link.id === "tiktok" || link.id === "threads" || link.id === "snapchat" || link.id === "telegram" ? (
                                                 <Input
                                                     size="md"
@@ -449,7 +518,7 @@ export default function MyPoriflePage() {
                                                     icon={({ className }: { className?: string }) => <span className={className}>@</span>}
                                                     iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                                     inputClassName="pl-12"
-                                                    className="flex-1 max-w-md"
+                                                    className="w-full"
                                                     defaultValue={(() => {
                                                         try {
                                                             const u = new URL(link.url);
@@ -486,7 +555,7 @@ export default function MyPoriflePage() {
                                                     icon={({ className }: { className?: string }) => <span className={className}>facebook.com/ </span>}
                                                     iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                                     inputClassName="pl-32"
-                                                    className="flex-1 max-w-md"
+                                                    className="w-full"
                                                     defaultValue={(() => {
                                                         try {
                                                             const u = new URL(link.url);
@@ -513,7 +582,223 @@ export default function MyPoriflePage() {
                                                     icon={({ className }: { className?: string }) => <span className={className}>pinterest.com/ </span>}
                                                     iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                                     inputClassName="pl-32"
-                                                    className="flex-1 max-w-md"
+                                                    className="w-full"
+                                                    defaultValue={(() => {
+                                                        try {
+                                                            const u = new URL(link.url);
+                                                            return (u.pathname || "").replace(/^\//, "");
+                                                        } catch {
+                                                            return "";
+                                                        }
+                                                    })()}
+                                                    onChange={(val) => {
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: "https://pinterest.com/" + (val || "") } : l)));
+                                                    }}
+                                                    onBlur={async () => {
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: link.url }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            ) : link.id === "youtube" ? (
+                                                <Input
+                                                    size="md"
+                                                    placeholder="channel"
+                                                    icon={({ className }: { className?: string }) => <span className={className}>youtube.com/ </span>}
+                                                    iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
+                                                    inputClassName="pl-32"
+                                                    className="w-full"
+                                                    defaultValue={(() => {
+                                                        try {
+                                                            const u = new URL(link.url);
+                                                            return (u.pathname || "").replace(/^\//, "");
+                                                        } catch {
+                                                            return "";
+                                                        }
+                                                    })()}
+                                                    onChange={(val) => {
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: "https://youtube.com/" + (val || "") } : l)));
+                                                    }}
+                                                    onBlur={async () => {
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: link.url }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            ) : link.id === "website" || link.id === "other" ? (
+                                                <Input
+                                                    size="md"
+                                                    placeholder="your-website.com"
+                                                    icon={({ className }: { className?: string }) => <span className={className}>https:// </span>}
+                                                    iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
+                                                    inputClassName="pl-20"
+                                                    className="w-full"
+                                                    defaultValue={(() => link.url.replace(/^https?:\/\//, ""))()}
+                                                    onChange={(val) => {
+                                                        const sanitized = (val || "").replace(/^https?:\/\//, "");
+                                                        const nextUrl = "https://" + sanitized;
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: nextUrl } : l)));
+                                                    }}
+                                                    onBlur={async () => {
+                                                        const nextUrl = link.url;
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: nextUrl }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            ) : link.id === "google-business" ? (
+                                                <Input size="md" placeholder="Business profile URL" className="w-full" type="url" value={link.url} onChange={(val) => {
+                                                    setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: val } : l)));
+                                                }} onBlur={async () => {
+                                                    try {
+                                                        if (!token || !user?.id || !link.linkId) return;
+                                                        await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: link.url }, { token });
+                                                        setPreviewVersion((v) => v + 1);
+                                                    } catch {}
+                                                }} />
+                                            ) : link.id === "whatsapp" ? (
+                                                <Input
+                                                    size="md"
+                                                    placeholder="WhatsApp phone number"
+                                                    className="w-full"
+                                                    type="tel"
+                                                    inputMode="numeric"
+                                                    defaultValue={link.url.replace(/^https?:\/\/wa\.me\//, "").trim()}
+                                                    onChange={(val) => {
+                                                        const digits = (val || "").replace(/[^\d+\s-]/g, "");
+                                                        const nextUrl = "https://wa.me/" + digits;
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: nextUrl } : l)));
+                                                    }}
+                                                    onBlur={async () => {
+                                                        const nextUrl = link.url;
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: nextUrl }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            ) : (
+                                                <Input size="md" placeholder="url" className="w-full" type="url" value={link.url} onChange={(val) => {
+                                                    setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: val } : l)));
+                                                }} onBlur={async () => {
+                                                    try {
+                                                        if (!token || !user?.id || !link.linkId) return;
+                                                        await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: link.url }, { token });
+                                                        setPreviewVersion((v) => v + 1);
+                                                    } catch {}
+                                                }} />
+                                            )}
+                                        </div>
+
+                                        <div className="hidden md:flex flex-1 md:items-center md:justify-end gap-3">
+                                            <div className="flex items-center gap-2 md:order-1 order-1">
+                                                <Toggle
+                                                    slim
+                                                    size="md"
+                                                    isSelected={link.visible}
+                                                    onChange={async (isSelected) => {
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, visible: isSelected } : l)));
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { visible: isSelected }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                    aria-label={`Show ${link.platform} link on profile`}
+                                                />
+                                                <ButtonUtility
+                                                    aria-label="Delete"
+                                                    icon={Trash01}
+                                                    size="sm"
+                                                    onClick={async () => {
+                                                        setLinks((prev) => prev.filter((_, i) => i !== index));
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.delete(`/users/id/${user.id}/social-links/${link.linkId}`, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            </div>
+                                            {link.id === "instagram" || link.id === "x" || link.id === "tiktok" || link.id === "threads" || link.id === "snapchat" || link.id === "telegram" ? (
+                                                <Input
+                                                    size="md"
+                                                    placeholder="username"
+                                                    icon={({ className }: { className?: string }) => <span className={className}>@</span>}
+                                                    iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
+                                                    inputClassName="pl-12"
+                                                    className="w-full md:flex-1 md:max-w-md"
+                                                    defaultValue={(() => {
+                                                        try {
+                                                            const u = new URL(link.url);
+                                                            return (u.pathname || "").replace(/^\/@?/, "").replace(/^\//, "");
+                                                        } catch {
+                                                            return "";
+                                                        }
+                                                    })()}
+                                                    onChange={(val) => {
+                                                        const bases: Record<string, string> = {
+                                                            instagram: "https://instagram.com/",
+                                                            x: "https://x.com/",
+                                                            tiktok: "https://tiktok.com/@",
+                                                            threads: "https://www.threads.net/@",
+                                                            snapchat: "https://snapchat.com/add/",
+                                                            telegram: "https://t.me/",
+                                                        };
+                                                        const base = bases[link.id] || "https://";
+                                                        const nextUrl = base + (val || "");
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: nextUrl } : l)));
+                                                    }}
+                                                    onBlur={async () => {
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: link.url }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            ) : link.id === "facebook" ? (
+                                                <Input
+                                                    size="md"
+                                                    placeholder="username"
+                                                    icon={({ className }: { className?: string }) => <span className={className}>facebook.com/ </span>}
+                                                    iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
+                                                    inputClassName="pl-32"
+                                                    className="w-full md:flex-1 md:max-w-md"
+                                                    defaultValue={(() => {
+                                                        try {
+                                                            const u = new URL(link.url);
+                                                            return (u.pathname || "").replace(/^\//, "");
+                                                        } catch {
+                                                            return "";
+                                                        }
+                                                    })()}
+                                                    onChange={(val) => {
+                                                        setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, url: "https://facebook.com/" + (val || "") } : l)));
+                                                    }}
+                                                    onBlur={async () => {
+                                                        try {
+                                                            if (!token || !user?.id || !link.linkId) return;
+                                                            await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { url: link.url }, { token });
+                                                            setPreviewVersion((v) => v + 1);
+                                                        } catch {}
+                                                    }}
+                                                />
+                                            ) : link.id === "pinterest" ? (
+                                                <Input
+                                                    size="md"
+                                                    placeholder="username"
+                                                    icon={({ className }: { className?: string }) => <span className={className}>pinterest.com/ </span>}
+                                                    iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
+                                                    inputClassName="pl-32"
+                                                    className="w-full md:flex-1 md:max-w-md"
                                                     defaultValue={(() => {
                                                         try {
                                                             const u = new URL(link.url);
@@ -540,7 +825,7 @@ export default function MyPoriflePage() {
                                                     icon={({ className }: { className?: string }) => <span className={className}>youtube.com/ </span>}
                                                     iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                                     inputClassName="pl-32"
-                                                    className="flex-1 max-w-md"
+                                                    className="w-full md:flex-1 md:max-w-md"
                                                     defaultValue={(() => {
                                                         try {
                                                             const u = new URL(link.url);
@@ -568,7 +853,7 @@ export default function MyPoriflePage() {
                                                     icon={({ className }: { className?: string }) => <span className={className}>https://</span>}
                                                     iconClassName="left-3.5 text-md text-tertiary w-auto h-auto"
                                                     inputClassName="pl-20"
-                                                    className="flex-1 max-w-md"
+                                                    className="w-full md:flex-1 md:max-w-md"
                                                     defaultValue={(() => link.url.replace(/^https?:\/\//, ""))()}
                                                     onChange={(val) => {
                                                         const sanitized = (val || "").replace(/^https?:\/\//, "");
@@ -627,35 +912,6 @@ export default function MyPoriflePage() {
                                                     } catch {}
                                                 }} />
                                             )}
-
-                                            <Toggle
-                                                slim
-                                                size="md"
-                                                isSelected={link.visible}
-                                                onChange={async (isSelected) => {
-                                                    setLinks((prev) => prev.map((l, i) => (i === index ? { ...l, visible: isSelected } : l)));
-                                                    try {
-                                                        if (!token || !user?.id || !link.linkId) return;
-                                                        await api.patch(`/users/id/${user.id}/social-links/${link.linkId}`, { visible: isSelected }, { token });
-                                                        setPreviewVersion((v) => v + 1);
-                                                    } catch {}
-                                                }}
-                                                aria-label={`Show ${link.platform} link on profile`}
-                                            />
-
-                                            <ButtonUtility
-                                                aria-label="Delete"
-                                                icon={Trash01}
-                                                size="sm"
-                                                onClick={async () => {
-                                                    setLinks((prev) => prev.filter((_, i) => i !== index));
-                                                    try {
-                                                        if (!token || !user?.id || !link.linkId) return;
-                                                        await api.delete(`/users/id/${user.id}/social-links/${link.linkId}`, { token });
-                                                        setPreviewVersion((v) => v + 1);
-                                                    } catch {}
-                                                }}
-                                            />
                                         </div>
                                     </li>
                                 ))}

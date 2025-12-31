@@ -10,6 +10,8 @@ import { NavAccountCard } from "../base-components/nav-account-card";
 import { NavItemBase } from "../base-components/nav-item";
 import { NavList } from "../base-components/nav-list";
 import type { NavItemType } from "../config";
+import { useAuth } from "@/providers/auth";
+import { useRouter } from "next/navigation";
 
 interface SidebarNavigationProps {
     /** URL of the currently active item. */
@@ -38,6 +40,18 @@ export const SidebarNavigationSimple = ({
     className,
 }: SidebarNavigationProps) => {
     const MAIN_SIDEBAR_WIDTH = 296;
+    const { setToken, setUser } = useAuth();
+    const router = useRouter();
+    const handleFooterClick = (item: NavItemType) => {
+        if (item.href === "/logout") {
+            try {
+                setToken(null);
+                setUser(null);
+            } finally {
+                router.push("/login");
+            }
+        }
+    };
 
     const content = (
         <aside

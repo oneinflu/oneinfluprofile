@@ -4,19 +4,17 @@ import type { FC } from "react";
 import { useState } from "react";
 import { LifeBuoy01, LogOut01, Settings01 } from "@untitledui/icons";
 import { AnimatePresence, motion } from "motion/react";
-import { Button as AriaButton, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
-import { Avatar } from "@/components/base/avatar/avatar";
-import { AvatarLabelGroup } from "@/components/base/avatar/avatar-label-group";
+// removed react-aria popover/account imports for simple sign out
 import { Button } from "@/components/base/buttons/button";
-import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { cx } from "@/utils/cx";
 import { MobileNavigationHeader } from "../base-components/mobile-header";
-import { NavAccountMenu } from "../base-components/nav-account-card";
 import { NavItemBase } from "../base-components/nav-item";
 import { NavItemButton } from "../base-components/nav-item-button";
 import { NavList } from "../base-components/nav-list";
 import type { NavItemType } from "../config";
+import { useAuth } from "@/providers/auth";
+import { useRouter } from "next/navigation";
 
 interface SidebarNavigationSlimProps {
     /** URL of the currently active item. */
@@ -35,6 +33,16 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
     const activeItem = [...items, ...footerItems].find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
     const [currentItem, setCurrentItem] = useState(activeItem || items[1]);
     const [isHovering, setIsHovering] = useState(false);
+    const { setToken, setUser } = useAuth();
+    const router = useRouter();
+    const handleSignOut = () => {
+        try {
+            setToken(null);
+            setUser(null);
+        } finally {
+            router.push("/login");
+        }
+    };
 
     const isSecondarySidebarVisible = isHovering && Boolean(currentItem.items?.length);
 
@@ -93,31 +101,9 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                         </ul>
                     )}
 
-                    <AriaDialogTrigger>
-                        <AriaButton
-                            className={({ isPressed, isFocused }) =>
-                                cx("group relative inline-flex rounded-full", (isPressed || isFocused) && "outline-2 outline-offset-2 outline-focus-ring")
-                            }
-                        >
-                            <Avatar status="online" src="https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80" size="md" alt="Olivia Rhye" />
-                        </AriaButton>
-                        <AriaPopover
-                            placement="right bottom"
-                            offset={8}
-                            crossOffset={6}
-                            className={({ isEntering, isExiting }) =>
-                                cx(
-                                    "will-change-transform",
-                                    isEntering &&
-                                        "duration-300 ease-out animate-in fade-in placement-right:slide-in-from-left-2 placement-top:slide-in-from-bottom-2 placement-bottom:slide-in-from-top-2",
-                                    isExiting &&
-                                        "duration-150 ease-in animate-out fade-out placement-right:slide-out-to-left-2 placement-top:slide-out-to-bottom-2 placement-bottom:slide-out-to-top-2",
-                                )
-                            }
-                        >
-                            <NavAccountMenu />
-                        </AriaPopover>
-                    </AriaDialogTrigger>
+                    <Button size="sm" color="secondary" iconLeading={<LogOut01 className="size-5" />} onClick={handleSignOut}>
+                        Sign Out
+                    </Button>
                 </div>
             </div>
         </aside>
@@ -147,14 +133,10 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                                 </li>
                             ))}
                         </ul>
-                        <div className="sticky bottom-0 mt-auto flex justify-between border-t border-secondary bg-primary px-2 py-5">
-                            <div>
-                                <p className="text-sm font-semibold text-primary">Olivia Rhye</p>
-                                <p className="text-sm text-tertiary">olivia@untitledui.com</p>
-                            </div>
-                            <div className="absolute top-2.5 right-0">
-                                <ButtonUtility size="sm" color="tertiary" tooltip="Log out" icon={LogOut01} />
-                            </div>
+                        <div className="sticky bottom-0 mt-auto border-t border-secondary bg-primary px-2 py-5">
+                            <Button size="sm" color="secondary" iconLeading={<LogOut01 className="size-5" />} onClick={handleSignOut}>
+                                Sign Out
+                            </Button>
                         </div>
                     </div>
                 </motion.div>
@@ -201,23 +183,10 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                             </NavItemBase>
                         </div>
 
-                        <div className="relative flex items-center gap-3 border-t border-secondary pt-6 pr-8 pl-2">
-                            <AvatarLabelGroup
-                                status="online"
-                                size="md"
-                                src="https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80"
-                                title="Olivia Rhye"
-                                subtitle="olivia@untitledui.com"
-                            />
-
-                            <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                                <Button
-                                    size="sm"
-                                    color="tertiary"
-                                    iconLeading={<LogOut01 className="size-5 text-fg-quaternary transition-inherit-all group-hover:text-fg-quaternary_hover" />}
-                                    className="p-1.5!"
-                                />
-                            </div>
+                        <div className="border-t border-secondary pt-6 px-2">
+                            <Button size="md" color="secondary" iconLeading={<LogOut01 className="size-5" />} className="w-full" onClick={handleSignOut}>
+                                Sign Out
+                            </Button>
                         </div>
                     </div>
                 </aside>

@@ -17,6 +17,7 @@ import { useAuth } from "@/providers/auth";
 
 export default function AdminOffersPage() {
     const { token, user } = useAuth();
+    const [loading, setLoading] = useState(true);
     const [offers, setOffers] = useState<Array<{ id: string; title: string; description: string; price: number; priceType: "fixed" | "starting" | "custom"; visible: boolean; includes?: string[]; cta?: "request" | "pay" | "request_pay_later"; delivery?: string }>>([]);
     const [editorOpen, setEditorOpen] = useState(false);
     const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -61,6 +62,9 @@ export default function AdminOffersPage() {
                     })),
                 );
             } catch {}
+            finally {
+                setLoading(false);
+            }
         })();
         return () => {
             alive = false;
@@ -154,15 +158,15 @@ export default function AdminOffersPage() {
 
     return (
         <section className="flex min-h-screen flex-col lg:pl-[300px]">
-            <div className="sticky top-0 z-10 px-4 md:px-8 pt-6 pb-4">
+            <div className=" top-0 z-10 px-4 md:px-8 pt-6 pb-4">
                 <div className="w-full max-w-8xl">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div className="flex flex-col gap-1">
                             <h1 className="text-display-sm font-semibold text-primary">My Offerings</h1>
                             <p className="text-md text-tertiary">Services visible on your public profile</p>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Button size="sm" onClick={openAdd}>+ Add Offer</Button>
+                        <div className="mt-3 md:mt-0">
+                            <Button className="w-full md:w-auto" size="sm" onClick={openAdd}>+ Add Offer</Button>
                         </div>
                     </div>
                 </div>
@@ -171,37 +175,52 @@ export default function AdminOffersPage() {
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
                 <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
                     <div className="flex flex-col gap-6">
-                        <OffersList
-                            offers={offers}
-                            setOffers={setOffers}
-                            onEdit={openEdit}
-                            onAdd={openAdd}
-                            onDelete={(index) => {
-                                setConfirmIndex(index);
-                                setConfirmOpen(true);
-                            }}
-                            onReorder={async (next) => {
-                                setOffers(next);
-                                try {
-                                    if (!user?.id || !token) return;
-                                    await Promise.all(
-                                        next.map((o, i) =>
-                                            api.patch(`/users/id/${user.id}/offers/${o.id}`, { order: i + 1 }, { token }),
-                                        ),
-                                    );
-                                    setPreviewVersion((v) => v + 1);
-                                } catch {}
-                            }}
-                            onToggle={async (index, isSelected) => {
-                                setOffers((prev) => prev.map((o, i) => (i === index ? { ...o, visible: isSelected } : o)));
-                                try {
-                                    if (!user?.id || !token) return;
-                                    const id = offers[index].id;
-                                    await api.patch(`/users/id/${user.id}/offers/${id}`, { visible: isSelected }, { token });
-                                    setPreviewVersion((v) => v + 1);
-                                } catch {}
-                            }}
-                        />
+                        {loading ? (
+                            <div className="grid grid-cols-1 gap-3">
+                                {[...Array(4)].map((_, idx) => (
+                                    <div key={idx} className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
+                                        <div className="h-5 w-40 bg-primary_hover animate-pulse rounded" />
+                                        <div className="mt-2 h-3 w-64 bg-primary_hover animate-pulse rounded" />
+                                        <div className="mt-4 grid grid-cols-2 gap-2">
+                                            <div className="h-3 bg-primary_hover animate-pulse rounded" />
+                                            <div className="h-3 bg-primary_hover animate-pulse rounded" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <OffersList
+                                offers={offers}
+                                setOffers={setOffers}
+                                onEdit={openEdit}
+                                onAdd={openAdd}
+                                onDelete={(index) => {
+                                    setConfirmIndex(index);
+                                    setConfirmOpen(true);
+                                }}
+                                onReorder={async (next) => {
+                                    setOffers(next);
+                                    try {
+                                        if (!user?.id || !token) return;
+                                        await Promise.all(
+                                            next.map((o, i) =>
+                                                api.patch(`/users/id/${user.id}/offers/${o.id}`, { order: i + 1 }, { token }),
+                                            ),
+                                        );
+                                        setPreviewVersion((v) => v + 1);
+                                    } catch {}
+                                }}
+                                onToggle={async (index, isSelected) => {
+                                    setOffers((prev) => prev.map((o, i) => (i === index ? { ...o, visible: isSelected } : o)));
+                                    try {
+                                        if (!user?.id || !token) return;
+                                        const id = offers[index].id;
+                                        await api.patch(`/users/id/${user.id}/offers/${id}`, { visible: isSelected }, { token });
+                                        setPreviewVersion((v) => v + 1);
+                                    } catch {}
+                                }}
+                            />
+                        )}
                     </div>
 
                     <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
@@ -376,6 +395,7 @@ const OffersList = ({
     onToggle: (index: number, isSelected: boolean) => void | Promise<void>;
 }) => {
     const [dragIndex, setDragIndex] = useState<number | null>(null);
+    const isTouch = typeof window !== "undefined" && "ontouchstart" in window;
     const formatINR = useMemo(() => new Intl.NumberFormat("en-IN"), []);
 
     if (offers.length === 0) {
@@ -399,7 +419,7 @@ const OffersList = ({
                     {offers.map((offer, index) => (
                         <li
                             key={offer.id}
-                            draggable
+                            draggable={!isTouch}
                             onDragStart={() => setDragIndex(index)}
                             onDragOver={(e) => e.preventDefault()}
                             onDrop={async () => {
@@ -410,31 +430,28 @@ const OffersList = ({
                                 await onReorder(next);
                                 setDragIndex(null);
                             }}
-                            className="flex items-center justify-between gap-3 rounded-xl bg-primary p-3 ring-1 ring-secondary"
+                            className="rounded-xl bg-primary p-3 ring-1 ring-secondary active:scale-[0.99]"
                         >
-                            <div className="flex items-center gap-3">
-                                <ButtonUtility aria-label="Drag to reorder" icon={Rows01} size="sm" />
-                                <div className="flex min-w-0 flex-col">
-                                    <p className="text-md font-semibold text-primary flex items-center gap-2">
-                                        {offer.title}
-                                       
-                                    </p>
-                                    <div className="flex items-center gap-2">
-                                        <p className="text-sm text-tertiary truncate">{offer.description}</p>
-                                        {offer.priceType !== "custom" && <span className="text-sm font-medium text-primary">₹{formatINR.format(offer.price)}</span>}
-                                        <span className="text-xs text-secondary">{offer.priceType === "fixed" ? "fixed" : offer.priceType === "starting" ? "starting" : "custom"}</span>
+                            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                <div className="flex items-center gap-3">
+                                    <ButtonUtility aria-label="Drag to reorder" icon={Rows01} size="sm" />
+                                    <div className="flex min-w-0 flex-col">
+                                        <p className="text-md font-semibold text-primary">{offer.title}</p>
+                                        <div className="flex items-center gap-2">
+                                            <p className="text-sm text-tertiary truncate">{offer.description}</p>
+                                            {offer.priceType !== "custom" && <span className="text-sm font-medium text-primary">₹{formatINR.format(offer.price)}</span>}
+                                            <span className="text-xs text-secondary">{offer.priceType === "fixed" ? "fixed" : offer.priceType === "starting" ? "starting" : "custom"}</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className="hidden md:flex items-center gap-2">
+                                    <Toggle slim size="md" isSelected={offer.visible} onChange={(isSelected) => onToggle(index, isSelected)} aria-label={`Show ${offer.title} on profile`} />
+                                    <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => onEdit(index)} />
+                                    <ButtonUtility aria-label="Delete" icon={Trash01} size="sm" onClick={() => onDelete(index)} />
+                                </div>
                             </div>
-
-                            <div className="flex items-center gap-2">
-                                <Toggle
-                                    slim
-                                    size="md"
-                                    isSelected={offer.visible}
-                                    onChange={(isSelected) => onToggle(index, isSelected)}
-                                    aria-label={`Show ${offer.title} on profile`}
-                                />
+                            <div className="mt-2 flex md:hidden items-center gap-2 justify-end">
+                                <Toggle slim size="md" isSelected={offer.visible} onChange={(isSelected) => onToggle(index, isSelected)} aria-label={`Show ${offer.title} on profile`} />
                                 <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => onEdit(index)} />
                                 <ButtonUtility aria-label="Delete" icon={Trash01} size="sm" onClick={() => onDelete(index)} />
                             </div>

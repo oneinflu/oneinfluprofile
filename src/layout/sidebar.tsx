@@ -9,6 +9,7 @@ import {
     HomeLine,
     LayoutAlt01,
     LineChartUp03,
+    LogOut01,
     MessageChatCircle,
     NotificationBox,
     Package,
@@ -30,7 +31,7 @@ import { api } from "@/utils/api";
 
 const navItemsSimple: NavItemType[] = [
     { label: "Home", href: "/admin", icon: HomeLine },
-    { label: "My Profile", href: "/admin/my-porifle", icon: User01 },
+    { label: "My Profile", href: "/admin/my-profile", icon: User01 },
     { label: "My Offerings", href: "/admin/offers", icon: Star01 },
     { label: "Portfolio", href: "/admin/portfolio", icon: Grid03 },
     { label: "Enquiries", href: "/admin/enquiries", icon: MessageChatCircle },
@@ -40,6 +41,7 @@ export const AppSidebar = () => {
     const { user, token } = useAuth();
     const [progress, setProgress] = useState(0);
     const [desc, setDesc] = useState("Loading storage…");
+    const shareHref = `/${user?.username || ""}`;
     useEffect(() => {
         let alive = true;
         (async () => {
@@ -65,25 +67,17 @@ export const AppSidebar = () => {
         <SidebarNavigationSimple
             items={navItemsSimple}
             footerItems={[
-                {
-                    label: "Settings",
-                    href: "/settings",
-                    icon: Settings01,
-                },
-                {
-                    label: "Support",
-                    href: "/support",
-                    icon: MessageChatCircle,
-                    badge: (
-                        <BadgeWithDot color="success" type="modern" size="sm">
-                            Online
-                        </BadgeWithDot>
-                    ),
-                },
+               
+                
                 {
                     label: "Share your profile",
-                    href: "/suurya",
+                    href: shareHref,
                     icon: LayoutAlt01,
+                },
+                {
+                   label: "Sign Out",
+                    href: "/logout",
+                    icon: LogOut01,
                 },
             ]}
             featureCard={
@@ -96,6 +90,7 @@ export const AppSidebar = () => {
                     showActions={false}
                 />
             }
+            showAccountCard={false}
         />
     );
 };

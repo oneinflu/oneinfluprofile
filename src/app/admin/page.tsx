@@ -9,28 +9,24 @@ import { EmptyState } from "@/components/application/empty-state/empty-state";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { Badge, BadgeWithIcon } from "@/components/base/badges/badges";
 import { Table, TableCard } from "@/components/application/table/table";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useEffect, useState } from "react";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { useAuth } from "@/providers/auth";
+import { api } from "@/utils/api";
 
 export default function AdminHomePage() {
     return (
         <section className="flex min-h-screen flex-col lg:pl-[300px]">
-            <div className="sticky top-0 z-10 px-4 md:px-8 pt-6 pb-4">
+            <div className=" top-0 z-10 px-4 md:px-8 pt-6 pb-4">
                 <div className=" w-full max-w-8xl">
                     <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">
                             <h1 className="text-display-sm font-semibold text-primary">Home</h1>
                             <p className="text-md text-tertiary">Your creator workspace</p>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <Button size="sm">New</Button>
-                            <Button size="sm" color="secondary">Add Offer</Button>
-                            <Button size="sm" color="secondary">Add Portfolio</Button>
-                            <ButtonUtility tooltip="Help" icon={HelpCircle} />
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -47,9 +43,7 @@ export default function AdminHomePage() {
                         <div className="mt-6">
                             <RecentActivity />
                         </div>
-                        <div className="mt-6">
-                            <MetricsRow />
-                        </div>
+                       
                     </div>
 
                     <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
@@ -250,32 +244,41 @@ const MetricCard = ({ title, value, change, trendColor = "success" }: { title: s
     );
 };
 
-const MetricsRow = () => {
-    const metricsData: { title: string; value: number; change: number }[] = [];
-    const data = metricsData.length
-        ? metricsData
-        : [
-              { title: "Views 24 hours", value: 0, change: 0 },
-              { title: "Enquiries 24 hours", value: 0, change: 0 },
-          ];
 
-    return (
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-            {data.map((m) => (
-                <MetricCard
-                    key={m.title}
-                    title={m.title}
-                    value={m.value.toLocaleString()}
-                    change={`${m.change}%`}
-                    trendColor={m.change > 0 ? "success" : "gray"}
-                />
-            ))}
-        </div>
-    );
-};
 
 const RecentActivity = () => {
-    const items: { id: string; title: string; icon: any; color: "brand" | "success" | "gray"; count?: number }[] = [];
+    const { user, token } = useAuth();
+    const [items, setItems] = useState<{ id: string; title: string; icon: any; color: "brand" | "success" | "gray"; count?: number }[]>([]);
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!user?.username || !token) return;
+                const [enqRes, payRes] = await Promise.all([
+                    api.get<{ success: boolean; status: string; data: { requests: Array<any> } }>(`/users/${user.username}/enquiries`, { token }),
+                    api.get<{ success: boolean; status: string; data: { payments: Array<any> } }>(`/users/${user.username}/payments`, { token }),
+                ]);
+                if (!alive) return;
+                const enqs = (enqRes.data?.requests || []) as Array<any>;
+                const pays = (payRes.data?.payments || []) as Array<any>;
+                const newEnquiries = enqs.filter((r) => (r.status || "new") === "new").length;
+                const paymentsReceived = pays.filter((p) => p.status === "paid").length;
+                const paymentsPending = pays.filter((p) => p.status !== "paid").length;
+                const next = [
+                    { id: "enquiries_new", title: "New enquiries", icon: MessageCircle01, color: "brand" as const, count: newEnquiries },
+                    { id: "payments_received", title: "Payments received", icon: CurrencyDollarCircle, color: "success" as const, count: paymentsReceived },
+                    { id: "payments_pending", title: "Payments pending", icon: CurrencyDollarCircle, color: "gray" as const, count: paymentsPending },
+                ];
+                setItems(next);
+            } catch {
+                if (!alive) return;
+                setItems([]);
+            }
+        })();
+        return () => {
+            alive = false;
+        };
+    }, [user?.username, token]);
 
     return (
         <div className="flex flex-col rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
@@ -310,13 +313,33 @@ const RecentActivity = () => {
 };
 
 const ActiveEnquiriesPreview = () => {
-    const enquiries: { brand: string; service: string; status: "New" | "Replied" | "Closed" }[] = [];
+    const { user, token } = useAuth();
+    const [enquiries, setEnquiries] = useState<Array<{ brand: string; service: string; status: "new" | "replied" | "accepted" | "closed"; date: string }>>([]);
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!user?.username || !token) return;
+                const res = await api.get<{ success: boolean; status: string; data: { requests: Array<any> } }>(`/users/${user.username}/enquiries`, { token });
+                if (!alive) return;
+                const mapped = (res.data?.requests || []).map((r: any) => ({
+                    brand: r.name || r.email || r.whatsapp || "—",
+                    service: r.offer?.title || "—",
+                    status: r.status || "new",
+                    date: new Date(r.createdAt).toLocaleDateString(),
+                }));
+                setEnquiries(mapped);
+            } catch {}
+        })();
+        return () => { alive = false; };
+    }, [user?.username, token]);
 
-    const statusBadge = (s: "New" | "Replied" | "Closed") => {
+    const statusBadge = (s: "new" | "replied" | "accepted" | "closed") => {
         const map = {
-            New: { color: "brand" as const, label: "New" },
-            Replied: { color: "blue" as const, label: "Replied" },
-            Closed: { color: "gray" as const, label: "Closed" },
+            new: { color: "brand" as const, label: "New" },
+            replied: { color: "blue" as const, label: "Replied" },
+            accepted: { color: "success" as const, label: "Accepted" },
+            closed: { color: "gray" as const, label: "Closed" },
         };
         const cfg = map[s];
         return (
@@ -332,14 +355,11 @@ const ActiveEnquiriesPreview = () => {
         { id: "status", name: "Status" },
     ];
 
-    const rows = enquiries.slice(0, 3);
+    const rows = enquiries.filter((e) => e.status === "new").slice(0, 3);
 
     return (
         <TableCard.Root>
-            <TableCard.Header
-                title="Active Enquiries"
-                contentTrailing={<Button color="link-color" size="sm" href="/admin/enquiries">View all enquiries →</Button>}
-            />
+            <TableCard.Header title="New Enquiries" contentTrailing={<Button color="link-color" size="sm" href="/admin/enquiries">View all enquiries →</Button>} />
 
             <Table size="sm">
                 <Table.Header columns={cols}>
@@ -353,7 +373,7 @@ const ActiveEnquiriesPreview = () => {
                 <Table.Body>
                     {rows.length === 0 ? (
                         <Table.Row columns={cols}>
-                            <Table.Cell colSpan={3} className="text-center text-sm text-tertiary py-6">No data</Table.Cell>
+                            <Table.Cell colSpan={3} className="text-center text-sm text-tertiary py-6">No new enquiries</Table.Cell>
                         </Table.Row>
                     ) : (
                         rows.map((r, idx) => (

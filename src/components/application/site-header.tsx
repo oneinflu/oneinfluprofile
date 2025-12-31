@@ -3,9 +3,11 @@
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
+import { useAuth } from "@/providers/auth";
 
 export const SiteHeader = () => {
     const pathname = usePathname();
+    const { user } = useAuth();
     const firstSegment = (pathname.split("/")[1] || "").trim();
     const disallow = new Set([
         "login",
@@ -34,8 +36,14 @@ export const SiteHeader = () => {
                         <img src="/logo.svg" alt="INFLU" className={cx("hidden h-8 w-auto dark:block")} />
                     </div>
                     <div className="flex items-center gap-3">
-                        <Button href="/login" size="sm" color="link-gray">Login</Button>
-                        <Button href="/register" size="sm" color="primary">Get started</Button>
+                        {user?.username ? (
+                            <Button href={`/admin`} size="sm" color="primary">Go to My Profile</Button>
+                        ) : (
+                            <>
+                                <Button href="/login" size="sm" color="link-gray">Login</Button>
+                                <Button href="/register" size="sm" color="primary">Get started</Button>
+                            </>
+                        )}
                     </div>
                 </div>
                 </div>
