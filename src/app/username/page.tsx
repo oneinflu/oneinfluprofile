@@ -4,7 +4,7 @@ import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { ArrowLeft } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth";
 
@@ -14,13 +14,15 @@ const Prefix = ({ className }: { className?: string }) => (
 
 const UsernameContent = () => {
     const router = useRouter();
-    const params = useSearchParams();
-    const emailParam = params.get("email") || "";
-    const idParam = params.get("id") || "";
     const [email, setEmail] = useState("");
+    const [sessionId, setSessionId] = useState("");
     useEffect(() => {
-        setEmail(emailParam);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        try {
+            const e = sessionStorage.getItem("influu_register_email") || "";
+            const sid = sessionStorage.getItem("influu_register_id") || "";
+            setEmail(e);
+            setSessionId(sid);
+        } catch {}
     }, []);
     const [handle, setHandle] = useState("");
     useEffect(() => {
@@ -28,7 +30,7 @@ const UsernameContent = () => {
         setHandle(suggested);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [email]);
-    const verifyHref = email ? `/verify?id=${encodeURIComponent(idParam)}&to=${encodeURIComponent(email)}` : "/verify";
+    const verifyHref = email ? `/verify?id=${encodeURIComponent(sessionId)}&to=${encodeURIComponent(email)}` : "/verify";
     const [available, setAvailable] = useState<null | boolean>(null);
     const [checking, setChecking] = useState(false);
     const { registerSaveUsername } = useAuth();
@@ -69,14 +71,15 @@ const UsernameContent = () => {
 
     const onContinue = async () => {
         if (!available) return;
-        const id = idParam;
+        const id = sessionId;
         const uname = handle.trim().toLowerCase();
         if (!id || !uname) return;
         setSaving(true);
         try {
             await registerSaveUsername(id, uname);
             try { localStorage.setItem("influu_username", uname); } catch {}
-            router.push(verifyHref);
+            try { sessionStorage.setItem("influu_verify_mode", "register"); } catch {}
+            router.push("/verify");
         } catch {
         } finally {
             setSaving(false);

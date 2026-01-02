@@ -8,10 +8,15 @@ import { useAuth } from "@/providers/auth";
 
 const VerifyContent = () => {
     const params = useSearchParams();
-    const to = params.get("to") || params.get("email") || params.get("identifier") || "your email";
-    const mode = params.get("mode") || "register";
-    const identifier = params.get("identifier") || "";
-    const id = params.get("id") || "";
+    const ss = typeof window !== "undefined" ? window.sessionStorage : undefined;
+    const ssMode = ss ? ss.getItem("influu_verify_mode") || undefined : undefined;
+    const ssIdentifier = ss ? ss.getItem("influu_login_identifier") || undefined : undefined;
+    const ssEmail = ss ? ss.getItem("influu_register_email") || undefined : undefined;
+    const ssId = ss ? ss.getItem("influu_register_id") || undefined : undefined;
+    const mode = params.get("mode") || ssMode || "register";
+    const identifier = params.get("identifier") || ssIdentifier || "";
+    const id = params.get("id") || ssId || "";
+    const to = params.get("to") || params.get("email") || identifier || ssEmail || "your email";
     const router = useRouter();
     const { registerSendOtp, registerVerifyOtp, loginSendOtp, loginVerifyOtp } = useAuth();
     const [resendLoading, setResendLoading] = useState(false);

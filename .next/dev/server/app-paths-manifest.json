@@ -1,5 +1,16 @@
 {
+  "/[username]/page": "app/[username]/page.js",
+  "/add-links/page": "app/add-links/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/login/page": "app/login/page.js",
+  "/onboarding/complete/page": "app/onboarding/complete/page.js",
+  "/onboarding/page": "app/onboarding/page.js",
   "/page": "app/page.js",
+  "/privacy/page": "app/privacy/page.js",
   "/register/page": "app/register/page.js",
-  "/username/page": "app/username/page.js"
+  "/select-category/page": "app/select-category/page.js",
+  "/select-platforms/page": "app/select-platforms/page.js",
+  "/terms/page": "app/terms/page.js",
+  "/username/page": "app/username/page.js",
+  "/verify/page": "app/verify/page.js"
 }

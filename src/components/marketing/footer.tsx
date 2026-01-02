@@ -1,18 +1,21 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { HelpCircle, Stars02, MessageChatCircle, User01, UploadCloud02 } from "@untitledui/icons";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { Instagram, LinkedIn } from "../foundations/social-icons";
 
 export const MarketingFooter = () => {
     const pathname = usePathname();
+    const search = useSearchParams();
     const firstSegment = (pathname.split("/")[1] || "").trim();
     const disallow = new Set(["login", "register", "add-links", "onboarding", "complete", "select-category", "select-platforms", "verify", "username", "admin"]);
     const isAdmin = firstSegment === "admin";
-    const isDynamicProfile = firstSegment.length > 0 && !disallow.has(firstSegment);
+    const allowStatic = new Set(["", "terms", "privacy"]);
+    const isDynamicProfile = firstSegment.length > 0 && !disallow.has(firstSegment) && !allowStatic.has(firstSegment);
+    const isEmbed = Boolean(search.get("embed"));
 
-    if (isAdmin || disallow.has(firstSegment) || isDynamicProfile) return null;
+    if (isAdmin || disallow.has(firstSegment) || isDynamicProfile || isEmbed) return null;
 
     const year = new Date().getFullYear();
 

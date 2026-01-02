@@ -7,6 +7,7 @@ import { SocialButton } from "@/components/base/buttons/social-button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/auth";
+import { DialogTrigger, ModalOverlay, Modal, Dialog } from "@/components/application/modals/modal";
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("");
@@ -22,7 +23,11 @@ export default function RegisterPage() {
         try {
             const id = await registerStart(email.trim());
             const requestId = String(id || "");
-            router.push(`${nextHref}?id=${encodeURIComponent(requestId)}&email=${encodeURIComponent(email.trim())}`);
+            try {
+                sessionStorage.setItem("influu_register_id", requestId);
+                sessionStorage.setItem("influu_register_email", email.trim());
+            } catch {}
+            router.push(nextHref);
         } catch (e) {
             // noop
         } finally {
@@ -57,10 +62,65 @@ export default function RegisterPage() {
                                 <div className="h-px w-full bg-border-secondary" />
                             </div>
 
-                               
-                            <p className="text-sm text-tertiary">
-                                By proceeding you agree to T&amp;C and Privacy Policy of INFLU.
-                            </p>
+                            <div className="text-sm text-tertiary">
+                                <span>By proceeding you agree to </span>
+                                <DialogTrigger>
+                                    <Button color="link-color" size="sm">T&amp;C</Button>
+                                    <ModalOverlay isDismissable>
+                                        <Modal>
+                                            <Dialog aria-label="Terms and Conditions">
+                                                {({ close }) => (
+                                                    <div className="mx-auto w-[min(92vw,900px)] max-h-[80vh] overflow-hidden rounded-2xl bg-primary shadow-xl ring-1 ring-secondary">
+                                                        <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
+                                                            <div className="flex min-w-0 flex-col">
+                                                                <h2 className="text-lg font-semibold text-primary">Terms and Conditions</h2>
+                                                                <p className="text-sm text-tertiary">Please review the Terms carefully</p>
+                                                            </div>
+                                                            <Button size="sm" onClick={() => close()}>Close</Button>
+                                                        </div>
+                                                        <div className="px-4 py-4">
+                                                            <iframe
+                                                                title="Terms"
+                                                                src="/terms?embed=1"
+                                                                className="h-[65vh] w-full rounded-xl ring-1 ring-secondary"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </Dialog>
+                                        </Modal>
+                                    </ModalOverlay>
+                                </DialogTrigger>
+                                <span> and </span>
+                                <DialogTrigger>
+                                    <Button color="link-color" size="sm">Privacy Policy</Button>
+                                    <ModalOverlay isDismissable>
+                                        <Modal>
+                                            <Dialog aria-label="Privacy Policy">
+                                                {({ close }) => (
+                                                    <div className="mx-auto w-[min(92vw,900px)] max-h-[80vh] overflow-hidden rounded-2xl bg-primary shadow-xl ring-1 ring-secondary">
+                                                        <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
+                                                            <div className="flex min-w-0 flex-col">
+                                                                <h2 className="text-lg font-semibold text-primary">Privacy Policy</h2>
+                                                                <p className="text-sm text-tertiary">How we handle your data</p>
+                                                            </div>
+                                                            <Button size="sm" onClick={() => close()}>Close</Button>
+                                                        </div>
+                                                        <div className="px-4 py-4">
+                                                            <iframe
+                                                                title="Privacy"
+                                                                src="/privacy?embed=1"
+                                                                className="h-[65vh] w-full rounded-xl ring-1 ring-secondary"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </Dialog>
+                                        </Modal>
+                                    </ModalOverlay>
+                                </DialogTrigger>
+                                <span> of INFLU.</span>
+                            </div>
 
                             <div className="flex items-center gap-2">
                                 <span className="text-sm text-tertiary">Already have an account?</span>

@@ -1,5 +1,403 @@
-[00:00:00.976] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.092] Server  LOG     ✓ Ready in 863ms
-[00:00:05.793] Server  WARN    ⚠ Cross origin request detected from 192.168.0.9 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.049] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.248] Server  LOG     ✓ Ready in 1011ms
+[00:00:07.104] Server  WARN    ⚠ Cross origin request detected from 192.168.0.9 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:06.422] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:07.497] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:01:20.693] Server  LOG     ✓ Compiled in 476ms
+[00:03:02.691] Server  LOG     ✓ Compiled in 229ms
+[00:03:07.326] Server  LOG     ✓ Compiled in 212ms
+[00:04:06.723] Server  LOG     ✓ Compiled in 438ms
+[00:05:05.694] Server  LOG     ✓ Compiled in 111ms
+[00:05:57.975] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `GridCheck`.
+[00:07:42.630] Server  LOG     ✓ Compiled in 418ms
+[00:07:44.996] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/terms" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:10:23.133] Server  LOG     ✓ Compiled in 332ms
+[00:11:30.520] Server  LOG     ✓ Compiled in 528ms
+[00:13:19.974] Browser ERROR   ./src/app/terms/page.tsx:226:9
+Parsing ecmascript source code failed
+  224 |                 </div>
+  225 |             </div>
+> 226 |         </section>
+      |         ^
+  227 |     );
+  228 | }
+  229 |
+
+Expression expected
+[00:13:19.974] Browser ERROR   ./src/app/terms/page.tsx:226:10
+Parsing ecmascript source code failed
+  224 |                 </div>
+  225 |             </div>
+> 226 |         </section>
+      |          ^^^^^^^^^
+  227 |     );
+  228 | }
+  229 |
+
+Unterminated regexp literal
+[00:15:22.006] Server  LOG     ✓ Compiled in 221ms
+[00:16:13.154] Server  LOG     ✓ Compiled in 291ms
+[00:20:35.372] Server  LOG     ✓ Compiled in 172ms
+[00:23:35.681] Server  LOG     ✓ Compiled in 279ms
+[00:24:51.016] Server  LOG     ✓ Compiled in 292ms
+[00:27:02.991] Server  LOG     ✓ Compiled in 629ms
+[00:28:58.688] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/terms" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:29:24.703] Server  LOG     ✓ Compiled in 586ms
+[00:30:48.231] Server  LOG     ✓ Compiled in 778ms
+[00:30:52.464] Server  LOG     ✓ Compiled in 261ms
+[00:30:57.268] Server  LOG     ✓ Compiled in 269ms
+[00:33:33.977] Server  LOG     ✓ Compiled in 436ms
+[00:38:42.227] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:42:36.726] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/add-links" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:42:52.513] Browser ERROR   unhandledRejection: Error: User not found
+[00:42:56.901] Browser ERROR   unhandledRejection: Error: User not found
+[00:43:58.127] Server  LOG     ✓ Compiled in 462ms
+[00:49:44.375] Browser GROUP   USERNAME_CHECK
+[00:49:44.376] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/auth/username/check?username=gg
+[00:49:44.376] Browser LOG     EXPECTED_RESPONSE_SHAPES {"available":{"data":{"available":true},"status":"ok","success":true},"unavailable":{"data":{"available":false},"status":"ok","success":true}}
+[00:49:44.376] Browser GROUPEND 
+[00:49:44.535] Browser GROUP   USERNAME_CHECK_RESPONSE
+[00:49:44.535] Browser LOG     STATUS 200
+[00:49:44.535] Browser LOG     BODY {"data":{"available":true},"status":"ok","success":true}
+[00:49:44.535] Browser GROUPEND 
+[00:50:53.909] Server  LOG     ✓ Compiled in 540ms
+[00:51:00.365] Server  LOG     ✓ Compiled in 215ms
+[00:51:52.792] Browser GROUP   USERNAME_CHECK
+[00:51:52.792] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/auth/username/check?username=psnmurthy1993
+[00:51:52.792] Browser LOG     EXPECTED_RESPONSE_SHAPES {"available":{"data":{"available":true},"status":"ok","success":true},"unavailable":{"data":{"available":false},"status":"ok","success":true}}
+[00:51:52.792] Browser GROUPEND 
+[00:51:52.965] Browser GROUP   USERNAME_CHECK_RESPONSE
+[00:51:52.965] Browser LOG     STATUS 200
+[00:51:52.965] Browser LOG     BODY {"data":{"available":true},"status":"ok","success":true}
+[00:51:52.965] Browser GROUPEND 
+[00:52:48.676] Server  LOG     ✓ Compiled in 197ms
+[00:52:56.328] Server  LOG     ✓ Compiled in 242ms
+[00:53:01.917] Server  LOG     ✓ Compiled in 104ms
+[00:53:29.026] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/verify" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:53:29.026] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/verify" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="verify/pag...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function VerifyPage} serverProvidedParams={{...}}>
+            <VerifyPage params={Promise} searchParams={Promise}>
+              <Suspense fallback={null}>
+                <VerifyContent>
+                  <section className="flex min-h...">
+                    <div className="w-full max...">
+                      <div className="flex w-ful...">
+                        <div className="flex flex-...">
+                          <h1>
+                          <p className="text-md te...">
++                           psnmurthy1993@gmail.com
+-                           your email
+                            ...
+                        ...
+        ...
+      ...
+
+[00:54:26.785] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[00:55:31.838] Server  LOG     ✓ Compiled in 325ms
+[00:55:37.158] Server  LOG     ✓ Compiled in 107ms
+[01:00:19.429] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/add-links" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[01:00:30.166] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:30.166] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:33.776] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:33.776] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:33.776] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:33.776] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:33.926] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:33.926] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:35.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:35.676] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:35.847] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:35.847] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.134] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.134] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.134] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.134] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.134] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.134] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.309] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:37.309] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:38.875] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:39.142] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:39.316] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:39.590] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:39.657] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:39.657] Browser LOG     REQUEST GET http://192.168.0.6:3000/psnmurthy1993
+[01:00:39.657] Browser GROUPEND 
+[01:00:39.699] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:39.777] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:40.018] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:40.128] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:40.157] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:40.157] Browser LOG     REQUEST GET http://192.168.0.6:3000/psnmurthy1993
+[01:00:40.157] Browser GROUPEND 
+[01:00:40.215] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:40.335] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:40.608] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:40.608] Browser LOG     REQUEST GET http://192.168.0.6:3000/psnmurthy1993
+[01:00:40.608] Browser GROUPEND 
+[01:00:40.685] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:40.761] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:40.761] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:40.761] Browser GROUPEND 
+[01:00:40.802] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:41.106] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:41.191] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:41.191] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:41.191] Browser GROUPEND 
+[01:00:41.216] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:41.596] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:41.597] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:41.597] Browser GROUPEND 
+[01:00:41.637] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:41.637] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:41.637] Browser GROUPEND 
+[01:00:43.987] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:44.036] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:00:44.036] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.036] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.036] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:44.036] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:00:44.036] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.036] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.117] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:44.239] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:44.533] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:44.620] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:44.620] Browser LOG     REQUEST GET http://192.168.0.6:3000/psnmurthy1993
+[01:00:44.620] Browser GROUPEND 
+[01:00:44.677] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:44.719] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.719] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.719] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.719] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:00:44.719] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:00:44.719] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:00:44.719] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:00:44.719] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:00:44.719] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:00:44.719] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:00:44.775] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:44.820] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:45.123] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:45.156] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:45.156] Browser LOG     REQUEST GET http://192.168.0.6:3000/psnmurthy1993
+[01:00:45.156] Browser GROUPEND 
+[01:00:45.276] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:45.352] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:45.862] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:45.862] Browser LOG     REQUEST GET http://192.168.0.6:3000/psnmurthy1993
+[01:00:45.862] Browser GROUPEND 
+[01:00:45.929] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:46.026] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:46.026] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:46.026] Browser GROUPEND 
+[01:00:46.331] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:47.155] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:47.503] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:00:47.976] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:47.976] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:47.976] Browser GROUPEND 
+[01:00:48.972] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:48.972] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:48.973] Browser GROUPEND 
+[01:00:48.973] Browser GROUP   PUBLIC_PROFILE_GET
+[01:00:48.973] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:00:48.973] Browser GROUPEND 

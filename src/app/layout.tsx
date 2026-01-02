@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
@@ -41,9 +42,13 @@ export default function RootLayout({
                 <RouteProvider>
                     <Theme>
                         <AuthProvider>
-                            <SiteHeader />
+                            <Suspense fallback={null}>
+                                <SiteHeader />
+                            </Suspense>
                             {children}
-                            <MarketingFooter />
+                            <Suspense fallback={null}>
+                                <MarketingFooter />
+                            </Suspense>
                             <ThemeFab />
                         </AuthProvider>
                     </Theme>

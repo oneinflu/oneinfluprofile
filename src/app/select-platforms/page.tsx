@@ -81,8 +81,10 @@ export default function SelectPlatformsPage() {
                     onClick={() => {
                         if (!selected.length || loading) return;
                         setLoading(true);
-                        const href = `/add-links?platforms=${encodeURIComponent(selected.join(","))}`;
-                        router.push(href);
+                        try {
+                            sessionStorage.setItem("influu_selected_platforms", selected.join(","));
+                        } catch {}
+                        router.push("/add-links");
                     }}
                     isDisabled={selected.length === 0 || loading}
                     isLoading={loading}

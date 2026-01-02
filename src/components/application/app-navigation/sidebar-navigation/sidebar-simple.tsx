@@ -69,7 +69,13 @@ export const SidebarNavigationSimple = ({
             )}
         >
             <div className="flex flex-col gap-5 px-4 lg:px-5">
-                <UntitledLogo className="h-8" />
+                <a
+                    href="/admin"
+                    aria-label="Go to admin home"
+                    className="rounded-xs outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                    <UntitledLogo className="h-8" />
+                </a>
                 <Input shortcut size="sm" aria-label="Search" placeholder="Search" icon={SearchLg} />
             </div>
 

@@ -10,7 +10,9 @@ import { useAuth } from "@/providers/auth";
 
 const AddLinksContent = () => {
     const params = useSearchParams();
-    const selectedCsv = params.get("platforms") || "";
+    const ss = typeof window !== "undefined" ? window.sessionStorage : undefined;
+    const ssCsv = ss ? ss.getItem("influu_selected_platforms") || "" : "";
+    const selectedCsv = ssCsv || params.get("platforms") || "";
     const selected = selectedCsv
         .split(",")
         .map((s) => s.trim())

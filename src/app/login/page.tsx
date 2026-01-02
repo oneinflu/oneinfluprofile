@@ -11,6 +11,7 @@ import { useAuth } from "@/providers/auth";
 export default function LoginPage() {
     const [identifier, setIdentifier] = useState("");
     const [otpLoading, setOtpLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const router = useRouter();
     const { loginSendOtp } = useAuth();
 
@@ -41,9 +42,20 @@ export default function LoginPage() {
         if (otpLoading) return;
         setOtpLoading(true);
         try {
-            await loginSendOtp(identifier.trim());
-            const to = encodeURIComponent(identifier.trim());
-            router.push(`/verify?mode=login&identifier=${to}`);
+            setErrorMsg(null);
+            const id = identifier.trim();
+            if (!id) {
+                setErrorMsg("Please enter your email or username");
+                return;
+            }
+            await loginSendOtp(id);
+            try {
+                sessionStorage.setItem("influu_verify_mode", "login");
+                sessionStorage.setItem("influu_login_identifier", id);
+            } catch {}
+            router.push("/verify");
+        } catch {
+            setErrorMsg("This username or email is not registered with us");
         } finally {
             setOtpLoading(false);
         }
@@ -65,7 +77,18 @@ export default function LoginPage() {
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <Input label="Email or Username" placeholder="Enter email or handle" value={identifier} onChange={(v) => setIdentifier(String(v))} className="flex-1" />
+                                <Input
+                                    label="Email or Username"
+                                    placeholder="Enter email or handle"
+                                    value={identifier}
+                                    onChange={(v) => {
+                                        setIdentifier(String(v));
+                                        if (errorMsg) setErrorMsg(null);
+                                    }}
+                                    className="flex-1"
+                                    isInvalid={!!errorMsg}
+                                    hint={errorMsg || undefined}
+                                />
                             </div>
 
                             <Button
