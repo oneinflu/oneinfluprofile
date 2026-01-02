@@ -39,6 +39,9 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
         try {
             setToken(null);
             setUser(null);
+            try { localStorage.removeItem("influu_username"); } catch {}
+            try { localStorage.removeItem("influu_user_id"); } catch {}
+            try { localStorage.removeItem("influu_token"); } catch {}
         } finally {
             router.push("/login");
         }

@@ -413,7 +413,7 @@ export default function AdminPortfolioPage() {
                                         <h3 className="text-md font-semibold text-primary">Content Type</h3>
                                         <Select
                                             size="md"
-                                            items={[{ id: "image", label: "Image" }, { id: "video", label: "Video / Reel" }, { id: "link", label: "External link" }]}
+                                            items={[{ id: "image", label: "Image" }, { id: "video", label: "Video / Reel" }]}
                                             selectedKey={draft.contentType}
                                             onSelectionChange={(key) => setDraft((d) => ({ ...d, contentType: String(key) as any }))}
                                         >
@@ -422,7 +422,7 @@ export default function AdminPortfolioPage() {
                                     </div>
 
                                     <div className="flex min-w-0 flex-col gap-2">
-                                        <h3 className="text-md font-semibold text-primary">Upload / Link</h3>
+                                        <h3 className="text-md font-semibold text-primary">Upload File</h3>
                                         <div className="flex items-center gap-2">
                                             <Button size="sm" color="secondary" onClick={() => fileInputRef.current?.click()}>Upload file</Button>
                                             <input ref={fileInputRef} type="file" accept={draft.contentType === "image" ? "image/*" : draft.contentType === "video" ? "video/*" : "*/*"} className="hidden" onChange={(e) => {
@@ -432,7 +432,7 @@ export default function AdminPortfolioPage() {
                                         </div>
                                         <Input label="Paste URL" placeholder="Instagram / YouTube / Drive" value={draft.externalUrl || ""} onChange={(v) => setDraft((d) => ({ ...d, externalUrl: v }))} />
                                         {draft.fileUrl && (
-                                            <div className="mt-3 rounded-lg ring-1 ring-secondary overflow-hidden">
+                                            <div className="mt-3 rounded-lg ring-1 ring-secondary overflow-hidden hidden" aria-hidden="true">
                                                 {draft.contentType === "video" ? (
                                                     <video src={draft.fileUrl} controls className="w-full aspect-video bg-secondary" />
                                                 ) : draft.contentType === "image" ? (

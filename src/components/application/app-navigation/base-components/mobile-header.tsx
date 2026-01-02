@@ -1,6 +1,7 @@
 "use client";
 
 import type { PropsWithChildren } from "react";
+import { useEffect, useState } from "react";
 import { X as CloseIcon, Menu02 } from "@untitledui/icons";
 import {
     Button as AriaButton,
@@ -11,10 +12,18 @@ import {
 } from "react-aria-components";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { cx } from "@/utils/cx";
+import { usePathname } from "next/navigation";
 
 export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
+    const [open, setOpen] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setOpen(false);
+    }, [pathname]);
+
     return (
-        <AriaDialogTrigger>
+        <AriaDialogTrigger isOpen={open} onOpenChange={setOpen}>
             <header className="flex h-16 items-center justify-between border-b border-secondary bg-primary py-3 pr-2 pl-4 lg:hidden">
                 <UntitledLogo />
 
@@ -41,14 +50,24 @@ export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
                     <>
                         <AriaButton
                             aria-label="Close navigation menu"
-                            onPress={() => state.close()}
+                            onPress={() => setOpen(false)}
                             className="fixed top-3 right-2 flex cursor-pointer items-center justify-center rounded-lg p-2 text-fg-white/70 outline-focus-ring hover:bg-white/10 hover:text-fg-white focus-visible:outline-2 focus-visible:outline-offset-2"
                         >
                             <CloseIcon className="size-6" />
                         </AriaButton>
 
                         <AriaModal className="w-full cursor-auto will-change-transform">
-                            <AriaDialog className="h-dvh outline-hidden focus:outline-hidden">{children}</AriaDialog>
+                            <AriaDialog
+                                className="h-dvh outline-hidden focus:outline-hidden"
+                                onClick={(e) => {
+                                    const el = e.target as HTMLElement | null;
+                                    if (el && el.closest("a[href]")) {
+                                        setOpen(false);
+                                    }
+                                }}
+                            >
+                                {children}
+                            </AriaDialog>
                         </AriaModal>
                     </>
                 )}

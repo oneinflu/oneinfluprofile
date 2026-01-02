@@ -34,7 +34,7 @@ export default function SelectPlatformsPage() {
 
     return (
         <section className="flex min-h-screen flex-col">
-            <div className="sticky top-0 z-20 px-4 md:px-8 pt-6 pb-4">
+            <div className=" top-0 z-20 px-4 md:px-8 pt-6 pb-4">
                 <div className="mx-auto w-full max-w-xl text-center">
                     <div className="w-full">
                         <ProgressBarBase value={2} min={0} max={4} />
@@ -55,13 +55,13 @@ export default function SelectPlatformsPage() {
                                 value={item.value}
                                 hint={(
                                     <>
-                                        <img src={item.imgSrc} alt={item.label} className="mx-auto size-10 rounded-xl" />
+                                        <img src={item.imgSrc} alt={item.label} className="mx-auto size-8 rounded-xl" />
                                         <span className="block text-sm font-semibold text-secondary">{item.label}</span>
                                     </>
                                 )}
                                     className={(state) =>
                                         cx(
-                                            "w-40 md:w-44 rounded-xl bg-primary p-4 text-center ring-1 ring-primary transition duration-100 ease-linear flex flex-col items-center justify-center gap-2 h-36",
+                                            "w-24 md:w-32 rounded-xl bg-primary p-3 text-center ring-1 ring-primary transition duration-100 ease-linear flex flex-col items-center justify-center gap-2 h-28 md:h-32",
                                             "hover:bg-primary_hover",
                                             state.isSelected && "ring-brand bg-primary_hover",
                                         )

@@ -104,6 +104,7 @@ interface HeaderProps {
 export const Header = ({ items = headerNavItems, isFullWidth, isFloating, className }: HeaderProps) => {
     const headerRef = useRef<HTMLElement>(null);
     const { user } = useAuth();
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
         <header
@@ -200,62 +201,74 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     </div>
 
                     {/* Mobile menu and menu trigger */}
-                    <AriaDialogTrigger>
-                        <AriaButton
-                            aria-label="Toggle navigation menu"
-                            className={({ isFocusVisible, isHovered }) =>
-                                cx(
-                                    "group ml-auto cursor-pointer rounded-lg p-2 md:hidden",
-                                    isHovered && "bg-primary_hover",
-                                    isFocusVisible && "outline-2 outline-offset-2 outline-focus-ring",
-                                )
-                            }
-                        >
-                            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path
-                                    className="hidden text-secondary group-aria-expanded:block"
-                                    d="M18 6L6 18M6 6L18 18"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    className="text-secondary group-aria-expanded:hidden"
-                                    d="M3 12H21M3 6H21M3 18H21"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </AriaButton>
-                        <AriaPopover
-                            triggerRef={headerRef}
-                            className="h-calc(100%-72px) scrollbar-hide w-full overflow-y-auto shadow-lg md:hidden"
-                            offset={0}
-                            crossOffset={20}
-                            containerPadding={0}
-                            placement="bottom left"
-                        >
-                            <AriaDialog className="outline-hidden">
-                                <nav className="w-full bg-primary shadow-lg">
-                                    <ul className="flex flex-col gap-0.5 py-5">
-                                        {items.map((navItem) =>
-                                            navItem.menu ? (
-                                                <MobileNavItem key={navItem.label} label={navItem.label}>
-                                                    {navItem.menu}
-                                                </MobileNavItem>
-                                            ) : (
-                                                <MobileNavItem key={navItem.label} label={navItem.label} href={navItem.href} />
-                                            ),
-                                        )}
-                                    </ul>
+                    <AriaDialogTrigger isOpen={mobileOpen} onOpenChange={setMobileOpen}>
+                        <>
+                            <AriaButton
+                                    aria-label="Toggle navigation menu"
+                                    className={({ isFocusVisible, isHovered }) =>
+                                        cx(
+                                            "group ml-auto cursor-pointer rounded-lg p-2 md:hidden",
+                                            isHovered && "bg-primary_hover",
+                                            isFocusVisible && "outline-2 outline-offset-2 outline-focus-ring",
+                                        )
+                                    }
+                                >
+                                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            className="hidden text-secondary group-aria-expanded:block"
+                                            d="M18 6L6 18M6 6L18 18"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            className="text-secondary group-aria-expanded:hidden"
+                                            d="M3 12H21M3 6H21M3 18H21"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                            </AriaButton>
+                            <AriaPopover
+                                    triggerRef={headerRef}
+                                    className="h-calc(100%-72px) scrollbar-hide w-full overflow-y-auto shadow-lg md:hidden"
+                                    offset={0}
+                                    crossOffset={20}
+                                    containerPadding={0}
+                                    placement="bottom left"
+                                >
+                                    <AriaDialog
+                                        className="outline-hidden"
+                                        onClick={(e) => {
+                                            const el = e.target as HTMLElement | null;
+                                            if (el && el.closest("a[href]")) {
+                                                try {
+                                                    setMobileOpen(false);
+                                                } catch {}
+                                            }
+                                        }}
+                                    >
+                                        <nav className="w-full bg-primary shadow-lg">
+                                            <ul className="flex flex-col gap-0.5 py-5">
+                                                {items.map((navItem) =>
+                                                    navItem.menu ? (
+                                                        <MobileNavItem key={navItem.label} label={navItem.label}>
+                                                            {navItem.menu}
+                                                        </MobileNavItem>
+                                                    ) : (
+                                                        <MobileNavItem key={navItem.label} label={navItem.label} href={navItem.href} />
+                                                    ),
+                                                )}
+                                            </ul>
 
-                                    <MobileFooter />
-                                </nav>
-                            </AriaDialog>
-                        </AriaPopover>
+                                            <MobileFooter />
+                                        </nav>
+                                    </AriaDialog>
+                            </AriaPopover>
+                        </>
                     </AriaDialogTrigger>
                 </div>
             </div>
