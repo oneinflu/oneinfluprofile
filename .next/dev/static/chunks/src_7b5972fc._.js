@@ -190,7 +190,8 @@ function AuthProvider({ children }) {
                         setUser({
                             id: me.id,
                             username: me.username,
-                            email: me.email
+                            email: me.email,
+                            avatarUrl: me.avatarUrl
                         });
                         try {
                             localStorage.setItem("influu_user_id", me.id);

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01 } from "@untitledui/icons";
+import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft } from "@untitledui/icons";
 import { useMemo, useState, useEffect, useRef } from "react";
 import type { MouseEvent } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
@@ -11,7 +11,7 @@ import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { RadioGroup, RadioButton } from "@/components/base/radio-buttons/radio-buttons";
 import { useTheme } from "next-themes";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { api } from "@/utils/api";
 import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
@@ -256,6 +256,7 @@ export default function ProfilePage() {
     const [requestSuccessService, setRequestSuccessService] = useState<string>("");
 
     const disableLock = (search.get("nolock") || "").trim() === "1";
+    const router = useRouter();
     const isLg = useBreakpoint("lg");
     return (
         <>
@@ -312,6 +313,10 @@ export default function ProfilePage() {
 function ProfileCard({ username, profile, payEnabled, upiId, offers, links, portfolio, onRequest }: { username: string; profile: { name?: string | null; bio?: string | null; avatarUrl?: string | null } | null; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>; links: Array<{ platform: string; icon: string; url: string }>; portfolio: Array<{ id: string; contentType?: "image" | "video" | "link" | null; fileUrl?: string | null; externalUrl?: string | null; title?: string | null; brand?: string | null; description?: string | null; platform?: string | null; visible?: boolean; pinned?: boolean | null }>; onRequest: (service?: string) => void }) {
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const search = useSearchParams();
+    const router = useRouter();
+    const backToAdmin = (search.get("back_to") || "").trim() === "admin";
+    
     useEffect(() => setMounted(true), []);
     const isDark = mounted && resolvedTheme === "dark";
     const themeLabel = isDark ? "Switch to light" : "Switch to dark";
@@ -325,7 +330,16 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                         <div className="size-full bg-primary_hover animate-pulse" />
                     )}
                     <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-b from-transparent to-primary dark:to-[#0b0f14]" />
-                    <div className="absolute left-3 top-3">
+                    <div className="absolute left-3 top-3 flex items-center gap-2">
+                         {backToAdmin && (
+                            <ButtonUtility
+                                tooltip="Back to Admin"
+                                size="sm"
+                                color="secondary"
+                                icon={ChevronLeft}
+                                onClick={() => router.push("/admin")}
+                            />
+                        )}
                         <span className="inline-flex items-center justify-center rounded-md bg-primary/75 backdrop-blur p-1.5 shadow-xs">
                             <img
                                 src={isDark ? "/faviconwhite.png" : "/favicon.png"}

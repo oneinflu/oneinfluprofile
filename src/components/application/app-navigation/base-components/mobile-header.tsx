@@ -13,10 +13,13 @@ import {
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { cx } from "@/utils/cx";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/providers/auth";
+import { Avatar } from "@/components/base/avatar/avatar";
 
 export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
+    const { user } = useAuth();
 
     useEffect(() => {
         setOpen(false);
@@ -25,15 +28,28 @@ export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
     return (
         <AriaDialogTrigger isOpen={open} onOpenChange={setOpen}>
             <header className="flex h-16 items-center justify-between border-b border-secondary bg-primary py-3 pr-2 pl-4 lg:hidden">
-                <UntitledLogo />
+                <a href="/admin">
+                    <UntitledLogo />
+                </a>
 
-                <AriaButton
-                    aria-label="Expand navigation menu"
-                    className="group flex items-center justify-center rounded-lg bg-primary p-2 text-fg-secondary outline-focus-ring hover:bg-primary_hover hover:text-fg-secondary_hover focus-visible:outline-2 focus-visible:outline-offset-2"
-                >
-                    <Menu02 className="size-6 transition duration-200 ease-in-out group-aria-expanded:opacity-0" />
-                    <CloseIcon className="absolute size-6 opacity-0 transition duration-200 ease-in-out group-aria-expanded:opacity-100" />
-                </AriaButton>
+                <div className="flex items-center gap-3">
+                    {user && (
+                        <a href={`/${user.username}?back_to=admin`}>
+                            <Avatar
+                                size="md"
+                                src={user.avatarUrl || "/avatar.svg"}
+                                alt={user.username || "User"}
+                            />
+                        </a>
+                    )}
+                    <AriaButton
+                        aria-label="Expand navigation menu"
+                        className="group flex items-center justify-center rounded-lg bg-primary p-2 text-fg-secondary outline-focus-ring hover:bg-primary_hover hover:text-fg-secondary_hover focus-visible:outline-2 focus-visible:outline-offset-2"
+                    >
+                        <Menu02 className="size-6 transition duration-200 ease-in-out group-aria-expanded:opacity-0" />
+                        <CloseIcon className="absolute size-6 opacity-0 transition duration-200 ease-in-out group-aria-expanded:opacity-100" />
+                    </AriaButton>
+                </div>
             </header>
 
             <AriaModalOverlay

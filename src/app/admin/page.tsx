@@ -15,6 +15,7 @@ import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as Ar
 import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
+import Link from "next/link";
 
 export default function AdminHomePage() {
     return (
@@ -248,7 +249,7 @@ const MetricCard = ({ title, value, change, trendColor = "success" }: { title: s
 
 const RecentActivity = () => {
     const { user, token } = useAuth();
-    const [items, setItems] = useState<{ id: string; title: string; icon: any; color: "brand" | "success" | "gray"; count?: number }[]>([]);
+    const [items, setItems] = useState<{ id: string; title: string; icon: any; color: "brand" | "success" | "gray"; count?: number; href: string }[]>([]);
     useEffect(() => {
         let alive = true;
         (async () => {
@@ -265,9 +266,9 @@ const RecentActivity = () => {
                 const paymentsReceived = pays.filter((p) => p.status === "paid").length;
                 const paymentsPending = pays.filter((p) => p.status !== "paid").length;
                 const next = [
-                    { id: "enquiries_new", title: "New enquiries", icon: MessageCircle01, color: "brand" as const, count: newEnquiries },
-                    { id: "payments_received", title: "Payments received", icon: CurrencyDollarCircle, color: "success" as const, count: paymentsReceived },
-                    { id: "payments_pending", title: "Payments pending", icon: CurrencyDollarCircle, color: "gray" as const, count: paymentsPending },
+                    { id: "enquiries_new", title: "New enquiries", icon: MessageCircle01, color: "brand" as const, count: newEnquiries, href: "/admin/enquiries" },
+                    { id: "payments_received", title: "Payments received", icon: CurrencyDollarCircle, color: "success" as const, count: paymentsReceived, href: "/admin/payments" },
+                    { id: "payments_pending", title: "Payments pending", icon: CurrencyDollarCircle, color: "gray" as const, count: paymentsPending, href: "/admin/payments" },
                 ];
                 setItems(next);
             } catch {
@@ -296,14 +297,14 @@ const RecentActivity = () => {
             ) : (
                 <ul className="mt-3 md:mt-4 flex flex-col gap-2">
                     {items.map((item) => (
-                        <li key={item.id} className="rounded-xl bg-primary p-3 ring-1 ring-secondary">
-                            <div className="flex items-center justify-between gap-3">
+                        <li key={item.id} className="rounded-xl bg-primary ring-1 ring-secondary overflow-hidden">
+                            <Link href={item.href} className="flex items-center justify-between gap-3 p-3 hover:bg-primary_hover transition-colors">
                                 <div className="flex items-center gap-3">
                                     <FeaturedIcon size="md" color={item.color} theme="modern" icon={item.icon} />
                                     <p className="text-md font-medium text-primary">{item.title}</p>
                                 </div>
                                 {"count" in item && <span className="text-sm font-medium text-secondary">{item.count}</span>}
-                            </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
