@@ -1,12 +1,5 @@
 {
-  "/[username]/page": "app/[username]/page.js",
-  "/admin/enquiries/page": "app/admin/enquiries/page.js",
-  "/admin/offers/page": "app/admin/offers/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/payments/page": "app/admin/payments/page.js",
-  "/admin/portfolio/page": "app/admin/portfolio/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/select-platforms/page": "app/select-platforms/page.js",
-  "/verify/page": "app/verify/page.js"
+  "/register/page": "app/register/page.js",
+  "/username/page": "app/username/page.js"
 }

@@ -124,7 +124,7 @@ const UsernameContent = () => {
                 <div className="hidden md:block">
                     <img
                         alt="Username illustration"
-                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop"
+                        src="./username.png"
                         className="h-full w-full object-cover"
                     />
                 </div>

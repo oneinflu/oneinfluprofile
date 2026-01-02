@@ -73,7 +73,7 @@ export default function RegisterPage() {
                 <div className="hidden md:block">
                     <img
                         alt="Register illustration"
-                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop"
+                        src="./register.png"
                         className="h-full w-full object-cover"
                     />
                 </div>
