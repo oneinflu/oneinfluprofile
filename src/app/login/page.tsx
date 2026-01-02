@@ -82,10 +82,10 @@ export default function LoginPage() {
 
                             {/* <SocialButton social="google" size="lg" className="w-full" onClick={handleGoogle}>Continue with Google</SocialButton> */}
 
-                            <div className="flex items-center justify-between">
+                            {/* <div className="flex items-center justify-between">
                                 <Button color="link-gray" size="sm">Forgot password</Button>
                                 <Button color="link-gray" size="sm">Forgot username</Button>
-                            </div>
+                            </div> */}
 
                             <div className="flex items-center gap-2">
                                 <span className="text-sm text-tertiary">New here?</span>
