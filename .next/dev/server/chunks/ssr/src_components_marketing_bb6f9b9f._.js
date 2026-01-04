@@ -171,36 +171,53 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                         1
                                     ]
                                 },
-                                className: "mt-4 flex items-center gap-5",
+                                className: "mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex -space-x-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                src: "/avatar.svg",
-                                                alt: "",
-                                                className: "size-8 rounded-full ring-2 ring-white dark:ring-white"
+                                                src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces",
+                                                alt: "User",
+                                                className: "size-8 rounded-full ring-2 ring-white object-cover dark:ring-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/marketing/home-hero.tsx",
                                                 lineNumber: 54,
                                                 columnNumber: 29
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                src: "/avatar.svg",
-                                                alt: "",
-                                                className: "size-8 rounded-full ring-2 ring-white dark:ring-white"
+                                                src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=64&h=64&fit=crop&crop=faces",
+                                                alt: "User",
+                                                className: "size-8 rounded-full ring-2 ring-white object-cover dark:ring-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/marketing/home-hero.tsx",
                                                 lineNumber: 55,
                                                 columnNumber: 29
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                src: "/avatar.svg",
-                                                alt: "",
-                                                className: "size-8 rounded-full ring-2 ring-white dark:ring-white"
+                                                src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=64&h=64&fit=crop&crop=faces",
+                                                alt: "User",
+                                                className: "size-8 rounded-full ring-2 ring-white object-cover dark:ring-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/marketing/home-hero.tsx",
                                                 lineNumber: 56,
+                                                columnNumber: 29
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=faces",
+                                                alt: "User",
+                                                className: "size-8 rounded-full ring-2 ring-white object-cover dark:ring-white"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/marketing/home-hero.tsx",
+                                                lineNumber: 57,
+                                                columnNumber: 29
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex size-8 items-center justify-center rounded-full bg-gray-100 ring-2 ring-white text-[10px] font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:ring-white",
+                                                children: "+2k"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/marketing/home-hero.tsx",
+                                                lineNumber: 58,
                                                 columnNumber: 29
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
@@ -210,7 +227,7 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                         columnNumber: 25
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-6 text-sm",
+                                        className: "flex flex-wrap items-center gap-x-6 gap-y-2 text-sm",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-2",
@@ -220,7 +237,7 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                                         children: "64,739"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                        lineNumber: 60,
+                                                        lineNumber: 64,
                                                         columnNumber: 33
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -228,13 +245,13 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                                         children: "Happy Customers"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                        lineNumber: 61,
+                                                        lineNumber: 65,
                                                         columnNumber: 33
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                lineNumber: 59,
+                                                lineNumber: 63,
                                                 columnNumber: 29
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -245,7 +262,7 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                                         children: "4.8/5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                        lineNumber: 64,
+                                                        lineNumber: 68,
                                                         columnNumber: 33
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -253,7 +270,7 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                                         children: "★★★★★"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                        lineNumber: 65,
+                                                        lineNumber: 69,
                                                         columnNumber: 33
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -261,19 +278,19 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                                         children: "Rating"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                        lineNumber: 66,
+                                                        lineNumber: 70,
                                                         columnNumber: 33
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                                lineNumber: 63,
+                                                lineNumber: 67,
                                                 columnNumber: 29
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 62,
                                         columnNumber: 25
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
@@ -315,17 +332,17 @@ const HomeHero = ({ demoUsername = "oneinflu" })=>{
                                 className: "block mx-auto w-full h-auto rounded-[2rem] dark:shadow-2xl"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/marketing/home-hero.tsx",
-                                lineNumber: 78,
+                                lineNumber: 82,
                                 columnNumber: 25
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/src/components/marketing/home-hero.tsx",
-                            lineNumber: 77,
+                            lineNumber: 81,
                             columnNumber: 21
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/src/components/marketing/home-hero.tsx",
-                        lineNumber: 71,
+                        lineNumber: 75,
                         columnNumber: 17
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
