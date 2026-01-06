@@ -13,8 +13,6 @@ import { NavItemBase } from "../base-components/nav-item";
 import { NavItemButton } from "../base-components/nav-item-button";
 import { NavList } from "../base-components/nav-list";
 import type { NavItemType } from "../config";
-import { useAuth } from "@/providers/auth";
-import { useRouter } from "next/navigation";
 
 interface SidebarNavigationSlimProps {
     /** URL of the currently active item. */
@@ -33,19 +31,6 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
     const activeItem = [...items, ...footerItems].find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
     const [currentItem, setCurrentItem] = useState(activeItem || items[1]);
     const [isHovering, setIsHovering] = useState(false);
-    const { setToken, setUser } = useAuth();
-    const router = useRouter();
-    const handleSignOut = () => {
-        try {
-            setToken(null);
-            setUser(null);
-            try { localStorage.removeItem("influu_username"); } catch {}
-            try { localStorage.removeItem("influu_user_id"); } catch {}
-            try { localStorage.removeItem("influu_token"); } catch {}
-        } finally {
-            router.push("/login");
-        }
-    };
 
     const isSecondarySidebarVisible = isHovering && Boolean(currentItem.items?.length);
 
@@ -104,7 +89,7 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                         </ul>
                     )}
 
-                    <Button size="sm" color="secondary" iconLeading={<LogOut01 className="size-5" />} onClick={handleSignOut}>
+                    <Button size="sm" color="secondary" iconLeading={<LogOut01 className="size-5" />} href="/logout">
                         Sign Out
                     </Button>
                 </div>
@@ -137,7 +122,7 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                             ))}
                         </ul>
                         <div className="sticky bottom-0 mt-auto border-t border-secondary bg-primary px-2 py-5">
-                            <Button size="sm" color="secondary" iconLeading={<LogOut01 className="size-5" />} onClick={handleSignOut}>
+                            <Button size="sm" color="secondary" iconLeading={<LogOut01 className="size-5" />} href="/logout">
                                 Sign Out
                             </Button>
                         </div>
@@ -187,7 +172,7 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
                         </div>
 
                         <div className="border-t border-secondary pt-6 px-2">
-                            <Button size="md" color="secondary" iconLeading={<LogOut01 className="size-5" />} className="w-full" onClick={handleSignOut}>
+                            <Button size="md" color="secondary" iconLeading={<LogOut01 className="size-5" />} className="w-full" href="/logout">
                                 Sign Out
                             </Button>
                         </div>

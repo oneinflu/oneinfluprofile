@@ -1,3 +1,15 @@
 {
-  "/page": "app/page.js"
+  "/[username]/page": "app/[username]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/fetch-meta/route": "app/api/fetch-meta/route.js",
+  "/api/fetch-metadata/route": "app/api/fetch-metadata/route.js",
+  "/import-bio/page": "app/import-bio/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js",
+  "/select-category/page": "app/select-category/page.js",
+  "/select-platforms/page": "app/select-platforms/page.js",
+  "/username/page": "app/username/page.js",
+  "/verify/page": "app/verify/page.js"
 }

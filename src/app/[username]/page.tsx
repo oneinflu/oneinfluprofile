@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft } from "@untitledui/icons";
+import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft, ShoppingBag03, Users01, ArrowRight, LayoutGrid01, List } from "@untitledui/icons";
 import { useMemo, useState, useEffect, useRef } from "react";
 import type { MouseEvent } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
@@ -162,7 +162,7 @@ export default function ProfilePage() {
             } catch {}
         };
     }, []);
-    const [profile, setProfile] = useState<{ name?: string | null; bio?: string | null; avatarUrl?: string | null } | null>(null);
+    const [profile, setProfile] = useState<{ name?: string | null; bio?: string | null; avatarUrl?: string | null; coverUrl?: string | null } | null>(null);
     const [offers, setOffers] = useState<Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null; delivery?: string | null; includes?: string[] }>>([]);
     const [links, setLinks] = useState<Array<{ platform: string; icon: string; url: string }>>([]);
     const [payEnabled, setPayEnabled] = useState<boolean>(false);
@@ -182,6 +182,9 @@ export default function ProfilePage() {
         visible?: boolean;
         pinned?: boolean | null;
     }>>([]);
+    const [shopItems, setShopItems] = useState<any[]>([]);
+    const [communityItems, setCommunityItems] = useState<any[]>([]);
+
     useEffect(() => {
         if (!username) return;
         let alive = true;
@@ -208,6 +211,46 @@ export default function ProfilePage() {
                 setContactEmail(res.contact?.email || "");
                 setContactWhatsapp(res.contact?.whatsapp || "");
                 setPortfolioItems(Array.isArray(res.portfolio) ? res.portfolio : []);
+                
+                // Mock data for Shop and Community
+                const initialShopItems = [
+                    { id: "1", title: "AutoPro Collection", price: "...", image: "https://cdn.bettamax.com/prod/2025-06-07/1.jpg", url: "https://autopro8666.com/products/magnetic" },
+                    { id: "2", title: "Loading...", price: "...", image: "", url: "https://www.amazon.in/Samsung-Moonlight-Storage-Gorilla-Upgrades/dp/B0FN7WFPFD/" },
+                    { id: "3", title: "Loading...", price: "...", image: "", url: "https://www.flipkart.com/samsung-galaxy-s24-5g-snapdragon-amber-yellow-256-gb/p/itm170d9f8c2ec9c" }
+                ];
+                setShopItems(initialShopItems);
+                
+                // Enrich shop items with metadata
+                (async () => {
+                    const enriched = await Promise.all(initialShopItems.map(async (item) => {
+                        if (!item.url || item.url === "#" || item.url.startsWith("/")) return item;
+                        try {
+                            const res = await fetch("/api/fetch-meta", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ url: item.url }),
+                            });
+                            if (!res.ok) return item;
+                            const json = await res.json();
+                            if (!json.success || !json.data) return item;
+                            const meta = json.data;
+                            return {
+                                ...item,
+                                title: meta.title || item.title,
+                                image: meta.imageUrl || item.image,
+                                price: meta.price || item.price,
+                            };
+                        } catch {
+                            return item;
+                        }
+                    }));
+                    if (alive) setShopItems(enriched);
+                })();
+                setCommunityItems([
+                    { id: "1", name: "Discord Server", memberCount: "1.2k", image: "https://assets-global.website-files.com/6257adef93867e56f84d3092/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png", url: "#" },
+                    { id: "2", name: "Telegram Group", memberCount: "850", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png", url: "#" }
+                ]);
+
                 try {
                     const origin = typeof window !== "undefined" ? window.location.origin : "";
                     const url = `${origin}/${username}`;
@@ -270,7 +313,7 @@ export default function ProfilePage() {
             )}
             <section className="lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
                 
-                <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
+                <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} shopItems={shopItems} communityItems={communityItems} onRequest={openRequest} />
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
             </section>
             <section className="hidden lg:flex min-h-screen items-center justify-center bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4">
@@ -310,7 +353,7 @@ export default function ProfilePage() {
     );
 }
 
-function ProfileCard({ username, profile, payEnabled, upiId, offers, links, portfolio, onRequest }: { username: string; profile: { name?: string | null; bio?: string | null; avatarUrl?: string | null } | null; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>; links: Array<{ platform: string; icon: string; url: string }>; portfolio: Array<{ id: string; contentType?: "image" | "video" | "link" | null; fileUrl?: string | null; externalUrl?: string | null; title?: string | null; brand?: string | null; description?: string | null; platform?: string | null; visible?: boolean; pinned?: boolean | null }>; onRequest: (service?: string) => void }) {
+function ProfileCard({ username, profile, payEnabled, upiId, offers, links, portfolio, shopItems = [], communityItems = [], onRequest }: { username: string; profile: { name?: string | null; bio?: string | null; avatarUrl?: string | null; coverUrl?: string | null } | null; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>; links: Array<{ platform: string; icon: string; url: string }>; portfolio: Array<{ id: string; contentType?: "image" | "video" | "link" | null; fileUrl?: string | null; externalUrl?: string | null; title?: string | null; brand?: string | null; description?: string | null; platform?: string | null; visible?: boolean; pinned?: boolean | null }>; shopItems?: any[]; communityItems?: any[]; onRequest: (service?: string) => void }) {
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const search = useSearchParams();
@@ -428,6 +471,8 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
             </div>
         </div>
             <ProfileServices username={username} payEnabled={payEnabled} upiId={upiId} offers={offers} onRequest={onRequest} />
+            <ProfileShop items={shopItems} coverUrl={profile?.coverUrl} avatarUrl={profile?.avatarUrl} username={username} />
+            <ProfileCommunity items={communityItems} />
             <ProfilePortfolio username={username} items={portfolio} />
             <ProfileFooter />
         </div>
@@ -440,6 +485,7 @@ function truncateBio(text: string) {
 }
 
 function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { username: string; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>; onRequest: (service?: string) => void }) {
+    const [isOpen, setIsOpen] = useState(false);
     const formatINR = new Intl.NumberFormat("en-IN");
     const labelFor = (o: typeof offers[number]) => {
         if (o.priceType === "fixed" && typeof o.price === "number") return `₹${formatINR.format(o.price)}`;
@@ -451,52 +497,62 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
         const link = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(username)}&am=${encodeURIComponent(String(price))}&tn=${encodeURIComponent(service)}`;
         window.location.href = link;
     };
+
+    const renderServiceCard = (o: typeof offers[number]) => (
+        <li key={o.title} className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
+            <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 flex-col">
+                    <p className="truncate text-sm font-semibold text-primary">{o.title}</p>
+                    {o.description && <p className="truncate text-sm text-tertiary">{o.description}</p>}
+                </div>
+                <div className="shrink-0 text-right">
+                    <p className="text-sm font-medium text-primary">{labelFor(o)}</p>
+                </div>
+            </div>
+            <div className="mt-3">
+                {o.cta === "pay" ? (
+                    <Button size="sm" color="primary" className="w-full" onClick={() => handlePay(o.title, o.price)}>
+                        Pay Now
+                    </Button>
+                ) : (
+                    <Button
+                        size="sm"
+                        color="primary"
+                        className="w-full"
+                        onClick={() => {
+                            try {
+                                const payload = { category: "request", label: o.title };
+                                const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                    (navigator as any).sendBeacon(endpoint, blob);
+                                } else {
+                                    api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                }
+                            } catch {}
+                            onRequest(o.title);
+                        }}
+                    >
+                        Request Service
+                    </Button>
+                )}
+            </div>
+        </li>
+    );
+
+    const displayedOffers = offers.slice(0, 3);
+
     return (
         <div className="mt-4">
-            <h2 className="text-md font-semibold text-primary">Services</h2>
+            <div className="flex items-center justify-between">
+                <h2 className="text-md font-semibold text-primary">Services</h2>
+                {offers.length > 3 && (
+                    <Button size="sm" color="link-color" onClick={() => setIsOpen(true)}>View all</Button>
+                )}
+            </div>
             <ul className="mt-2 flex flex-col gap-2">
                 {offers.length > 0 ? (
-                    offers.map((o) => (
-                        <li key={o.title} className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
-                            <div className="flex items-start justify-between gap-3">
-                                <div className="flex min-w-0 flex-col">
-                                    <p className="truncate text-sm font-semibold text-primary">{o.title}</p>
-                                    {o.description && <p className="truncate text-sm text-tertiary">{o.description}</p>}
-                                </div>
-                                <div className="shrink-0 text-right">
-                                    <p className="text-sm font-medium text-primary">{labelFor(o)}</p>
-                                </div>
-                            </div>
-                            <div className="mt-3">
-                                {o.cta === "pay" ? (
-                                    <Button size="sm" color="primary" className="w-full" onClick={() => handlePay(o.title, o.price)}>
-                                        Pay Now
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        size="sm"
-                                        color="primary"
-                                        className="w-full"
-                                        onClick={() => {
-                                            try {
-                                                const payload = { category: "request", label: o.title };
-                                                const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
-                                                const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
-                                                if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
-                                                    (navigator as any).sendBeacon(endpoint, blob);
-                                                } else {
-                                                    api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
-                                                }
-                                            } catch {}
-                                            onRequest(o.title);
-                                        }}
-                                    >
-                                        Request Service
-                                    </Button>
-                                )}
-                            </div>
-                        </li>
-                    ))
+                    displayedOffers.map((o) => renderServiceCard(o))
                 ) : (
                     <>
                         <li className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
@@ -530,6 +586,32 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                     </>
                 )}
             </ul>
+
+            <AriaDialogTrigger isOpen={isOpen} onOpenChange={setIsOpen}>
+                <Button slot="trigger" className="hidden">Open</Button>
+                <AriaModalOverlay
+                    isDismissable
+                    className={({ isEntering, isExiting }) =>
+                        `fixed inset-0 z-50 bg-overlay/50 backdrop-blur-md ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`
+                    }
+                >
+                    {({ state }) => (
+                        <AriaModal className="w-full cursor-auto">
+                            <AriaDialog aria-label="All Services" className="fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[85vh] overflow-hidden rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden flex flex-col">
+                                <div className="flex items-center justify-between border-b border-secondary px-4 py-3 shrink-0">
+                                    <h2 className="text-md font-semibold text-primary">All Services</h2>
+                                    <Button size="sm" onClick={() => state.close()}>Close</Button>
+                                </div>
+                                <div className="p-4 overflow-y-auto">
+                                    <ul className="flex flex-col gap-2">
+                                        {offers.map((o) => renderServiceCard(o))}
+                                    </ul>
+                                </div>
+                            </AriaDialog>
+                        </AriaModal>
+                    )}
+                </AriaModalOverlay>
+            </AriaDialogTrigger>
         </div>
     );
 }
@@ -809,6 +891,276 @@ function ProfilePortfolio({
                                                 </div>
                                             </>
                                         )}
+                                    </div>
+                                </div>
+                            </AriaDialog>
+                        </AriaModal>
+                    )}
+                </AriaModalOverlay>
+            </AriaDialogTrigger>
+        </div>
+    );
+}
+
+function ProfileCommunity({ items }: { items: Array<{ id: string; name: string; memberCount: string; image: string; url: string }> }) {
+    return (
+        <div className="mt-4">
+            <h2 className="text-md font-semibold text-primary">Join Our Community</h2>
+            <div className="mt-2 flex flex-col gap-2">
+                {items.length > 0 ? (
+                    items.map((item) => (
+                        <a
+                            key={item.id}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center justify-between rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt transition-colors hover:bg-primary_hover"
+                        >
+                            <div className="flex items-center gap-3">
+                                <div className="size-12 overflow-hidden rounded-xl bg-secondary">
+                                    <img src={item.image} alt={item.name} className="size-full object-cover" />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-sm font-semibold text-primary group-hover:text-brand-primary transition-colors">{item.name}</span>
+                                    <div className="flex items-center gap-1 text-xs text-tertiary">
+                                        <Users01 className="size-3" />
+                                        <span>{item.memberCount} members</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mr-2 rounded-full bg-secondary p-2 text-tertiary transition-colors group-hover:bg-brand-primary group-hover:text-white">
+                                <ArrowRight className="size-4" />
+                            </div>
+                        </a>
+                    ))
+                ) : (
+                    <>
+                        {[1, 2].map((i) => (
+                            <div key={i} className="flex items-center justify-between rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
+                                <div className="flex items-center gap-3">
+                                    <div className="size-12 rounded-xl bg-primary_hover animate-pulse" />
+                                    <div className="flex flex-col gap-2">
+                                        <div className="h-4 w-32 bg-primary_hover rounded animate-pulse" />
+                                        <div className="h-3 w-20 bg-primary_hover rounded animate-pulse" />
+                                    </div>
+                                </div>
+                                <div className="mr-2 size-8 rounded-full bg-primary_hover animate-pulse" />
+                            </div>
+                        ))}
+                    </>
+                )}
+            </div>
+        </div>
+    );
+}
+
+function ProfileShop({ items, coverUrl, avatarUrl, username }: { items: Array<{ id: string; title: string; price: string; image: string; url: string }>; coverUrl?: string | null; avatarUrl?: string | null; username: string }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+    return (
+        <div className="mt-4">
+            <div className="flex items-center justify-between">
+                <h2 className="text-md font-semibold text-primary">Shop</h2>
+                {items.length > 0 && (
+                    <Button size="sm" color="link-color" onClick={() => setIsOpen(true)}>View all</Button>
+                )}
+            </div>
+            <div className="mt-2 overflow-x-auto">
+                <div className="flex gap-3 snap-x snap-mandatory pb-4">
+                    {items.length > 0 ? (
+                        items.map((item) => {
+                            if (item.title === "Loading...") {
+                                return (
+                                    <div key={item.id} className="snap-start shrink-0 w-40 overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt">
+                                        <div className="aspect-square w-full bg-primary_hover animate-pulse" />
+                                        <div className="p-3">
+                                            <div className="h-4 w-24 bg-primary_hover rounded animate-pulse" />
+                                            <div className="mt-3 flex items-center justify-end">
+                                                <div className="size-7 rounded-full bg-primary_hover animate-pulse" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                            return (
+                                <a
+                                    key={item.id}
+                                    href={item.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="snap-start shrink-0 w-40 overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt group"
+                                >
+                                    <div className="aspect-square w-full overflow-hidden bg-secondary relative">
+                                        <img src={item.image} alt={item.title} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                        <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5" />
+                                    </div>
+                                    <div className="p-3">
+                                        <h3 className="truncate text-sm font-medium text-primary" title={item.title}>{item.title}</h3>
+                                        <div className="mt-2 flex items-center justify-end">
+                                            <div 
+                                                className="flex size-7 items-center justify-center rounded-full bg-primary ring-1 ring-secondary_alt text-secondary group-hover:bg-brand-primary group-hover:text-white group-hover:ring-brand-primary transition-all"
+                                                aria-label="Buy now"
+                                            >
+                                                <ShoppingBag03 className="size-3.5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            );
+                        })
+                    ) : (
+                        <>
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="snap-start shrink-0 w-40 overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt">
+                                    <div className="aspect-square w-full bg-primary_hover animate-pulse" />
+                                    <div className="p-3">
+                                        <div className="h-4 w-24 bg-primary_hover rounded animate-pulse" />
+                                        <div className="mt-3 flex items-center justify-end">
+                                            <div className="size-7 rounded-full bg-primary_hover animate-pulse" />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </>
+                    )}
+                </div>
+            </div>
+
+            <AriaDialogTrigger isOpen={isOpen} onOpenChange={setIsOpen}>
+                <Button slot="trigger" className="hidden">Open</Button>
+                <AriaModalOverlay
+                    isDismissable
+                    className={({ isEntering, isExiting }) =>
+                        `fixed inset-0 z-50 bg-overlay/50 backdrop-blur-md ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`
+                    }
+                >
+                    {({ state }) => (
+                        <AriaModal className="w-full cursor-auto">
+                            <AriaDialog aria-label="Shop" className="fixed inset-x-0 bottom-0 mx-auto w-[min(92vw,640px)] max-h-[90vh] overflow-hidden rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden flex flex-col">
+                                <div className="flex items-center justify-between border-b border-secondary px-4 py-3 shrink-0 bg-primary z-10">
+                                    <h2 className="text-md font-semibold text-primary">Shop</h2>
+                                    <Button size="sm" onClick={() => state.close()}>Close</Button>
+                                </div>
+                                <div className="overflow-y-auto">
+                                    <div className="relative h-32 sm:h-40 w-full bg-secondary">
+                                        {coverUrl ? (
+                                            <img src={coverUrl} alt="Cover" className="size-full object-cover" />
+                                        ) : (
+                                            <div className="size-full bg-linear-to-r from-blue-500 to-purple-600" />
+                                        )}
+                                        <div className="absolute -bottom-8 left-4">
+                                            <div className="size-16 rounded-full ring-4 ring-primary bg-primary overflow-hidden">
+                                                {avatarUrl ? (
+                                                    <img src={avatarUrl} alt={username} className="size-full object-cover" />
+                                                ) : (
+                                                    <div className="size-full bg-secondary" />
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-10 px-4 pb-6">
+                                        <h3 className="text-xl font-bold text-primary">{username}'s Store</h3>
+                                        <div className="flex items-center justify-between mb-6">
+                                            <p className="text-sm text-tertiary">Browse all products</p>
+                                            <div className="flex items-center gap-1 bg-secondary rounded-lg p-1">
+                                                <button
+                                                    onClick={() => setViewMode("grid")}
+                                                    className={`p-1 rounded transition-colors ${viewMode === "grid" ? "bg-primary shadow-sm text-primary" : "text-tertiary hover:text-secondary"}`}
+                                                    aria-label="Grid view"
+                                                >
+                                                    <LayoutGrid01 className="size-4" />
+                                                </button>
+                                                <button
+                                                    onClick={() => setViewMode("list")}
+                                                    className={`p-1 rounded transition-colors ${viewMode === "list" ? "bg-primary shadow-sm text-primary" : "text-tertiary hover:text-secondary"}`}
+                                                    aria-label="List view"
+                                                >
+                                                    <List className="size-4" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className={viewMode === "grid" ? "grid grid-cols-2 gap-3" : "flex flex-col gap-3"}>
+                                            {items.map((item) => {
+                                                if (item.title === "Loading...") {
+                                                    if (viewMode === "list") {
+                                                        return (
+                                                            <div key={item.id} className="flex items-center gap-3 overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt p-3">
+                                                                <div className="size-16 bg-primary_hover animate-pulse rounded-lg shrink-0" />
+                                                                <div className="flex-1">
+                                                                    <div className="h-4 w-32 bg-primary_hover rounded animate-pulse" />
+                                                                </div>
+                                                                <div className="size-8 rounded-full bg-primary_hover animate-pulse shrink-0" />
+                                                            </div>
+                                                        );
+                                                    }
+                                                    return (
+                                                        <div key={item.id} className="overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt">
+                                                            <div className="aspect-square w-full bg-primary_hover animate-pulse" />
+                                                            <div className="p-3">
+                                                                <div className="h-4 w-24 bg-primary_hover rounded animate-pulse" />
+                                                                <div className="mt-3 flex items-center justify-end">
+                                                                    <div className="size-7 rounded-full bg-primary_hover animate-pulse" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                }
+                                                if (viewMode === "list") {
+                                                    return (
+                                                        <a
+                                                            key={item.id}
+                                                            href={item.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-3 overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt group p-3 hover:bg-primary_hover transition-colors"
+                                                        >
+                                                            <div className="size-16 shrink-0 overflow-hidden bg-secondary rounded-lg relative">
+                                                                <img src={item.image} alt={item.title} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                                                <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5" />
+                                                            </div>
+                                                            <div className="flex-1 min-w-0">
+                                                                <h3 className="line-clamp-2 text-sm font-medium text-primary" title={item.title}>{item.title}</h3>
+                                                            </div>
+                                                            <div className="shrink-0">
+                                                                <div 
+                                                                    className="flex size-8 items-center justify-center rounded-full bg-secondary text-secondary group-hover:bg-brand-primary group-hover:text-white transition-all"
+                                                                    aria-label="Buy now"
+                                                                >
+                                                                    <ShoppingBag03 className="size-4" />
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    );
+                                                }
+                                                return (
+                                                    <a
+                                                        key={item.id}
+                                                        href={item.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="overflow-hidden rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt group"
+                                                    >
+                                                        <div className="aspect-square w-full overflow-hidden bg-secondary relative">
+                                                            <img src={item.image} alt={item.title} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                                            <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/5" />
+                                                        </div>
+                                                        <div className="p-3">
+                                                            <h3 className="truncate text-sm font-medium text-primary" title={item.title}>{item.title}</h3>
+                                                            <div className="mt-2 flex items-center justify-end">
+                                                                <div 
+                                                                    className="flex size-7 items-center justify-center rounded-full bg-primary ring-1 ring-secondary_alt text-secondary group-hover:bg-brand-primary group-hover:text-white group-hover:ring-brand-primary transition-all"
+                                                                    aria-label="Buy now"
+                                                                >
+                                                                    <ShoppingBag03 className="size-3.5" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
                             </AriaDialog>

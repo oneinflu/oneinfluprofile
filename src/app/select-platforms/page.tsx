@@ -37,7 +37,7 @@ export default function SelectPlatformsPage() {
             <div className=" top-0 z-20 px-4 md:px-8 pt-6 pb-4">
                 <div className="mx-auto w-full max-w-xl text-center">
                     <div className="w-full">
-                        <ProgressBarBase value={2} min={0} max={4} />
+                        <ProgressBarBase value={3} min={0} max={4} />
                     </div>
                     <div className="mt-6 flex flex-col items-center gap-2">
                         <h1 className="text-display-sm font-semibold text-primary">Which platforms are you on?</h1>

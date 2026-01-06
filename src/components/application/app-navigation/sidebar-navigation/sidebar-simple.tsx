@@ -10,8 +10,6 @@ import { NavAccountCard } from "../base-components/nav-account-card";
 import { NavItemBase } from "../base-components/nav-item";
 import { NavList } from "../base-components/nav-list";
 import type { NavItemType } from "../config";
-import { useAuth } from "@/providers/auth";
-import { useRouter } from "next/navigation";
 
 interface SidebarNavigationProps {
     /** URL of the currently active item. */
@@ -40,20 +38,6 @@ export const SidebarNavigationSimple = ({
     className,
 }: SidebarNavigationProps) => {
     const MAIN_SIDEBAR_WIDTH = 296;
-    const { setToken, setUser } = useAuth();
-    const router = useRouter();
-    const handleLogout: React.MouseEventHandler = (e) => {
-        e.preventDefault();
-        try {
-            setToken(null);
-            setUser(null);
-            try { localStorage.removeItem("influu_username"); } catch {}
-            try { localStorage.removeItem("influu_user_id"); } catch {}
-            try { localStorage.removeItem("influu_token"); } catch {}
-        } finally {
-            router.push("/login");
-        }
-    };
 
     const content = (
         <aside
@@ -86,15 +70,9 @@ export const SidebarNavigationSimple = ({
                     <ul className="flex flex-col">
                         {footerItems.map((item) => (
                             <li key={item.label} className="py-0.5">
-                                {item.href === "/logout" ? (
-                                    <NavItemBase badge={item.badge} icon={item.icon} href={"#"} type="link" onClick={handleLogout}>
-                                        {item.label}
-                                    </NavItemBase>
-                                ) : (
-                                    <NavItemBase badge={item.badge} icon={item.icon} href={item.href} type="link" current={item.href === activeUrl}>
-                                        {item.label}
-                                    </NavItemBase>
-                                )}
+                                <NavItemBase badge={item.badge} icon={item.icon} href={item.href} type="link" current={item.href === activeUrl}>
+                                    {item.label}
+                                </NavItemBase>
                             </li>
                         ))}
                     </ul>

@@ -24,7 +24,7 @@ export default function SelectCategoryPage() {
         setLoading(true);
         try {
             await updateUserById(user.id, { category });
-            router.push("/select-platforms");
+            router.push("/import-bio");
         } finally {
             setLoading(false);
         }
