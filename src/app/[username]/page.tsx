@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft } from "@untitledui/icons";
+import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft, ArrowLeft, ArrowRight } from "@untitledui/icons";
 import { useMemo, useState, useEffect, useRef } from "react";
 import type { MouseEvent } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
@@ -446,6 +446,7 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
         if (o.priceType === "starting" && typeof o.price === "number") return `Starting at ₹${formatINR.format(o.price)}`;
         return "Custom pricing";
     };
+    const [servicesOpen, setServicesOpen] = useState(false);
     const handlePay = (service: string, price?: number) => {
         if (!price || !payEnabled) return onRequest(service);
         const link = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(username)}&am=${encodeURIComponent(String(price))}&tn=${encodeURIComponent(service)}`;
@@ -453,10 +454,13 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
     };
     return (
         <div className="mt-4">
-            <h2 className="text-md font-semibold text-primary">Services</h2>
+            <div className="flex items-center justify-between">
+                <h2 className="text-md font-semibold text-primary">Services</h2>
+                <Button size="sm" color="link-color" onClick={() => setServicesOpen(true)}>View all</Button>
+            </div>
             <ul className="mt-2 flex flex-col gap-2">
                 {offers.length > 0 ? (
-                    offers.map((o) => (
+                    offers.slice(0, 3).map((o) => (
                         <li key={o.title} className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
                             <div className="flex items-start justify-between gap-3">
                                 <div className="flex min-w-0 flex-col">
@@ -530,6 +534,73 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                     </>
                 )}
             </ul>
+            <AriaDialogTrigger isOpen={servicesOpen} onOpenChange={setServicesOpen}>
+                <Button slot="trigger" className="hidden">Open</Button>
+                <AriaModalOverlay
+                    isDismissable
+                    className={({ isEntering, isExiting }) =>
+                        `fixed inset-0 z-50 bg-overlay/50 backdrop-blur-md ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`
+                    }
+                >
+                    {({ state }) => (
+                        <AriaModal className="w-full cursor-auto">
+                            <AriaDialog aria-label="All services" className="mx-auto my-8 w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto overflow-x-hidden rounded-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
+                                <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
+                                    <p className="text-md font-semibold text-primary">Services</p>
+                                    <Button size="sm" onClick={() => state.close()}>Close</Button>
+                                </div>
+                                <div className="p-3">
+                                    <ul className="flex flex-col gap-2">
+                                        {offers.length > 0 ? (
+                                            offers.map((o) => (
+                                                <li key={o.title} className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
+                                                    <div className="flex items-start justify-between gap-3">
+                                                        <div className="flex min-w-0 flex-col">
+                                                            <p className="truncate text-sm font-semibold text-primary">{o.title}</p>
+                                                            {o.description && <p className="truncate text-sm text-tertiary">{o.description}</p>}
+                                                        </div>
+                                                        <div className="shrink-0 text-right">
+                                                            <p className="text-sm font-medium text-primary">{labelFor(o)}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="mt-3">
+                                                        {o.cta === "pay" ? (
+                                                            <Button size="sm" color="primary" className="w-full" onClick={() => handlePay(o.title, o.price)}>
+                                                                Pay Now
+                                                            </Button>
+                                                        ) : (
+                                                            <Button
+                                                                size="sm"
+                                                                color="primary"
+                                                                className="w-full"
+                                                                onClick={() => {
+                                                                    try {
+                                                                        const payload = { category: "request", label: o.title };
+                                                                        const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                                                        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                                                        if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                                                            (navigator as any).sendBeacon(endpoint, blob);
+                                                                        } else {
+                                                                            api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                                                        }
+                                                                    } catch {}
+                                                                    onRequest(o.title);
+                                                                }}
+                                                            >
+                                                                Request Service
+                                                            </Button>
+                                                        )}
+                                                    </div>
+                                                </li>
+                                            ))
+                                        ) : null}
+                                    </ul>
+                                </div>
+                            </AriaDialog>
+                        </AriaModal>
+                    )}
+                </AriaModalOverlay>
+            </AriaDialogTrigger>
         </div>
     );
 }
@@ -552,20 +623,33 @@ function ProfilePortfolio({
         pinned?: boolean | null;
     }>;
 }) {
-    const iconFor = (p: string) => {
-        const map: Record<string, string> = {
-            instagram: "/instagram.png",
-            youtube: "/youtube.png",
-            tiktok: "/tiktok.png",
-            website: "/web.png",
-        };
-        return map[p] || "/web.png";
-    };
     const urlFor = (it: { fileUrl?: string | null; externalUrl?: string | null }) => (it.fileUrl || it.externalUrl || "");
     const [open, setOpen] = useState(false);
     const [galleryOpen, setGalleryOpen] = useState(false);
     const [active, setActive] = useState<(typeof items)[number] | null>(null);
     const [wantAutoplay, setWantAutoplay] = useState(false);
+    const [visibleCount, setVisibleCount] = useState(9);
+    useEffect(() => {
+        if (galleryOpen) setVisibleCount(9);
+    }, [galleryOpen]);
+    const goPrev = () => {
+        if (!active) return;
+        const idx = items.findIndex((x) => x.id === active.id);
+        if (idx > 0) {
+            const it = items[idx - 1];
+            setActive(it);
+            setWantAutoplay(it.contentType === "video");
+        }
+    };
+    const goNext = () => {
+        if (!active) return;
+        const idx = items.findIndex((x) => x.id === active.id);
+        if (idx >= 0 && idx < items.length - 1) {
+            const it = items[idx + 1];
+            setActive(it);
+            setWantAutoplay(it.contentType === "video");
+        }
+    };
     return (
         <div className="mt-4">
             <div className="flex items-center justify-between">
@@ -575,11 +659,11 @@ function ProfilePortfolio({
             <div className="mt-2 overflow-x-auto">
                 <div className="flex gap-2 snap-x snap-mandatory">
                     {items.length > 0 ? (
-                        items.map((it) => (
+                        items.slice(0, 3).map((it) => (
                             <button
                                 key={it.id}
                                 type="button"
-                                className="snap-start w-36 sm:w-40 overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary hover:bg-primary_hover"
+                                className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary hover:bg-primary_hover"
                                 onClick={() => {
                                     setActive(it);
                                     setWantAutoplay(it.contentType === "video");
@@ -601,15 +685,13 @@ function ProfilePortfolio({
                                     ) : it.contentType === "image" && urlFor(it) ? (
                                         <img
                                             src={urlFor(it)}
-                                            alt={String(it.title || it.brand || it.platform || "Portfolio")}
+                                            alt={String(it.title || it.brand || "Portfolio")}
                                             className="size-full object-cover select-none"
                                             draggable={false}
                                             onContextMenu={(e) => e.preventDefault()}
                                         />
                                     ) : (
-                                        <div className="flex size-full items-center justify-center bg-primary_hover">
-                                            <img src={iconFor(String(it.platform || "website"))} alt={String(it.platform || "website")} className="size-10 opacity-90" />
-                                        </div>
+                                        <div className="size-full bg-primary_hover" />
                                     )}
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <Button
@@ -629,7 +711,6 @@ function ProfilePortfolio({
                                 </div>
                                 <div className="flex items-center justify-between gap-2 px-2 py-1">
                                     {it.brand && <p className="truncate text-xs text-primary">{it.brand}</p>}
-                                    <img src={iconFor(String(it.platform || "website"))} alt="platform" className="size-4 opacity-80" />
                                 </div>
                             </button>
                         ))
@@ -672,6 +753,8 @@ function ProfilePortfolio({
                                 <div className="flex items-center justify-between border-b border-secondary px-5 py-4">
                                     <p className="text-md font-semibold text-primary">{active?.brand || "Preview"}</p>
                                     <div className="flex items-center gap-2">
+                                        <ButtonUtility aria-label="Previous" size="sm" color="secondary" icon={ArrowLeft} onClick={goPrev} />
+                                        <ButtonUtility aria-label="Next" size="sm" color="secondary" icon={ArrowRight} onClick={goNext} />
                                         <Button size="sm" onClick={() => state.close()}>Back</Button>
                                     </div>
                                 </div>
@@ -692,15 +775,13 @@ function ProfilePortfolio({
                                         ) : active.contentType === "image" && urlFor(active) ? (
                                             <img
                                                 src={urlFor(active)}
-                                                alt={String(active.title || active.brand || active.platform || "Portfolio")}
+                                                alt={String(active.title || active.brand || "Portfolio")}
                                                 className="size-full object-cover select-none"
                                                 draggable={false}
                                                 onContextMenu={(e) => e.preventDefault()}
                                             />
                                         ) : (
-                                            <div className="flex size-full items-center justify-center">
-                                                <img src={iconFor(String(active.platform || "website"))} alt={String(active.platform || "website")} className="size-16 opacity-90" />
-                                            </div>
+                                            <div className="size-full bg-primary_hover" />
                                         )
                                     ) : null}
                                     </div>
@@ -721,7 +802,7 @@ function ProfilePortfolio({
                 >
                     {({ state }) => (
                         <AriaModal className="w-full cursor-auto">
-                            <AriaDialog aria-label="Portfolio gallery" className="mx-auto my-8 w-[min(92vw,640px)] overflow-hidden rounded-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
+                            <AriaDialog aria-label="Portfolio gallery" className="mx-auto my-8 w-[min(92vw,640px)] max-h-[80vh] overflow-y-auto overflow-x-hidden rounded-2xl bg-primary shadow-xl ring-1 ring-secondary_alt focus:outline-hidden">
                                 <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
                                     <p className="text-md font-semibold text-primary">Work & Collaborations</p>
                                     <Button size="sm" onClick={() => state.close()}>Close</Button>
@@ -729,7 +810,7 @@ function ProfilePortfolio({
                                 <div className="p-3">
                                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                         {items.length > 0 ? (
-                                            items.map((it) => (
+                                            items.slice(0, visibleCount).map((it) => (
                                                 <button
                                                     key={it.id}
                                                     type="button"
@@ -755,40 +836,37 @@ function ProfilePortfolio({
                                                         ) : it.contentType === "image" && urlFor(it) ? (
                                                             <img
                                                                 src={urlFor(it)}
-                                                                alt={String(it.title || it.brand || it.platform || "Portfolio")}
+                                                                alt={String(it.title || it.brand || "Portfolio")}
                                                                 className="size-full object-cover select-none"
                                                                 draggable={false}
                                                                 onContextMenu={(e) => e.preventDefault()}
                                                             />
                                                         ) : (
-                                                            <div className="flex size-full items-center justify-center bg-primary_hover">
-                                                                <img src={iconFor(String(it.platform || "website"))} alt={String(it.platform || "website")} className="size-10 opacity-90" />
-                                                            </div>
+                                                            <div className="size-full bg-primary_hover" />
                                                         )}
-                                                        <div className="absolute inset-0 flex items-center justify-center">
-                                                            <Button
-                                                                size="sm"
-                                                                color="secondary"
-                                                                className="px-3"
-                                                                onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                                                                    e.stopPropagation();
-                                                                    setActive(it);
-                                                                    setWantAutoplay(it.contentType === "video");
-                                                                    setOpen(true);
-                                                                }}
-                                                            >
-                                                                {it.contentType === "video" ? "Play" : "View"}
-                                                            </Button>
-                                                        </div>
-                                                    </div>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <Button
+                                            size="sm"
+                                            color="secondary"
+                                            className="px-3"
+                                            onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                                                e.stopPropagation();
+                                                setActive(it);
+                                                setWantAutoplay(it.contentType === "video");
+                                                setOpen(true);
+                                            }}
+                                        >
+                                            {it.contentType === "video" ? "Play" : "View"}
+                                        </Button>
+                                    </div>
+                                </div>
                                                     <div className="flex items-center justify-between gap-2 px-2 py-1">
                                                         <p className="truncate text-xs text-primary">{it.brand || ""}</p>
-                                                        <img src={iconFor(String(it.platform || "website"))} alt="platform" className="size-4 opacity-80" />
                                                     </div>
                                                 </button>
                                             ))
                                         ) : (
-                                            <>
+                        <>
                                                 <div className="overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
                                                     <div className="aspect-square w-full bg-primary_hover animate-pulse" />
                                                     <div className="px-2 py-1">
@@ -810,6 +888,11 @@ function ProfilePortfolio({
                                             </>
                                         )}
                                     </div>
+                                    {items.length > visibleCount && (
+                                        <div className="mt-3 flex items-center justify-center">
+                                            <Button size="sm" onClick={() => setVisibleCount((c) => Math.min(c + 9, items.length))}>Load more</Button>
+                                        </div>
+                                    )}
                                 </div>
                             </AriaDialog>
                         </AriaModal>

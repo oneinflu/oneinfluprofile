@@ -14,6 +14,7 @@ import { Select } from "@/components/base/select/select";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
+import { Badge } from "@/components/base/badges/badges";
 // no search params needed; preview is driven by local state
 
 export default function MyprofilePage() {
@@ -39,6 +40,14 @@ export default function MyprofilePage() {
         { id: "whatsapp", label: "Chat on WhatsApp", enabled: false, connected: false },
         { id: "pay", label: "Pay Now", enabled: false },
     ]);
+    const [isSavingProfile, setIsSavingProfile] = useState(false);
+    const [saveSuccessProfile, setSaveSuccessProfile] = useState(false);
+    const [isSendingEmailOtp, setIsSendingEmailOtp] = useState(false);
+    const [isVerifyingEmailOtp, setIsVerifyingEmailOtp] = useState(false);
+    const [isSavingWhatsapp, setIsSavingWhatsapp] = useState(false);
+    const [saveSuccessContact, setSaveSuccessContact] = useState(false);
+    const [isSavingUpi, setIsSavingUpi] = useState(false);
+    const [saveSuccessUpi, setSaveSuccessUpi] = useState(false);
     const [links, setLinks] = useState<Array<{ id: string; linkId?: string; platform: string; icon: string; url: string; visible: boolean }>>([]);
     const [dragIndex, setDragIndex] = useState<number | null>(null);
     const [showAddPlatform, setShowAddPlatform] = useState(false);
@@ -206,7 +215,7 @@ export default function MyprofilePage() {
                                     <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handlePhotoSelected} />
                                 </div>
                                 <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2">
-                                    <Input label="Name" size="md" value={name} onChange={(val) => { setName(val); }} onBlur={async () => { try { if (!token || !user?.id) return; await updateUserById(user.id, { name }); setPreviewVersion((v) => v + 1); } catch {} }} placeholder="Your name" />
+                                    <Input label="Name" size="md" value={name} onChange={(val) => { setName(val); }} placeholder="Your name" />
                                     <Select
                                         label="Role / niche"
                                         size="md"
@@ -227,7 +236,8 @@ export default function MyprofilePage() {
                                     </Select>
                                 </div>
                             </div>
- <div className="mt-4">
+                           
+                            <div className="mt-4">
                                 <Input
                                     label="Username"
                                     size="md"
@@ -235,26 +245,6 @@ export default function MyprofilePage() {
                                     onChange={(val) => {
                                         setUsername(val);
                                         setUsernameError(null);
-                                    }}
-                                    onBlur={async () => {
-                                        try {
-                                            if (!token || !user?.id) return;
-                                            const val = String(username || "").trim().toLowerCase();
-                                            if (!val) return;
-                                            const orig = String(originalUsername || "").trim().toLowerCase();
-                                            if (val !== orig) {
-                                                const chk = await api.get<{ success: boolean; status: string; data: { available: boolean } }>(`/auth/username/check?username=${encodeURIComponent(val)}`, { token });
-                                                if (!chk.data?.available) {
-                                                    setUsernameError("Username not available");
-                                                    return;
-                                                }
-                                            }
-                                            await updateUserById(user.id, { username: val });
-                                            setOriginalUsername(val);
-                                            setUsernameError(null);
-                                        } catch {
-                                            setUsernameError("Username not available");
-                                        }
                                     }}
                                     isInvalid={Boolean(usernameError)}
                                     hint={typeof usernameError === "string" ? usernameError : undefined}
@@ -267,11 +257,54 @@ export default function MyprofilePage() {
                                     label="Short bio"
                                     value={bio}
                                     onChange={(val) => { setBio(val.slice(0, 150)); }}
-                                    onBlur={async () => { try { if (!token || !user?.id) return; await updateUserById(user.id, { shortBio: bio }); setPreviewVersion((v) => v + 1); } catch {} }}
                                     placeholder="Tell people about yourself (max 150 characters)"
                                     rows={4}
                                     hint={`${bio.length}/150`}
                                 />
+                                <div className="mt-3 flex items-center justify-end gap-3">
+                                    <Button
+                                        size="md"
+                                        color="primary"
+                                        isLoading={isSavingProfile}
+                                        onClick={async () => {
+                                            try {
+                                                setIsSavingProfile(true);
+                                                setSaveSuccessProfile(false);
+                                                if (!token || !user?.id) return;
+                                                const val = String(username || "").trim().toLowerCase();
+                                                const orig = String(originalUsername || "").trim().toLowerCase();
+                                                if (val && val !== orig) {
+                                                    const chk = await api.get<{ success: boolean; status: string; data: { available: boolean } }>(`/auth/username/check?username=${encodeURIComponent(val)}`, { token });
+                                                    if (!chk.data?.available) {
+                                                        setUsernameError("Username not available");
+                                                        return;
+                                                    }
+                                                }
+                                                const data: Record<string, unknown> = {};
+                                                if (name) data.name = name;
+                                                if (val) data.username = val;
+                                                data.shortBio = bio;
+                                                if (role) data.category = role;
+                                                await updateUserById(user.id, data);
+                                                if (val) setOriginalUsername(val);
+                                                setUsernameError(null);
+                                                setPreviewVersion((v) => v + 1);
+                                                setSaveSuccessProfile(true);
+                                                setTimeout(() => setSaveSuccessProfile(false), 3000);
+                                            } catch {
+                                            } finally {
+                                                setIsSavingProfile(false);
+                                            }
+                                        }}
+                                    >
+                                        Save changes
+                                    </Button>
+                                    {saveSuccessProfile && (
+                                        <Badge type="pill-color" size="md" color="success">
+                                            Information updated
+                                        </Badge>
+                                    )}
+                                </div>
                         </div>
                     </div>
 
@@ -306,25 +339,55 @@ export default function MyprofilePage() {
                             {contactMethod === "email" ? (
                                 <div className="flex flex-col gap-2">
                                     <Input label="Email ID" size="md" value={emailId} onChange={setEmailId} placeholder="your@email.com" />
-                                    <div className="flex items-center gap-2">
-                                        <Button size="sm" color="secondary" onClick={async () => {
-                                            try {
-                                                if (!token || !user?.id || !emailId.trim()) return;
-                                                const res = await api.post<{ success: boolean; status: string; data: { id: string } }>(`/users/id/${user.id}/email/otp/send`, { email: emailId.trim().toLowerCase() }, { token });
-                                                setEmailOtpSessionId(res.data.id);
-                                            } catch {}
-                                        }}>Send OTP</Button>
-                                        <InputBase size="md" value={emailOtp} onChange={setEmailOtp} placeholder="Enter OTP" />
-                                        <Button size="sm" onClick={async () => {
-                                            try {
-                                                if (!token || !user?.id || !emailOtpSessionId || !emailOtp.trim()) return;
-                                                await api.post(`/users/id/${user.id}/email/otp/verify`, { id: emailOtpSessionId, code: emailOtp.trim() }, { token });
-                                                setEmailOtp("");
-                                                setEmailOtpSessionId(null);
-                                                setPreviewVersion((v) => v + 1);
-                                            } catch {}
-                                        }}>Verify & Save</Button>
-                                    </div>
+                                    {(emailId.trim().toLowerCase() !== String(user?.email || "").trim().toLowerCase()) && (
+                                        <div className="flex items-center justify-end gap-2">
+                                            <Button
+                                                size="sm"
+                                                color="secondary"
+                                                isLoading={isSendingEmailOtp}
+                                                onClick={async () => {
+                                                    try {
+                                                        setIsSendingEmailOtp(true);
+                                                        if (!token || !user?.id || !emailId.trim()) return;
+                                                        const res = await api.post<{ success: boolean; status: string; data: { id: string } }>(`/users/id/${user.id}/email/otp/send`, { email: emailId.trim().toLowerCase() }, { token });
+                                                        setEmailOtpSessionId(res.data.id);
+                                                    } catch {}
+                                                    finally {
+                                                        setIsSendingEmailOtp(false);
+                                                    }
+                                                }}
+                                            >
+                                                Send OTP
+                                            </Button>
+                                            <InputBase size="md" value={emailOtp} onChange={setEmailOtp} placeholder="Enter OTP" />
+                                            <Button
+                                                size="sm"
+                                                isLoading={isVerifyingEmailOtp}
+                                                onClick={async () => {
+                                                    try {
+                                                        setIsVerifyingEmailOtp(true);
+                                                        if (!token || !user?.id || !emailOtpSessionId || !emailOtp.trim()) return;
+                                                        await api.post(`/users/id/${user.id}/email/otp/verify`, { id: emailOtpSessionId, code: emailOtp.trim() }, { token });
+                                                        setEmailOtp("");
+                                                        setEmailOtpSessionId(null);
+                                                        setPreviewVersion((v) => v + 1);
+                                                        setSaveSuccessContact(true);
+                                                        setTimeout(() => setSaveSuccessContact(false), 3000);
+                                                    } catch {}
+                                                    finally {
+                                                        setIsVerifyingEmailOtp(false);
+                                                    }
+                                                }}
+                                            >
+                                                Save changes
+                                            </Button>
+                                            {saveSuccessContact && (
+                                                <Badge type="pill-color" size="md" color="success">
+                                                    Information updated
+                                                </Badge>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                             ) : (
                                 <div className="flex flex-col gap-2">
@@ -334,11 +397,11 @@ export default function MyprofilePage() {
                                             size="md"
                                             selectedKey={whatsappCode}
                                             items={[
-                                                { id: "+91", label: "India (+91)" },
-                                                { id: "+1", label: "USA (+1)" },
-                                                { id: "+44", label: "UK (+44)" },
-                                                { id: "+61", label: "Australia (+61)" },
-                                                { id: "+971", label: "UAE (+971)" },
+                                                { id: "+91", label: "+91" },
+                                                { id: "+1", label: "+1" },
+                                                { id: "+44", label: "+44" },
+                                                { id: "+61", label: "+61" },
+                                                { id: "+971", label: "+971" },
                                             ]}
                                             onSelectionChange={(key) => setWhatsappCode(String(key))}
                                         >
@@ -346,17 +409,34 @@ export default function MyprofilePage() {
                                         </Select>
                                         <Input label="WhatsApp number" size="md" value={whatsappNumber} onChange={setWhatsappNumber} placeholder="WhatsApp number" />
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Button size="sm" onClick={async () => {
-                                            try {
-                                                if (!token || !user?.id) return;
-                                                const code = whatsappCode.startsWith("+") ? whatsappCode : `+${whatsappCode}`;
-                                                const number = whatsappNumber.replace(/\D/g, "");
-                                                const full = `${code}${number}`;
-                                                await updateUserById(user.id, { whatsapp: full });
-                                                setPreviewVersion((v) => v + 1);
-                                            } catch {}
-                                        }}>Save</Button>
+                                    <div className="flex items-center justify-end gap-2">
+                                        <Button
+                                            size="sm"
+                                            isLoading={isSavingWhatsapp}
+                                            onClick={async () => {
+                                                try {
+                                                    setIsSavingWhatsapp(true);
+                                                    if (!token || !user?.id) return;
+                                                    const code = whatsappCode.startsWith("+") ? whatsappCode : `+${whatsappCode}`;
+                                                    const number = whatsappNumber.replace(/\D/g, "");
+                                                    const full = `${code}${number}`;
+                                                    await updateUserById(user.id, { whatsapp: full });
+                                                    setPreviewVersion((v) => v + 1);
+                                                    setSaveSuccessContact(true);
+                                                    setTimeout(() => setSaveSuccessContact(false), 3000);
+                                                } catch {}
+                                                finally {
+                                                    setIsSavingWhatsapp(false);
+                                                }
+                                            }}
+                                        >
+                                            Save changes
+                                        </Button>
+                                        {saveSuccessContact && (
+                                            <Badge type="pill-color" size="md" color="success">
+                                                Information updated
+                                            </Badge>
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -372,16 +452,34 @@ export default function MyprofilePage() {
                         </div>
                         <div className="mt-3 grid w-full grid-cols-1 gap-3 md:grid-cols-[1fr_auto]">
                             <Input label="UPI ID" size="md" value={upiId} onChange={setUpiId} placeholder="yourid@bank" />
-                            <div className="flex items-end">
-                                <Button size="sm" color="secondary" onClick={async () => {
-                                    try {
-                                        if (!token || !user?.id) return;
-                                        const val = upiId.trim();
-                                        await updateUserById(user.id, { upi: val });
-                                        setCtas((prev) => prev.map((c) => (c.id === "pay" ? { ...c, enabled: Boolean(val) } : c)));
-                                        setPreviewVersion((v) => v + 1);
-                                    } catch {}
-                                }}>Save</Button>
+                            <div className="flex items-end justify-end gap-2">
+                                <Button
+                                    size="sm"
+                                    color="primary"
+                                    isLoading={isSavingUpi}
+                                    onClick={async () => {
+                                        try {
+                                            setIsSavingUpi(true);
+                                            if (!token || !user?.id) return;
+                                            const val = upiId.trim();
+                                            await updateUserById(user.id, { upi: val });
+                                            setCtas((prev) => prev.map((c) => (c.id === "pay" ? { ...c, enabled: Boolean(val) } : c)));
+                                            setPreviewVersion((v) => v + 1);
+                                            setSaveSuccessUpi(true);
+                                            setTimeout(() => setSaveSuccessUpi(false), 3000);
+                                        } catch {}
+                                        finally {
+                                            setIsSavingUpi(false);
+                                        }
+                                    }}
+                                >
+                                    Save changes
+                                </Button>
+                                {saveSuccessUpi && (
+                                    <Badge type="pill-color" size="md" color="success">
+                                        Information updated
+                                    </Badge>
+                                )}
                             </div>
                         </div>
                     </div>

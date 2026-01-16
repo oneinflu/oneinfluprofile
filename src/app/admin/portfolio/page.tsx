@@ -24,15 +24,18 @@ export default function AdminPortfolioPage() {
     const [confirmIndex, setConfirmIndex] = useState<number | null>(null);
     const [limitOpen, setLimitOpen] = useState(false);
     const [previewVersion, setPreviewVersion] = useState(0);
-    const [draft, setDraft] = useState<{ contentType: "image" | "video" | "link"; fileUrl?: string; file?: File | null; externalUrl?: string; title: string; brand?: string; description?: string; platform: string; visible: boolean; pinned?: boolean }>({
+    const [savingDraft, setSavingDraft] = useState(false);
+    const [saveSuccessDraft, setSaveSuccessDraft] = useState(false);
+    const [draft, setDraft] = useState<{ contentType: "image" | "video" | "link"; files?: Array<{ fileUrl: string; file: File }>; fileUrl?: string; file?: File | null; externalUrl?: string; title: string; brand?: string; description?: string; platform: string; visible: boolean; pinned?: boolean }>({
         contentType: "image",
+        files: [],
         fileUrl: undefined,
         file: null,
         externalUrl: "",
         title: "",
         brand: "",
         description: "",
-        platform: "instagram",
+        platform: "website",
         visible: true,
         pinned: false,
     });
@@ -86,7 +89,7 @@ export default function AdminPortfolioPage() {
 
     const openAdd = () => {
         setEditIndex(null);
-        setDraft({ contentType: "image", fileUrl: undefined, file: null, externalUrl: "", title: "", brand: "", description: "", platform: "instagram", visible: true, pinned: false });
+        setDraft({ contentType: "image", files: [], fileUrl: undefined, file: null, externalUrl: "", title: "", brand: "", description: "", platform: "website", visible: true, pinned: false });
         setEditorOpen(true);
     };
 
@@ -95,6 +98,7 @@ export default function AdminPortfolioPage() {
         setEditIndex(index);
         setDraft({
             contentType: it.contentType || (it.externalUrl ? "link" : "image"),
+            files: [],
             fileUrl: it.thumbnail,
             file: null,
             externalUrl: it.externalUrl || "",
@@ -109,22 +113,23 @@ export default function AdminPortfolioPage() {
     };
 
     const saveDraft = async () => {
-        if (!draft.title.trim()) return;
+        if (editIndex === null && (!draft.files || draft.files.length === 0)) return;
         const action = editIndex === null ? "create" : "update";
         try {
+            setSavingDraft(true);
             if (!user?.username || !token) throw new Error("unauthorized");
             if (editIndex === null) {
-                let w: any;
-                if (draft.file) {
+                const created: Array<(typeof items)[number]> = [];
+                for (const f of draft.files || []) {
+                    let w: any;
                     const fd = new FormData();
-                    fd.append("file", draft.file);
+                    fd.append("file", f.file);
                     fd.append("contentType", draft.contentType);
-                    fd.append("externalUrl", draft.externalUrl?.trim() || "");
-                    fd.append("title", draft.title.trim());
+                    fd.append("title", (draft.title || f.file.name).trim());
                     fd.append("brand", draft.brand?.trim() || "");
                     fd.append("description", (draft.description || "").slice(0, 120));
                     fd.append("platform", draft.platform);
-                    fd.append("visible", String(draft.visible));
+                    fd.append("visible", String(true));
                     fd.append("pinned", String(draft.pinned || false));
                     const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${user.username}/portfolio`;
                     const resp = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${token}` }, body: fd });
@@ -132,59 +137,26 @@ export default function AdminPortfolioPage() {
                     if (!resp.ok) {
                         if ((data as any)?.message === "storage_limit_reached" || resp.status === 413) {
                             setLimitOpen(true);
-                            return;
+                            continue;
                         }
                         throw new Error((data as any)?.message || `HTTP ${resp.status}`);
                     }
                     w = (data as any).data?.item;
-                } else {
-                    const res = await api.post<{
-                        success: boolean;
-                        status: string;
-                        data: {
-                            item: {
-                                id: string;
-                                contentType?: "image" | "video" | "link" | null;
-                                fileUrl?: string | null;
-                                externalUrl?: string | null;
-                                title: string;
-                                brand?: string | null;
-                                description?: string | null;
-                                platform: string;
-                                visible: boolean;
-                                pinned?: boolean | null;
-                            };
-                        };
-                    }>(
-                        `/users/${user.username}/portfolio`,
-                        {
-                            contentType: draft.contentType,
-                            fileUrl: draft.fileUrl || null,
-                            externalUrl: draft.externalUrl?.trim() || null,
-                            title: draft.title.trim(),
-                            brand: draft.brand?.trim() || null,
-                            description: (draft.description || "").slice(0, 120),
-                            platform: draft.platform,
-                            visible: draft.visible,
-                            pinned: draft.pinned || false,
-                        },
-                        { token },
-                    );
-                    w = res.data.item;
+                    const nextItem = {
+                        id: w.id,
+                        title: w.title,
+                        brand: w.brand || undefined,
+                        platform: w.platform,
+                        thumbnail: (w as any).thumbnail || w.fileUrl || undefined,
+                        visible: true,
+                        description: w.description || undefined,
+                        contentType: w.contentType || undefined,
+                        externalUrl: w.externalUrl || undefined,
+                        pinned: w.pinned || false,
+                    } as (typeof items)[number];
+                    created.push(nextItem);
                 }
-                const nextItem = {
-                    id: w.id,
-                    title: w.title,
-                    brand: w.brand || undefined,
-                    platform: w.platform,
-                    thumbnail: (w as any).thumbnail || w.fileUrl || undefined,
-                    visible: w.visible,
-                    description: w.description || undefined,
-                    contentType: w.contentType || undefined,
-                    externalUrl: w.externalUrl || undefined,
-                    pinned: w.pinned || false,
-                } as (typeof items)[number];
-                setItems((prev) => [nextItem, ...prev]);
+                if (created.length > 0) setItems((prev) => [...created, ...prev]);
                 setPreviewVersion((v) => v + 1);
             } else {
                 const id = items[editIndex].id;
@@ -261,8 +233,11 @@ export default function AdminPortfolioPage() {
                 setItems((prev) => prev.map((o, i) => (i === editIndex ? nextItem : o)));
                 setPreviewVersion((v) => v + 1);
             }
+            setSaveSuccessDraft(true);
+            setTimeout(() => setSaveSuccessDraft(false), 1200);
         } catch {} finally {
-            setEditorOpen(false);
+            setSavingDraft(false);
+            setTimeout(() => setEditorOpen(false), 1200);
         }
     };
 
@@ -403,8 +378,9 @@ export default function AdminPortfolioPage() {
                                 <div className="flex items-center justify-between border-b border-secondary px-4 py-3">
                                     <h2 className="text-lg font-semibold text-primary">{editIndex === null ? "Add Work" : "Edit Work"}</h2>
                                     <div className="flex items-center gap-2">
-                                        <Button size="sm" color="secondary" onClick={saveDraft}>Save</Button>
-                                        <Button size="sm" onClick={() => state.close()}>Cancel</Button>
+                                        <Button size="sm" color="primary" isLoading={savingDraft} onClick={saveDraft}>Save</Button>
+                                        <Button size="sm" color="secondary" onClick={() => state.close()}>Cancel</Button>
+                                        {saveSuccessDraft && <Badge type="pill-color" size="sm" color="success">Updated</Badge>}
                                     </div>
                                 </div>
 
@@ -425,19 +401,25 @@ export default function AdminPortfolioPage() {
                                         <h3 className="text-md font-semibold text-primary">Upload File</h3>
                                         <div className="flex items-center gap-2">
                                             <Button size="sm" color="secondary" onClick={() => fileInputRef.current?.click()}>Upload file</Button>
-                                            <input ref={fileInputRef} type="file" accept={draft.contentType === "image" ? "image/*" : draft.contentType === "video" ? "video/*" : "*/*"} className="hidden" onChange={(e) => {
-                                                const file = e.target.files?.[0];
-                                                if (file) setDraft((d) => ({ ...d, fileUrl: URL.createObjectURL(file), file }));
+                                            <input ref={fileInputRef} type="file" multiple accept={draft.contentType === "image" ? "image/*" : draft.contentType === "video" ? "video/*" : "*/*"} className="hidden" onChange={(e) => {
+                                                const files = Array.from(e.target.files || []);
+                                                if (files.length) {
+                                                    const mapped = files.map((f) => ({ fileUrl: URL.createObjectURL(f), file: f }));
+                                                    setDraft((d) => ({ ...d, files: mapped, fileUrl: mapped[0]?.fileUrl, file: mapped[0]?.file || null }));
+                                                }
                                             }} />
                                         </div>
-                                        <Input label="Paste URL" placeholder="Instagram / YouTube / Drive" value={draft.externalUrl || ""} onChange={(v) => setDraft((d) => ({ ...d, externalUrl: v }))} />
-                                        {draft.fileUrl && (
-                                            <div className="mt-3 rounded-lg ring-1 ring-secondary overflow-hidden hidden" aria-hidden="true">
-                                                {draft.contentType === "video" ? (
-                                                    <video src={draft.fileUrl} controls className="w-full aspect-video bg-secondary" />
-                                                ) : draft.contentType === "image" ? (
-                                                    <img src={draft.fileUrl} alt={draft.title || "Preview"} className="w-full aspect-video object-cover bg-secondary" />
-                                                ) : null}
+                                        {draft.files && draft.files.length > 0 && (
+                                            <div className="mt-3 grid grid-cols-1 gap-3">
+                                                {draft.files.map((f, idx) => (
+                                                    <div key={idx} className="rounded-lg ring-1 ring-secondary overflow-hidden">
+                                                        {draft.contentType === "video" ? (
+                                                            <video src={f.fileUrl} controls className="w-full aspect-video bg-secondary" />
+                                                        ) : draft.contentType === "image" ? (
+                                                            <img src={f.fileUrl} alt={draft.title || "Preview"} className="w-full aspect-video object-cover bg-secondary" />
+                                                        ) : null}
+                                                    </div>
+                                                ))}
                                             </div>
                                         )}
                                     </div>
@@ -449,34 +431,9 @@ export default function AdminPortfolioPage() {
                                         <TextArea label="Short description" rows={3} value={draft.description || ""} onChange={(v) => setDraft((d) => ({ ...d, description: v.slice(0, 120) }))} hint={`${Math.min(120, (draft.description || "").length)}/120`} />
                                     </div>
 
-                                    <div className="flex min-w-0 flex-col gap-2">
-                                        <h3 className="text-md font-semibold text-primary">Platform</h3>
-                                        <Select
-                                            size="md"
-                                            items={[
-                                                { id: "instagram", label: "Instagram" },
-                                                { id: "youtube", label: "YouTube" },
-                                                { id: "tiktok", label: "TikTok" },
-                                                { id: "x", label: "X" },
-                                                { id: "threads", label: "Threads" },
-                                                { id: "facebook", label: "Facebook" },
-                                                { id: "linkedin", label: "LinkedIn" },
-                                                { id: "telegram", label: "Telegram" },
-                                                { id: "pinterest", label: "Pinterest" },
-                                                { id: "website", label: "Website" },
-                                            ]}
-                                            selectedKey={draft.platform}
-                                            onSelectionChange={(key) => setDraft((d) => ({ ...d, platform: String(key) }))}
-                                        >
-                                            {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
-                                        </Select>
-                                    </div>
+                                    {/* Platform selection removed; default platform set to "website" */}
 
-                                    <div className="flex min-w-0 flex-col gap-2">
-                                        <h3 className="text-md font-semibold text-primary">Visibility</h3>
-                                        <Toggle slim size="md" isSelected={draft.visible} onChange={(s) => setDraft((d) => ({ ...d, visible: s }))} aria-label="Show on profile" />
-                                        <Toggle slim size="md" isSelected={draft.pinned || false} onChange={(s) => setDraft((d) => ({ ...d, pinned: s }))} aria-label="Pin to top" />
-                                    </div>
+                                    
                                 </div>
                             </AriaDialog>
                         </AriaModal>
@@ -487,21 +444,7 @@ export default function AdminPortfolioPage() {
     );
 }
 
-const platformIcon = (id: string) => {
-    const map: Record<string, string> = {
-        instagram: "/instagram.png",
-        youtube: "/youtube.png",
-        tiktok: "/tiktok.png",
-        x: "/twitter.png",
-        threads: "/threads.png",
-        facebook: "/facebook.png",
-        linkedin: "/linkedin.png",
-        telegram: "/telegram.png",
-        pinterest: "/pinterest.png",
-        website: "/web.png",
-    };
-    return map[id] || "/web.png";
-};
+// Platform icon mapping removed; platform visuals not shown in grid/viewer
 
 const PortfolioGrid = ({
     items,
@@ -580,7 +523,7 @@ const PortfolioGrid = ({
                                             onContextMenu={(e) => e.preventDefault()}
                                         />
                                     ) : (
-                                        <img src={platformIcon(item.platform)} alt={item.platform} className="h-12 w-12" />
+                                        <div className="h-12 w-12 rounded bg-secondary" />
                                     )}
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <Button
@@ -605,9 +548,7 @@ const PortfolioGrid = ({
                                     {item.sponsored && <Badge color="warning" size="sm">Sponsored</Badge>}
                                 </div>
 
-                                <div className="absolute top-2 right-2">
-                                    <img src={platformIcon(item.platform)} alt={item.platform} className="h-6 w-6 rounded" />
-                                </div>
+                                {/* Platform icon removed */}
 
                                 <div className="pointer-events-none absolute inset-0 bg-alpha-black opacity-0 transition duration-150 ease-in-out group-hover:opacity-5" />
 
@@ -675,7 +616,7 @@ const PortfolioGrid = ({
                                                 />
                                             ) : (
                                                 <div className="flex size-full items-center justify-center bg-secondary">
-                                                    <img src={platformIcon(viewerItem!.platform)} alt={viewerItem!.platform} className="h-12 w-12" />
+                                                    <div className="h-12 w-12 rounded bg-primary_hover" />
                                                 </div>
                                             )
                                         ) : null}

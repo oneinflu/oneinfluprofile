@@ -7502,6 +7502,12 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:w-52 {
+      width: calc(var(--spacing) * 52);
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:max-w-80 {
       max-width: calc(var(--spacing) * 80);
     }

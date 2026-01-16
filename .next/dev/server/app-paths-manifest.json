@@ -1,3 +1,10 @@
 {
-  "/page": "app/page.js"
+  "/[username]/page": "app/[username]/page.js",
+  "/admin/my-profile/page": "app/admin/my-profile/page.js",
+  "/admin/offers/page": "app/admin/offers/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/portfolio/page": "app/admin/portfolio/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/verify/page": "app/verify/page.js"
 }
