@@ -512,7 +512,7 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                             </div>
                         </li>
                     ))
-                ) : isEmbedded ? (
+                ) : isOwner && isEmbedded ? (
                     <li className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
                         <div className="text-center">
                             <p className="text-sm font-semibold text-primary">No services were added</p>
@@ -596,7 +596,7 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                                                     </div>
                                                 </li>
                                             ))
-                                        ) : isEmbedded ? (
+                                        ) : isOwner && isEmbedded ? (
                                             <li className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
                                                 <div className="text-center">
                                                     <p className="text-sm font-semibold text-primary">No services were added</p>
@@ -690,7 +690,7 @@ function ProfilePortfolio({
         <div className="mt-4">
             <div className="flex items-center justify-between">
                 <h2 className="text-md font-semibold text-primary">Work & Collaborations</h2>
-                <Button size="sm" color="link-color" onClick={() => setGalleryOpen(true)}>View all</Button>
+                <Button size="sm" color="link-color" disabled={items.length === 0} onClick={() => setGalleryOpen(true)}>View all</Button>
             </div>
             <div className="mt-2 overflow-x-auto">
                 <div className="flex gap-2 snap-x snap-mandatory">
@@ -750,7 +750,7 @@ function ProfilePortfolio({
                                 </div>
                             </button>
                         ))
-                    ) : isEmbedded ? (
+                    ) : isOwner && isEmbedded ? (
                         <div className="w-full">
                             <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center">
                                 <p className="text-sm font-semibold text-primary">No work has been added</p>
@@ -765,9 +765,15 @@ function ProfilePortfolio({
                                     <p className="text-xs text-tertiary">Add your collaborations to show here</p>
                                 </div>
                                 <Button size="sm" color="secondary" href="/admin/portfolio">Add Work</Button>
+                         </div>
+                     </div>
+                    ) : (
+                        <div className="w-full">
+                            <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center">
+                                <p className="text-sm font-semibold text-primary">No Proof of work added</p>
                             </div>
                         </div>
-                    ) : null}
+                    )}
                 </div>
             </div>
 
@@ -897,21 +903,25 @@ function ProfilePortfolio({
                                                         </div>
                                                     </button>
                                                 ))
-                                            ) : isEmbedded ? (
-                                                <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center col-span-full">
-                                                    <p className="text-sm font-semibold text-primary">No work has been added</p>
-                                                    <p className="text-xs text-tertiary">Please add some work to showcase</p>
-                                                </div>
-                                            ) : isOwner && !isEmbedded ? (
-                                                <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt flex items-center justify-between col-span-full">
-                                                    <div className="min-w-0">
-                                                        <p className="text-sm font-semibold text-primary">No work yet</p>
-                                                        <p className="text-xs text-tertiary">Add your collaborations to show here</p>
-                                                    </div>
-                                                    <Button size="sm" color="secondary" href="/admin/portfolio">Add Work</Button>
-                                                </div>
-                                            ) : null}
-                                        </div>
+                                        ) : isOwner && isEmbedded ? (
+                                            <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center col-span-full">
+                                                <p className="text-sm font-semibold text-primary">No work has been added</p>
+                                                <p className="text-xs text-tertiary">Please add some work to showcase</p>
+                                            </div>
+                                         ) : isOwner && !isEmbedded ? (
+                                             <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt flex items-center justify-between col-span-full">
+                                                 <div className="min-w-0">
+                                                     <p className="text-sm font-semibold text-primary">No work yet</p>
+                                                     <p className="text-xs text-tertiary">Add your collaborations to show here</p>
+                                                 </div>
+                                                 <Button size="sm" color="secondary" href="/admin/portfolio">Add Work</Button>
+                                             </div>
+                                         ) : (
+                                             <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center col-span-full">
+                                                 <p className="text-sm font-semibold text-primary">No Proof of work added</p>
+                                             </div>
+                                         )}
+                                     </div>
                                     {items.length > visibleCount && (
                                         <div className="mt-3 flex items-center justify-center">
                                             <Button size="sm" onClick={() => setVisibleCount((c) => Math.min(c + 9, items.length))}>Load more</Button>

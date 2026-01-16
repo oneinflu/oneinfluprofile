@@ -19241,3 +19241,76 @@ It can also happen if the client has a browser extension installed which messes 
 [01:28:35.449] Browser GROUP   PUBLIC_PROFILE_GET
 [01:28:35.449] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
 [01:28:35.449] Browser GROUPEND 
+[01:30:44.086] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[01:30:45.796] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:46.111] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:46.462] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:46.845] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:46.906] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:46.906] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:30:46.906] Browser GROUPEND 
+[01:30:46.996] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:47.097] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:47.339] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:47.395] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:47.395] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:30:47.395] Browser GROUPEND 
+[01:30:47.441] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:47.588] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:48.081] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:48.114] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:48.114] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:30:48.114] Browser GROUPEND 
+[01:30:48.156] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:48.156] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:30:48.156] Browser GROUPEND 
+[01:30:48.231] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:48.518] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:48.569] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:48.569] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:30:48.569] Browser GROUPEND 
+[01:30:48.670] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:49.135] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:49.135] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:30:49.135] Browser GROUPEND 
+[01:30:49.182] Browser GROUP   PUBLIC_PROFILE_GET
+[01:30:49.182] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:30:49.182] Browser GROUPEND 
+[01:30:53.287] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[01:30:59.737] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:30:59.874] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:00.120] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:00.579] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:00.579] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:31:00.579] Browser GROUPEND 
+[01:31:00.604] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:00.730] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:00.826] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:01.114] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:01.168] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:01.168] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:31:01.168] Browser GROUPEND 
+[01:31:01.253] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:01.356] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:01.718] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:01.718] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:31:01.719] Browser GROUPEND 
+[01:31:01.774] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:01.851] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:01.851] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:31:01.851] Browser GROUPEND 
+[01:31:01.916] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:02.253] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:02.300] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:02.300] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:31:02.300] Browser GROUPEND 
+[01:31:02.341] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:31:02.735] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:02.735] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:31:02.735] Browser GROUPEND 
+[01:31:02.780] Browser GROUP   PUBLIC_PROFILE_GET
+[01:31:02.780] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:31:02.780] Browser GROUPEND 
+[01:32:30.064] Server  LOG     ✓ Compiled in 615ms
+[01:32:43.309] Server  LOG     ✓ Compiled in 119ms
+[01:34:01.088] Server  LOG     ✓ Compiled in 216ms
