@@ -15,6 +15,7 @@ import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { api } from "@/utils/api";
 import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
+import { useAuth } from "@/providers/auth";
 
 type PublicProfileResponse = {
     profile: { id: string; username: string; name: string | null; role: string | null; bio: string | null; avatarUrl: string | null; coverUrl: string | null; verified: boolean };
@@ -441,6 +442,16 @@ function truncateBio(text: string) {
 
 function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { username: string; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>; onRequest: (service?: string) => void }) {
     const formatINR = new Intl.NumberFormat("en-IN");
+    const { user } = useAuth();
+    const isOwner = user?.username === username;
+    const [isEmbedded, setIsEmbedded] = useState(false);
+    useEffect(() => {
+        try {
+            setIsEmbedded(typeof window !== "undefined" && window.self !== window.top);
+        } catch {
+            setIsEmbedded(true);
+        }
+    }, []);
     const labelFor = (o: typeof offers[number]) => {
         if (o.priceType === "fixed" && typeof o.price === "number") return `₹${formatINR.format(o.price)}`;
         if (o.priceType === "starting" && typeof o.price === "number") return `Starting at ₹${formatINR.format(o.price)}`;
@@ -501,37 +512,29 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                             </div>
                         </li>
                     ))
+                ) : isEmbedded ? (
+                    <li className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
+                        <div className="text-center">
+                            <p className="text-sm font-semibold text-primary">No services were added</p>
+                            <p className="text-xs text-tertiary">Please add offerings to showcase</p>
+                        </div>
+                    </li>
+                ) : isOwner ? (
+                    <li className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
+                        <div className="flex items-center justify-between gap-3">
+                            <div className="flex min-w-0 flex-col">
+                                <p className="text-sm font-semibold text-primary">No services yet</p>
+                                <p className="text-sm text-tertiary">Add services to show here</p>
+                            </div>
+                            <Button size="sm" color="secondary" href="/admin/offers">Add Service</Button>
+                        </div>
+                    </li>
                 ) : (
-                    <>
-                        <li className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
-                            <div className="flex items-start justify-between gap-3">
-                                <div className="flex min-w-0 flex-col gap-1">
-                                    <div className="h-4 w-36 bg-primary_hover rounded animate-pulse" />
-                                    <div className="h-3 w-56 bg-primary_hover rounded animate-pulse" />
-                                </div>
-                                <div className="shrink-0">
-                                    <div className="h-4 w-24 bg-primary_hover rounded animate-pulse" />
-                                </div>
-                            </div>
-                            <div className="mt-3">
-                                <div className="h-8 w-full bg-primary_hover rounded-md animate-pulse" />
-                            </div>
-                        </li>
-                        <li className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
-                            <div className="flex items-start justify-between gap-3">
-                                <div className="flex min-w-0 flex-col gap-1">
-                                    <div className="h-4 w-28 bg-primary_hover rounded animate-pulse" />
-                                    <div className="h-3 w-44 bg-primary_hover rounded animate-pulse" />
-                                </div>
-                                <div className="shrink-0">
-                                    <div className="h-4 w-20 bg-primary_hover rounded animate-pulse" />
-                                </div>
-                            </div>
-                            <div className="mt-3">
-                                <div className="h-8 w-full bg-primary_hover rounded-md animate-pulse" />
-                            </div>
-                        </li>
-                    </>
+                    <li className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
+                        <div className="text-center">
+                            <p className="text-sm font-semibold text-primary">No services yet added</p>
+                        </div>
+                    </li>
                 )}
             </ul>
             <AriaDialogTrigger isOpen={servicesOpen} onOpenChange={setServicesOpen}>
@@ -593,7 +596,30 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
                                                     </div>
                                                 </li>
                                             ))
-                                        ) : null}
+                                        ) : isEmbedded ? (
+                                            <li className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
+                                                <div className="text-center">
+                                                    <p className="text-sm font-semibold text-primary">No services were added</p>
+                                                    <p className="text-xs text-tertiary">Please add offerings to showcase</p>
+                                                </div>
+                                            </li>
+                                        ) : isOwner ? (
+                                            <li className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
+                                                <div className="flex items-center justify-between gap-3">
+                                                    <div className="flex min-w-0 flex-col">
+                                                        <p className="text-sm font-semibold text-primary">No services yet</p>
+                                                        <p className="text-sm text-tertiary">Add services to show here</p>
+                                                    </div>
+                                                    <Button size="sm" color="secondary" href="/admin/offers">Add Service</Button>
+                                                </div>
+                                            </li>
+                                        ) : (
+                                            <li className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt">
+                                                <div className="text-center">
+                                                    <p className="text-sm font-semibold text-primary">No services yet added</p>
+                                                </div>
+                                            </li>
+                                        )}
                                     </ul>
                                 </div>
                             </AriaDialog>
@@ -624,6 +650,16 @@ function ProfilePortfolio({
     }>;
 }) {
     const urlFor = (it: { fileUrl?: string | null; externalUrl?: string | null }) => (it.fileUrl || it.externalUrl || "");
+    const { user } = useAuth();
+    const isOwner = user?.username === username;
+    const [isEmbedded, setIsEmbedded] = useState(false);
+    useEffect(() => {
+        try {
+            setIsEmbedded(typeof window !== "undefined" && window.self !== window.top);
+        } catch {
+            setIsEmbedded(true);
+        }
+    }, []);
     const [open, setOpen] = useState(false);
     const [galleryOpen, setGalleryOpen] = useState(false);
     const [active, setActive] = useState<(typeof items)[number] | null>(null);
@@ -714,28 +750,24 @@ function ProfilePortfolio({
                                 </div>
                             </button>
                         ))
-                    ) : (
-                        <>
-                            <div className="snap-start w-36 sm:w-40 overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                <div className="px-2 py-1">
-                                    <div className="h-3 w-24 bg-primary_hover rounded animate-pulse" />
-                                </div>
+                    ) : isEmbedded ? (
+                        <div className="w-full">
+                            <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center">
+                                <p className="text-sm font-semibold text-primary">No work has been added</p>
+                                <p className="text-xs text-tertiary">Please add some work to showcase</p>
                             </div>
-                            <div className="snap-start w-36 sm:w-40 overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                <div className="px-2 py-1">
-                                    <div className="h-3 w-20 bg-primary_hover rounded animate-pulse" />
+                        </div>
+                    ) : isOwner && !isEmbedded ? (
+                        <div className="w-full">
+                            <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt flex items-center justify-between">
+                                <div className="min-w-0">
+                                    <p className="text-sm font-semibold text-primary">No work yet</p>
+                                    <p className="text-xs text-tertiary">Add your collaborations to show here</p>
                                 </div>
+                                <Button size="sm" color="secondary" href="/admin/portfolio">Add Work</Button>
                             </div>
-                            <div className="snap-start w-36 sm:w-40 overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                <div className="px-2 py-1">
-                                    <div className="h-3 w-16 bg-primary_hover rounded animate-pulse" />
-                                </div>
-                            </div>
-                        </>
-                    )}
+                        </div>
+                    ) : null}
                 </div>
             </div>
 
@@ -844,50 +876,42 @@ function ProfilePortfolio({
                                                         ) : (
                                                             <div className="size-full bg-primary_hover" />
                                                         )}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <Button
-                                            size="sm"
-                                            color="secondary"
-                                            className="px-3"
-                                            onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                                                e.stopPropagation();
-                                                setActive(it);
-                                                setWantAutoplay(it.contentType === "video");
-                                                setOpen(true);
-                                            }}
-                                        >
-                                            {it.contentType === "video" ? "Play" : "View"}
-                                        </Button>
-                                    </div>
-                                </div>
-                                                    <div className="flex items-center justify-between gap-2 px-2 py-1">
-                                                        <p className="truncate text-xs text-primary">{it.brand || ""}</p>
-                                                    </div>
-                                                </button>
-                                            ))
-                                        ) : (
-                        <>
-                                                <div className="overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                                    <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                                    <div className="px-2 py-1">
-                                                        <div className="h-3 w-24 bg-primary_hover rounded animate-pulse" />
-                                                    </div>
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <Button
+                                                    size="sm"
+                                                    color="secondary"
+                                                    className="px-3"
+                                                    onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                                                        e.stopPropagation();
+                                                        setActive(it);
+                                                        setWantAutoplay(it.contentType === "video");
+                                                        setOpen(true);
+                                                    }}
+                                                >
+                                                    {it.contentType === "video" ? "Play" : "View"}
+                                                </Button>
+                                            </div>
+                                        </div>
+                                                        <div className="flex items-center justify-between gap-2 px-2 py-1">
+                                                            <p className="truncate text-xs text-primary">{it.brand || ""}</p>
+                                                        </div>
+                                                    </button>
+                                                ))
+                                            ) : isEmbedded ? (
+                                                <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt text-center col-span-full">
+                                                    <p className="text-sm font-semibold text-primary">No work has been added</p>
+                                                    <p className="text-xs text-tertiary">Please add some work to showcase</p>
                                                 </div>
-                                                <div className="overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                                    <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                                    <div className="px-2 py-1">
-                                                        <div className="h-3 w-20 bg-primary_hover rounded animate-pulse" />
+                                            ) : isOwner && !isEmbedded ? (
+                                                <div className="rounded-xl bg-primary p-3 ring-1 ring-secondary_alt flex items-center justify-between col-span-full">
+                                                    <div className="min-w-0">
+                                                        <p className="text-sm font-semibold text-primary">No work yet</p>
+                                                        <p className="text-xs text-tertiary">Add your collaborations to show here</p>
                                                     </div>
+                                                    <Button size="sm" color="secondary" href="/admin/portfolio">Add Work</Button>
                                                 </div>
-                                                <div className="overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                                    <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                                    <div className="px-2 py-1">
-                                                        <div className="h-3 w-16 bg-primary_hover rounded animate-pulse" />
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
+                                            ) : null}
+                                        </div>
                                     {items.length > visibleCount && (
                                         <div className="mt-3 flex items-center justify-center">
                                             <Button size="sm" onClick={() => setVisibleCount((c) => Math.min(c + 9, items.length))}>Load more</Button>
