@@ -18705,3 +18705,539 @@ It can also happen if the client has a browser extension installed which messes 
 [01:20:21.526] Browser GROUP   PUBLIC_PROFILE_GET
 [01:20:21.526] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
 [01:20:21.526] Browser GROUPEND 
+[01:20:36.680] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:37.328] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:37.872] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:38.662] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:38.662] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:20:38.662] Browser GROUPEND 
+[01:20:38.838] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:39.028] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:39.414] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:40.022] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:40.744] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:40.818] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:40.818] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:20:40.818] Browser GROUPEND 
+[01:20:41.095] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:41.437] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:42.507] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:42.507] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:20:42.507] Browser GROUPEND 
+[01:20:42.624] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:42.632] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:42.632] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:42.632] Browser GROUPEND 
+[01:20:42.887] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:43.126] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:44.006] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:44.006] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:20:44.006] Browser GROUPEND 
+[01:20:44.286] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:44.286] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:44.286] Browser GROUPEND 
+[01:20:44.408] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:44.408] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:44.408] Browser GROUPEND 
+[01:20:44.611] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:45.118] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:45.900] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:45.900] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:45.900] Browser GROUPEND 
+[01:20:46.015] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:46.059] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:46.059] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:46.059] Browser GROUPEND 
+[01:20:46.312] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:47.335] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:47.335] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:47.335] Browser GROUPEND 
+[01:20:47.370] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:47.370] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:20:47.370] Browser GROUPEND 
+[01:20:57.656] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:58.154] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:58.541] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:58.821] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:59.384] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:20:59.447] Browser GROUP   PUBLIC_PROFILE_GET
+[01:20:59.447] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:20:59.447] Browser GROUPEND 
+[01:20:59.875] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:00.156] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:00.822] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:21:00.822] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:00.822] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:00.822] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:21:00.822] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:21:00.822] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:00.822] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:00.847] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:01.005] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:01.219] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:01.219] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:01.219] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:01.219] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:01.219] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:21:01.219] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:21:01.219] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:21:01.219] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:21:01.219] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:21:01.219] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:21:01.326] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:02.819] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:02.892] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:02.892] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:21:02.892] Browser GROUPEND 
+[01:21:03.227] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:03.453] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:03.799] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:03.842] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:21:03.842] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:21:03.842] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:03.842] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:03.842] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:03.842] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:21:04.136] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:04.900] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:04.947] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <LoadingBoundary name="guest/" loading={null}>
+      <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/guest" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+              <SegmentViewNode type="page" pagePath="[username]...">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+                  <ProfilePage params={Promise} searchParams={Promise}>
+                    <section className="lg:hidden ...">
+                      <ProfileCard username="" profile={null} payEnabled={false} upiId="" offers={[...]} links={[...]} ...>
+                        <div className="w-full max...">
+                          <div>
+                          <ProfileServices username="" payEnabled={false} upiId="" offers={[...]} ...>
+                            <div className="mt-4">
++                             <div className="flex items-center justify-between">
+-                             <h2 className="text-md font-semibold text-primary">
+                              ...
+                          ...
+                      ...
+                    ...
+              ...
+            ...
+
+[01:21:04.947] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:04.947] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:04.947] Browser GROUPEND 
+[01:21:05.036] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:05.589] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:06.410] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:06.479] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:06.479] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:06.479] Browser GROUPEND 
+[01:21:06.789] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:07.978] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:07.978] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:07.978] Browser GROUPEND 
+[01:21:08.059] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:08.059] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:08.059] Browser GROUPEND 
+[01:21:10.925] Browser ERROR   uncaughtError: Error: Rendered more hooks than during the previous render.
+[01:21:14.856] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[01:21:18.601] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:18.994] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:19.345] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:20.179] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:20.180] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:21:20.180] Browser GROUPEND 
+[01:21:20.796] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:21.209] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:21.496] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:22.170] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:22.228] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:22.228] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:21:22.228] Browser GROUPEND 
+[01:21:22.459] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:22.918] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:23.649] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:23.649] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:21:23.649] Browser GROUPEND 
+[01:21:24.178] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:24.178] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:24.178] Browser GROUPEND 
+[01:21:24.389] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:24.435] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:24.435] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:24.435] Browser GROUPEND 
+[01:21:24.769] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:25.767] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:25.798] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:25.798] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:25.798] Browser GROUPEND 
+[01:21:26.041] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:21:26.998] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:26.998] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:26.998] Browser GROUPEND 
+[01:21:27.085] Browser GROUP   PUBLIC_PROFILE_GET
+[01:21:27.085] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:21:27.085] Browser GROUPEND 
+[01:21:57.434] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[01:24:03.883] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:24:03.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:03.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:03.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:24:03.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:24:03.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:03.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:03.980] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:04.276] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:04.276] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:04.276] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:04.276] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:24:04.276] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:24:04.276] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:24:04.276] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:24:04.276] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:24:04.276] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:24:04.276] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:24:04.370] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:04.581] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:05.161] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:05.179] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:05.179] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:24:05.179] Browser GROUPEND 
+[01:24:05.273] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:05.452] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:06.216] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:06.276] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:06.276] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:24:06.276] Browser GROUPEND 
+[01:24:06.599] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:06.797] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:07.683] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:07.683] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:24:07.683] Browser GROUPEND 
+[01:24:07.932] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:08.021] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:08.021] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:24:08.021] Browser GROUPEND 
+[01:24:08.021] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:08.021] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:24:08.021] Browser GROUPEND 
+[01:24:08.304] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:09.649] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:09.877] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:24:10.472] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:10.472] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:24:10.472] Browser GROUPEND 
+[01:24:11.461] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:11.461] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:24:11.461] Browser GROUPEND 
+[01:24:11.461] Browser GROUP   PUBLIC_PROFILE_GET
+[01:24:11.461] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:24:11.461] Browser GROUPEND 
+[01:25:19.478] Server  LOG     ✓ Compiled in 910ms
+[01:25:19.518] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:25:19.518] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.525] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:25:19.549] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.556] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.560] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.567] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.574] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.578] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:19.588] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:25:20.524] Server  ERROR   React does not recognize the `isReadOnly` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isreadonly` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+[01:25:20.535] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:21.142] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:21.188] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:21.571] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:21.591] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:21.807] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:22.430] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:24.135] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:24.622] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.480] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.481] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.481] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:25.764] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:26.555] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:26.850] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:27.206] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:27.479] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:27.479] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:25:27.479] Browser GROUPEND 
+[01:25:28.745] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:29.019] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:29.268] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:29.468] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:29.468] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:25:29.468] Browser GROUPEND 
+[01:25:29.521] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:31.308] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:31.482] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:31.482] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:25:31.482] Browser GROUPEND 
+[01:25:31.483] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:31.483] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:25:31.483] Browser GROUPEND 
+[01:25:32.840] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:33.141] Server  LOG     ✓ Compiled in 0ms
+[01:25:33.156] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:25:33.156] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:25:33.156] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:25:33.158] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:25:33.748] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:34.114] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:34.494] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.225] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.225] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.225] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.225] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.225] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.225] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.767] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:35.838] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:25:35.838] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:25:35.838] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:25:35.838] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:25:35.838] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:25:35.838] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:35.838] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:25:35.838] Browser GROUPEND 
+[01:25:35.924] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:36.135] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:36.293] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:37.043] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:37.110] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:37.110] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:25:37.110] Browser GROUPEND 
+[01:25:37.355] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:37.625] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:37.712] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:37.712] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:38.834] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:38.888] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:38.888] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:25:38.888] Browser GROUPEND 
+[01:25:39.125] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:39.125] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:25:39.221] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:39.453] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:25:40.785] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:40.785] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:25:40.785] Browser GROUPEND 
+[01:25:41.307] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:41.307] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:25:41.307] Browser GROUPEND 
+[01:25:41.308] Browser GROUP   PUBLIC_PROFILE_GET
+[01:25:41.308] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:25:41.309] Browser GROUPEND 
+[01:25:44.331] Server  LOG     ○ Compiling /_not-found/page ...
+[01:26:20.346] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:20.346] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:20.346] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:20.346] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:20.346] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:20.346] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:20.457] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:26:20.877] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:26:21.653] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:26:21.668] Browser GROUP   PUBLIC_PROFILE_GET
+[01:26:21.668] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:26:21.668] Browser GROUPEND 
+[01:26:22.282] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:26:23.102] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:26:23.186] Browser GROUP   PUBLIC_PROFILE_GET
+[01:26:23.186] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:26:23.186] Browser GROUPEND 
+[01:26:23.187] Browser GROUP   PUBLIC_PROFILE_GET
+[01:26:23.187] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:26:23.187] Browser GROUPEND 
+[01:26:23.401] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:26:24.150] Browser GROUP   PUBLIC_PROFILE_GET
+[01:26:24.150] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:26:24.150] Browser GROUPEND 
+[01:26:24.184] Browser GROUP   PUBLIC_PROFILE_GET
+[01:26:24.184] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:26:24.184] Browser GROUPEND 
+[01:27:21.780] Server  LOG     ✓ Compiled in 297ms
+[01:27:21.789] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:27:21.793] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:27:21.795] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:27:21.796] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:27:21.801] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:27:21.805] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:27:21.809] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:27:22.750] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:27:22.784] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:30.910] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:28:30.910] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:30.910] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:30.910] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:28:30.910] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:28:30.910] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:30.910] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:31.133] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:31.449] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:31.449] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:31.449] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:31.449] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:31.449] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:31.449] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:31.449] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:31.449] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:31.449] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:31.449] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:31.563] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:31.762] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:32.575] Browser GROUP   PUBLIC_PROFILE_GET
+[01:28:32.575] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:28:32.575] Browser GROUPEND 
+[01:28:32.734] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:32.829] Browser GROUP   PUBLIC_PROFILE_GET
+[01:28:32.829] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:28:32.829] Browser GROUPEND 
+[01:28:32.830] Browser GROUP   PUBLIC_PROFILE_GET
+[01:28:32.830] Browser LOG     REQUEST GET http://192.168.0.6:3000/guest
+[01:28:32.830] Browser GROUPEND 
+[01:28:32.860] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:32.935] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:32.935] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:33.176] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:33.345] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:34.119] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:34.201] Browser GROUP   PUBLIC_PROFILE_GET
+[01:28:34.201] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:28:34.201] Browser GROUPEND 
+[01:28:34.304] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:34.497] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:35.114] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:35.114] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:35.308] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:28:35.308] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:28:35.308] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:35.308] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:35.308] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:35.308] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:28:35.308] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:35.308] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:35.308] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:35.308] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:35.308] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:35.308] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:28:35.383] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:28:35.449] Browser GROUP   PUBLIC_PROFILE_GET
+[01:28:35.449] Browser LOG     REQUEST GET http://192.168.0.6:3000/oneinflu
+[01:28:35.449] Browser GROUPEND 

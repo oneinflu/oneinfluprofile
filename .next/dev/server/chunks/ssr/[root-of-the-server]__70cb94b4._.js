@@ -213,6 +213,26 @@ function AuthProvider({ children }) {
             setUser: (u)=>{
                 setUser(u);
             },
+            async logout () {
+                try {
+                    __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post("/auth/logout").catch(()=>{});
+                } catch  {}
+                try {
+                    localStorage.removeItem("influu_username");
+                } catch  {}
+                try {
+                    localStorage.removeItem("influu_user_id");
+                } catch  {}
+                try {
+                    localStorage.removeItem("influu_token");
+                } catch  {}
+                setToken(null);
+                setUser(null);
+                try {
+                    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+                    ;
+                } catch  {}
+            },
             async registerStart (email) {
                 const res = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["api"].post("/auth/register/start", {
                     email
@@ -366,7 +386,7 @@ function AuthProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/src/providers/auth.tsx",
-        lineNumber: 197,
+        lineNumber: 213,
         columnNumber: 10
     }, this);
 }

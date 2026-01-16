@@ -33,18 +33,12 @@ export const SidebarNavigationSlim = ({ activeUrl, items, footerItems = [], hide
     const activeItem = [...items, ...footerItems].find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
     const [currentItem, setCurrentItem] = useState(activeItem || items[1]);
     const [isHovering, setIsHovering] = useState(false);
-    const { setToken, setUser } = useAuth();
+    const { logout } = useAuth();
     const router = useRouter();
-    const handleSignOut = () => {
-        try {
-            setToken(null);
-            setUser(null);
-            try { localStorage.removeItem("influu_username"); } catch {}
-            try { localStorage.removeItem("influu_user_id"); } catch {}
-            try { localStorage.removeItem("influu_token"); } catch {}
-        } finally {
-            router.push("/login");
-        }
+    const handleSignOut = async () => {
+        await logout();
+        try { router.replace("/login"); } catch {}
+        try { if (typeof window !== "undefined") window.location.replace("/login"); } catch {}
     };
 
     const isSecondarySidebarVisible = isHovering && Boolean(currentItem.items?.length);

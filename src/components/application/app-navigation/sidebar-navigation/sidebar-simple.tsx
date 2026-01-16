@@ -40,19 +40,13 @@ export const SidebarNavigationSimple = ({
     className,
 }: SidebarNavigationProps) => {
     const MAIN_SIDEBAR_WIDTH = 296;
-    const { setToken, setUser } = useAuth();
+    const { logout } = useAuth();
     const router = useRouter();
-    const handleLogout: React.MouseEventHandler = (e) => {
+    const handleLogout: React.MouseEventHandler = async (e) => {
         e.preventDefault();
-        try {
-            setToken(null);
-            setUser(null);
-            try { localStorage.removeItem("influu_username"); } catch {}
-            try { localStorage.removeItem("influu_user_id"); } catch {}
-            try { localStorage.removeItem("influu_token"); } catch {}
-        } finally {
-            router.push("/login");
-        }
+        await logout();
+        try { router.replace("/login"); } catch {}
+        try { if (typeof window !== "undefined") window.location.replace("/login"); } catch {}
     };
 
     const content = (

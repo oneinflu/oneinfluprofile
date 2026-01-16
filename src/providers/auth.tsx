@@ -9,6 +9,7 @@ type AuthContextType = {
   user: User | null;
   setToken: (t: string | null) => void;
   setUser: (u: User | null) => void;
+  logout: () => Promise<void>;
   registerStart: (email: string) => Promise<string>;
   registerSaveUsername: (id: string, username: string) => Promise<void>;
   registerSendOtp: (id: string) => Promise<void>;
@@ -85,6 +86,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setToken,
     setUser: (u: User | null) => {
       setUser(u);
+    },
+    async logout() {
+      try {
+        api.post("/auth/logout").catch(() => {});
+      } catch {}
+      try { localStorage.removeItem("influu_username"); } catch {}
+      try { localStorage.removeItem("influu_user_id"); } catch {}
+      try { localStorage.removeItem("influu_token"); } catch {}
+      setToken(null);
+      setUser(null);
+      try {
+        if (typeof window !== "undefined") {
+          window.location.replace("/login");
+        }
+      } catch {}
     },
     async registerStart(email: string) {
       const res = await api.post<{ success: boolean; data: { id: string } }>("/auth/register/start", { email });

@@ -6,16 +6,13 @@ import { useAuth } from "@/providers/auth";
 
 export default function LogoutPage() {
     const router = useRouter();
-    const { setToken, setUser } = useAuth();
+    const { logout } = useAuth();
     useEffect(() => {
-        try {
-            setToken(null);
-            setUser(null);
-            try { localStorage.removeItem("influu_username"); } catch {}
-            try { localStorage.removeItem("influu_user_id"); } catch {}
-            try { localStorage.removeItem("influu_token"); } catch {}
-        } catch {}
-        router.replace("/login");
-    }, [router, setToken, setUser]);
+        (async () => {
+            await logout();
+            try { router.replace("/login"); } catch {}
+            try { if (typeof window !== "undefined") window.location.replace("/login"); } catch {}
+        })();
+    }, [router, logout]);
     return null;
 }
