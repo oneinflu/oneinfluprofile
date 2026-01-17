@@ -183,6 +183,9 @@ export default function ProfilePage() {
         visible?: boolean;
         pinned?: boolean | null;
     }>>([]);
+    const [shopItems, setShopItems] = useState<Array<{ id: string; title: string; image: string; platformLabel: string; url: string; categoryId?: string; categoryName?: string }>>([]);
+    const [shopCategories, setShopCategories] = useState<Array<{ id: string; name: string }>>([]);
+    const [shopSelectedCategory, setShopSelectedCategory] = useState<string>("All");
     useEffect(() => {
         if (!username) return;
         let alive = true;
@@ -220,12 +223,38 @@ export default function ProfilePage() {
         })();
         return () => { alive = false; };
     }, [username]);
+    useEffect(() => {
+        if (!username) return;
+        let alive = true;
+        (async () => {
+            try {
+                const res = await api.get<any>(`/users/${username}/affiliate-shop/public`);
+                if (!alive) return;
+                const items: Array<{ id: string; title: string; image: string; platformLabel: string; url: string; categoryId: string; categoryName: string }> = (((res || {}) as any)?.data?.items || (res as any)?.items || []).map((it: any) => ({
+                    id: String(it?._id || ""),
+                    title: String(it?.primary?.preview?.title || it?.title || "Product"),
+                    image: String(it?.primary?.preview?.image || it?.image || "/web.png"),
+                    platformLabel: String(it?.primary?.platformLabel || it?.platformLabel || (it?.primary?.preview?.platform || "Other")),
+                    url: String(it?.primary?.url || it?.url || ""),
+                    categoryId: String(it?.primary?.category?._id || it?.category?._id || ""),
+                    categoryName: String(it?.primary?.category?.name || it?.category?.name || ""),
+                }));
+                setShopItems(items);
+                const catsMap: Record<string, string> = {};
+                items.forEach((p: { categoryId: string; categoryName: string }) => { if (p.categoryId && p.categoryName) catsMap[p.categoryId] = p.categoryName; });
+                const cats = Object.entries(catsMap).map(([id, name]) => ({ id, name }));
+                setShopCategories(cats);
+                setShopSelectedCategory("All");
+            } catch {}
+        })();
+        return () => { alive = false; };
+    }, [username]);
 
     const [publicData, setPublicData] = useState<any>(null);
     const [publicError, setPublicError] = useState<string | null>(null);
     useEffect(() => {
         if (!username) return;
-        const url = `http://192.168.0.6:3000/${encodeURIComponent(username)}`;
+        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/profile`;
         console.group("PUBLIC_PROFILE_GET");
         console.log("REQUEST GET", url);
         console.groupEnd();
@@ -269,9 +298,58 @@ export default function ProfilePage() {
                     </div>
                 </div>
             )}
-            <section className="lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-20 overflow-y-auto scrollbar-hide">
+            <section className="lg:hidden flex min-h-screen pt-5  bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4 pb-32 overflow-y-auto scrollbar-hide">
                 
-                <ProfileCard username={username} profile={profile} payEnabled={payEnabled} upiId={upiId} offers={offers} links={links} portfolio={portfolioItems} onRequest={openRequest} />
+                <ProfileCard
+                    username={username}
+                    profile={profile}
+                    payEnabled={payEnabled}
+                    upiId={upiId}
+                    offers={offers}
+                    links={links}
+                    portfolio={portfolioItems}
+                    shopItems={shopItems}
+                    shopCategories={shopCategories}
+                    shopSelectedCategory={shopSelectedCategory}
+                    onSelectShopCategory={async (cat) => {
+                        setShopSelectedCategory(cat || "All");
+                        try {
+                            if (!cat || cat === "All") {
+                                const res = await api.get<any>(`/users/${username}/affiliate-shop/public`);
+                                const items: Array<{ id: string; title: string; image: string; platformLabel: string; url: string; categoryId: string; categoryName: string }> = (((res || {}) as any)?.data?.items || (res as any)?.items || []).map((it: any) => ({
+                                    id: String(it?._id || ""),
+                                    title: String(it?.primary?.preview?.title || it?.title || "Product"),
+                                    image: String(it?.primary?.preview?.image || it?.image || "/web.png"),
+                                    platformLabel: String(it?.primary?.platformLabel || it?.platformLabel || (it?.primary?.preview?.platform || "Other")),
+                                    url: String(it?.primary?.url || it?.url || ""),
+                                    categoryId: String(it?.primary?.category?._id || it?.category?._id || ""),
+                                    categoryName: String(it?.primary?.category?.name || it?.category?.name || ""),
+                                }));
+                                setShopItems(items);
+                                const catsMap: Record<string, string> = {};
+                                items.forEach((p: { categoryId: string; categoryName: string }) => { if (p.categoryId && p.categoryName) catsMap[p.categoryId] = p.categoryName; });
+                                const cats = Object.entries(catsMap).map(([id, name]) => ({ id, name }));
+                                setShopCategories(cats);
+                            } else {
+                                const found = shopCategories.find((c) => c.name === cat);
+                                const cid = found?.id || "";
+                                if (!cid) return;
+                                const res = await api.get<any>(`/users/${username}/affiliate-shop/public/category/${cid}`);
+                                const items = (((res || {}) as any)?.data?.items || (res as any)?.items || []).map((it: any) => ({
+                                    id: String(it?._id || ""),
+                                    title: String(it?.primary?.preview?.title || it?.title || "Product"),
+                                    image: String(it?.primary?.preview?.image || it?.image || "/web.png"),
+                                    platformLabel: String(it?.primary?.platformLabel || it?.platformLabel || (it?.primary?.preview?.platform || "Other")),
+                                    url: String(it?.primary?.url || it?.url || ""),
+                                    categoryId: String(it?.primary?.category?._id || it?.category?._id || ""),
+                                    categoryName: String(it?.primary?.category?.name || it?.category?.name || ""),
+                                }));
+                                setShopItems(items);
+                            }
+                        } catch {}
+                    }}
+                    onRequest={openRequest}
+                />
                 <PrimaryCTAStrip username={username} payEnabled={payEnabled} upiId={upiId} contactMethod={contactMethod} email={contactEmail} whatsapp={contactWhatsapp} variant="mobile" onRequest={openRequest} onPay={openPayment} />
             </section>
             <section className="hidden lg:flex min-h-screen items-center justify-center bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4">
@@ -311,7 +389,33 @@ export default function ProfilePage() {
     );
 }
 
-function ProfileCard({ username, profile, payEnabled, upiId, offers, links, portfolio, onRequest }: { username: string; profile: { name?: string | null; bio?: string | null; avatarUrl?: string | null } | null; payEnabled: boolean; upiId: string; offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>; links: Array<{ platform: string; icon: string; url: string }>; portfolio: Array<{ id: string; contentType?: "image" | "video" | "link" | null; fileUrl?: string | null; externalUrl?: string | null; title?: string | null; brand?: string | null; description?: string | null; platform?: string | null; visible?: boolean; pinned?: boolean | null }>; onRequest: (service?: string) => void }) {
+function ProfileCard({
+    username,
+    profile,
+    payEnabled,
+    upiId,
+    offers,
+    links,
+    portfolio,
+    shopItems,
+    shopCategories,
+    shopSelectedCategory,
+    onSelectShopCategory,
+    onRequest,
+}: {
+    username: string;
+    profile: { name?: string | null; bio?: string | null; avatarUrl?: string | null } | null;
+    payEnabled: boolean;
+    upiId: string;
+    offers: Array<{ title: string; description: string | null; priceType: "fixed" | "starting" | "custom"; price?: number; cta?: "request" | "pay" | "request_pay_later" | null }>;
+    links: Array<{ platform: string; icon: string; url: string }>;
+    portfolio: Array<{ id: string; contentType?: "image" | "video" | "link" | null; fileUrl?: string | null; externalUrl?: string | null; title?: string | null; brand?: string | null; description?: string | null; platform?: string | null; visible?: boolean; pinned?: boolean | null }>;
+    shopItems: Array<{ id: string; title: string; image: string; platformLabel: string; url: string; categoryId?: string; categoryName?: string }>;
+    shopCategories: Array<{ id: string; name: string }>;
+    shopSelectedCategory: string;
+    onSelectShopCategory: (categoryName?: string) => void;
+    onRequest: (service?: string) => void;
+}) {
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const search = useSearchParams();
@@ -392,43 +496,59 @@ function ProfileCard({ username, profile, payEnabled, upiId, offers, links, port
                         <p className="mt-2 text-sm text-tertiary text-center">{truncateBio(profile.bio)}</p>
                     )}
                 </div>
-            <div className="mt-1 flex items-center justify-center gap-2">
+            <div className="mt-1 flex flex-wrap justify-center gap-2 mx-5">
                 {links.length > 0 ? (
                     links.map((l) => (
-                        <a
-                            key={`${l.platform}:${l.url}`}
-                            href={l.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={l.platform}
-                            className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary"
-                            onClick={() => {
-                                try {
-                                    const payload = { category: "social", label: l.platform, url: l.url };
-                                    const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
-                                    const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
-                                    if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
-                                        (navigator as any).sendBeacon(endpoint, blob);
-                                    } else {
-                                        api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
-                                    }
-                                } catch {}
-                            }}
-                        >
-                            <img src={l.icon} alt={l.platform} className="size-5" />
-                        </a>
+                        <div key={`${l.platform}:${l.url}`} className="w-1/6 min-w-[44px] flex justify-center">
+                            <a
+                                href={l.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={l.platform}
+                                className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary"
+                                onClick={() => {
+                                    try {
+                                        const payload = { category: "social", label: l.platform, url: l.url };
+                                        const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                        if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                            (navigator as any).sendBeacon(endpoint, blob);
+                                        } else {
+                                            api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                        }
+                                    } catch {}
+                                }}
+                            >
+                                <img src={l.icon} alt={l.platform} className="size-5" />
+                            </a>
+                        </div>
                     ))
                 ) : (
                     <>
-                        <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
+                        <div className="w-1/6 min-w-[44px] flex justify-center">
+                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
+                        </div>
+                        <div className="w-1/6 min-w-[44px] flex justify-center">
+                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
+                        </div>
+                        <div className="w-1/6 min-w-[44px] flex justify-center">
+                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
+                        </div>
+                        <div className="w-1/6 min-w-[44px] flex justify-center">
+                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
+                        </div>
                     </>
                 )}
             </div>
         </div>
             <ProfileServices username={username} payEnabled={payEnabled} upiId={upiId} offers={offers} onRequest={onRequest} />
+            <ProfileShop
+                username={username}
+                items={shopItems}
+                categories={shopCategories}
+                selectedCategory={shopSelectedCategory}
+                onSelectCategory={onSelectShopCategory}
+            />
             <ProfilePortfolio username={username} items={portfolio} />
             <ProfileFooter />
         </div>
@@ -463,6 +583,7 @@ function ProfileServices({ username, payEnabled, upiId, offers, onRequest }: { u
         const link = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(username)}&am=${encodeURIComponent(String(price))}&tn=${encodeURIComponent(service)}`;
         window.location.href = link;
     };
+    if (offers.length === 0 && (!isOwner || isEmbedded)) return null;
     return (
         <div className="mt-4">
             <div className="flex items-center justify-between">
@@ -686,6 +807,7 @@ function ProfilePortfolio({
             setWantAutoplay(it.contentType === "video");
         }
     };
+    if (items.length === 0 && (!isOwner || isEmbedded)) return null;
     return (
         <div className="mt-4">
             <div className="flex items-center justify-between">
@@ -939,20 +1061,311 @@ function ProfilePortfolio({
 
 function ProfileFooter() {
     return (
-        <div className="mt-6 mb-2 text-center">
+        <div
+            className="sticky inset-x-0 mt-8 text-center"
+            
+        >
             <a
-                href="https://oneinflu.com/"
+                href="https://oneinflu.com/register"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-col items-center gap-0.5 text-xs text-secondary hover:text-secondary_hover"
+                className="inline-flex items-center gap-2 rounded-full bg-primary/85 dark:bg-linear-to-r dark:from-[#1f143d]/85 dark:to-[#4b2e8b]/85 backdrop-blur px-3.5 py-2.5 ring-1 ring-secondary_alt shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
             >
-                <span className="font-medium">Powered by INFLU</span>
-                <span className="text-[11px]">Profiles that convert, not just link</span>
+                <span className="inline-flex items-center gap-2">
+                    <img src="/favicon.png" alt="INFLU" className="h-4 w-auto dark:hidden" />
+                    <img src="/faviconwhite.png" alt="INFLU" className="h-4 w-4 hidden dark:inline-block rounded" />
+                    <span className="text-xs font-semibold text-primary">Powered by INFLU</span>
+                </span>
+               
             </a>
+            
+        </div>
+       
+    );
+}
+
+function ShopGrid({
+    username,
+    items,
+    categories,
+    selectedCategory,
+    onSelectCategory,
+    onOpenItem,
+    showHeader = true,
+    variant = "card",
+}: {
+    username: string;
+    items: Array<{ id: string; title: string; image: string; url: string; platformLabel?: string; categoryName?: string }>;
+    categories: Array<{ id: string; name: string }>;
+    selectedCategory: string;
+    onSelectCategory: (categoryName?: string) => void;
+    onOpenItem?: (id: string) => void;
+    showHeader?: boolean;
+    variant?: "card" | "flat";
+}) {
+    const filtered = selectedCategory === "All" ? items : items.filter((p) => p.categoryName === selectedCategory);
+    const seen = new Set<string>();
+    const deduped = filtered.filter((p) => {
+        const k = String(p.title || "").trim().toLowerCase();
+        if (!k) return true;
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+    });
+    const wrapperClass = variant === "card" ? "rounded-2xl bg-primary p-4 ring-1 ring-secondary_alt" : "";
+    return (
+        <div className={wrapperClass}>
+            {showHeader && (
+                <div className="flex items-start justify-between">
+                    <div className="flex min-w-0 flex-col">
+                        <h2 className="text-lg font-semibold text-primary">Shop</h2>
+                        <p className="text-sm text-tertiary">Buy from {username}</p>
+                    </div>
+                </div>
+            )}
+            <div className={`${showHeader ? "mt-3" : ""} flex flex-wrap items-center gap-2`}>
+                <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => onSelectCategory("All")}
+                    className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm ring-1 ring-secondary_alt transition-colors ${selectedCategory === "All" ? "bg-brand-solid text-white ring-transparent" : "text-tertiary hover:bg-primary_hover hover:text-primary"}`}
+                >
+                    All
+                </div>
+                {categories.map((cat) => (
+                    <div
+                        key={cat.id}
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => onSelectCategory(cat.name)}
+                        className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm ring-1 ring-secondary_alt transition-colors ${selectedCategory === cat.name ? "bg-brand-solid text-white ring-transparent" : "text-tertiary hover:bg-primary_hover hover:text-primary"}`}
+                    >
+                        <span className="truncate">{cat.name}</span>
+                    </div>
+                ))}
+            </div>
+            <div className={`${showHeader ? "mt-3" : "mt-2"} grid grid-cols-2 gap-3`}>
+                {deduped.length === 0 ? (
+                    <div className="col-span-full rounded-xl bg-primary_hover p-3 ring-1 ring-secondary_alt text-center">
+                        <p className="text-sm font-semibold text-primary">No products</p>
+                    </div>
+                ) : (
+                    deduped.map((p) => (
+                        <div
+                            key={p.id}
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => onOpenItem && onOpenItem(p.id)}
+                            className="rounded-xl bg-primary_hover ring-1 ring-secondary_alt overflow-hidden"
+                        >
+                            <div className="aspect-square w-full">
+                                <img src={p.image || "/web.png"} alt={p.title} className="size-full object-cover" />
+                            </div>
+                            <div className="p-3 flex flex-col gap-1">
+                                <p className="text-md font-semibold text-primary truncate">{p.title}</p>
+                                <p className="text-xs text-secondary truncate">{p.platformLabel}{p.categoryName ? ` · ${p.categoryName}` : ""}</p>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
     );
 }
 
+function ProductDetail({ username, id, onBack }: { username: string; id: string; onBack: () => void }) {
+    const [loading, setLoading] = useState(true);
+    const [item, setItem] = useState<{
+        id: string;
+        title: string;
+        image: string;
+        description: string;
+        platformLabel: string;
+        categoryName?: string;
+        primaryUrl: string;
+        secondary: Array<{ id: string; platformLabel: string; url: string }>;
+    } | null>(null);
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                setLoading(true);
+                const res = await api.get<{ success: boolean; status: string; data: { item: any } }>(`/users/${username}/affiliate-shop/public/${id}`);
+                const it = res.data?.item;
+                const mapped = {
+                    id: String(it?._id || id),
+                    title: String(it?.primary?.preview?.title || "Product"),
+                    image: String(it?.primary?.preview?.image || "/web.png"),
+                    description: String(it?.primary?.preview?.description || ""),
+                    platformLabel: String(it?.primary?.platformLabel || it?.primary?.preview?.platform || "Website"),
+                    categoryName: String(it?.primary?.category?.name || ""),
+                    primaryUrl: String(it?.primary?.url || ""),
+                    secondary: Array.isArray(it?.secondary)
+                        ? it.secondary.map((s: any) => ({
+                              id: String(s?._id || ""),
+                              platformLabel: String(s?.platformLabel || "Website"),
+                              url: String(s?.url || ""),
+                          }))
+                        : [],
+                };
+                if (!alive) return;
+                setItem(mapped);
+            } catch {
+                if (!alive) return;
+                setItem(null);
+            } finally {
+                if (!alive) return;
+                setLoading(false);
+            }
+        })();
+        return () => {
+            alive = false;
+        };
+    }, [username, id]);
+    return (
+        <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+                <ButtonUtility size="sm" color="secondary" icon={ArrowLeft} tooltip="Back" onClick={onBack} />
+                <div className="w-16" />
+            </div>
+            {loading ? (
+                <div className="rounded-xl bg-primary_hover p-4 ring-1 ring-secondary_alt">
+                    <p className="text-sm text-secondary">Loading…</p>
+                </div>
+            ) : !item ? (
+                <div className="rounded-xl bg-primary_hover p-4 ring-1 ring-secondary_alt">
+                    <p className="text-sm text-secondary">Unable to load product</p>
+                </div>
+            ) : (
+                <div className="flex flex-col gap-4">
+                    <div className="rounded-xl bg-primary_hover ring-1 ring-secondary_alt overflow-hidden">
+                        <div className="aspect-square w-full">
+                            <img src={item.image || "/web.png"} alt={item.title} className="size-full object-cover" />
+                        </div>
+                    </div>
+                    <div className="flex min-w-0 flex-col gap-1">
+                        <p className="text-md font-semibold text-primary">{item.title}</p>
+                        <p className="text-xs text-secondary">{item.platformLabel}{item.categoryName ? ` · ${item.categoryName}` : ""}</p>
+                        {item.description ? <p className="mt-1 text-sm text-primary">{item.description}</p> : null}
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        {item.primaryUrl ? (
+                            <Button className="w-full" size="sm" color="secondary" onClick={() => window.open(item.primaryUrl, "_blank")}>
+                                Buy on {item.platformLabel}
+                            </Button>
+                        ) : null}
+                        {item.secondary.map((s) => (
+                            <Button key={s.id} className="w-full" size="sm" color="secondary" onClick={() => window.open(s.url, "_blank")}>
+                                Buy on {s.platformLabel}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+function ProfileShop({
+    username,
+    items,
+    categories,
+    selectedCategory,
+    onSelectCategory,
+}: {
+    username: string;
+    items: Array<{ id: string; title: string; image: string; url: string; platformLabel?: string; categoryName?: string }>;
+    categories: Array<{ id: string; name: string }>;
+    selectedCategory: string;
+    onSelectCategory: (categoryName?: string) => void;
+}) {
+    const [open, setOpen] = useState(false);
+    const [selectedId, setSelectedId] = useState<string | null>(null);
+    const seen = new Set<string>();
+    const unique = items.filter((p) => {
+        const k = String(p.title || "").trim().toLowerCase();
+        if (!k) return true;
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+    });
+    const visible = unique.slice(0, 3);
+    return (
+        <div className="mt-4">
+            <div className="flex items-center justify-between">
+                <h2 className="text-md font-semibold text-primary">Shop</h2>
+                <Button size="sm" color="link-color" onClick={() => setOpen(true)}>View all</Button>
+            </div>
+            <div className="mt-2 grid grid-cols-2 gap-3">
+                {visible.length > 0 ? (
+                    visible.map((p) => (
+                        <div
+                            key={p.id}
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => {
+                                setSelectedId(p.id);
+                                setOpen(true);
+                            }}
+                            className="rounded-2xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt overflow-hidden"
+                        >
+                            <div className="aspect-square w-full rounded-lg bg-primary_hover overflow-hidden">
+                                <img src={p.image || "/web.png"} alt={p.title} className="size-full object-cover" />
+                            </div>
+                            <div className="mt-2 min-w-0">
+                                <p className="truncate text-sm font-semibold text-primary">{p.title}</p>
+                                <p className="truncate text-xs text-secondary">{p.platformLabel}{p.categoryName ? ` · ${p.categoryName}` : ""}</p>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <div className="col-span-full rounded-xl bg-primary p-3 shadow-xs ring-1 ring-secondary_alt text-center">
+                        <p className="text-sm font-semibold text-primary">No products</p>
+                    </div>
+                )}
+            </div>
+            <AriaDialogTrigger isOpen={open} onOpenChange={setOpen}>
+                <Button slot="trigger" className="hidden">Open</Button>
+                <AriaModalOverlay
+                    isDismissable
+                    className={({ isEntering, isExiting }) =>
+                        `fixed inset-0 z-50 bg-overlay/50 backdrop-blur-md ${isEntering ? "duration-150 ease-out animate-in fade-in" : ""} ${isExiting ? "duration-100 ease-in animate-out fade-out" : ""}`
+                    }
+                >
+                    {({ state }) => (
+                        <AriaModal className="w-full cursor-auto">
+                            <AriaDialog aria-label="Shop" className="fixed inset-0 mx-auto w-full h-full overflow-y-auto bg-primary ring-1 ring-secondary_alt focus:outline-hidden">
+                                <div className="sticky top-0 z-10 flex items-center justify-between border-b border-secondary bg-primary px-4 py-3">
+                                    <div className="flex min-w-0 flex-col">
+                                        <h2 className="text-lg font-semibold text-primary">Shop</h2>
+                                        <p className="text-sm text-tertiary">Buy from {username}</p>
+                                    </div>
+                                    <Button size="sm" onClick={() => state.close()}>Close</Button>
+                                </div>
+                                <div className="px-4 py-4">
+                                    {selectedId ? (
+                                        <ProductDetail username={username} id={selectedId} onBack={() => setSelectedId(null)} />
+                                    ) : (
+                                        <ShopGrid
+                                            username={username}
+                                            items={items}
+                                            categories={categories}
+                                            selectedCategory={selectedCategory}
+                                            onSelectCategory={onSelectCategory}
+                                            onOpenItem={(id) => setSelectedId(id)}
+                                            showHeader={false}
+                                            variant="flat"
+                                        />
+                                    )}
+                                </div>
+                            </AriaDialog>
+                        </AriaModal>
+                    )}
+                </AriaModalOverlay>
+            </AriaDialogTrigger>
+        </div>
+    );
+}
 function PrimaryCTAStrip({ username, payEnabled, upiId, contactMethod, email, whatsapp, variant, onRequest, onPay }: { username: string; payEnabled: boolean; upiId: string; contactMethod: "email" | "whatsapp"; email: string; whatsapp: string; variant: "mobile" | "inline" | "overlay"; onRequest: (service?: string) => void; onPay: () => void }) {
     const base =
         variant === "mobile"

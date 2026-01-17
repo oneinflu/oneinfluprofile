@@ -14,7 +14,7 @@ import {
     NotificationBox,
     Package,
     PieChart03,
-    Rows01,
+    Link02,
     Settings01,
     Star01,
     User01,
@@ -33,6 +33,15 @@ const navItemsSimple: NavItemType[] = [
     { label: "Home", href: "/admin", icon: HomeLine },
     { label: "My Profile", href: "/admin/my-profile", icon: User01 },
     { label: "My Offerings", href: "/admin/offers", icon: Star01 },
+    {
+        label: "My Links",
+        icon: Link02,
+        items: [
+            { label: "Social Media Links", href: "/admin/links" },
+            { label: "Shop Links", href: "/admin/shop-links" },
+           
+        ],
+    },
     { label: "Portfolio", href: "/admin/portfolio", icon: Grid03 },
     { label: "Enquiries", href: "/admin/enquiries", icon: MessageChatCircle },
     { label: "Payments", href: "/admin/payments", icon: CurrencyDollarCircle },
