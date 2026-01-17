@@ -286,6 +286,107 @@ export default function ShopLinksPage() {
         })();
     }, [selectedCategory, token, username, categories]);
 
+    const handleSavePublish = async (close: () => void) => {
+        const publish = true;
+        const url = primaryLink.trim();
+        if (!url) return;
+        let platformId = "other";
+        try {
+            const u = new URL(url);
+            const host = u.hostname.toLowerCase();
+            if (host.includes("amazon")) platformId = "amazon";
+            else if (host.includes("flipkart")) platformId = "flipkart";
+            else if (host.includes("meesho")) platformId = "meesho";
+            else if (host.includes("myntra")) platformId = "myntra";
+            else if (host.includes("ajio")) platformId = "ajio";
+            else if (host.includes("shopify")) platformId = "website";
+        } catch {}
+        try {
+            if (!token || !user?.id) return;
+            const labelMap: Record<string, string> = {
+                amazon: "Amazon",
+                flipkart: "Flipkart",
+                meesho: "Meesho",
+                myntra: "Myntra",
+                ajio: "Ajio",
+                website: "Brand Website",
+                other: "Other",
+            };
+            const payload = {
+                publish,
+                primary: {
+                    platformId,
+                    platformLabel: labelMap[platformId] || "Other",
+                    url,
+                    categoryId: drawerCategoryId,
+                    category: drawerCategory || null,
+                    tags: {
+                        affiliate: affiliateLink,
+                        personallyUsed,
+                        brandPartner,
+                    },
+                    preview: {
+                        title: primaryPreview?.title || "",
+                        image: primaryPreview?.image || "/web.png",
+                        platform: primaryPreview?.platform || labelMap[platformId] || "Other",
+                        description: primaryPreview?.description || "",
+                    },
+                },
+                secondary: secondaryOptions.map((opt) => ({
+                    platformId: opt.platformId,
+                    platformLabel: opt.platformLabel,
+                    url: opt.url,
+                })),
+            };
+            let it: any = null;
+            if (editProductId) {
+                const updated = await api.patch<{ success: boolean; status: string; data: { item: any } }>(`/users/${username}/affiliate-shop/${editProductId}`, payload, { token });
+                it = (updated as any)?.data?.item || (updated as any)?.item || null;
+            } else {
+                const created = await api.post<{ success: boolean; status: string; data: { item: any } }>(`/users/${username}/affiliate-shop`, payload, { token });
+                it = (created as any)?.data?.item || (created as any)?.item || null;
+            }
+            if (it) {
+                const mapped = {
+                    id: String(it?._id || ""),
+                    title: String(it?.primary?.preview?.title || "Product"),
+                    image: String(it?.primary?.preview?.image || "/web.png"),
+                    platformLabel: String(it?.primary?.platformLabel || (it?.primary?.preview?.platform || "Other")),
+                    url: String(it?.primary?.url || ""),
+                    categoryId: String(it?.primary?.category?._id || ""),
+                    categoryName: String(it?.primary?.category?.name || ""),
+                    tags: {
+                        affiliate: Boolean(it?.primary?.tags?.affiliate),
+                        personallyUsed: Boolean(it?.primary?.tags?.personallyUsed),
+                        brandPartner: Boolean(it?.primary?.tags?.brandPartner),
+                    },
+                    secondary: Array.isArray(it?.secondary) ? it.secondary.map((s: any) => ({
+                        id: String(s?._id || ""),
+                        platformId: String(s?.platformId || ""),
+                        platformLabel: String(s?.platformLabel || ""),
+                        url: String(s?.url || ""),
+                    })) : [],
+                };
+                setProducts((prev) => {
+                    if (editProductId) return prev.map((p) => (p.id === String(it?._id || "") ? mapped : p));
+                    return [mapped, ...prev];
+                });
+            }
+            setPreviewVersion((v) => v + 1);
+            close();
+            setPrimaryLink("");
+            setPrimaryPreview(null);
+            setAffiliateLink(true);
+            setPersonallyUsed(false);
+            setBrandPartner(false);
+            setDrawerCategory("");
+            setShowProductDetails(false);
+            setShowSecondaryPricing(false);
+            setSecondaryOptions([]);
+            setEditProductId(null);
+        } catch {}
+    };
+
     return (
         <section className="flex min-h-screen flex-col lg:pl-[300px]">
             <div className="top-0 z-10 px-4 md:px-8 pt-6 pb-4">
@@ -331,19 +432,13 @@ export default function ShopLinksPage() {
                     {!loading && (
                         <>
                             <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
-                                <div className="flex items-start justify-between">
-                                    <div className="flex min-w-0 flex-col">
-                                        <h2 className="text-lg font-semibold text-primary">Storefront</h2>
-                                        <p className="text-sm text-tertiary">Link marketplaces and checkout pages</p>
+                                <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
+                                    <h2 className="text-lg font-semibold text-primary order-1 md:order-none">Storefront</h2>
+                                    <div className="flex items-center gap-2 order-2 md:order-none">
+                                        <Button size="sm" color="secondary" onClick={() => setShowAddDrawer(true)}>+ Add Shop Product</Button>
+                                        <Button size="sm" color="secondary" onClick={() => setShowManageCategories(true)}>Manage Categories</Button>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Button size="sm" color="secondary" onClick={() => setShowAddDrawer(true)}>
-                                            + Add Shop Product
-                                        </Button>
-                                        <Button size="sm" color="secondary" onClick={() => setShowManageCategories(true)}>
-                                            Manage Categories
-                                        </Button>
-                                    </div>
+                                    <p className="text-sm text-tertiary order-3 md:order-none">Link marketplaces and checkout pages</p>
                                 </div>
 
                                 <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -375,7 +470,7 @@ export default function ShopLinksPage() {
                                 {/* Slideout drawer for adding product and buying options */}
                                 <SlideoutMenu.Trigger isOpen={showAddDrawer} onOpenChange={setShowAddDrawer}>
                                     <Button slot="trigger" className="hidden">Open</Button>
-                                    <SlideoutMenu isDismissable dialogClassName="inset-y-0 right-0 h-full w-full max-w-[520px] bg-primary ring-1 ring-secondary_alt">
+                                    <SlideoutMenu isDismissable dialogClassName="fixed inset-0 h-full w-full bg-primary ring-1 ring-secondary_alt">
                                         {({ close }) => (
                                             <>
                                                 <SlideoutMenu.Header onClose={close}>
@@ -383,6 +478,13 @@ export default function ShopLinksPage() {
                                                         <h3 className="text-lg font-semibold text-primary">Add Product</h3>
                                                         <p className="text-sm text-tertiary">Add a product to your storefront</p>
                                                     </div>
+                                                    <Button
+                                                        size="sm"
+                                                        className="absolute top-3 right-16 shrink-0"
+                                                        onClick={() => handleSavePublish(close)}
+                                                    >
+                                                        Save & Publish
+                                                    </Button>
                                                 </SlideoutMenu.Header>
                                                 <SlideoutMenu.Content>
                                                     <div className="rounded-xl bg-primary p-4 ring-1 ring-secondary">
@@ -555,113 +657,9 @@ export default function ShopLinksPage() {
                                                 </div>
                                                 </SlideoutMenu.Content>
                                                 <SlideoutMenu.Footer>
-                                                    <div className="flex items-center justify-end gap-2">
+                                                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
                                                         <Button size="sm" color="secondary" onClick={close}>Close</Button>
-                                                        <Button
-                                                            size="sm"
-                                                                        onClick={async () => {
-                                                                            const publish = true;
-                                                                            const url = primaryLink.trim();
-                                                                            if (!url) return;
-                                                                            let platformId = "other";
-                                                                            try {
-                                                                                const u = new URL(url);
-                                                                                const host = u.hostname.toLowerCase();
-                                                                                if (host.includes("amazon")) platformId = "amazon";
-                                                                                else if (host.includes("flipkart")) platformId = "flipkart";
-                                                                                else if (host.includes("meesho")) platformId = "meesho";
-                                                                                else if (host.includes("myntra")) platformId = "myntra";
-                                                                                else if (host.includes("ajio")) platformId = "ajio";
-                                                                                else if (host.includes("shopify")) platformId = "website";
-                                                                            } catch {}
-                                                                            try {
-                                                                                if (!token || !user?.id) return;
-                                                                                const labelMap: Record<string, string> = {
-                                                                                    amazon: "Amazon",
-                                                                                    flipkart: "Flipkart",
-                                                                                    meesho: "Meesho",
-                                                                                    myntra: "Myntra",
-                                                                                    ajio: "Ajio",
-                                                                                    website: "Brand Website",
-                                                                                    other: "Other",
-                                                                                };
-                                                                                const payload = {
-                                                                                    publish,
-                                                                                    primary: {
-                                                                                        platformId,
-                                                                                        platformLabel: labelMap[platformId] || "Other",
-                                                                                        url,
-                                                                                        categoryId: drawerCategoryId,
-                                                                                        category: drawerCategory || null,
-                                                                                        tags: {
-                                                                                            affiliate: affiliateLink,
-                                                                                            personallyUsed,
-                                                                                            brandPartner,
-                                                                                        },
-                                                                                        preview: {
-                                                                                            title: primaryPreview?.title || "",
-                                                                                            image: primaryPreview?.image || "/web.png",
-                                                                                            platform: primaryPreview?.platform || labelMap[platformId] || "Other",
-                                                                                            description: primaryPreview?.description || "",
-                                                                                        },
-                                                                                    },
-                                                                                    secondary: secondaryOptions.map((opt) => ({
-                                                                                        platformId: opt.platformId,
-                                                                                        platformLabel: opt.platformLabel,
-                                                                                        url: opt.url,
-                                                                                    })),
-                                                                                };
-                                                                                let it: any = null;
-                                                                                if (editProductId) {
-                                                                                    const updated = await api.patch<{ success: boolean; status: string; data: { item: any } }>(`/users/${username}/affiliate-shop/${editProductId}`, payload, { token });
-                                                                                    it = (updated as any)?.data?.item || (updated as any)?.item || null;
-                                                                                } else {
-                                                                                    const created = await api.post<{ success: boolean; status: string; data: { item: any } }>(`/users/${username}/affiliate-shop`, payload, { token });
-                                                                                    it = (created as any)?.data?.item || (created as any)?.item || null;
-                                                                                }
-                                                                                if (it) {
-                                                                                    const mapped = {
-                                                                                        id: String(it?._id || ""),
-                                                                                        title: String(it?.primary?.preview?.title || "Product"),
-                                                                                        image: String(it?.primary?.preview?.image || "/web.png"),
-                                                                                        platformLabel: String(it?.primary?.platformLabel || (it?.primary?.preview?.platform || "Other")),
-                                                                                        url: String(it?.primary?.url || ""),
-                                                                                        categoryId: String(it?.primary?.category?._id || ""),
-                                                                                        categoryName: String(it?.primary?.category?.name || ""),
-                                                                                        tags: {
-                                                                                            affiliate: Boolean(it?.primary?.tags?.affiliate),
-                                                                                            personallyUsed: Boolean(it?.primary?.tags?.personallyUsed),
-                                                                                            brandPartner: Boolean(it?.primary?.tags?.brandPartner),
-                                                                                        },
-                                                                                        secondary: Array.isArray(it?.secondary) ? it.secondary.map((s: any) => ({
-                                                                                            id: String(s?._id || ""),
-                                                                                            platformId: String(s?.platformId || ""),
-                                                                                            platformLabel: String(s?.platformLabel || ""),
-                                                                                            url: String(s?.url || ""),
-                                                                                        })) : [],
-                                                                                    };
-                                                                                    setProducts((prev) => {
-                                                                                        if (editProductId) return prev.map((p) => (p.id === String(it?._id || "") ? mapped : p));
-                                                                                        return [mapped, ...prev];
-                                                                                    });
-                                                                                }
-                                                                                setPreviewVersion((v) => v + 1);
-                                                                                close();
-                                                                                setPrimaryLink("");
-                                                                                setPrimaryPreview(null);
-                                                                                setAffiliateLink(true);
-                                                                                setPersonallyUsed(false);
-                                                                                setBrandPartner(false);
-                                                                                setDrawerCategory("");
-                                                                                setShowProductDetails(false);
-                                                                                setShowSecondaryPricing(false);
-                                                                                setSecondaryOptions([]);
-                                                                                setEditProductId(null);
-                                                                            } catch {}
-                                                                        }}
-                                                                    >
-                                                                        Save & Publish
-                                                                    </Button>
+                                                        <Button size="sm" onClick={() => handleSavePublish(close)}>Save & Publish</Button>
                                                     </div>
                                                 </SlideoutMenu.Footer>
                                             </>
@@ -672,7 +670,7 @@ export default function ShopLinksPage() {
                                 {/* Manage Categories drawer */}
                                 <SlideoutMenu.Trigger isOpen={showManageCategories} onOpenChange={setShowManageCategories}>
                                     <Button slot="trigger" className="hidden">Open</Button>
-                                    <SlideoutMenu isDismissable dialogClassName="inset-y-0 right-0 h-full w-full max-w-[520px] bg-primary ring-1 ring-secondary_alt">
+                                    <SlideoutMenu isDismissable dialogClassName="fixed inset-0 h-full w-full bg-primary ring-1 ring-secondary_alt">
                                         {({ close }) => (
                                             <>
                                                 <SlideoutMenu.Header onClose={close}>
@@ -683,7 +681,7 @@ export default function ShopLinksPage() {
                                                 </SlideoutMenu.Header>
                                                 <SlideoutMenu.Content>
                                                     <div className="rounded-xl bg-primary p-4 ring-1 ring-secondary">
-                                                        <div className="flex items-end gap-2">
+                                                    <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-end">
                                                             <Input size="md" placeholder="New category name" value={newCategory} onChange={setNewCategory} className="flex-1" />
                                                             <Button
                                                                 size="sm"
@@ -721,9 +719,9 @@ export default function ShopLinksPage() {
                                                         ) : (
                                                             <ul className="mt-4 flex flex-col gap-2">
                                                                 {categories.map((cat) => (
-                                                                    <li key={cat.id} className="flex items-center justify-between rounded-lg bg-primary p-2 ring-1 ring-secondary">
+                                                                    <li key={cat.id} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-lg bg-primary p-2 ring-1 ring-secondary">
                                                                         {editingCategoryId === cat.id ? (
-                                                                            <div className="flex items-center gap-2 flex-1">
+                                                                            <div className="flex flex-col gap-2 sm:flex-row sm:items-center flex-1">
                                                                                 <Input size="md" placeholder="Category name" value={editingCategoryName} onChange={setEditingCategoryName} className="flex-1" />
                                                                                 <ButtonUtility
                                                                                     aria-label="Save"
@@ -748,7 +746,7 @@ export default function ShopLinksPage() {
                                                                         ) : (
                                                                             <>
                                                                                 <p className="text-sm text-primary">{cat.name}</p>
-                                                                                <div className="flex items-center gap-2">
+                                                                                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                                                                                     <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => { setEditingCategoryId(cat.id); setEditingCategoryName(cat.name); }} />
                                                                                     <ButtonUtility
                                                                                         aria-label="Delete"
@@ -782,7 +780,7 @@ export default function ShopLinksPage() {
                                     </SlideoutMenu>
                                 </SlideoutMenu.Trigger>
 
-                                <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+                                <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
                                     {(() => {
                                         const filtered = selectedCategory === "All" ? products : products.filter((p) => p.categoryName === selectedCategory);
                                         return filtered.map((p) => (
@@ -852,24 +850,7 @@ export default function ShopLinksPage() {
                                                             {p.tags.brandPartner && <Badge size="sm" color="success">Brand partner</Badge>}
                                                         </div>
                                                     )}
-                                                    <div className="flex items-center gap-2">
-                                                        {p.url ? (
-                                                            <a href={p.url} target="_blank" rel="noreferrer" className="inline-flex items-center rounded-lg px-3 py-1 text-xs ring-1 ring-secondary_alt text-link-color">
-                                                                Open
-                                                            </a>
-                                                        ) : (
-                                                            <span className="text-xs text-tertiary">No URL</span>
-                                                        )}
-                                                        {p.secondary && p.secondary.length > 0 && (
-                                                            <div className="flex-1 flex flex-wrap items-center gap-2">
-                                                                {p.secondary.map((s) => (
-                                                                    <a key={s.id} href={s.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full px-2 py-1 text-xs ring-1 ring-secondary_alt text-link-color">
-                                                                        {s.platformLabel}
-                                                                    </a>
-                                                                ))}
-                                                            </div>
-                                                        )}
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         ));

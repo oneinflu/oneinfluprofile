@@ -1474,6 +1474,10 @@
     right: calc(var(--spacing) * 8);
   }
 
+  .right-16 {
+    right: calc(var(--spacing) * 16);
+  }
+
   .-bottom-0\.5 {
     bottom: calc(var(--spacing) * -.5);
   }
@@ -1592,6 +1596,14 @@
 
   .order-1 {
     order: 1;
+  }
+
+  .order-2 {
+    order: 2;
+  }
+
+  .order-3 {
+    order: 3;
   }
 
   .order-first {
@@ -2452,10 +2464,6 @@
     max-width: calc(var(--spacing) * 100);
   }
 
-  .max-w-\[520px\] {
-    max-width: 520px;
-  }
-
   .max-w-container {
     max-width: var(--max-width-container);
   }
@@ -2689,10 +2697,6 @@
 
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .grid-cols-\[1fr_2fr_2fr_1fr_1fr_auto\] {
@@ -4483,10 +4487,6 @@
     overflow-wrap: break-word;
   }
 
-  .break-all {
-    word-break: break-all;
-  }
-
   .text-ellipsis {
     text-overflow: ellipsis;
   }
@@ -5609,16 +5609,6 @@
   @media (hover: hover) {
     .group-hover\:text-secondary_hover:is(:where(.group):where(:not([data-rac])):hover *) {
       color: var(--text-color-secondary_hover);
-    }
-  }
-
-  .group-hover\:underline:is(:where(.group):where([data-rac])[data-hovered] *) {
-    text-decoration-line: underline;
-  }
-
-  @media (hover: hover) {
-    .group-hover\:underline:is(:where(.group):where(:not([data-rac])):hover *) {
-      text-decoration-line: underline;
     }
   }
 
@@ -7704,14 +7694,44 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:flex-wrap {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:items-center {
       align-items: center;
     }
   }
 
   @media (min-width: 40rem) {
+    .sm\:items-end {
+      align-items: flex-end;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:justify-between {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:justify-center {
       justify-content: center;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:justify-end {
+      justify-content: flex-end;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:gap-2 {
+      gap: calc(var(--spacing) * 2);
     }
   }
 
@@ -7756,6 +7776,12 @@
   @media (min-width: 48rem) {
     .md\:order-1 {
       order: 1;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:order-none {
+      order: 0;
     }
   }
 
@@ -7961,6 +7987,12 @@
   @media (min-width: 48rem) {
     .md\:items-center {
       align-items: center;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:items-start {
+      align-items: flex-start;
     }
   }
 
@@ -8570,6 +8602,12 @@
   @media (min-width: 80rem) {
     .xl\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .xl\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
