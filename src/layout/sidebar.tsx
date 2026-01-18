@@ -29,7 +29,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
 
-const navItemsSimple: NavItemType[] = [
+const baseNavItems: NavItemType[] = [
     { label: "Home", href: "/admin", icon: HomeLine },
     { label: "My Profile", href: "/admin/my-profile", icon: User01 },
     { label: "My Offerings", href: "/admin/offers", icon: Star01 },
@@ -39,17 +39,22 @@ const navItemsSimple: NavItemType[] = [
         items: [
             { label: "Social Media Links", href: "/admin/links" },
             { label: "Shop Links", href: "/admin/shop-links" },
-           
         ],
     },
     { label: "Portfolio", href: "/admin/portfolio", icon: Grid03 },
     { label: "Enquiries", href: "/admin/enquiries", icon: MessageChatCircle },
+];
+
+const professionalNavItems: NavItemType[] = [
+    { label: "Campaigns", href: "/admin/campaigns", icon: PieChart03 },
     { label: "Payments", href: "/admin/payments", icon: CurrencyDollarCircle },
 ];
+
 export const AppSidebar = () => {
-    const { user, token } = useAuth();
+    const { user, token, getMe } = useAuth();
     const [progress, setProgress] = useState(0);
     const [desc, setDesc] = useState("Loading storage…");
+    const [category, setCategory] = useState<string | null>(null);
     const shareHref = `/${user?.username || ""}`;
     useEffect(() => {
         let alive = true;
@@ -70,8 +75,30 @@ export const AppSidebar = () => {
                 setDesc("Unable to load storage");
             }
         })();
-        return () => { alive = false; };
+        return () => {
+            alive = false;
+        };
     }, [user?.username, token]);
+
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!token) return;
+                const me = await getMe();
+                if (!alive) return;
+                setCategory(me.category || null);
+            } catch {}
+        })();
+        return () => {
+            alive = false;
+        };
+    }, [token, getMe]);
+
+    const isProfessional = category === "Professional";
+    const navItemsSimple: NavItemType[] = isProfessional
+        ? [...baseNavItems, ...professionalNavItems]
+        : baseNavItems;
     return (
         <SidebarNavigationSimple
             items={navItemsSimple}

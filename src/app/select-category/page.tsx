@@ -18,7 +18,8 @@ export default function SelectCategoryPage() {
         const category =
             value === "creator" ? "Creator" :
             value === "business" ? "Business" :
-            value === "personal" ? "Personal" : null;
+            value === "personal" ? "Personal" :
+            value === "professional" ? "Professional" : null;
         if (!category) return;
         if (loading) return;
         setLoading(true);
@@ -63,6 +64,25 @@ export default function SelectCategoryPage() {
                             size="md"
                             hideIndicator
                         />
+                         <RadioButton
+                            value="professional"
+                            label="Professional"
+                            hint={(
+                                <>
+                                    <span className="block font-semibold text-secondary truncate">Work with creators and brands professionally.</span>
+                                    <span className="block text-sm text-tertiary">Event Host • Influencer Collaborator • Talent Manager • PR / Activation Partner • Campaign Manager • Agency (individual or small team)</span>
+                                </>
+                            )}
+                            className={(state) =>
+                                cx(
+                                    "w-full rounded-xl bg-primary p-5 text-left ring-1 ring-primary transition duration-100 ease-linear flex flex-col gap-3 h-30 [&>div:first-child]:hidden",
+                                    "hover:bg-primary_hover",
+                                    state.isSelected && "ring-brand bg-primary_hover",
+                                )
+                            }
+                            size="md"
+                            hideIndicator
+                        />
                         <RadioButton
                             value="business"
                             label="Business"
@@ -82,6 +102,7 @@ export default function SelectCategoryPage() {
                             size="md"
                             hideIndicator
                         />
+                       
                         <RadioButton
                             value="personal"
                             label="Personal"

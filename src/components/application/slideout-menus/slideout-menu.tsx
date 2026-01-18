@@ -83,7 +83,7 @@ const Menu = ({ children, dialogClassName, ...props }: SlideoutMenuProps) => {
 Menu.displayName = "SlideoutMenu";
 
 const Content = ({ role = "main", ...props }: ComponentPropsWithRef<"div">) => {
-    return <div role={role} {...props} className={cx("flex size-full flex-col gap-6 overflow-y-auto overscroll-auto px-4 md:px-6", props.className)} />;
+    return <div role={role} {...props} className={cx("flex flex-1 flex-col gap-6", props.className)} />;
 };
 Content.displayName = "SlideoutContent";
 
