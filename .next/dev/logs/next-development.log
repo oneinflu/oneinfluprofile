@@ -3414,3 +3414,15 @@ Incoming: %s useEffect [73G6428E] [73G6428E, ]
 [08:43:08.079] Server  LOG     ✓ Compiled in 395ms
 [08:46:49.222] Server  LOG     ✓ Compiled in 351ms
 [08:48:19.392] Server  LOG     ✓ Compiled in 329ms
+[08:52:27.213] Server  LOG     ✓ Compiled in 1068ms
+[08:55:05.009] Server  LOG     ✓ Compiled in 572ms
+[08:56:54.122] Server  LOG     ✓ Compiled in 1475ms
+[08:58:22.361] Server  LOG     ✓ Compiled in 499ms
+[08:59:11.401] Server  LOG     ✓ Compiled in 949ms
+[09:02:21.153] Server  LOG     ✓ Compiled in 868ms
+[09:02:36.576] Server  LOG     ✓ Compiled in 510ms
+[09:02:55.863] Server  LOG     ✓ Compiled in 1130ms
+[09:03:23.217] Server  LOG     ✓ Finished filesystem cache database compaction in 23.0s
+[09:03:41.760] Server  LOG     ✓ Compiled in 2.3s
+[09:04:33.460] Server  LOG     ✓ Compiled in 770ms
+[09:04:46.656] Server  LOG     ✓ Compiled in 1802ms

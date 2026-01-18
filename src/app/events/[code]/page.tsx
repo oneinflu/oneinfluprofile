@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useTheme } from "next-themes";
+import { Sun, Moon01 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
+import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { Badge } from "@/components/base/badges/badges";
 import { api } from "@/utils/api";
 
@@ -143,6 +146,10 @@ export default function EventPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [approving, setApproving] = useState(false);
+    const { resolvedTheme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
 
     useEffect(() => {
         let alive = true;
@@ -231,11 +238,13 @@ export default function EventPage() {
     const deliverables = Array.isArray(event.deliverables) ? event.deliverables : [];
     const payment = event.payment ?? null;
     const creatorCriteria = event.creatorCriteria ?? {};
+    const isDark = mounted && resolvedTheme === "dark";
+    const themeLabel = isDark ? "Switch to light" : "Switch to dark";
 
     return (
         <section className="flex min-h-screen items-start justify-center bg-linear-to-br from-[#11002C] via-[#13052F] to-[#020617] px-4 py-10">
             <div className="w-full max-w-4xl rounded-3xl bg-linear-to-br from-[#F4EBFF] via-[#FFFFFF] to-[#E0EAFF] p-[1px] shadow-lg ring-1 ring-[#F5F5FF] dark:from-[#201144] dark:via-[#020617] dark:to-[#020617] dark:ring-[#312E81]">
-                <div className="h-full w-full rounded-[22px] bg-primary p-4 md:p-6 lg:p-8">
+                <div className="relative h-full w-full rounded-[22px] bg-primary p-4 md:p-6 lg:p-8">
                     <div className="flex flex-col gap-4 border-b border-secondary pb-5 md:flex-row md:items-start md:justify-between">
                         <div className="flex min-w-0 flex-col gap-3">
                             <div className="inline-flex items-center gap-2 rounded-full bg-[#F4EBFF] px-3 py-1 text-xs font-medium text-[#6941C6] dark:bg-[#1D1633] dark:text-[#E9D7FE]">
@@ -260,6 +269,18 @@ export default function EventPage() {
                         </div>
                         <div className="mt-3 flex flex-wrap items-center justify-start gap-2 md:mt-0 md:justify-end" />
                     </div>
+
+                    {mounted && (
+                        <div className="absolute right-4 top-4">
+                            <ButtonUtility
+                                tooltip={themeLabel}
+                                size="sm"
+                                color="secondary"
+                                icon={isDark ? Sun : Moon01}
+                                onClick={() => setTheme(isDark ? "light" : "dark")}
+                            />
+                        </div>
+                    )}
 
                     <div className="mt-0 grid grid-cols-1 gap-5 md:grid-cols-[1.4fr,1.6fr]">
                         <div className="flex flex-col gap-4">
