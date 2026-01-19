@@ -209,3 +209,46 @@ Check the render method of `ForwardRef(Dialog)`.
 [00:28:31.513] Server  LOG     ✓ Compiled in 178ms
 [00:28:40.029] Server  LOG     ✓ Compiled in 517ms
 [00:29:03.948] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"serth","name":"sfgh","otp":"234569","phoneNumber":"0987654322","photo":null,"shareDashboard":true,"willingToAttend":true}
+[00:35:37.952] Server  LOG     ✓ Compiled in 482ms
+[00:35:48.356] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:35:52.952] Server  LOG     ✓ Compiled in 221ms
+[00:37:48.625] Server  LOG     ✓ Compiled in 296ms
+[00:37:58.862] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:38:06.939] Server  WARN    Error: Route "/events/invite/[code]" used `params.code`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:38:06.970] Server  LOG     ✓ Compiled in 0ms
