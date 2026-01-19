@@ -167,6 +167,7 @@ function AuthProvider({ children }) {
                 const stored = localStorage.getItem("influu_token");
                 if (stored) {
                     setTokenState(stored);
+                    setCookie("influu_token", stored);
                     return;
                 }
                 const ck = typeof document !== "undefined" ? document.cookie.split("; ").find({
@@ -196,7 +197,12 @@ function AuthProvider({ children }) {
                         try {
                             localStorage.setItem("influu_user_id", me.id);
                         } catch  {}
-                    } catch  {}
+                    } catch (e) {
+                        // If the token is invalid, clear it to prevent redirection loops
+                        if (e?.message?.includes("401") || e?.message?.toLowerCase()?.includes("unauthorized")) {
+                            setToken(null);
+                        }
+                    }
                 }
             })["AuthProvider.useEffect"]();
             return ({
@@ -413,7 +419,7 @@ function AuthProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/src/providers/auth.tsx",
-        lineNumber: 213,
+        lineNumber: 219,
         columnNumber: 10
     }, this);
 }

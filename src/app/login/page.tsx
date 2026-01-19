@@ -13,7 +13,13 @@ export default function LoginPage() {
     const [otpLoading, setOtpLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const router = useRouter();
-    const { loginSendOtp } = useAuth();
+    const { loginSendOtp, token } = useAuth();
+
+    useEffect(() => {
+        if (token) {
+            router.replace("/admin/my-profile");
+        }
+    }, [token, router]);
 
     const handleGoogle = () => {
         const payload = {

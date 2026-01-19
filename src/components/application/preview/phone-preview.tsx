@@ -11,7 +11,7 @@ interface PhonePreviewProps {
 
 export const PhonePreview = ({ username, className, frameClassName }: PhonePreviewProps) => {
   const params = useSearchParams();
-  const u = username ?? params.get("username") ?? "guest";
+  const u = username ?? params.get("username");
 
   return (
     <div

@@ -46,6 +46,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const stored = localStorage.getItem("influu_token");
       if (stored) {
         setTokenState(stored);
+        setCookie("influu_token", stored);
         return;
       }
       const ck = typeof document !== "undefined"
@@ -64,7 +65,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (!alive) return;
         setUser({ id: me.id, username: me.username, email: me.email, avatarUrl: me.avatarUrl });
         try { localStorage.setItem("influu_user_id", me.id); } catch {}
-      } catch {}
+      } catch (e: any) {
+        // If the token is invalid, clear it to prevent redirection loops
+        if (e?.message?.includes("401") || e?.message?.toLowerCase()?.includes("unauthorized")) {
+             setToken(null);
+        }
+      }
     })();
     return () => { alive = false; };
   }, [token]);

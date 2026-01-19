@@ -2827,6 +2827,10 @@
     place-items: center;
   }
 
+  .\!items-center {
+    align-items: center !important;
+  }
+
   .items-center {
     align-items: center;
   }

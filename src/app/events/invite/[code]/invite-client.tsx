@@ -39,6 +39,7 @@ import { Badge } from "@/components/base/badges/badges";
 import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-icon";
 import { Instagram, YouTube, X, TikTok, LinkedIn, Facebook } from "@/components/foundations/social-icons";
 import { api } from "@/utils/api";
+import { useAuth } from "@/providers/auth";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Dialog, DialogTrigger, Modal, ModalOverlay } from "@/components/application/modals/modal";
 import { Input } from "@/components/base/input/input";
@@ -144,6 +145,65 @@ const BottomSheetModal = ({ className, ...props }: React.ComponentProps<typeof M
     />
 );
 
+const SuccessView = () => {
+    const animRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const { token } = useAuth();
+
+    useEffect(() => {
+        let anim: any;
+        let alive = true;
+        (async () => {
+            try {
+                const mod = await import("lottie-web");
+                if (!alive || !animRef.current) return;
+                anim = mod.default.loadAnimation({
+                    container: animRef.current,
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: true,
+                    path: "/sent.json"
+                });
+            } catch {}
+        })();
+        return () => { 
+            alive = false;
+            if (anim) anim.destroy(); 
+        };
+    }, []);
+
+    return (
+        <div className="flex flex-col items-center justify-center py-8 text-center">
+            <div ref={animRef} className="w-32 h-32 mb-4" />
+            
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                You have applied for invitation for the event
+            </h3>
+            
+            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs mx-auto mb-8">
+                Wait for the confirmation message you will receives once you are shortlisted
+            </p>
+
+            <Button 
+                size="lg" 
+                color="primary" 
+                className="w-full"
+                onClick={() => {
+                    // Ensure cookie is set before navigation as a fallback
+                    if (token) {
+                        const d = new Date();
+                        d.setTime(d.getTime() + 7 * 24 * 60 * 60 * 1000);
+                        document.cookie = `influu_token=${token};expires=${d.toUTCString()};path=/`;
+                    }
+                    router.push(`/admin/my-profile`);
+                }}
+            >
+                Manage Your Profile
+            </Button>
+        </div>
+    );
+};
+
 export default function EventInviteClient() {
     const params = useParams();
     const router = useRouter();
@@ -152,6 +212,7 @@ export default function EventInviteClient() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { resolvedTheme, setTheme } = useTheme();
+    const { token: authToken, setToken } = useAuth();
     const [mounted, setMounted] = useState(false);
     const clipboard = useClipboard();
     
@@ -176,47 +237,82 @@ export default function EventInviteClient() {
     // Focus state for mobile keyboard handling
     const [isFocused, setIsFocused] = useState(false);
 
-    // Success Animation Ref
-    const animRef = useRef<HTMLDivElement | null>(null);
+
+
+    const checkExistingApplication = async (tokenToCheck?: string) => {
+        const t = tokenToCheck || authToken || localStorage.getItem("influu_token");
+        if (!t || !code) return false;
+
+        try {
+            const res = await api.get<any>(`/events/public/code/${encodeURIComponent(code)}/application`, { token: t });
+            if (res?.success && res?.data?.application) {
+                setStep("success");
+                return true;
+            }
+        } catch (e) {
+            // No application found or error
+        }
+        return false;
+    };
 
     useEffect(() => {
-        let alive = true;
-        if (step !== "success" || !animRef.current) return;
-        (async () => {
-            try {
-                const mod = await import("lottie-web");
-                if (!alive || !animRef.current) return;
-                const anim = mod.default.loadAnimation({
-                    container: animRef.current,
-                    renderer: "svg",
-                    loop: false,
-                    autoplay: true,
-                    path: "/sent.json"
-                });
-                return () => {
-                    try {
-                        anim.destroy();
-                    } catch {}
-                };
-            } catch {}
-        })();
-        return () => { alive = false; };
-    }, [step]);
+        checkExistingApplication();
+    }, [code, authToken]);
 
-    const handleContinue = () => {
+
+
+    const handleContinue = async () => {
         if (phoneNumber.length !== 10) {
             setPhoneError("Please enter a valid 10-digit phone number");
             return;
         }
-        setStep("otp");
+        
+        setPhoneError("");
+        try {
+            await api.post("/auth/register/phone/start-send", { phone: phoneNumber });
+            setStep("otp");
+            setOtp("");
+            setOtpError("");
+            setIsFocused(false);
+        } catch (e: any) {
+            setPhoneError(e.message || "Failed to send OTP. Please try again.");
+        }
     };
 
-    const handleVerify = () => {
+    const handleVerify = async () => {
         if (otp.length !== 6) {
             setOtpError("Please enter a valid 6-digit OTP");
             return;
         }
-        setStep("details");
+
+        setOtpError("");
+        try {
+            const res: any = await api.post("/auth/register/phone/otp/verify", { 
+                phone: phoneNumber,
+                code: otp 
+            });
+
+            const { token, user, isNewUser } = res.data;
+            
+            if (token) {
+                setToken(token);
+            }
+            if (user?.id) localStorage.setItem("influu_user_id", user.id);
+            if (user?.username) localStorage.setItem("influu_username", user.username);
+
+            if (token) {
+                const applied = await checkExistingApplication(token);
+                if (applied) {
+                    setIsFocused(false);
+                    return;
+                }
+            }
+
+            setStep("details");
+            setIsFocused(false);
+        } catch (e: any) {
+            setOtpError(e.message || "Invalid OTP. Please try again.");
+        }
     };
 
     const handleBack = () => {
@@ -239,13 +335,83 @@ export default function EventInviteClient() {
         }
     };
 
-    const handleDetailsSubmit = () => {
+    const handleDetailsSubmit = async () => {
+        console.log("handleDetailsSubmit: Starting submission");
         // Basic validation
         if (!name.trim()) {
+            console.warn("handleDetailsSubmit: Name is empty");
             // Can add error state here if needed
             return;
         }
-        setStep("dashboard");
+
+        try {
+            const token = localStorage.getItem("influu_token");
+            let storedUsername = localStorage.getItem("influu_username");
+            const userId = localStorage.getItem("influu_user_id");
+            
+            console.log("handleDetailsSubmit: Credentials", { token: !!token, username: storedUsername, userId });
+
+            if (!storedUsername && userId && token) {
+                try {
+                    console.log("handleDetailsSubmit: Fetching username from ID");
+                    const userRes = await api.get<{ username: string }>(`/users/id/${userId}`, { token });
+                    if (userRes?.username) {
+                        storedUsername = userRes.username;
+                        localStorage.setItem("influu_username", storedUsername);
+                        console.log("handleDetailsSubmit: Retrieved username", storedUsername);
+                    }
+                } catch (e) {
+                    console.error("handleDetailsSubmit: Failed to fetch username", e);
+                }
+            }
+
+            if (!storedUsername) {
+                 console.error("Username not found in local storage");
+                 return;
+            }
+
+            // 1. Update basic profile
+            const formData = new FormData();
+            formData.append("name", name);
+            if (photo instanceof File) {
+                formData.append("avatar", photo);
+            }
+
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
+            console.log("handleDetailsSubmit: Sending profile update to", `${baseUrl}/users/${storedUsername}/profile/basic`);
+            
+            const profileRes = await fetch(`${baseUrl}/users/${storedUsername}/profile/basic`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            });
+
+            if (!profileRes.ok) {
+                console.error("Failed to update profile", await profileRes.text());
+            } else {
+                console.log("handleDetailsSubmit: Profile updated successfully");
+            }
+
+            // 2. Upsert Instagram social link
+            if (instagramHandle.trim()) {
+                console.log("handleDetailsSubmit: Upserting Instagram handle");
+                await api.post(`/users/${storedUsername}/social-links/instagram/upsert`, {
+                    instagramUserId: instagramHandle,
+                    visible: true
+                }, { token });
+            }
+
+            // 3. Save preferences to localStorage
+            localStorage.setItem("influu_isWillingToAttend", String(willingToAttend));
+            localStorage.setItem("influu_shareProfessionalDashboard", String(shareDashboard));
+
+            setStep("dashboard");
+        } catch (e: any) {
+            console.error("Failed to update profile", e);
+            // Maybe show error to user?
+        }
     };
 
     const handleDashboardDrop = (files: FileList) => {
@@ -261,19 +427,65 @@ export default function EventInviteClient() {
         setDashboardPreview(null);
     };
 
-    const handleFinalSubmit = () => {
+    const handleFinalSubmit = async () => {
         // Here you would typically submit all the data to the backend
-        console.log({
-            phoneNumber,
-            otp,
-            name,
-            photo,
-            instagramHandle,
-            willingToAttend,
-            shareDashboard,
-            dashboardScreenshot
-        });
-        setStep("success");
+        console.log("handleFinalSubmit: Starting final submission");
+        
+        try {
+            const token = authToken || localStorage.getItem("influu_token");
+            if (!token) {
+                console.error("handleFinalSubmit: Missing token");
+                // Should redirect to login or show error
+                return;
+            }
+
+            const isWilling = localStorage.getItem("influu_isWillingToAttend");
+            const shareDash = localStorage.getItem("influu_shareProfessionalDashboard");
+            
+            const formData = new FormData();
+            formData.append("willingToAttend", isWilling || "false");
+            formData.append("shareProfessionalDashboard", shareDash || "false");
+            
+            if (dashboardScreenshot) {
+                formData.append("dashboard", dashboardScreenshot);
+            }
+
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
+            const endpoint = `/events/public/code/${encodeURIComponent(code)}/apply`;
+            console.log("handleFinalSubmit: Submitting to", `${baseUrl}${endpoint}`);
+
+            const res = await fetch(`${baseUrl}${endpoint}`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error("handleFinalSubmit: Submission failed", errorText);
+                // Handle error (show toast etc)
+                return;
+            }
+
+            const data = await res.json();
+            console.log("handleFinalSubmit: Success", data);
+
+            console.log({
+                phoneNumber,
+                otp,
+                name,
+                photo,
+                instagramHandle,
+                willingToAttend,
+                shareDashboard,
+                dashboardScreenshot
+            });
+            setStep("success");
+        } catch (e) {
+            console.error("handleFinalSubmit: Error during submission", e);
+        }
     };
 
     useEffect(() => setMounted(true), []);
@@ -384,7 +596,7 @@ export default function EventInviteClient() {
                             </div>
                         )}
                         <div className="inline-flex items-center justify-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 mb-4">
-                            Apply for Invitation
+                            {step === "success" ? "Already Applied" : "Apply for Invitation"}
                         </div>
                         <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
                             {event.brandName ? event.brandName : "EXCLUSIVE EVENT"}
@@ -610,10 +822,10 @@ export default function EventInviteClient() {
                                     className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
                                     iconLeading={ArrowRight}
                                 >
-                                    Apply for Invitation
+                                    {step === "success" ? "Already Applied" : "Apply for Invitation"}
                                 </Button>
-                                <BottomSheetOverlay>
-                                    <BottomSheetModal className={isFocused ? "h-[100dvh] max-h-[100dvh] rounded-none sm:rounded-2xl sm:h-auto sm:max-h-[90dvh]" : ""}>
+                                <BottomSheetOverlay className={isFocused ? "!items-center" : ""}>
+                                    <BottomSheetModal>
                                         <Dialog className="outline-none">
                                             {({ close }) => (
                                                 <div className="w-full pb-20">
@@ -881,28 +1093,7 @@ export default function EventInviteClient() {
                                                         </>
                                                     )}
 
-                                                    {step === "success" && (
-                                                        <div className="flex flex-col items-center justify-center py-8 text-center">
-                                                            <div ref={animRef} className="w-32 h-32 mb-4" />
-                                                            
-                                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                                                                You have applied for invitation for the event
-                                                            </h3>
-                                                            
-                                                            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs mx-auto mb-8">
-                                                                Wait for the confirmation message you will receives once you are shortlisted
-                                                            </p>
-
-                                                            <Button 
-                                                                size="lg" 
-                                                                color="primary" 
-                                                                className="w-full"
-                                                                onClick={() => router.push(`/profile`)}
-                                                            >
-                                                                Explore your INFLU profile
-                                                            </Button>
-                                                        </div>
-                                                    )}
+                                                    {step === "success" && <SuccessView />}
                                                 </div>
                                             )}
                                         </Dialog>

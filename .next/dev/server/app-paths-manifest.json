@@ -1,5 +1,8 @@
 {
+  "/[username]/page": "app/[username]/page.js",
+  "/admin/my-profile/page": "app/admin/my-profile/page.js",
   "/events/invite/[code]/page": "app/events/invite/[code]/page.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
   "/register/page": "app/register/page.js"
 }

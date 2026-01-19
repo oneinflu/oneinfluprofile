@@ -21,14 +21,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         const path = `/events/public/code/${encodeURIComponent(code)}`;
         // We use fetch directly or the api wrapper if it supports server-side
         // The api wrapper uses fetch, so it should be fine.
-        const res: any = await api.get(path);
+        // Use production URL directly to ensure metadata generation always has access to data
+        const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://newyearbackendcode-zrp62.ondigitalocean.app";
+        const res = await fetch(`${BASE_URL}${path}`, { next: { revalidate: 60 } });
+        const data = await res.json();
         
         const event: EventMeta = 
-            res?.data?.event ||
-            res?.data?.item ||
-            res?.event ||
-            res?.item ||
-            res?.data ||
+            data?.data?.event ||
+            data?.data?.item ||
+            data?.event ||
+            data?.item ||
+            data?.data ||
             {};
 
         const title = event.eventName 

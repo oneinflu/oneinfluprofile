@@ -3,17 +3,20 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AppSidebar } from "@/layout/sidebar";
+import { useAuth } from "@/providers/auth";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
+    const { token } = useAuth();
+    
     useEffect(() => {
         try {
-            const t = localStorage.getItem("influu_token");
+            const t = token || localStorage.getItem("influu_token");
             if (!t) router.replace("/login");
         } catch {
             router.replace("/login");
         }
-    }, [router]);
+    }, [router, token]);
     return (
         <>
             <AppSidebar />
