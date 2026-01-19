@@ -256,3 +256,8 @@ It can also happen if the client has a browser extension installed which messes 
 [00:40:54.101] Server  LOG     ✓ Compiled in 125ms
 [00:41:21.491] Server  LOG     ✓ Compiled in 129ms
 [00:48:03.197] Server  LOG     ✓ Compiled in 2.2s
+[00:51:39.046] Server  LOG     ✓ Compiled in 455ms
+[00:51:45.821] Server  LOG     ✓ Compiled in 292ms
+[00:54:27.128] Server  LOG     ✓ Compiled in 600ms
+[00:54:36.788] Server  LOG     ✓ Compiled in 213ms
+[00:59:23.054] Server  LOG     ✓ Compiled in 329ms

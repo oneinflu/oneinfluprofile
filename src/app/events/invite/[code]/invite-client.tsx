@@ -173,6 +173,9 @@ export default function EventInviteClient() {
     const [dashboardScreenshot, setDashboardScreenshot] = useState<File | null>(null);
     const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
 
+    // Focus state for mobile keyboard handling
+    const [isFocused, setIsFocused] = useState(false);
+
     // Success Animation Ref
     const animRef = useRef<HTMLDivElement | null>(null);
 
@@ -610,7 +613,7 @@ export default function EventInviteClient() {
                                     Apply for Invitation
                                 </Button>
                                 <BottomSheetOverlay>
-                                    <BottomSheetModal>
+                                    <BottomSheetModal className={isFocused ? "h-[100dvh] max-h-[100dvh] rounded-none sm:rounded-2xl sm:h-auto sm:max-h-[90dvh]" : ""}>
                                         <Dialog className="outline-none">
                                             {({ close }) => (
                                                 <div className="w-full pb-20">
@@ -636,6 +639,8 @@ export default function EventInviteClient() {
                                                                         inputMode="numeric"
                                                                         placeholder="XXXXXXXXXX"
                                                                         value={phoneNumber}
+                                                                        onFocus={() => setIsFocused(true)}
+                                                                        onBlur={() => setIsFocused(false)}
                                                                         onChange={(val) => {
                                                                             // Allow only numbers
                                                                             if (/^\d*$/.test(val) && val.length <= 10) {
@@ -698,6 +703,8 @@ export default function EventInviteClient() {
                                                                             maxLength={6} 
                                                                             className="flex gap-2 justify-center flex-wrap"
                                                                             value={otp} 
+                                                                            onFocus={() => setIsFocused(true)}
+                                                                            onBlur={() => setIsFocused(false)}
                                                                             onChange={(val) => {
                                                                                 setOtp(val);
                                                                                 if (val.length === 6) setOtpError("");

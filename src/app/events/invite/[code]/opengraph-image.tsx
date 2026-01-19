@@ -20,13 +20,12 @@ export default async function Image({ params }: { params: Promise<{ code: string
   let userName = 'INFLU';
   
   try {
-      const path = `/events/public/code/${encodeURIComponent(code)}`;
-      // Re-implement basic fetch if api wrapper has issues in edge, but api wrapper should be fine.
-      // However, to be safe and self-contained in edge, we can use the env var directly if needed.
-      // We'll try using the api wrapper first.
-      const res: any = await api.get(path);
+      // Use production URL directly to ensure OG image always has access to data
+      const BASE_URL = "https://newyearbackendcode-zrp62.ondigitalocean.app";
+      const res = await fetch(`${BASE_URL}/events/public/code/${encodeURIComponent(code)}`);
+      const data = await res.json();
       
-      const event = res?.data?.event || res?.data?.item || res?.event || res?.item || res?.data || {};
+      const event = data?.data?.event || data?.data?.item || data?.event || data?.item || data?.data || {};
       
       if (event.eventName) eventName = event.eventName;
       if (event.user?.name) userName = event.user.name;

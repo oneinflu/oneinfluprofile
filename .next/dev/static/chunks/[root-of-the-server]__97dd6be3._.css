@@ -2260,6 +2260,10 @@
     height: 65vh;
   }
 
+  .h-\[100dvh\] {
+    height: 100dvh;
+  }
+
   .h-auto {
     height: auto;
   }
@@ -2298,6 +2302,10 @@
 
   .max-h-\[90dvh\] {
     max-height: 90dvh;
+  }
+
+  .max-h-\[100dvh\] {
+    max-height: 100dvh;
   }
 
   .max-h-full {
@@ -8188,6 +8196,12 @@
   @media (min-width: 40rem) {
     .sm\:h-auto {
       height: auto;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:max-h-\[90dvh\] {
+      max-height: 90dvh;
     }
   }
 
