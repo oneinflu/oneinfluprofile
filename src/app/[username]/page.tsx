@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft, ArrowLeft, ArrowRight } from "@untitledui/icons";
+import { MessageChatCircle, CurrencyDollarCircle, Stars02, Share04, Sun, Moon01, ChevronLeft, ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "@untitledui/icons";
 import { useMemo, useState, useEffect, useRef } from "react";
 import type { MouseEvent } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
@@ -425,6 +425,7 @@ function ProfileCard({
     useEffect(() => setMounted(true), []);
     const isDark = mounted && resolvedTheme === "dark";
     const themeLabel = isDark ? "Switch to light" : "Switch to dark";
+    const [linksOpen, setLinksOpen] = useState(false);
     return (
         <div className="w-full max-w-sm">
             <div className="relative flex flex-col gap-3 rounded-2xl bg-primary p-0 pb-5 shadow-none">
@@ -496,48 +497,44 @@ function ProfileCard({
                         <p className="mt-2 text-sm text-tertiary text-center">{truncateBio(profile.bio)}</p>
                     )}
                 </div>
-            <div className="mt-1 flex flex-wrap justify-center gap-2 mx-5">
-                {links.length > 0 ? (
-                    links.map((l) => (
-                        <div key={`${l.platform}:${l.url}`} className="w-1/6 min-w-[44px] flex justify-center">
-                            <a
-                                href={l.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={l.platform}
-                                className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary"
-                                onClick={() => {
-                                    try {
-                                        const payload = { category: "social", label: l.platform, url: l.url };
-                                        const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
-                                        const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
-                                        if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
-                                            (navigator as any).sendBeacon(endpoint, blob);
-                                        } else {
-                                            api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
-                                        }
-                                    } catch {}
-                                }}
-                            >
-                                <img src={l.icon} alt={l.platform} className="size-5" />
-                            </a>
-                        </div>
-                    ))
-                ) : (
-                    <>
-                        <div className="w-1/6 min-w-[44px] flex justify-center">
-                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        </div>
-                        <div className="w-1/6 min-w-[44px] flex justify-center">
-                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        </div>
-                        <div className="w-1/6 min-w-[44px] flex justify-center">
-                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        </div>
-                        <div className="w-1/6 min-w-[44px] flex justify-center">
-                            <div className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt size-9 animate-pulse" />
-                        </div>
-                    </>
+            <div className="mt-2 flex flex-col items-center gap-2 mx-5">
+                {links.length > 0 && (
+                    <button
+                        onClick={() => setLinksOpen(!linksOpen)}
+                        className="flex items-center gap-2 text-sm font-medium text-tertiary hover:text-primary transition-colors"
+                    >
+                        <span>Social Links</span>
+                        {linksOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
+                    </button>
+                )}
+                {linksOpen && (
+                    <div className="flex flex-wrap justify-center gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                        {links.map((l) => (
+                            <div key={`${l.platform}:${l.url}`} className="w-1/6 min-w-[44px] flex justify-center">
+                                <a
+                                    href={l.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={l.platform}
+                                    className="rounded-full bg-primary_hover p-2 ring-1 ring-secondary_alt transition-colors hover:bg-primary"
+                                    onClick={() => {
+                                        try {
+                                            const payload = { category: "social", label: l.platform, url: l.url };
+                                            const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/analytics/click`;
+                                            const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+                                            if (typeof navigator !== "undefined" && typeof (navigator as any).sendBeacon === "function") {
+                                                (navigator as any).sendBeacon(endpoint, blob);
+                                            } else {
+                                                api.post(`/users/${username}/analytics/click`, payload).catch(() => {});
+                                            }
+                                        } catch {}
+                                    }}
+                                >
+                                    <img src={l.icon} alt={l.platform} className="size-5" />
+                                </a>
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
         </div>

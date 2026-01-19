@@ -2013,3 +2013,65 @@ https://react.dev/link/hydration-mismatch
 [02:48:59.810] Browser GROUPEND 
 [02:49:00.182] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
 [02:49:00.474] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:02.586] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:02.776] Browser GROUP   PUBLIC_PROFILE_GET
+[02:49:02.777] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
+[02:49:02.777] Browser GROUPEND 
+[02:49:02.777] Browser GROUP   PUBLIC_PROFILE_RESPONSE
+[02:49:02.777] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
+[02:49:02.777] Browser GROUPEND 
+[02:49:03.109] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:03.577] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:05.816] Browser GROUP   PUBLIC_PROFILE_GET
+[02:49:05.816] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
+[02:49:05.816] Browser GROUPEND 
+[02:49:05.967] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:06.353] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:06.677] Browser GROUP   PUBLIC_PROFILE_GET
+[02:49:06.677] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
+[02:49:06.677] Browser GROUPEND 
+[02:49:06.678] Browser GROUP   PUBLIC_PROFILE_RESPONSE
+[02:49:06.678] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
+[02:49:06.678] Browser GROUPEND 
+[02:49:07.477] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:07.675] Browser GROUP   PUBLIC_PROFILE_GET
+[02:49:07.675] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
+[02:49:07.675] Browser GROUPEND 
+[02:49:07.816] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:49:09.674] Browser GROUP   PUBLIC_PROFILE_GET
+[02:49:09.674] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
+[02:49:09.674] Browser GROUPEND 
+[02:49:09.674] Browser GROUP   PUBLIC_PROFILE_GET
+[02:49:09.674] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
+[02:49:09.674] Browser GROUPEND 
+[02:53:48.495] Server  LOG     ✓ Compiled in 227ms
+[02:54:10.865] Server  LOG     ✓ Compiled in 2.9s
+[02:54:36.774] Server  LOG     ✓ Finished filesystem cache database compaction in 15.8s
+[02:54:47.889] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[02:54:52.216] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:54:52.695] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[02:54:52.695] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.695] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[02:54:52.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[02:54:52.961] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:54:53.156] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:54:53.576] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[02:54:53.576] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[02:54:53.656] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
