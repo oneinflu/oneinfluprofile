@@ -252,3 +252,6 @@ It can also happen if the client has a browser extension installed which messes 
 
 [00:38:06.939] Server  WARN    Error: Route "/events/invite/[code]" used `params.code`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
 [00:38:06.970] Server  LOG     ✓ Compiled in 0ms
+[00:40:35.207] Server  LOG     ✓ Compiled in 213ms
+[00:40:54.101] Server  LOG     ✓ Compiled in 125ms
+[00:41:21.491] Server  LOG     ✓ Compiled in 129ms

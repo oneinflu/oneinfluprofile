@@ -634,7 +634,7 @@ export default function EventInviteClient() {
                                                                         type="tel"
                                                                         maxLength={10}
                                                                         inputMode="numeric"
-                                                                        placeholder="Enter 10-digit number"
+                                                                        placeholder="XXXXXXXXXX"
                                                                         value={phoneNumber}
                                                                         onChange={(val) => {
                                                                             // Allow only numbers
