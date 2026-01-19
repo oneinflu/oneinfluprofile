@@ -237,6 +237,13 @@ export const Input = ({
     inputClassName,
     wrapperClassName,
     tooltipClassName,
+    type,
+    maxLength,
+    minLength,
+    pattern,
+    inputMode,
+    autoComplete,
+    name,
     ...props
 }: InputProps) => {
     return (
@@ -258,6 +265,13 @@ export const Input = ({
                             wrapperClassName,
                             tooltipClassName,
                             tooltip,
+                            type,
+                            maxLength,
+                            minLength,
+                            pattern,
+                            inputMode,
+                            autoComplete,
+                            name,
                         }}
                     />
 

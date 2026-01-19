@@ -1,103 +1,21 @@
-[00:00:03.158] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.430] Server  LOG     ✓ Ready in 2.8s
-[00:10:02.545] Server  LOG     ○ Compiling / ...
-[00:10:04.002] Server  WARN    ⚠ Cross origin request detected from 192.168.0.8 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:00.990] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.086] Server  LOG     ✓ Ready in 854ms
+[00:00:12.766] Server  WARN    ⚠ Cross origin request detected from 172.20.10.3 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:10:04.957] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:10:34.840] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[00:10:34.840] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:34.840] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:34.840] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:10:34.841] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:10:34.841] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:34.841] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:35.646] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:35.646] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:35.646] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:35.646] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:35.646] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:10:35.646] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:10:35.646] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:10:35.646] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:10:35.646] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:10:35.646] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:10:35.847] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:10:36.253] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:10:36.553] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:10:37.134] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:37.134] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:10:37.315] Browser GROUP   PUBLIC_PROFILE_GET
-[00:10:37.315] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
-[00:10:37.315] Browser GROUPEND 
-[00:10:37.418] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:11:15.591] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:11:15.591] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:27:13.683] Server  LOG     ✓ Compiled in 650ms
-[00:27:13.757] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:27:13.758] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:30:08.787] Server  LOG     ✓ Compiled in 210ms
-[00:33:14.317] Server  LOG     ✓ Compiled in 1028ms
-[00:34:13.160] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:34:13.162] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:34:21.010] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:13.190] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:49.201] Browser ERROR   uncaughtError: ReferenceError: phoneNumber is not defined
+[00:01:20.562] Server  LOG     ✓ Compiled in 1164ms
+[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:38:10
+Ecmascript file had an error
+  36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
+  37 | import { Dialog } from "@/components/application/modals/modal";
+> 38 | import { DialogTrigger } from "react-aria-components";
+     |          ^^^^^^^^^^^^^
+  39 |
+  40 | type PublicEvent = {
+  41 |     id?: string;
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:34:38.145] Server  LOG     ✓ Compiled in 295ms
-[00:35:48.348] Server  LOG     ○ Compiling /events/invite/[code] ...
-[00:37:01.213] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:37:01.214] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:39:34.613] Server  LOG     ✓ Compiled in 301ms
-[00:42:23.770] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:42:23.773] Browser WARN    WARN: A component changed from controlled to uncontrolled.
-[00:44:24.217] Server  LOG     ✓ Compiled in 574ms
-[00:45:22.670] Server  LOG     ✓ Compiled in 4.4s
-[00:45:22.929] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:6:1
-Export MarkerPin doesn't exist in target module
-  4 | import { useParams } from "next/navigation";
-  5 | import { useTheme } from "next-themes";
-> 6 | import { Sun, Moon01, Calendar, MarkerPin, User01, Check, Star01 } from "@untitledui/icons";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 | import { ButtonUtility } from "@/components/base/buttons/button-utility";
-  8 | import { Badge } from "@/components/base/badges/badges";
-  9 | import { api } from "@/utils/api";
-
-The export MarkerPin was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import MarkerPin06?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+the name `DialogTrigger` is defined multiple times
 
 Import traces:
   Client Component Browser:
@@ -107,19 +25,17 @@ Import traces:
   Client Component SSR:
     ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
     ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:45:22.929] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:6:1
-Export MarkerPin doesn't exist in target module
-  4 | import { useParams } from "next/navigation";
-  5 | import { useTheme } from "next-themes";
-> 6 | import { Sun, Moon01, Calendar, MarkerPin, User01, Check, Star01 } from "@untitledui/icons";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 | import { ButtonUtility } from "@/components/base/buttons/button-utility";
-  8 | import { Badge } from "@/components/base/badges/badges";
-  9 | import { api } from "@/utils/api";
+[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:37:10
+Ecmascript file had an error
+  35 | import { Input } from "@/components/base/input/input";
+  36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
+> 37 | import { Dialog } from "@/components/application/modals/modal";
+     |          ^^^^^^
+  38 | import { DialogTrigger } from "react-aria-components";
+  39 |
+  40 | type PublicEvent = {
 
-The export MarkerPin was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import MarkerPin06?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+the name `Dialog` is defined multiple times
 
 Import traces:
   Client Component Browser:
@@ -129,19 +45,17 @@ Import traces:
   Client Component SSR:
     ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
     ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:45:22.929] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:6:1
-Export MarkerPin doesn't exist in target module
-  4 | import { useParams } from "next/navigation";
-  5 | import { useTheme } from "next-themes";
-> 6 | import { Sun, Moon01, Calendar, MarkerPin, User01, Check, Star01 } from "@untitledui/icons";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 | import { ButtonUtility } from "@/components/base/buttons/button-utility";
-  8 | import { Badge } from "@/components/base/badges/badges";
-  9 | import { api } from "@/utils/api";
+[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:35:10
+Ecmascript file had an error
+  33 | import { Dialog, DialogTrigger, Modal, ModalOverlay } from "@/components/application/modals/modal";
+  34 | import { Input } from "@/components/base/input/input";
+> 35 | import { Input } from "@/components/base/input/input";
+     |          ^^^^^
+  36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
+  37 | import { Dialog } from "@/components/application/modals/modal";
+  38 | import { DialogTrigger } from "react-aria-components";
 
-The export MarkerPin was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import MarkerPin06?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+the name `Input` is defined multiple times
 
 Import traces:
   Client Component Browser:
@@ -151,19 +65,17 @@ Import traces:
   Client Component SSR:
     ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
     ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:45:22.929] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:6:1
-Export MarkerPin doesn't exist in target module
-  4 | import { useParams } from "next/navigation";
-  5 | import { useTheme } from "next-themes";
-> 6 | import { Sun, Moon01, Calendar, MarkerPin, User01, Check, Star01 } from "@untitledui/icons";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 | import { ButtonUtility } from "@/components/base/buttons/button-utility";
-  8 | import { Badge } from "@/components/base/badges/badges";
-  9 | import { api } from "@/utils/api";
+[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:36:17
+Ecmascript file had an error
+  34 | import { Input } from "@/components/base/input/input";
+  35 | import { Input } from "@/components/base/input/input";
+> 36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
+     |                 ^^^^^^^^^^^^
+  37 | import { Dialog } from "@/components/application/modals/modal";
+  38 | import { DialogTrigger } from "react-aria-components";
+  39 |
 
-The export MarkerPin was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import MarkerPin06?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+the name `ModalOverlay` is defined multiple times
 
 Import traces:
   Client Component Browser:
@@ -173,28 +85,29 @@ Import traces:
   Client Component SSR:
     ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
     ./src/app/events/invite/[code]/page.tsx [Server Component]
-[01:00:18.099] Server  LOG     ✓ Compiled in 1020ms
-[01:01:34.527] Server  LOG     ✓ Compiled in 519ms
-[01:04:26.223] Server  LOG     ✓ Compiled in 210ms
-[01:04:54.623] Server  LOG     ✓ Compiled in 147ms
-[01:05:02.960] Server  LOG     ✓ Compiled in 239ms
-[01:07:24.033] Server  LOG     ✓ Compiled in 199ms
-[01:08:10.333] Server  LOG     ✓ Compiled in 177ms
-[01:09:55.618] Server  LOG     ✓ Compiled in 792ms
-[01:11:22.531] Server  LOG     ✓ Compiled in 129ms
-[01:12:12.948] Server  LOG     ✓ Compiled in 158ms
-[01:12:19.753] Server  LOG     ✓ Compiled in 174ms
-[01:12:28.444] Server  LOG     ✓ Compiled in 89ms
-[01:14:19.414] Server  LOG     ✓ Compiled in 156ms
-[01:14:19.587] Browser ERROR   uncaughtError: ReferenceError: useRouter is not defined
-[01:14:20.045] Server  LOG     ✓ Compiled in 404ms
-[01:14:20.064] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:14:20.630] Server  ERROR   ⨯ ReferenceError: params is not defined
-[01:14:20.665] Browser ERROR   uncaughtError: ReferenceError: params is not defined
-[01:14:21.734] Browser ERROR   uncaughtError: ReferenceError: params is not defined
-[01:15:53.482] Server  LOG     ✓ Compiled in 531ms
-[01:15:53.517] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:15:55.931] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:36:10
+Ecmascript file had an error
+  34 | import { Input } from "@/components/base/input/input";
+  35 | import { Input } from "@/components/base/input/input";
+> 36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
+     |          ^^^^^
+  37 | import { Dialog } from "@/components/application/modals/modal";
+  38 | import { DialogTrigger } from "react-aria-components";
+  39 |
+
+the name `Modal` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
+    ./src/app/events/invite/[code]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
+    ./src/app/events/invite/[code]/page.tsx [Server Component]
+[00:01:42.604] Server  LOG     ✓ Compiled in 234ms
+[00:01:42.618] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:44.065] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -231,8 +144,68 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[01:22:33.675] Server  LOG     ✓ Compiled in 1353ms
-[01:23:12.921] Server  LOG     ✓ Compiled in 381ms
-[01:23:13.961] Browser ERROR   uncaughtError: ReferenceError: Avatar is not defined
-[01:24:22.793] Server  LOG     ✓ Compiled in 555ms
-[01:24:22.827] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:54.593] Server  LOG     ✓ Compiled in 414ms
+[00:03:22.892] Server  LOG     ✓ Compiled in 804ms
+[00:03:23.525] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:561:1
+Parsing ecmascript source code failed
+  559 |     );
+  560 | }
+> 561 | }
+      | ^
+  562 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
+    ./src/app/events/invite/[code]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
+    ./src/app/events/invite/[code]/page.tsx [Server Component]
+[00:03:35.261] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:562:1
+Parsing ecmascript source code failed
+  560 |     );
+  561 | }
+> 562 | }
+      | ^
+  563 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
+    ./src/app/events/invite/[code]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
+    ./src/app/events/invite/[code]/page.tsx [Server Component]
+[00:03:43.277] Server  LOG     ✓ Compiled in 471ms
+[00:03:47.520] Browser ERROR   uncaughtError: ReferenceError: PinInput is not defined
+[00:04:08.405] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:04:08.412] Server  LOG     ✓ Compiled in 333ms
+[00:04:10.947] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `ForwardRef(Dialog)`.
+[00:04:21.604] Server  LOG     ✓ Compiled in 497ms
+[00:04:21.614] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:04:40.648] Server  LOG     ✓ Compiled in 237ms
+[00:05:54.341] Server  LOG     ✓ Compiled in 161ms
+[00:06:03.633] Server  LOG     ✓ Compiled in 206ms
+[00:11:25.621] Server  LOG     ✓ Compiled in 645ms
+[00:11:31.940] Server  LOG     ✓ Compiled in 179ms
+[00:13:26.603] Server  LOG     ✓ Compiled in 205ms
+[00:13:34.087] Server  LOG     ✓ Compiled in 194ms
+[00:13:56.799] Server  LOG     ✓ Compiled in 307ms
+[00:20:16.608] Server  LOG     ✓ Compiled in 254ms
+[00:20:36.319] Server  LOG     ✓ Compiled in 190ms
+[00:20:47.754] Server  LOG     ✓ Compiled in 168ms
+[00:24:51.440] Server  LOG     ✓ Compiled in 326ms
+[00:24:57.825] Server  LOG     ✓ Compiled in 240ms
+[00:25:47.477] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"suuryaprabhat.ig","name":"suurya","otp":"000000","phoneNumber":"7673925340","photo":null,"shareDashboard":true,"willingToAttend":true}
+[00:28:25.189] Server  LOG     ✓ Compiled in 277ms
+[00:28:31.513] Server  LOG     ✓ Compiled in 178ms
+[00:28:40.029] Server  LOG     ✓ Compiled in 517ms
+[00:29:03.948] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"serth","name":"sfgh","otp":"234569","phoneNumber":"0987654322","photo":null,"shareDashboard":true,"willingToAttend":true}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { 
@@ -20,7 +20,17 @@ import {
     AlertCircle,
     PlayCircle,
     Tag01,
-    ArrowRight
+    ArrowRight,
+    Copy01,
+    Globe02,
+    Link01,
+    Map02,
+    Phone,
+    Camera01,
+    UploadCloud02,
+    CheckCircle,
+    XCircle,
+    Trash01
 } from "@untitledui/icons";
 import { Avatar } from "@/components/base/avatar/avatar";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
@@ -30,6 +40,12 @@ import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-ic
 import { Instagram, YouTube, X, TikTok, LinkedIn, Facebook } from "@/components/foundations/social-icons";
 import { api } from "@/utils/api";
 import { useClipboard } from "@/hooks/use-clipboard";
+import { Dialog, DialogTrigger, Modal, ModalOverlay } from "@/components/application/modals/modal";
+import { Input } from "@/components/base/input/input";
+import { cx } from "@/utils/cx";
+import { PinInput } from "@/components/base/pin-input/pin-input";
+import { Toggle } from "@/components/base/toggle/toggle";
+import { FileUpload } from "@/components/application/file-upload/file-upload-base";
 
 type PublicEvent = {
     id?: string;
@@ -104,6 +120,30 @@ const formatEventDate = (iso?: string) => {
     });
 };
 
+const BottomSheetOverlay = ({ className, ...props }: React.ComponentProps<typeof ModalOverlay>) => (
+    <ModalOverlay
+        className={(values) => cx(
+            "fixed inset-0 z-50 flex min-h-dvh w-full items-end justify-center overflow-hidden bg-black/50 backdrop-blur-sm sm:items-center sm:p-4",
+            values.isEntering ? "animate-in fade-in duration-300" : "",
+            values.isExiting ? "animate-out fade-out duration-200" : "",
+            typeof className === "function" ? className(values) : className
+        )}
+        {...props}
+    />
+);
+
+const BottomSheetModal = ({ className, ...props }: React.ComponentProps<typeof Modal>) => (
+    <Modal
+        className={(values) => cx(
+            "w-full max-w-md overflow-hidden rounded-t-2xl bg-white dark:bg-[#161B26] p-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-2xl",
+            values.isEntering ? "animate-in slide-in-from-bottom duration-300 sm:zoom-in-95" : "",
+            values.isExiting ? "animate-out slide-out-to-bottom duration-200 sm:zoom-out-95" : "",
+            typeof className === "function" ? className(values) : className
+        )}
+        {...props}
+    />
+);
+
 export default function EventInvitePage() {
     const params = useParams();
     const router = useRouter();
@@ -114,6 +154,124 @@ export default function EventInvitePage() {
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const clipboard = useClipboard();
+    
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phoneError, setPhoneError] = useState("");
+    const [step, setStep] = useState<"phone" | "otp" | "details" | "dashboard" | "success">("phone");
+    const [otp, setOtp] = useState("");
+    const [otpError, setOtpError] = useState("");
+
+    // Step 3: User Details State
+    const [name, setName] = useState("");
+    const [photo, setPhoto] = useState<File | null>(null);
+    const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+    const [instagramHandle, setInstagramHandle] = useState("");
+    const [willingToAttend, setWillingToAttend] = useState(false);
+    const [shareDashboard, setShareDashboard] = useState(false);
+
+    // Step 4: Dashboard Upload State
+    const [dashboardScreenshot, setDashboardScreenshot] = useState<File | null>(null);
+    const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
+
+    // Success Animation Ref
+    const animRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        let alive = true;
+        if (step !== "success" || !animRef.current) return;
+        (async () => {
+            try {
+                const mod = await import("lottie-web");
+                if (!alive || !animRef.current) return;
+                const anim = mod.default.loadAnimation({
+                    container: animRef.current,
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: true,
+                    path: "/sent.json"
+                });
+                return () => {
+                    try {
+                        anim.destroy();
+                    } catch {}
+                };
+            } catch {}
+        })();
+        return () => { alive = false; };
+    }, [step]);
+
+    const handleContinue = () => {
+        if (phoneNumber.length !== 10) {
+            setPhoneError("Please enter a valid 10-digit phone number");
+            return;
+        }
+        setStep("otp");
+    };
+
+    const handleVerify = () => {
+        if (otp.length !== 6) {
+            setOtpError("Please enter a valid 6-digit OTP");
+            return;
+        }
+        setStep("details");
+    };
+
+    const handleBack = () => {
+        if (step === "otp") {
+            setStep("phone");
+            setOtp("");
+            setOtpError("");
+        } else if (step === "details") {
+            setStep("otp");
+        } else if (step === "dashboard") {
+            setStep("details");
+        }
+    };
+
+    const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            setPhoto(file);
+            setPhotoPreview(URL.createObjectURL(file));
+        }
+    };
+
+    const handleDetailsSubmit = () => {
+        // Basic validation
+        if (!name.trim()) {
+            // Can add error state here if needed
+            return;
+        }
+        setStep("dashboard");
+    };
+
+    const handleDashboardDrop = (files: FileList) => {
+        if (files.length > 0) {
+            const file = files[0];
+            setDashboardScreenshot(file);
+            setDashboardPreview(URL.createObjectURL(file));
+        }
+    };
+
+    const handleRemoveDashboard = () => {
+        setDashboardScreenshot(null);
+        setDashboardPreview(null);
+    };
+
+    const handleFinalSubmit = () => {
+        // Here you would typically submit all the data to the backend
+        console.log({
+            phoneNumber,
+            otp,
+            name,
+            photo,
+            instagramHandle,
+            willingToAttend,
+            shareDashboard,
+            dashboardScreenshot
+        });
+        setStep("success");
+    };
 
     useEffect(() => setMounted(true), []);
 
@@ -442,15 +600,308 @@ export default function EventInvitePage() {
                         </p>
                         
                         <div className="flex gap-2 justify-center">
-                            <Button
-                                size="lg"
-                                color="primary"
-                                className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
-                                onClick={() => router.push("/register")}
-                                iconLeading={ArrowRight}
-                            >
-                                Apply for Invitation
-                            </Button>
+                            <DialogTrigger>
+                                <Button
+                                    size="lg"
+                                    color="primary"
+                                    className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
+                                    iconLeading={ArrowRight}
+                                >
+                                    Apply for Invitation
+                                </Button>
+                                <BottomSheetOverlay>
+                                    <BottomSheetModal>
+                                        <Dialog className="outline-none">
+                                            {({ close }) => (
+                                                <div className="w-full">
+                                                    {step === "phone" && (
+                                                        <>
+                                                            <div className="text-center mb-6">
+                                                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
+                                                                    <User01 className="w-6 h-6" />
+                                                                </div>
+                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                    Enter Phone Number
+                                                                </h3>
+                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                    Please enter your 10-digit phone number to continue with the application.
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="space-y-6">
+                                                                <div className="flex justify-center px-4">
+                                                                    <Input
+                                                                        type="tel"
+                                                                        maxLength={10}
+                                                                        inputMode="numeric"
+                                                                        placeholder="Enter 10-digit number"
+                                                                        value={phoneNumber}
+                                                                        onChange={(val) => {
+                                                                            // Allow only numbers
+                                                                            if (/^\d*$/.test(val) && val.length <= 10) {
+                                                                                setPhoneNumber(val);
+                                                                                if (val.length === 10) setPhoneError("");
+                                                                            }
+                                                                        }}
+                                                                        isInvalid={!!phoneError}
+                                                                        inputClassName="text-center text-xl tracking-[0.2em] font-mono"
+                                                                        size="md"
+                                                                    />
+                                                                </div>
+                                                                
+                                                                {phoneError && (
+                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                        {phoneError}
+                                                                    </p>
+                                                                )}
+
+                                                                <div className="grid grid-cols-2 gap-3 pt-2">
+                                                                    <Button 
+                                                                        size="lg" 
+                                                                        color="secondary" 
+                                                                        onClick={close}
+                                                                        className="w-full"
+                                                                    >
+                                                                        Cancel
+                                                                    </Button>
+                                                                    <Button 
+                                                                        size="lg" 
+                                                                        color="primary" 
+                                                                        onClick={handleContinue}
+                                                                        className="w-full"
+                                                                    >
+                                                                        Continue
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+
+                                                    {step === "otp" && (
+                                                        <>
+                                                            <div className="text-center mb-6">
+                                                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
+                                                                    <CheckDone01 className="w-6 h-6" />
+                                                                </div>
+                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                    Verify OTP
+                                                                </h3>
+                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                    OTP has been sent to XXXXXXX{phoneNumber.slice(-3)}
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="space-y-6">
+                                                                <div className="flex justify-center">
+                                                                    <PinInput>
+                                                                        <PinInput.Group 
+                                                                            maxLength={6} 
+                                                                            className="flex gap-2 justify-center flex-wrap"
+                                                                            value={otp} 
+                                                                            onChange={(val) => {
+                                                                                setOtp(val);
+                                                                                if (val.length === 6) setOtpError("");
+                                                                            }}
+                                                                        >
+                                                                            {Array.from({ length: 6 }).map((_, i) => (
+                                                                                <PinInput.Slot 
+                                                                                    key={i} 
+                                                                                    index={i} 
+                                                                                    className="w-10 h-12 text-xl rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" 
+                                                                                />
+                                                                            ))}
+                                                                        </PinInput.Group>
+                                                                    </PinInput>
+                                                                </div>
+                                                                
+                                                                {otpError && (
+                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                        {otpError}
+                                                                    </p>
+                                                                )}
+
+                                                                <div className="grid grid-cols-2 gap-3 pt-2">
+                                                                    <Button 
+                                                                        size="lg" 
+                                                                        color="secondary" 
+                                                                        onClick={handleBack}
+                                                                        className="w-full"
+                                                                    >
+                                                                        Back
+                                                                    </Button>
+                                                                    <Button 
+                                                                        size="lg" 
+                                                                        color="primary" 
+                                                                        onClick={handleVerify}
+                                                                        className="w-full"
+                                                                    >
+                                                                        Verify
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+
+                                                    {step === "details" && (
+                                                        <>
+                                                            <div className="text-center mb-6">
+                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                    Complete your profile
+                                                                </h3>
+                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                    Tell us a bit about yourself
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="space-y-6">
+                                                                <div className="flex flex-col items-center gap-4">
+                                                                    <div className="relative group cursor-pointer">
+                                                                        <input 
+                                                                            type="file" 
+                                                                            accept="image/*" 
+                                                                            className="hidden" 
+                                                                            id="avatar-upload"
+                                                                            onChange={handlePhotoChange}
+                                                                        />
+                                                                        <label htmlFor="avatar-upload" className="cursor-pointer block relative">
+                                                                            <Avatar 
+                                                                                size="xl" 
+                                                                                src={photoPreview} 
+                                                                                placeholderIcon={User01}
+                                                                                className="w-24 h-24"
+                                                                            />
+                                                                            <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                                <Camera01 className="w-8 h-8 text-white" />
+                                                                            </div>
+                                                                            <div className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md border border-gray-200 dark:border-gray-700">
+                                                                                <Camera01 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <Input 
+                                                                    placeholder="Full Name" 
+                                                                    value={name}
+                                                                    onChange={setName}
+                                                                />
+
+                                                                <Input 
+                                                                    placeholder="username" 
+                                                                    icon={Instagram}
+                                                                    value={instagramHandle}
+                                                                    onChange={setInstagramHandle}
+                                                                />
+
+                                                                <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
+                                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Willing to attend event?</span>
+                                                                    <Toggle isSelected={willingToAttend} onChange={setWillingToAttend} />
+                                                                </div>
+
+                                                                <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
+                                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Share professional dashboard?</span>
+                                                                    <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
+                                                                </div>
+
+                                                                <div className="pt-2">
+                                                                    <Button size="lg" color="primary" onClick={handleDetailsSubmit} className="w-full">
+                                                                        Next Step
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+
+                                                    {step === "dashboard" && (
+                                                        <>
+                                                            <div className="text-center mb-6">
+                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                    One Last Step
+                                                                </h3>
+                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                    Upload your professional dashboard screenshot
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="space-y-6">
+                                                                {dashboardScreenshot ? (
+                                                                    <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+                                                                        <img src={dashboardPreview!} alt="Dashboard" className="w-full h-48 object-cover" />
+                                                                        <button 
+                                                                            onClick={handleRemoveDashboard}
+                                                                            className="absolute top-2 right-2 p-2 bg-white/90 rounded-full shadow-sm hover:bg-red-50 text-red-500"
+                                                                        >
+                                                                            <Trash01 className="w-4 h-4" />
+                                                                        </button>
+                                                                        <div className="p-3 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex items-center gap-2">
+                                                                            <CheckCircle className="w-5 h-5 text-green-500" />
+                                                                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Ready to submit</span>
+                                                                        </div>
+                                                                    </div>
+                                                                ) : (
+                                                                    <FileUpload.DropZone 
+                                                                        onDropFiles={handleDashboardDrop}
+                                                                        accept="image/*"
+                                                                        hint="Upload screenshot (PNG, JPG)"
+                                                                        allowsMultiple={false}
+                                                                    />
+                                                                )}
+
+                                                                <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl p-4 border border-blue-100 dark:border-blue-900/20">
+                                                                    <h4 className="text-sm font-bold text-blue-800 dark:text-blue-300 mb-2">Dos & Don'ts</h4>
+                                                                    <ul className="space-y-2 text-xs text-blue-700 dark:text-blue-400">
+                                                                        <li className="flex items-start gap-2">
+                                                                            <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                                                                            <span>Ensure metrics are clearly visible</span>
+                                                                        </li>
+                                                                        <li className="flex items-start gap-2">
+                                                                            <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                                                                            <span>Capture recent data (last 30 days)</span>
+                                                                        </li>
+                                                                        <li className="flex items-start gap-2">
+                                                                            <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                                                                            <span>Don't crop out the profile name</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                                <div className="pt-2">
+                                                                    <Button size="lg" color="primary" onClick={handleFinalSubmit} className="w-full">
+                                                                        Apply for the event
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+
+                                                    {step === "success" && (
+                                                        <div className="flex flex-col items-center justify-center py-8 text-center">
+                                                            <div ref={animRef} className="w-32 h-32 mb-4" />
+                                                            
+                                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                                                                You have applied for invitation for the event
+                                                            </h3>
+                                                            
+                                                            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs mx-auto mb-8">
+                                                                Wait for the confirmation message you will receives once you are shortlisted
+                                                            </p>
+
+                                                            <Button 
+                                                                size="lg" 
+                                                                color="primary" 
+                                                                className="w-full"
+                                                                onClick={() => router.push(`/profile`)}
+                                                            >
+                                                                Explore your INFLU profile
+                                                            </Button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </Dialog>
+                                    </BottomSheetModal>
+                                </BottomSheetOverlay>
+                            </DialogTrigger>
                         </div>
                         
                         <p className="text-center text-[10px] text-gray-300 dark:text-gray-600 mt-4 uppercase tracking-widest">
@@ -463,3 +914,4 @@ export default function EventInvitePage() {
         </main>
     );
 }
+
