@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
@@ -45,6 +46,7 @@ const mapEventToCampaign = (e: any): CampaignItem => ({
 });
 
 export default function AdminCampaignsPage() {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const { user, token } = useAuth();
     const [brandName, setBrandName] = useState("");
@@ -466,7 +468,8 @@ export default function AdminCampaignsPage() {
                                         {filteredCampaigns.map((c) => (
                                             <div
                                                 key={c.id}
-                                                className="rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs transition duration-150 ease-in-out hover:bg-primary_hover hover:shadow-sm"
+                                                onClick={() => router.push(`/admin/campaigns/${c.id}`)}
+                                                className="rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs transition duration-150 ease-in-out hover:bg-primary_hover hover:shadow-sm cursor-pointer"
                                             >
                                                 <div className="flex flex-col gap-2">
                                                     <div className="flex min-w-0 flex-col gap-1">
@@ -530,7 +533,8 @@ export default function AdminCampaignsPage() {
                                                                         ? "Copy invite link for creators"
                                                                         : "Copy client proposal link"
                                                                 }
-                                                                onClick={() => {
+                                                                onClick={(e: any) => {
+                                                                    e.stopPropagation();
                                                                     const path =
                                                                         c.status === "approved_by_client"
                                                                             ? `/events/invite/${encodeURIComponent(
@@ -549,14 +553,18 @@ export default function AdminCampaignsPage() {
                                                             color="tertiary"
                                                             icon={Edit01}
                                                             tooltip="Edit campaign"
-                                                            onClick={() => openEdit(c)}
+                                                            onClick={(e: any) => {
+                                                                e.stopPropagation();
+                                                                openEdit(c);
+                                                            }}
                                                         />
                                                         <ButtonUtility
                                                             size="xs"
                                                             color="tertiary"
                                                             icon={Trash01}
                                                             tooltip="Delete campaign"
-                                                            onClick={() => {
+                                                            onClick={(e: any) => {
+                                                                e.stopPropagation();
                                                                 setDeleteId(c.id);
                                                                 setConfirmOpen(true);
                                                             }}

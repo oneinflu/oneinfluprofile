@@ -1,480 +1,134 @@
-[00:00:00.990] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.086] Server  LOG     ✓ Ready in 854ms
-[00:00:12.766] Server  WARN    ⚠ Cross origin request detected from 172.20.10.3 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:00.995] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.087] Server  LOG     ✓ Ready in 867ms
+[00:00:06.848] Server  WARN    ⚠ Cross origin request detected from 192.168.163.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:13.190] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:49.201] Browser ERROR   uncaughtError: ReferenceError: phoneNumber is not defined
-[00:01:20.562] Server  LOG     ✓ Compiled in 1164ms
-[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:38:10
-Ecmascript file had an error
-  36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
-  37 | import { Dialog } from "@/components/application/modals/modal";
-> 38 | import { DialogTrigger } from "react-aria-components";
-     |          ^^^^^^^^^^^^^
-  39 |
-  40 | type PublicEvent = {
-  41 |     id?: string;
-
-the name `DialogTrigger` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:37:10
-Ecmascript file had an error
-  35 | import { Input } from "@/components/base/input/input";
-  36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
-> 37 | import { Dialog } from "@/components/application/modals/modal";
-     |          ^^^^^^
-  38 | import { DialogTrigger } from "react-aria-components";
-  39 |
-  40 | type PublicEvent = {
-
-the name `Dialog` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:35:10
-Ecmascript file had an error
-  33 | import { Dialog, DialogTrigger, Modal, ModalOverlay } from "@/components/application/modals/modal";
-  34 | import { Input } from "@/components/base/input/input";
-> 35 | import { Input } from "@/components/base/input/input";
-     |          ^^^^^
-  36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
-  37 | import { Dialog } from "@/components/application/modals/modal";
-  38 | import { DialogTrigger } from "react-aria-components";
-
-the name `Input` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:36:17
-Ecmascript file had an error
-  34 | import { Input } from "@/components/base/input/input";
-  35 | import { Input } from "@/components/base/input/input";
-> 36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
-     |                 ^^^^^^^^^^^^
-  37 | import { Dialog } from "@/components/application/modals/modal";
-  38 | import { DialogTrigger } from "react-aria-components";
-  39 |
-
-the name `ModalOverlay` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:01:20.685] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:36:10
-Ecmascript file had an error
-  34 | import { Input } from "@/components/base/input/input";
-  35 | import { Input } from "@/components/base/input/input";
-> 36 | import { Modal, ModalOverlay } from "@/components/application/slideout-menus/slideout-menu";
-     |          ^^^^^
-  37 | import { Dialog } from "@/components/application/modals/modal";
-  38 | import { DialogTrigger } from "react-aria-components";
-  39 |
-
-the name `Modal` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:01:42.604] Server  LOG     ✓ Compiled in 234ms
-[00:01:42.618] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:01:44.065] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
+[00:00:07.323] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:01:03.189] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.190] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:03.190] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:01:03.779] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:03.933] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:04.073] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:04.415] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:04.470] Browser GROUP   PUBLIC_PROFILE_GET
+[00:01:04.470] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
+[00:01:04.470] Browser GROUPEND 
+[00:01:04.550] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:04.650] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:04.752] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
 
   ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria5040038243-_r_k_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
                   ...
-
-[00:01:54.593] Server  LOG     ✓ Compiled in 414ms
-[00:03:22.892] Server  LOG     ✓ Compiled in 804ms
-[00:03:23.525] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:561:1
-Parsing ecmascript source code failed
-  559 |     );
-  560 | }
-> 561 | }
-      | ^
-  562 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:03:35.261] Browser ERROR   ./src/app/events/invite/[code]/page.tsx:562:1
-Parsing ecmascript source code failed
-  560 |     );
-  561 | }
-> 562 | }
-      | ^
-  563 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./src/app/events/invite/[code]/page.tsx [Client Component Browser]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/events/invite/[code]/page.tsx [Client Component SSR]
-    ./src/app/events/invite/[code]/page.tsx [Server Component]
-[00:03:43.277] Server  LOG     ✓ Compiled in 471ms
-[00:03:47.520] Browser ERROR   uncaughtError: ReferenceError: PinInput is not defined
-[00:04:08.405] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:04:08.412] Server  LOG     ✓ Compiled in 333ms
-[00:04:10.947] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
-
-Check the render method of `ForwardRef(Dialog)`.
-[00:04:21.604] Server  LOG     ✓ Compiled in 497ms
-[00:04:21.614] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:04:40.648] Server  LOG     ✓ Compiled in 237ms
-[00:05:54.341] Server  LOG     ✓ Compiled in 161ms
-[00:06:03.633] Server  LOG     ✓ Compiled in 206ms
-[00:11:25.621] Server  LOG     ✓ Compiled in 645ms
-[00:11:31.940] Server  LOG     ✓ Compiled in 179ms
-[00:13:26.603] Server  LOG     ✓ Compiled in 205ms
-[00:13:34.087] Server  LOG     ✓ Compiled in 194ms
-[00:13:56.799] Server  LOG     ✓ Compiled in 307ms
-[00:20:16.608] Server  LOG     ✓ Compiled in 254ms
-[00:20:36.319] Server  LOG     ✓ Compiled in 190ms
-[00:20:47.754] Server  LOG     ✓ Compiled in 168ms
-[00:24:51.440] Server  LOG     ✓ Compiled in 326ms
-[00:24:57.825] Server  LOG     ✓ Compiled in 240ms
-[00:25:47.477] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"suuryaprabhat.ig","name":"suurya","otp":"000000","phoneNumber":"7673925340","photo":null,"shareDashboard":true,"willingToAttend":true}
-[00:28:25.189] Server  LOG     ✓ Compiled in 277ms
-[00:28:31.513] Server  LOG     ✓ Compiled in 178ms
-[00:28:40.029] Server  LOG     ✓ Compiled in 517ms
-[00:29:03.948] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"serth","name":"sfgh","otp":"234569","phoneNumber":"0987654322","photo":null,"shareDashboard":true,"willingToAttend":true}
-[00:35:37.952] Server  LOG     ✓ Compiled in 482ms
-[00:35:48.356] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:35:52.952] Server  LOG     ✓ Compiled in 221ms
-[00:37:48.625] Server  LOG     ✓ Compiled in 296ms
-[00:37:58.862] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:38:06.939] Server  WARN    Error: Route "/events/invite/[code]" used `params.code`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:38:06.970] Server  LOG     ✓ Compiled in 0ms
-[00:40:35.207] Server  LOG     ✓ Compiled in 213ms
-[00:40:54.101] Server  LOG     ✓ Compiled in 125ms
-[00:41:21.491] Server  LOG     ✓ Compiled in 129ms
-[00:48:03.197] Server  LOG     ✓ Compiled in 2.2s
-[00:51:39.046] Server  LOG     ✓ Compiled in 455ms
-[00:51:45.821] Server  LOG     ✓ Compiled in 292ms
-[00:54:27.128] Server  LOG     ✓ Compiled in 600ms
-[00:54:36.788] Server  LOG     ✓ Compiled in 213ms
-[00:59:23.054] Server  LOG     ✓ Compiled in 329ms
-[01:49:47.001] Server  LOG     ✓ Compiled in 537ms
-[01:53:40.511] Server  LOG     ✓ Compiled in 280ms
-[01:55:07.190] Server  LOG     ✓ Compiled in 837ms
-[01:59:01.853] Server  LOG     ✓ Compiled in 211ms
-[01:59:22.164] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:01:17.230] Server  LOG     ✓ Compiled in 232ms
-[02:01:23.462] Server  LOG     ✓ Compiled in 159ms
-[02:02:30.585] Server  LOG     ✓ Compiled in 427ms
-[02:03:46.803] Server  LOG     ✓ Compiled in 271ms
-[02:04:41.337] Browser ERROR   Username not found in local storage
-[02:04:52.130] Browser ERROR   Username not found in local storage
-[02:06:20.662] Server  LOG     ✓ Compiled in 365ms
-[02:06:32.170] Browser LOG     handleDetailsSubmit: Starting submission
-[02:06:32.170] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"6969dca8e117facaf1fa8db5","username":null}
-[02:06:32.170] Browser LOG     handleDetailsSubmit: Fetching username from ID
-[02:06:32.625] Browser LOG     handleDetailsSubmit: Retrieved username testphoneuser
-[02:06:32.625] Browser LOG     handleDetailsSubmit: Sending profile update to https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile/basic
-[02:06:32.947] Browser LOG     handleDetailsSubmit: Profile updated successfully
-[02:06:32.947] Browser LOG     handleDetailsSubmit: Upserting Instagram handle
-[02:08:08.551] Server  LOG     ✓ Compiled in 357ms
-[02:09:21.613] Browser LOG     handleFinalSubmit: Starting final submission
-[02:09:21.613] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/73G6428E/apply
-[02:09:26.952] Browser LOG     handleFinalSubmit: Success {"data":{"application":{"appliedAt":"2026-01-19T12:25:17.733Z","dashboardImageUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768825516/event_applications/890aa653-1abd-4b2d-a495-613b4e6621e8.png","shareProfessionalDashboard":true,"status":"applied","user":"6969dca8e117facaf1fa8db5","willingToAttend":true}},"message":"Applied successfully","status":"ok","success":true}
-[02:09:26.952] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"testinguser","name":"Testing User now","otp":"758150","phoneNumber":"9182151640","photo":{},"shareDashboard":true,"willingToAttend":true}
-[02:10:32.573] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:33.180] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:33.412] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:33.412] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/profile/profile
-[02:10:33.412] Browser GROUPEND 
-[02:10:33.508] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:33.710] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:34.689] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:34.808] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:34.808] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:34.808] Browser GROUPEND 
-[02:10:34.808] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:34.808] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/profile/profile
-[02:10:34.808] Browser GROUPEND 
-[02:10:34.808] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:34.808] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:34.808] Browser GROUPEND 
-[02:10:34.847] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:35.125] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:35.393] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:36.510] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:36.510] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/profile/profile
-[02:10:36.510] Browser GROUPEND 
-[02:10:36.658] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:36.775] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:36.775] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:36.775] Browser GROUPEND 
-[02:10:36.775] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:36.775] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:36.775] Browser GROUPEND 
-[02:10:37.113] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:38.016] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:38.016] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:38.016] Browser GROUPEND 
-[02:10:38.348] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:38.411] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:38.411] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:38.411] Browser GROUPEND 
-[02:10:38.678] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:10:39.497] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:39.498] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:39.498] Browser GROUPEND 
-[02:10:39.590] Browser GROUP   PUBLIC_PROFILE_GET
-[02:10:39.590] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:10:39.590] Browser GROUPEND 
-[02:11:13.578] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:11:14.987] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:11:15.042] Browser GROUP   PUBLIC_PROFILE_GET
-[02:11:15.042] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:11:15.042] Browser GROUPEND 
-[02:11:16.313] Browser GROUP   PUBLIC_PROFILE_GET
-[02:11:16.323] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:11:16.323] Browser GROUPEND 
-[02:11:16.534] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:11:18.090] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:11:18.977] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
+                ...
           ...
+        ...
 
-[02:11:19.344] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
-            <SiteHeader>
-              <header className="sticky top...">
-                <div className="mx-auto ma...">
-                  <div className="rounded-2x...">
-                    <div className="flex items...">
-                      <a>
-                      <div className="flex items...">
-                        <Button href="/admin" size="sm" color="primary">
-                          <Link data-loading={undefined} data-icon-only={undefined} href="/admin" isDisabled={undefined} ...>
-                            <a
-                              ref={{current:null}}
-                              slot={undefined}
-                              data-loading={undefined}
-                              data-icon-only={undefined}
-+                             className="group relative inline-flex h-max cursor-pointer items-center justify-center w..."
--                             className="group relative inline-flex h-max cursor-pointer items-center whitespace-nowra..."
-                              style={undefined}
-                              data-rac=""
-+                             href="/admin"
--                             href="/login"
-                              target={undefined}
-                              rel={undefined}
-                              download={undefined}
-                              ping={undefined}
-                              referrerPolicy={undefined}
-                              onFocus={function}
-                              onBlur={function}
-                              onKeyDown={function onKeyDown}
-                              onKeyUp={undefined}
-                              tabIndex={0}
-                              onClick={function onClick}
-                              onPointerDown={function}
-                              onMouseDown={function}
-                              onPointerUp={function}
-                              onPointerEnter={function}
-                              onPointerLeave={function}
-                              onDragStart={function}
-                              data-react-aria-pressable={true}
-                              aria-disabled={undefined}
-                              aria-current={undefined}
-                              data-focused={undefined}
-                              data-hovered={undefined}
-                              data-pressed={undefined}
-                              data-focus-visible={undefined}
-                              data-current={undefined}
-                              data-disabled={undefined}
-                            >
-                              <span
-                                data-text={true}
-+                               className="transition-inherit-all px-0.5"
--                               className="transition-inherit-all"
-                              >
-+                               Go to My Profile
--                               Login
-          ...
-
-[02:19:29.495] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:21:45.257] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:21:47.187] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:22:41.499] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:24:41.551] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:01:04.752] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[00:01:04.908] Browser GROUP   PUBLIC_PROFILE_RESPONSE
+[00:01:04.908] Browser LOG     BODY {"contact":{"email":"hashtaginflu@gmail.com","method":"whatsapp","whatsapp":"+919177970676"},"links":[{"icon":"/tiktok.png","platform":"tiktok","url":"https://tiktok.com/@oneinflu","visible":true},{"icon":"/telegram.png","platform":"telegram","url":"https://t.me/oneinflu","visible":true},{"icon":"/google.png","platform":"google-business","url":"https://g.page/oneinflu","visible":true},{"icon":"/facebook.png","platform":"facebook","url":"https://facebook.com/oneinflu","visible":true},{"icon":"/threads.png","platform":"threads","url":"https://www.threads.net/@oneinflu","visible":true},{"icon":"/linkedin.png","platform":"linkedin","url":"https://www.linkedin.com/in/oneinflu","visible":true},{"icon":"/twitter.png","platform":"x","url":"https://x.com/oneinflu","visible":true},{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/oneinfluapp","visible":true}],"offers":[{"cta":"request","delivery":"5 days","description":"2 reel","includes":["3 reels"],"price":5000,"priceType":"fixed","title":"Instagram reel promotion"},{"cta":"request","delivery":"3 days","description":"book and get podcast","includes":[],"price":100000,"priceType":"fixed","title":"Youtube podcast"},{"cta":"request","delivery":"3 days","description":"","includes":["Youtube brand promotion"],"price":20000,"priceType":"starting","title":"Youtube promotion"},{"cta":"request","delivery":"5 days","description":"facebook","includes":[],"priceType":"custom","title":"Facebook brand promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@upi"},"portfolio":[{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628905310_05384904d0a5.jpeg","id":"696b22aab84211ac7ace764e","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628882496_cf6739f8637c.jpeg","id":"696b2293b84211ac7ace75fb","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"video","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628850419_6f9e081f1573.mp4","id":"696b2273b84211ac7ace75ab","pinned":true,"title":"_users_6d021d13-9254-4a0d-8e14-be83ef1efb47_generated_b2252efa-b351-403d-afb1-611a94acb65d_generated_video_hd.mp4","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628813347_5f622b3145f0.jpeg","id":"696b224eb84211ac7ace7558","pinned":true,"title":"Signup","visible":true}],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1767199897/avatars/09a2fa72-acf3-4246-8a4b-17d94383f195.png","bio":"Turning influence into real work & payments.\nBrands, collaborations & services — all in one INFLU profile.","coverUrl":"/profile.jpg","id":"695534ca815ce71ec10e05ff","name":"One Influ","role":"Professional","username":"oneinflu","verified":false},"theme":"light"}
+[00:01:04.908] Browser GROUPEND 
+[00:01:05.095] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:01:05.141] Browser GROUP   PUBLIC_PROFILE_GET
+[00:01:05.141] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
+[00:01:05.141] Browser GROUPEND 
+[00:01:05.242] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:02:27.470] Server  LOG     ✓ Compiled in 440ms
+[00:02:27.471] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:02:28.959] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -492,7 +146,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -511,575 +165,85 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[02:25:20.998] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:25:20.998] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:27:47.683] Browser ERROR   ./src/app/events/invite/[code]/invite-client.tsx:427:15
+[00:03:57.573] Server  LOG     ✓ Compiled in 188ms
+[00:04:04.211] Server  LOG     ✓ Compiled in 257ms
+[00:04:04.348] Browser ERROR   uncaughtError: ReferenceError: ShortlistedTab is not defined
+[00:04:15.038] Server  LOG     ✓ Compiled in 693ms
+[00:04:15.216] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:9
 Parsing ecmascript source code failed
-  425 |                 method: "POST",
-  426 |     headers: {
-> 427 |               { body: formData
-      |               ^
-  428 |             });
-  429 |
-  430 |             if (!res.ok) {
-
-Unexpected token `{`. Expected identifier, string literal, numeric literal or [ for the computed key
-
-Import trace:
-  Server Component:
-    ./src/app/events/invite/[code]/invite-client.tsx
-    ./src/app/events/invite/[code]/page.tsx
-[02:28:15.676] Browser ERROR   ./src/app/events/invite/[code]/invite-client.tsx:458:55
-Parsing ecmascript source code failed
-  456 |     };su
-  457 |                 
-> 458 |                 constcaeStorage.getItem("influu_token"d(true), []);
-      |                                                       ^
-  459 |
-  460 |     useEffect(() => {, { token }
-  461 |         let alive = true;
-
-Expected ',', got 'd'
-
-Import trace:
-  Server Component:
-    ./src/app/events/invite/[code]/invite-client.tsx
-    ./src/app/events/invite/[code]/page.tsx
-[02:28:16.693] Browser ERROR   ./src/app/events/invite/[code]/invite-client.tsx:460:66
-Parsing ecmascript source code failed
-  458 |     useEffect(() => setMounll);
-  459 |                 
-> 460 |                 const token = tocaeStorage.getItem("influu_token"d(true), []);
-      |                                                                  ^
-  461 |
-  462 |     useEffect(() => {, { token }
-  463 |         let alive = true;
-
-Expected ',', got 'd'
-
-Import trace:
-  Server Component:
-    ./src/app/events/invite/[code]/invite-client.tsx
-    ./src/app/events/invite/[code]/page.tsx
-[02:28:39.588] Server  LOG     ✓ Compiled in 221ms
-[02:31:12.110] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:31:15.518] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:31:43.677] Browser ERROR   ./src/app/events/invite/[code]/invite-client.tsx:1113:17
-Parsing ecmascript source code failed
-  1111 |
-  1112 |
-> 1113 |                 </div>
-       |                 ^
-  1114 |             </div>
-  1115 |         </main>
-  1116 |     );
+> 1 |         </div>
+    |         ^
+  2 |        </div> 
+  3 |     );
+  4 | }
 
 Expression expected
 
-Import trace:
-  Server Component:
-    ./src/app/events/invite/[code]/invite-client.tsx
-    ./src/app/events/invite/[code]/page.tsx
-[02:31:43.677] Browser ERROR   ./src/app/events/invite/[code]/invite-client.tsx:1113:18
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
+[00:04:15.216] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:10
 Parsing ecmascript source code failed
-  1111 |
-  1112 |
-> 1113 |                 </div>
-       |                  ^^^^^
-  1114 |             </div>
-  1115 |         </main>
-  1116 |     );
+> 1 |         </div>
+    |          ^^^^^
+  2 |        </div> 
+  3 |     );
+  4 | }
 
 Unterminated regexp literal
 
-Import trace:
-  Server Component:
-    ./src/app/events/invite/[code]/invite-client.tsx
-    ./src/app/events/invite/[code]/page.tsx
-[02:31:46.136] Server  LOG     ✓ Compiled in 157ms
-[02:33:30.879] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:31.618] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:32.362] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:33.309] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:33.357] Browser GROUP   PUBLIC_PROFILE_GET
-[02:33:33.357] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/profile/profile
-[02:33:33.357] Browser GROUPEND 
-[02:33:34.510] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:35.014] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:36.056] Browser GROUP   PUBLIC_PROFILE_GET
-[02:33:36.057] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/profile/profile
-[02:33:36.057] Browser GROUPEND 
-[02:33:36.180] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:37.375] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:33:37.682] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:34:17.397] Server  LOG     ✓ Compiled in 434ms
-[02:34:20.714] Server  LOG     ✓ Compiled in 1117ms
-[02:34:25.706] Browser ERROR   unhandledRejection: ReferenceError: authToken is not defined
-[02:34:39.148] Server  LOG     ✓ Compiled in 188ms
-[02:34:40.613] Browser ERROR   unhandledRejection: ReferenceError: authToken is not defined
-[02:36:38.139] Server  LOG     ✓ Compiled in 854ms
-[02:36:38.166] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:36:41.734] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
+  Client Component SSR:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
+[00:04:27.957] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:9
+Parsing ecmascript source code failed
+> 1 |         </div>
+    |         ^
+  2 |        </div> 
+  3 |     );
+  4 | }
 
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+Expression expected
 
-%s%s https://react.dev/link/hydration-mismatch 
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
 
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
+  Client Component SSR:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
+[00:04:27.957] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:10
+Parsing ecmascript source code failed
+> 1 |         </div>
+    |          ^^^^^
+  2 |        </div> 
+  3 |     );
+  4 | }
 
-[02:36:55.814] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:36:56.325] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:36:56.703] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:36:58.208] Browser GROUP   PUBLIC_PROFILE_GET
-[02:36:58.208] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:36:58.208] Browser GROUPEND 
-[02:36:58.387] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:36:58.523] Browser GROUP   PUBLIC_PROFILE_GET
-[02:36:58.523] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:36:58.523] Browser GROUPEND 
-[02:36:58.523] Browser GROUP   PUBLIC_PROFILE_GET
-[02:36:58.523] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:36:58.523] Browser GROUPEND 
-[02:36:58.600] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:36:58.600] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"/avatar-placeholder.png","bio":null,"coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":null,"role":null,"username":"testphoneuser","verified":false},"theme":"light"}
-[02:36:58.600] Browser GROUPEND 
-[02:36:59.024] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:36:59.369] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:36:59.611] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:00.239] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:01.304] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:01.459] Browser GROUP   PUBLIC_PROFILE_GET
-[02:37:01.459] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:37:01.459] Browser GROUPEND 
-[02:37:01.459] Browser GROUP   PUBLIC_PROFILE_GET
-[02:37:01.460] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:37:01.460] Browser GROUPEND 
-[02:37:01.808] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:02.766] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:02.845] Browser GROUP   PUBLIC_PROFILE_GET
-[02:37:02.845] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:37:02.845] Browser GROUPEND 
-[02:37:02.849] Browser GROUP   PUBLIC_PROFILE_GET
-[02:37:02.849] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:37:02.849] Browser GROUPEND 
-[02:37:03.157] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:03.840] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:05.012] Browser GROUP   PUBLIC_PROFILE_GET
-[02:37:05.012] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:37:05.012] Browser GROUPEND 
-[02:37:05.246] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:05.482] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:07.345] Browser GROUP   PUBLIC_PROFILE_GET
-[02:37:07.345] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:37:07.345] Browser GROUPEND 
-[02:37:07.575] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:37:07.637] Server  LOG     ✓ Compiled in 0ms
-[02:37:09.654] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:37:10.611] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+Unterminated regexp literal
 
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
 
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
-          ...
-
-[02:37:10.611] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
-          ...
-
-[02:40:38.291] Server  LOG     ✓ Compiled in 377ms
-[02:40:45.470] Server  LOG     ✓ Compiled in 361ms
-[02:40:50.021] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:41:43.463] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:43.823] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:44.419] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:45.532] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:45.532] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:41:45.532] Browser GROUPEND 
-[02:41:46.098] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:46.187] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:46.263] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:46.264] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:41:46.264] Browser GROUPEND 
-[02:41:46.264] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:46.264] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:41:46.264] Browser GROUPEND 
-[02:41:46.264] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:41:46.264] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"/avatar-placeholder.png","bio":null,"coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":null,"role":null,"username":"testphoneuser","verified":false},"theme":"light"}
-[02:41:46.264] Browser GROUPEND 
-[02:41:46.705] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:47.086] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:48.484] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:48.577] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:48.577] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:41:48.577] Browser GROUPEND 
-[02:41:48.679] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:49.196] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:49.491] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:41:49.491] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"/avatar-placeholder.png","bio":null,"coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":null,"role":null,"username":"testphoneuser","verified":false},"theme":"light"}
-[02:41:49.492] Browser GROUPEND 
-[02:41:49.855] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:51.419] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:51.419] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:41:51.419] Browser GROUPEND 
-[02:41:51.650] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:51.650] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:41:51.650] Browser GROUPEND 
-[02:41:51.650] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:51.650] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:41:51.650] Browser GROUPEND 
-[02:41:52.900] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:53.030] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:41:53.030] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"/avatar-placeholder.png","bio":null,"coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":null,"role":null,"username":"testphoneuser","verified":false},"theme":"light"}
-[02:41:53.030] Browser GROUPEND 
-[02:41:53.258] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:54.198] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:56.430] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:56.698] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:57.118] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:57.240] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:57.706] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:58.157] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:58.803] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:58.945] Browser GROUP   PUBLIC_PROFILE_GET
-[02:41:58.945] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:41:58.945] Browser GROUPEND 
-[02:41:59.415] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:59.687] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:41:59.966] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:01.390] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:01.452] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:01.452] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:42:01.452] Browser GROUPEND 
-[02:42:01.452] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:01.452] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:42:01.452] Browser GROUPEND 
-[02:42:01.714] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:42:01.715] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:42:01.715] Browser GROUPEND 
-[02:42:01.838] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:02.097] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:03.124] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:03.151] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:03.151] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:42:03.151] Browser GROUPEND 
-[02:42:03.349] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:03.438] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:42:03.438] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:42:03.438] Browser GROUPEND 
-[02:42:03.597] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:03.935] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:05.016] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:05.090] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:05.090] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:42:05.090] Browser GROUPEND 
-[02:42:05.090] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:05.090] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:42:05.090] Browser GROUPEND 
-[02:42:05.583] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:06.546] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:06.607] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:06.607] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:42:06.607] Browser GROUPEND 
-[02:42:06.912] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:42:08.001] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:08.001] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:42:08.001] Browser GROUPEND 
-[02:42:08.604] Browser GROUP   PUBLIC_PROFILE_GET
-[02:42:08.605] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:42:08.610] Browser GROUPEND 
-[02:42:10.074] Server  LOG     ✓ Compiled in 1822ms
-[02:42:32.711] Server  LOG     ✓ Compiled in 246ms
-[02:42:42.077] Server  LOG     ✓ Compiled in 559ms
-[02:42:43.689] Browser ERROR   uncaughtError: ReferenceError: animRef is not defined
-[02:42:49.183] Server  LOG     ✓ Compiled in 322ms
-[02:42:49.271] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:43:38.190] Server  LOG     ✓ Compiled in 375ms
-[02:46:40.905] Server  LOG     ✓ Compiled in 493ms
-[02:47:13.900] Server  LOG     ✓ Compiled in 267ms
-[02:47:14.758] Browser ERROR   The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
-
-Previous: %s
-Incoming: %s useEffect [73G6428E] [73G6428E, eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTY5ZGNhOGUxMTdmYWNhZjFmYThkYjUiLCJ1c2VybmFtZSI6InRlc3RwaG9uZXVzZXIiLCJpYXQiOjE3Njg4MjQ5NTAsImV4cCI6MTc2OTQyOTc1MH0.hbKwl4iMQrPfycihmGN38WvIrUFWfxDMUL2eEG1WG5Y]
-[02:47:23.994] Server  LOG     ✓ Compiled in 169ms
-[02:47:46.478] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:47:53.337] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:53.702] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:54.014] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:54.716] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:54.744] Browser GROUP   PUBLIC_PROFILE_GET
-[02:47:54.744] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:47:54.744] Browser GROUPEND 
-[02:47:55.115] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:55.201] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:47:55.201] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:47:55.201] Browser GROUPEND 
-[02:47:55.307] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:56.296] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:56.371] Browser GROUP   PUBLIC_PROFILE_GET
-[02:47:56.371] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:47:56.371] Browser GROUPEND 
-[02:47:56.500] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:56.715] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:47:56.715] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:47:56.715] Browser GROUPEND 
-[02:47:57.211] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:57.610] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:58.889] Browser GROUP   PUBLIC_PROFILE_GET
-[02:47:58.889] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:47:58.889] Browser GROUPEND 
-[02:47:59.578] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:47:59.662] Browser GROUP   PUBLIC_PROFILE_GET
-[02:47:59.662] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:47:59.662] Browser GROUPEND 
-[02:47:59.663] Browser GROUP   PUBLIC_PROFILE_GET
-[02:47:59.663] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:47:59.663] Browser GROUPEND 
-[02:47:59.663] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:47:59.663] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:47:59.663] Browser GROUPEND 
-[02:48:00.031] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:01.103] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:01.200] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:01.201] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:01.203] Browser GROUPEND 
-[02:48:01.203] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:01.203] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:01.203] Browser GROUPEND 
-[02:48:01.682] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:03.040] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:03.040] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:03.040] Browser GROUPEND 
-[02:48:03.137] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:03.137] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:03.137] Browser GROUPEND 
-[02:48:08.933] Server  LOG     ✓ Compiled in 474ms
-[02:48:08.945] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:08.969] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:08.972] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:08.979] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:08.988] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:08.996] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:09.005] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:09.011] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/providers/auth.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:48:10.494] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:10.561] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:10.599] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:10.647] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:18.921] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:19.267] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:19.667] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:21.964] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:22.051] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:22.051] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:22.051] Browser GROUPEND 
-[02:48:22.051] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:22.051] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:48:22.051] Browser GROUPEND 
-[02:48:22.051] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:48:22.051] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:48:22.051] Browser GROUPEND 
-[02:48:22.221] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:22.964] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:23.287] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:24.635] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:24.812] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:24.812] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:48:24.812] Browser GROUPEND 
-[02:48:25.330] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:25.521] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:25.681] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:48:25.681] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:48:25.681] Browser GROUPEND 
-[02:48:27.740] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:27.910] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:27.910] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:27.910] Browser GROUPEND 
-[02:48:27.911] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:27.911] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:48:27.911] Browser GROUPEND 
-[02:48:27.911] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:48:27.911] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:48:27.911] Browser GROUPEND 
-[02:48:28.579] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:32.286] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:32.702] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:32.703] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:32.703] Browser GROUPEND 
-[02:48:32.890] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:34.969] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:34.969] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:34.969] Browser GROUPEND 
-[02:48:35.685] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:35.685] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/guest/profile
-[02:48:35.685] Browser GROUPEND 
-[02:48:41.653] Server  LOG     ✓ Compiled in 2.8s
-[02:48:50.028] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+  Client Component SSR:
+    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
+    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
+[00:04:30.943] Server  LOG     ✓ Compiled in 345ms
+[00:04:37.856] Browser ERROR   uncaughtError: ReferenceError: ShortlistedTab is not defined
+[00:04:42.088] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -1217,861 +381,168 @@ It can also happen if the client has a browser extension installed which messes 
                     ...
           ...
       ...
-        <SegmentViewNode type="page" pagePath="admin/my-p...">
-          <SegmentTrieNode>
-          <ClientPageRoot Component={function MyprofilePage} serverProvidedParams={{...}}>
-            <MyprofilePage params={Promise} searchParams={Promise}>
-              <section className="flex min-h...">
-                <div>
-                <div className="flex-1 min...">
-                  <div className="w-full max...">
-                    <div>
-                    <div>
-                    <div>
-                    <div className="flex flex-...">
-                      <div className="rounded-2x...">
-                        <div className="flex items...">
-                          ...
-                            <TooltipTrigger onPress={function handlePhotoPick} aria-label="Change photo" ...>
-                              <Button onPress={function handlePhotoPick} aria-label="Change photo" ...>
-                                <button
-                                  className="outline-hidden flex cursor-pointer items-center justify-center rounded-fu..."
-                                  style={undefined}
-                                  data-rac=""
-                                  type="button"
-                                  disabled={undefined}
-                                  form={undefined}
-                                  formAction={undefined}
-                                  formEncType={undefined}
-                                  formMethod={undefined}
-                                  formNoValidate={undefined}
-                                  formTarget={undefined}
-                                  name={undefined}
-                                  value={undefined}
-                                  onFocus={function}
-                                  onBlur={function}
-                                  onKeyDown={function}
-                                  onKeyUp={undefined}
-                                  tabIndex={0}
-                                  aria-describedby={undefined}
-                                  onPointerEnter={function}
-                                  onPointerLeave={function}
-                                  onPointerDown={function}
-                                  onClick={function onClick}
-                                  onMouseDown={function}
-                                  onPointerUp={function}
-                                  onDragStart={function}
-                                  data-react-aria-pressable={true}
-                                  aria-label="Change photo"
-                                  aria-haspopup={undefined}
-                                  aria-expanded={undefined}
-                                  aria-controls={undefined}
-                                  aria-pressed={undefined}
-                                  aria-current={undefined}
-                                  aria-disabled={undefined}
-+                                 id="react-aria-_R_3ilaatpet5ralb_"
--                                 id="react-aria-_R_eal9bn5rl5ralb_"
-                                  ref={{current:null}}
-                                  aria-labelledby={undefined}
-                                  slot={undefined}
-                                  data-disabled={undefined}
-                                  data-pressed={undefined}
-                                  data-hovered={undefined}
-                                  data-focused={undefined}
-                                  data-pending={undefined}
-                                  data-focus-visible={undefined}
-                                >
-                            ...
-                          <div className="grid w-ful...">
-                            ...
-                              <Label isRequired={false}>
-                                <Label data-label="true" className="flex curso...">
-                                  <label
-                                    className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secon..."
-+                                   id="react-aria-_R_claatpet5ralbH1_"
--                                   id="react-aria-_R_1il9bn5rl5ralbH1_"
-+                                   htmlFor="react-aria-_R_claatpet5ralb_"
--                                   htmlFor="react-aria-_R_1il9bn5rl5ralb_"
-                                    data-label="true"
-                                    ref={{current:null}}
-                                  >
-                              <InputBase ref={undefined} groupRef={undefined} size="md" placeholder="Your name" ...>
-                                <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} ...>
-                                  <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
-                                    <Input type={undefined} maxLength={undefined} minLength={undefined} ...>
-                                      <input
-                                        aria-label={undefined}
-                                        type="text"
-                                        pattern={undefined}
-                                        disabled={false}
-                                        readOnly={false}
-                                        required={false}
-                                        aria-required={undefined}
-                                        aria-invalid={undefined}
-                                        aria-errormessage={undefined}
-                                        aria-activedescendant={undefined}
-                                        aria-autocomplete={undefined}
-                                        aria-haspopup={undefined}
-                                        aria-controls={undefined}
-                                        value=""
-                                        onChange={function onChange}
-                                        autoComplete={undefined}
-                                        autoCapitalize={undefined}
-                                        maxLength={undefined}
-                                        minLength={undefined}
-                                        name={undefined}
-                                        form={undefined}
-                                        placeholder="Your name"
-                                        inputMode={undefined}
-                                        autoCorrect={undefined}
-                                        spellCheck={undefined}
-                                        enterKeyHint={undefined}
-                                        onCopy={undefined}
-                                        onCut={undefined}
-                                        onPaste={undefined}
-                                        onCompositionEnd={undefined}
-                                        onCompositionStart={undefined}
-                                        onCompositionUpdate={undefined}
-                                        onSelect={undefined}
-                                        onBeforeInput={undefined}
-                                        onInput={undefined}
-                                        onFocus={function}
-                                        onBlur={function}
-                                        onKeyDown={undefined}
-                                        onKeyUp={undefined}
-                                        tabIndex={0}
-+                                       id="react-aria-_R_claatpet5ralb_"
--                                       id="react-aria-_R_1il9bn5rl5ralb_"
-+                                       aria-labelledby="react-aria-_R_claatpet5ralbH1_"
--                                       aria-labelledby="react-aria-_R_1il9bn5rl5ralbH1_"
-+                                       aria-describedby="react-aria-_R_claatpet5ralbH3_ react-aria-_R_claatpet5ralbH4_"
--                                       aria-describedby="react-aria-_R_1il9bn5rl5ralbH3_ react-aria-_R_1il9bn5rl5ralbH4_"
-                                        className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidde..."
-                                        onPointerEnter={function}
-                                        onPointerLeave={function}
-                                        style={undefined}
-                                        data-rac=""
-                                        ref={{current:null}}
-                                        data-focused={undefined}
-                                        data-disabled={undefined}
-                                        data-hovered={undefined}
-                                        data-focus-visible={undefined}
-                                        data-invalid={undefined}
-                                      >
-                            ...
-                              <Label isRequired={false} tooltip={undefined}>
-                                <Label data-label="true" className="flex curso...">
-                                  <span
-                                    className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secon..."
-+                                   id="react-aria-_R_2klaatpet5ralbH3_"
--                                   id="react-aria-_R_ail9bn5rl5ralbH3_"
-                                    htmlFor={undefined}
-                                    onClick={function onClick}
-                                    data-label="true"
-                                    ref={{current:null}}
-                                  >
-                              <SelectValue isOpen={false} isFocused={false} isFocusVisible={false} isDisabled={false} ...>
-                                <Button ref={undefined} className="relative f...">
-                                  <button
-+                                   id="react-aria-_R_2klaatpet5ralbH2_"
--                                   id="react-aria-_R_ail9bn5rl5ralbH2_"
-                                    className="relative flex w-full cursor-pointer items-center rounded-lg bg-primary ..."
-                                    style={undefined}
-                                    data-rac=""
-                                    type="button"
-                                    disabled={undefined}
-                                    form={undefined}
-                                    formAction={undefined}
-                                    formEncType={undefined}
-                                    formMethod={undefined}
-                                    formNoValidate={undefined}
-                                    formTarget={undefined}
-                                    name={undefined}
-                                    value={undefined}
-                                    onFocus={function}
-                                    onBlur={function}
-                                    onKeyDown={function}
-                                    onKeyUp={undefined}
-                                    tabIndex={0}
-                                    onClick={function onClick}
-                                    onPointerDown={function}
-                                    onMouseDown={function}
-                                    onPointerUp={function}
-                                    onPointerEnter={function}
-                                    onPointerLeave={function}
-                                    onDragStart={function}
-                                    data-react-aria-pressable={true}
-                                    aria-label={undefined}
-+                                   aria-labelledby="react-aria-_R_2klaatpet5ralbH7_ react-aria-_R_2klaatpet5ralbH3_"
--                                   aria-labelledby="react-aria-_R_ail9bn5rl5ralbH7_ react-aria-_R_ail9bn5rl5ralbH3_"
-+                                   aria-describedby="react-aria-_R_2klaatpet5ralbH5_ react-aria-_R_2klaatpet5ralbH6_"
--                                   aria-describedby="react-aria-_R_ail9bn5rl5ralbH5_ react-aria-_R_ail9bn5rl5ralbH6_"
-                                    aria-haspopup="listbox"
-                                    aria-expanded={false}
-                                    aria-controls={undefined}
-                                    aria-pressed={undefined}
-                                    aria-current={undefined}
-                                    aria-disabled={undefined}
-                                    ref={{current:null}}
-                                    slot={undefined}
-                                    data-disabled={undefined}
-                                    data-pressed={undefined}
-                                    data-hovered={undefined}
-                                    data-focused={undefined}
-                                    data-pending={undefined}
-                                    data-focus-visible={undefined}
-                                  >
-                                    <SelectValue className="flex h-max...">
-                                      <span
-                                        ref={{current:null}}
-+                                       id="react-aria-_R_2klaatpet5ralbH7_"
--                                       id="react-aria-_R_ail9bn5rl5ralbH7_"
-                                        className="flex h-max w-full items-center justify-start gap-2 truncate text-le..."
-                                        style={undefined}
-                                        data-rac=""
-                                        data-placeholder={true}
-                                      >
-                              ...
-                        ...
-                          <Label isRequired={false}>
-                            <Label data-label="true" className="flex curso...">
-                              <label
-                                className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secondary"
-+                               id="react-aria-_R_15aatpet5ralbH1_"
--                               id="react-aria-_R_4l9bn5rl5ralbH1_"
-+                               htmlFor="react-aria-_R_15aatpet5ralb_"
--                               htmlFor="react-aria-_R_4l9bn5rl5ralb_"
-                                data-label="true"
+        <InnerLayoutRouter url="/admin/cam..." tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="admin/camp...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function AdminCampaignsPage} serverProvidedParams={{...}}>
+              <AdminCampaignsPage params={Promise} searchParams={Promise}>
+                <section className="flex min-h...">
+                  <div className="top-0 z-10...">
+                    <div className="w-full max...">
+                      <div className="flex flex-...">
+                        <div>
+                        <div className="mt-2 md:mt-0">
+                          <Button className="w-full md:..." size="sm" color="primary" onClick={function openCreate}>
+                            <Button data-loading={undefined} data-icon-only={undefined} onClick={function openCreate} ...>
+                              <button
+                                data-loading={undefined}
+                                data-icon-only={undefined}
+                                className="group relative inline-flex h-max cursor-pointer items-center justify-center..."
+                                style={undefined}
+                                data-rac=""
+                                type="button"
+                                disabled={undefined}
+                                form={undefined}
+                                formAction={undefined}
+                                formEncType={undefined}
+                                formMethod={undefined}
+                                formNoValidate={undefined}
+                                formTarget={undefined}
+                                name={undefined}
+                                value={undefined}
+                                onFocus={function}
+                                onBlur={function}
+                                onKeyDown={function onKeyDown}
+                                onKeyUp={undefined}
+                                tabIndex={0}
+                                onClick={function onClick}
+                                onPointerDown={function}
+                                onMouseDown={function}
+                                onPointerUp={function}
+                                onPointerEnter={function}
+                                onPointerLeave={function}
+                                onDragStart={function}
+                                data-react-aria-pressable={true}
+                                aria-haspopup={undefined}
+                                aria-expanded={undefined}
+                                aria-controls={undefined}
+                                aria-pressed={undefined}
+                                aria-current={undefined}
+                                aria-disabled={undefined}
++                               id="react-aria-_R_26atpet5ralb_"
+-                               id="react-aria-_R_8pbn5rl5ralb_"
                                 ref={{current:null}}
+                                aria-labelledby={undefined}
+                                slot={undefined}
+                                data-disabled={undefined}
+                                data-pressed={undefined}
+                                data-hovered={undefined}
+                                data-focused={undefined}
+                                data-pending={undefined}
+                                data-focus-visible={undefined}
                               >
-                          <InputBase ref={undefined} groupRef={undefined} size="md" placeholder="username" ...>
-                            <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} ...>
-                              <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
-                                <Input type={undefined} maxLength={undefined} minLength={undefined} pattern={undefined} ...>
-                                  <input
-                                    aria-label={undefined}
-                                    type="text"
-                                    pattern={undefined}
-                                    disabled={false}
-                                    readOnly={false}
-                                    required={false}
-                                    aria-required={undefined}
-                                    aria-invalid={undefined}
-                                    aria-errormessage={undefined}
-                                    aria-activedescendant={undefined}
-                                    aria-autocomplete={undefined}
-                                    aria-haspopup={undefined}
-                                    aria-controls={undefined}
-                                    value=""
-                                    onChange={function onChange}
-                                    autoComplete={undefined}
-                                    autoCapitalize={undefined}
-                                    maxLength={undefined}
-                                    minLength={undefined}
-                                    name={undefined}
-                                    form={undefined}
-                                    placeholder="username"
-                                    inputMode={undefined}
-                                    autoCorrect={undefined}
-                                    spellCheck={undefined}
-                                    enterKeyHint={undefined}
-                                    onCopy={undefined}
-                                    onCut={undefined}
-                                    onPaste={undefined}
-                                    onCompositionEnd={undefined}
-                                    onCompositionStart={undefined}
-                                    onCompositionUpdate={undefined}
-                                    onSelect={undefined}
-                                    onBeforeInput={undefined}
-                                    onInput={undefined}
-                                    onFocus={function}
-                                    onBlur={function}
-                                    onKeyDown={undefined}
-                                    onKeyUp={undefined}
-                                    tabIndex={0}
-+                                   id="react-aria-_R_15aatpet5ralb_"
--                                   id="react-aria-_R_4l9bn5rl5ralb_"
-+                                   aria-labelledby="react-aria-_R_15aatpet5ralbH1_"
--                                   aria-labelledby="react-aria-_R_4l9bn5rl5ralbH1_"
-+                                   aria-describedby="react-aria-_R_15aatpet5ralbH3_ react-aria-_R_15aatpet5ralbH4_"
--                                   aria-describedby="react-aria-_R_4l9bn5rl5ralbH3_ react-aria-_R_4l9bn5rl5ralbH4_"
-                                    className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden pl..."
-                                    onPointerEnter={function}
-                                    onPointerLeave={function}
-                                    style={undefined}
-                                    data-rac=""
-                                    ref={{current:null}}
-                                    data-focused={undefined}
-                                    data-disabled={undefined}
-                                    data-hovered={undefined}
-                                    data-focus-visible={undefined}
-                                    data-invalid={undefined}
-                                  >
-                        <div className="mt-4">
-                          ...
-                            <Label isRequired={false} tooltip={undefined}>
-                              <Label data-label="true" className="flex curso...">
-                                <label
-                                  className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secondary"
-+                                 id="react-aria-_R_3laatpet5ralbH1_"
--                                 id="react-aria-_R_el9bn5rl5ralbH1_"
-+                                 htmlFor="react-aria-_R_3laatpet5ralb_"
--                                 htmlFor="react-aria-_R_el9bn5rl5ralb_"
-                                  data-label="true"
-                                  ref={{current:null}}
-                                >
-                            <TextAreaBase placeholder="Tell peopl..." className={undefined} ref={undefined} rows={4} ...>
-                              <TextArea placeholder="Tell peopl..." ref={undefined} rows={4} cols={undefined} ...>
-                                <textarea
-                                  type="text"
-                                  pattern={undefined}
-                                  disabled={false}
-                                  readOnly={false}
-                                  required={false}
-                                  aria-required={undefined}
-                                  aria-invalid={undefined}
-                                  aria-errormessage={undefined}
-                                  aria-activedescendant={undefined}
-                                  aria-autocomplete={undefined}
-                                  aria-haspopup={undefined}
-                                  aria-controls={undefined}
-                                  value=""
-                                  onChange={function onChange}
-                                  autoComplete={undefined}
-                                  autoCapitalize={undefined}
-                                  maxLength={undefined}
-                                  minLength={undefined}
-                                  name={undefined}
-                                  form={undefined}
-                                  placeholder="Tell people about yourself (max 150 characters)"
-                                  inputMode={undefined}
-                                  autoCorrect={undefined}
-                                  spellCheck={undefined}
-                                  enterKeyHint={undefined}
-                                  onCopy={undefined}
-                                  onCut={undefined}
-                                  onPaste={undefined}
-                                  onCompositionEnd={undefined}
-                                  onCompositionStart={undefined}
-                                  onCompositionUpdate={undefined}
-                                  onSelect={undefined}
-                                  onBeforeInput={undefined}
-                                  onInput={undefined}
-                                  onFocus={function}
-                                  onBlur={function}
-                                  onKeyDown={undefined}
-                                  onKeyUp={undefined}
-                                  tabIndex={0}
-+                                 id="react-aria-_R_3laatpet5ralb_"
--                                 id="react-aria-_R_el9bn5rl5ralb_"
-                                  aria-label={undefined}
-+                                 aria-labelledby="react-aria-_R_3laatpet5ralbH1_"
--                                 aria-labelledby="react-aria-_R_el9bn5rl5ralbH1_"
-+                                 aria-describedby="react-aria-_R_3laatpet5ralbH3_ react-aria-_R_3laatpet5ralbH4_"
--                                 aria-describedby="react-aria-_R_el9bn5rl5ralbH3_ react-aria-_R_el9bn5rl5ralbH4_"
-                                  rows={4}
-                                  cols={undefined}
-                                  style={{--resize-handle-bg:"url(data:i...",--resize-handle-bg-dark:"url(data:i..."}}
-                                  className={"w-full scroll-py-3 rounded-lg bg-primary px-3.5 py-3 text-md text-prima..."}
-                                  onPointerEnter={function}
-                                  onPointerLeave={function}
-                                  data-rac=""
-                                  ref={{current:null}}
-                                  data-focused={undefined}
-                                  data-disabled={undefined}
-                                  data-hovered={undefined}
-                                  data-focus-visible={undefined}
-                                  data-invalid={undefined}
-                                >
-                            <HintText isInvalid={false}>
-                              <Text slot="description" className="text-sm te...">
-                                <span
-                                  className="text-sm text-tertiary group-invalid:text-error-primary"
-+                                 id="react-aria-_R_3laatpet5ralbH3_"
--                                 id="react-aria-_R_el9bn5rl5ralbH3_"
-                                  slot="description"
-                                  ref={{current:null}}
-                                >
-+                                 0/150
-                          <div className="mt-3 flex ...">
-                            <Button size="md" color="primary" isLoading={false} onClick={function onClick}>
-                              <Button data-loading={undefined} data-icon-only={undefined} onClick={function onClick} ...>
-                                <button
-                                  data-loading={undefined}
-                                  data-icon-only={undefined}
-                                  className="group relative inline-flex h-max cursor-pointer items-center justify-cent..."
-                                  style={undefined}
-                                  data-rac=""
-                                  type="button"
-                                  disabled={undefined}
-                                  form={undefined}
-                                  formAction={undefined}
-                                  formEncType={undefined}
-                                  formMethod={undefined}
-                                  formNoValidate={undefined}
-                                  formTarget={undefined}
-                                  name={undefined}
-                                  value={undefined}
-                                  onFocus={function}
-                                  onBlur={function}
-                                  onKeyDown={function onKeyDown}
-                                  onKeyUp={undefined}
-                                  tabIndex={0}
-                                  onClick={function onClick}
-                                  onPointerDown={function}
-                                  onMouseDown={function}
-                                  onPointerUp={function}
-                                  onPointerEnter={function}
-                                  onPointerLeave={function}
-                                  onDragStart={function}
-                                  data-react-aria-pressable={true}
-                                  aria-haspopup={undefined}
-                                  aria-expanded={undefined}
-                                  aria-controls={undefined}
-                                  aria-pressed={undefined}
-                                  aria-current={undefined}
-                                  aria-disabled={undefined}
-+                                 id="react-aria-_R_dlaatpet5ralb_"
--                                 id="react-aria-_R_1ml9bn5rl5ralb_"
-                                  ref={{current:null}}
-                                  aria-labelledby={undefined}
-                                  slot={undefined}
-                                  data-disabled={undefined}
-                                  data-pressed={undefined}
-                                  data-hovered={undefined}
-                                  data-focused={undefined}
-                                  data-pending={undefined}
-                                  data-focus-visible={undefined}
-                                >
-                      <div className="rounded-2x...">
-                        <div>
-                        <div className="mt-3 grid ...">
-                          ...
-                            <Label isRequired={false} tooltip={undefined}>
-                              <Label data-label="true" className="flex curso...">
-                                <span
-                                  className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secondary"
-+                                 id="react-aria-_R_j9aatpet5ralbH3_"
--                                 id="react-aria-_R_2d59bn5rl5ralbH3_"
-                                  htmlFor={undefined}
-                                  onClick={function onClick}
-                                  data-label="true"
-                                  ref={{current:null}}
-                                >
-                            <SelectValue isOpen={false} isFocused={false} isFocusVisible={false} isDisabled={false} ...>
-                              <Button ref={undefined} className="relative f...">
-                                <button
-+                                 id="react-aria-_R_j9aatpet5ralbH2_"
--                                 id="react-aria-_R_2d59bn5rl5ralbH2_"
-                                  className="relative flex w-full cursor-pointer items-center rounded-lg bg-primary sh..."
-                                  style={undefined}
-                                  data-rac=""
-                                  type="button"
-                                  disabled={undefined}
-                                  form={undefined}
-                                  formAction={undefined}
-                                  formEncType={undefined}
-                                  formMethod={undefined}
-                                  formNoValidate={undefined}
-                                  formTarget={undefined}
-                                  name={undefined}
-                                  value={undefined}
-                                  onFocus={function}
-                                  onBlur={function}
-                                  onKeyDown={function}
-                                  onKeyUp={undefined}
-                                  tabIndex={0}
-                                  onClick={function onClick}
-                                  onPointerDown={function}
-                                  onMouseDown={function}
-                                  onPointerUp={function}
-                                  onPointerEnter={function}
-                                  onPointerLeave={function}
-                                  onDragStart={function}
-                                  data-react-aria-pressable={true}
-                                  aria-label={undefined}
-+                                 aria-labelledby="react-aria-_R_j9aatpet5ralbH7_ react-aria-_R_j9aatpet5ralbH3_"
--                                 aria-labelledby="react-aria-_R_2d59bn5rl5ralbH7_ react-aria-_R_2d59bn5rl5ralbH3_"
-+                                 aria-describedby="react-aria-_R_j9aatpet5ralbH5_ react-aria-_R_j9aatpet5ralbH6_"
--                                 aria-describedby="react-aria-_R_2d59bn5rl5ralbH5_ react-aria-_R_2d59bn5rl5ralbH6_"
-                                  aria-haspopup="listbox"
-                                  aria-expanded={false}
-                                  aria-controls={undefined}
-                                  aria-pressed={undefined}
-                                  aria-current={undefined}
-                                  aria-disabled={undefined}
-                                  ref={{current:null}}
-                                  slot={undefined}
-                                  data-disabled={undefined}
-                                  data-pressed={undefined}
-                                  data-hovered={undefined}
-                                  data-focused={undefined}
-                                  data-pending={undefined}
-                                  data-focus-visible={undefined}
-                                >
-                                  <SelectValue className="flex h-max...">
-                                    <span
-                                      ref={{current:null}}
-+                                     id="react-aria-_R_j9aatpet5ralbH7_"
--                                     id="react-aria-_R_2d59bn5rl5ralbH7_"
-                                      className="flex h-max w-full items-center justify-start gap-2 truncate text-left..."
-                                      style={undefined}
-                                      data-rac=""
-                                      data-placeholder={undefined}
-                                    >
-                            ...
-                          ...
-                            <Label isRequired={false}>
-                              <Label data-label="true" className="flex curso...">
-                                <label
-                                  className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secondary"
-+                                 id="react-aria-_R_d9aatpet5ralbH1_"
--                                 id="react-aria-_R_1l59bn5rl5ralbH1_"
-+                                 htmlFor="react-aria-_R_d9aatpet5ralb_"
--                                 htmlFor="react-aria-_R_1l59bn5rl5ralb_"
-                                  data-label="true"
-                                  ref={{current:null}}
-                                >
-                            <InputBase ref={undefined} groupRef={undefined} size="md" placeholder="your@email..." ...>
-                              <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} ...>
-                                <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
-                                  <Input type={undefined} maxLength={undefined} minLength={undefined} pattern={undefined} ...>
-                                    <input
-                                      aria-label={undefined}
-                                      type="text"
-                                      pattern={undefined}
-                                      disabled={false}
-                                      readOnly={false}
-                                      required={false}
-                                      aria-required={undefined}
-                                      aria-invalid={undefined}
-                                      aria-errormessage={undefined}
-                                      aria-activedescendant={undefined}
-                                      aria-autocomplete={undefined}
-                                      aria-haspopup={undefined}
-                                      aria-controls={undefined}
-                                      value=""
-                                      onChange={function onChange}
-                                      autoComplete={undefined}
-                                      autoCapitalize={undefined}
-                                      maxLength={undefined}
-                                      minLength={undefined}
-                                      name={undefined}
-                                      form={undefined}
-                                      placeholder="your@email.com"
-                                      inputMode={undefined}
-                                      autoCorrect={undefined}
-                                      spellCheck={undefined}
-                                      enterKeyHint={undefined}
-                                      onCopy={undefined}
-                                      onCut={undefined}
-                                      onPaste={undefined}
-                                      onCompositionEnd={undefined}
-                                      onCompositionStart={undefined}
-                                      onCompositionUpdate={undefined}
-                                      onSelect={undefined}
-                                      onBeforeInput={undefined}
-                                      onInput={undefined}
-                                      onFocus={function}
-                                      onBlur={function}
-                                      onKeyDown={undefined}
-                                      onKeyUp={undefined}
-                                      tabIndex={0}
-+                                     id="react-aria-_R_d9aatpet5ralb_"
--                                     id="react-aria-_R_1l59bn5rl5ralb_"
-+                                     aria-labelledby="react-aria-_R_d9aatpet5ralbH1_"
--                                     aria-labelledby="react-aria-_R_1l59bn5rl5ralbH1_"
-+                                     aria-describedby="react-aria-_R_d9aatpet5ralbH3_ react-aria-_R_d9aatpet5ralbH4_"
--                                     aria-describedby="react-aria-_R_1l59bn5rl5ralbH3_ react-aria-_R_1l59bn5rl5ralbH4_"
-                                      className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden ..."
-                                      onPointerEnter={function}
-                                      onPointerLeave={function}
-                                      style={undefined}
-                                      data-rac=""
-                                      ref={{current:null}}
-                                      data-focused={undefined}
-                                      data-disabled={undefined}
-                                      data-hovered={undefined}
-                                      data-focus-visible={undefined}
-                                      data-invalid={undefined}
-                                    >
-                      <div className="rounded-2x...">
-                        <div>
-                        <div className="mt-3 grid ...">
-                          ...
-                            <Label isRequired={false}>
-                              <Label data-label="true" className="flex curso...">
-                                <label
-                                  className="flex cursor-default items-center gap-0.5 text-sm font-medium text-secondary"
-+                                 id="react-aria-_R_3daatpet5ralbH1_"
--                                 id="react-aria-_R_dl9bn5rl5ralbH1_"
-+                                 htmlFor="react-aria-_R_3daatpet5ralb_"
--                                 htmlFor="react-aria-_R_dl9bn5rl5ralb_"
-                                  data-label="true"
-                                  ref={{current:null}}
-                                >
-                            <InputBase ref={undefined} groupRef={undefined} size="md" placeholder="yourid@bank" ...>
-                              <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} ...>
-                                <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
-                                  <Input type={undefined} maxLength={undefined} minLength={undefined} pattern={undefined} ...>
-                                    <input
-                                      aria-label={undefined}
-                                      type="text"
-                                      pattern={undefined}
-                                      disabled={false}
-                                      readOnly={false}
-                                      required={false}
-                                      aria-required={undefined}
-                                      aria-invalid={undefined}
-                                      aria-errormessage={undefined}
-                                      aria-activedescendant={undefined}
-                                      aria-autocomplete={undefined}
-                                      aria-haspopup={undefined}
-                                      aria-controls={undefined}
-                                      value=""
-                                      onChange={function onChange}
-                                      autoComplete={undefined}
-                                      autoCapitalize={undefined}
-                                      maxLength={undefined}
-                                      minLength={undefined}
-                                      name={undefined}
-                                      form={undefined}
-                                      placeholder="yourid@bank"
-                                      inputMode={undefined}
-                                      autoCorrect={undefined}
-                                      spellCheck={undefined}
-                                      enterKeyHint={undefined}
-                                      onCopy={undefined}
-                                      onCut={undefined}
-                                      onPaste={undefined}
-                                      onCompositionEnd={undefined}
-                                      onCompositionStart={undefined}
-                                      onCompositionUpdate={undefined}
-                                      onSelect={undefined}
-                                      onBeforeInput={undefined}
-                                      onInput={undefined}
-                                      onFocus={function}
-                                      onBlur={function}
-                                      onKeyDown={undefined}
-                                      onKeyUp={undefined}
-                                      tabIndex={0}
-+                                     id="react-aria-_R_3daatpet5ralb_"
--                                     id="react-aria-_R_dl9bn5rl5ralb_"
-+                                     aria-labelledby="react-aria-_R_3daatpet5ralbH1_"
--                                     aria-labelledby="react-aria-_R_dl9bn5rl5ralbH1_"
-+                                     aria-describedby="react-aria-_R_3daatpet5ralbH3_ react-aria-_R_3daatpet5ralbH4_"
--                                     aria-describedby="react-aria-_R_dl9bn5rl5ralbH3_ react-aria-_R_dl9bn5rl5ralbH4_"
-                                      className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden ..."
-                                      onPointerEnter={function}
-                                      onPointerLeave={function}
-                                      style={undefined}
-                                      data-rac=""
-                                      ref={{current:null}}
-                                      data-focused={undefined}
-                                      data-disabled={undefined}
-                                      data-hovered={undefined}
-                                      data-focus-visible={undefined}
-                                      data-invalid={undefined}
-                                    >
-                          <div className="flex items...">
-                            <Button size="sm" color="primary" isLoading={false} onClick={function onClick}>
-                              <Button data-loading={undefined} data-icon-only={undefined} onClick={function onClick} ...>
-                                <button
-                                  data-loading={undefined}
-                                  data-icon-only={undefined}
-                                  className="group relative inline-flex h-max cursor-pointer items-center justify-cent..."
-                                  style={undefined}
-                                  data-rac=""
-                                  type="button"
-                                  disabled={undefined}
-                                  form={undefined}
-                                  formAction={undefined}
-                                  formEncType={undefined}
-                                  formMethod={undefined}
-                                  formNoValidate={undefined}
-                                  formTarget={undefined}
-                                  name={undefined}
-                                  value={undefined}
-                                  onFocus={function}
-                                  onBlur={function}
-                                  onKeyDown={function onKeyDown}
-                                  onKeyUp={undefined}
-                                  tabIndex={0}
-                                  onClick={function onClick}
-                                  onPointerDown={function}
-                                  onMouseDown={function}
-                                  onPointerUp={function}
-                                  onPointerEnter={function}
-                                  onPointerLeave={function}
-                                  onDragStart={function}
-                                  data-react-aria-pressable={true}
-                                  aria-haspopup={undefined}
-                                  aria-expanded={undefined}
-                                  aria-controls={undefined}
-                                  aria-pressed={undefined}
-                                  aria-current={undefined}
-                                  aria-disabled={undefined}
-+                                 id="react-aria-_R_ddaatpet5ralb_"
--                                 id="react-aria-_R_1ll9bn5rl5ralb_"
-                                  ref={{current:null}}
-                                  aria-labelledby={undefined}
-                                  slot={undefined}
-                                  data-disabled={undefined}
-                                  data-pressed={undefined}
-                                  data-hovered={undefined}
-                                  data-focused={undefined}
-                                  data-pending={undefined}
-                                  data-focus-visible={undefined}
-                                >
+                  <div>
+                  ...
+                    <Button slot="trigger" className="hidden">
+                      <Button data-loading={undefined} data-icon-only={undefined} slot="trigger" type="button" ...>
+                        <button
+                          data-loading={undefined}
+                          data-icon-only={undefined}
+                          className="group relative h-max cursor-pointer items-center justify-center whitespace-nowrap..."
+                          style={undefined}
+                          data-rac=""
+                          type="button"
+                          disabled={undefined}
+                          form={undefined}
+                          formAction={undefined}
+                          formEncType={undefined}
+                          formMethod={undefined}
+                          formNoValidate={undefined}
+                          formTarget={undefined}
+                          name={undefined}
+                          value={undefined}
+                          onFocus={function}
+                          onBlur={function}
+                          onKeyDown={function onKeyDown}
+                          onKeyUp={undefined}
+                          tabIndex={0}
+                          aria-haspopup={undefined}
+                          aria-expanded={false}
+                          aria-controls={undefined}
++                         id="react-aria-_R_eatpet5ralbH1_"
+-                         id="react-aria-_R_1pbn5rl5ralbH1_"
+                          onClick={function onClick}
+                          onPointerDown={function}
+                          onMouseDown={function}
+                          onPointerUp={function}
+                          onPointerEnter={function}
+                          onPointerLeave={function}
+                          onDragStart={function}
+                          data-react-aria-pressable={true}
+                          aria-pressed={undefined}
+                          aria-current={undefined}
+                          aria-disabled={undefined}
+                          ref={{current:null}}
+                          aria-labelledby={undefined}
+                          slot="trigger"
+                          data-disabled={undefined}
+                          data-pressed={undefined}
+                          data-hovered={undefined}
+                          data-focused={undefined}
+                          data-pending={undefined}
+                          data-focus-visible={undefined}
+                        >
                     ...
-        ...
-
-[02:48:51.263] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:48:53.223] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:55.592] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
-            <SiteHeader>
-              <header className="sticky top...">
-                <div className="mx-auto ma...">
-                  <div className="rounded-2x...">
-                    <div className="flex items...">
-                      <a>
-                      <div className="flex items...">
-                        <Button href="/admin" size="sm" color="primary">
-                          <Link data-loading={undefined} data-icon-only={undefined} href="/admin" isDisabled={undefined} ...>
-                            <a
-                              ref={{current:null}}
-                              slot={undefined}
-                              data-loading={undefined}
-                              data-icon-only={undefined}
-+                             className="group relative inline-flex h-max cursor-pointer items-center justify-center w..."
--                             className="group relative inline-flex h-max cursor-pointer items-center whitespace-nowra..."
-                              style={undefined}
-                              data-rac=""
-+                             href="/admin"
--                             href="/login"
-                              target={undefined}
-                              rel={undefined}
-                              download={undefined}
-                              ping={undefined}
-                              referrerPolicy={undefined}
-                              onFocus={function}
-                              onBlur={function}
-                              onKeyDown={function onKeyDown}
-                              onKeyUp={undefined}
-                              tabIndex={0}
-                              onClick={function onClick}
-                              onPointerDown={function}
-                              onMouseDown={function}
-                              onPointerUp={function}
-                              onPointerEnter={function}
-                              onPointerLeave={function}
-                              onDragStart={function}
-                              data-react-aria-pressable={true}
-                              aria-disabled={undefined}
-                              aria-current={undefined}
-                              data-focused={undefined}
-                              data-hovered={undefined}
-                              data-pressed={undefined}
-                              data-focus-visible={undefined}
-                              data-current={undefined}
-                              data-disabled={undefined}
-                            >
-                              <span
-                                data-text={true}
-+                               className="transition-inherit-all px-0.5"
--                               className="transition-inherit-all"
-                              >
-+                               Go to My Profile
--                               Login
+                  ...
+                    <Button slot="trigger" className="hidden">
+                      <Button data-loading={undefined} data-icon-only={undefined} slot="trigger" type="button" ...>
+                        <button
+                          data-loading={undefined}
+                          data-icon-only={undefined}
+                          className="group relative h-max cursor-pointer items-center justify-center whitespace-nowrap..."
+                          style={undefined}
+                          data-rac=""
+                          type="button"
+                          disabled={undefined}
+                          form={undefined}
+                          formAction={undefined}
+                          formEncType={undefined}
+                          formMethod={undefined}
+                          formNoValidate={undefined}
+                          formTarget={undefined}
+                          name={undefined}
+                          value={undefined}
+                          onFocus={function}
+                          onBlur={function}
+                          onKeyDown={function onKeyDown}
+                          onKeyUp={undefined}
+                          tabIndex={0}
+                          aria-haspopup={undefined}
+                          aria-expanded={false}
+                          aria-controls={undefined}
++                         id="react-aria-_R_iatpet5ralbH1_"
+-                         id="react-aria-_R_29bn5rl5ralbH1_"
+                          onClick={function onClick}
+                          onPointerDown={function}
+                          onMouseDown={function}
+                          onPointerUp={function}
+                          onPointerEnter={function}
+                          onPointerLeave={function}
+                          onDragStart={function}
+                          data-react-aria-pressable={true}
+                          aria-pressed={undefined}
+                          aria-current={undefined}
+                          aria-disabled={undefined}
+                          ref={{current:null}}
+                          aria-labelledby={undefined}
+                          slot="trigger"
+                          data-disabled={undefined}
+                          data-pressed={undefined}
+                          data-hovered={undefined}
+                          data-focused={undefined}
+                          data-pending={undefined}
+                          data-focus-visible={undefined}
+                        >
+                    ...
           ...
 
-[02:48:58.033] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:58.894] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:59.301] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:48:59.810] Browser GROUP   PUBLIC_PROFILE_GET
-[02:48:59.810] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:48:59.810] Browser GROUPEND 
-[02:48:59.810] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:48:59.810] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:48:59.810] Browser GROUPEND 
-[02:49:00.182] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:00.474] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:02.586] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:02.776] Browser GROUP   PUBLIC_PROFILE_GET
-[02:49:02.777] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:49:02.777] Browser GROUPEND 
-[02:49:02.777] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:49:02.777] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:49:02.777] Browser GROUPEND 
-[02:49:03.109] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:03.577] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:05.816] Browser GROUP   PUBLIC_PROFILE_GET
-[02:49:05.816] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[02:49:05.816] Browser GROUPEND 
-[02:49:05.967] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:06.353] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:06.677] Browser GROUP   PUBLIC_PROFILE_GET
-[02:49:06.677] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[02:49:06.677] Browser GROUPEND 
-[02:49:06.678] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[02:49:06.678] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[02:49:06.678] Browser GROUPEND 
-[02:49:07.477] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:07.675] Browser GROUP   PUBLIC_PROFILE_GET
-[02:49:07.675] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[02:49:07.675] Browser GROUPEND 
-[02:49:07.816] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:49:09.674] Browser GROUP   PUBLIC_PROFILE_GET
-[02:49:09.674] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[02:49:09.674] Browser GROUPEND 
-[02:49:09.674] Browser GROUP   PUBLIC_PROFILE_GET
-[02:49:09.674] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[02:49:09.674] Browser GROUPEND 
-[02:53:48.495] Server  LOG     ✓ Compiled in 227ms
-[02:54:10.865] Server  LOG     ✓ Compiled in 2.9s
-[02:54:36.774] Server  LOG     ✓ Finished filesystem cache database compaction in 15.8s
-[02:54:47.889] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[02:54:52.216] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:54:52.695] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[02:54:52.695] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.695] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[02:54:52.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.696] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[02:54:52.696] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[02:54:52.961] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:54:53.156] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:54:53.576] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[02:54:53.576] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:53.576] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[02:54:53.656] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
