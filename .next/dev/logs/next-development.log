@@ -1,35 +1,35 @@
-[00:00:00.995] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.087] Server  LOG     ✓ Ready in 867ms
-[00:00:06.848] Server  WARN    ⚠ Cross origin request detected from 192.168.163.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.146] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.166] Server  LOG     ✓ Ready in 930ms
+[00:00:07.173] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:07.323] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:01:03.189] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.190] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:03.190] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.190] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.483] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:01:03.483] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:01:03.779] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:03.933] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:04.073] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:04.415] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:04.470] Browser GROUP   PUBLIC_PROFILE_GET
-[00:01:04.470] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
-[00:01:04.470] Browser GROUPEND 
-[00:01:04.550] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:04.650] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:04.752] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+[00:00:07.569] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:36.936] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:00:36.936] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:36.936] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:36.936] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:36.936] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:36.936] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:36.936] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:37.432] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:37.562] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:37.583] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:37.583] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:37.583] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:37.583] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:37.583] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:37.583] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:37.583] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:37.583] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:37.583] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:37.583] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:37.655] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:37.954] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:37.999] Browser GROUP   PUBLIC_PROFILE_GET
+[00:00:37.999] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
+[00:00:37.999] Browser GROUPEND 
+[00:00:38.033] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:38.114] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:38.463] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
 This will cause a hydration error.%s <button> button 
 
   ...
@@ -96,7 +96,7 @@ This will cause a hydration error.%s <button> button
 >                                         aria-pressed={undefined}
 >                                         aria-current={undefined}
 >                                         aria-disabled={undefined}
->                                         id="react-aria5040038243-_r_k_"
+>                                         id="react-aria3575688338-_r_k_"
 >                                         ref={{current:null}}
 >                                         aria-labelledby={undefined}
 >                                         slot={undefined}
@@ -116,19 +116,109 @@ This will cause a hydration error.%s <button> button
           ...
         ...
 
-[00:01:04.752] Browser ERROR   <%s> cannot contain a nested %s.
+[00:00:38.463] Browser ERROR   <%s> cannot contain a nested %s.
 See this log for the ancestor stack trace. button <button>
-[00:01:04.908] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[00:01:04.908] Browser LOG     BODY {"contact":{"email":"hashtaginflu@gmail.com","method":"whatsapp","whatsapp":"+919177970676"},"links":[{"icon":"/tiktok.png","platform":"tiktok","url":"https://tiktok.com/@oneinflu","visible":true},{"icon":"/telegram.png","platform":"telegram","url":"https://t.me/oneinflu","visible":true},{"icon":"/google.png","platform":"google-business","url":"https://g.page/oneinflu","visible":true},{"icon":"/facebook.png","platform":"facebook","url":"https://facebook.com/oneinflu","visible":true},{"icon":"/threads.png","platform":"threads","url":"https://www.threads.net/@oneinflu","visible":true},{"icon":"/linkedin.png","platform":"linkedin","url":"https://www.linkedin.com/in/oneinflu","visible":true},{"icon":"/twitter.png","platform":"x","url":"https://x.com/oneinflu","visible":true},{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/oneinfluapp","visible":true}],"offers":[{"cta":"request","delivery":"5 days","description":"2 reel","includes":["3 reels"],"price":5000,"priceType":"fixed","title":"Instagram reel promotion"},{"cta":"request","delivery":"3 days","description":"book and get podcast","includes":[],"price":100000,"priceType":"fixed","title":"Youtube podcast"},{"cta":"request","delivery":"3 days","description":"","includes":["Youtube brand promotion"],"price":20000,"priceType":"starting","title":"Youtube promotion"},{"cta":"request","delivery":"5 days","description":"facebook","includes":[],"priceType":"custom","title":"Facebook brand promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@upi"},"portfolio":[{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628905310_05384904d0a5.jpeg","id":"696b22aab84211ac7ace764e","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628882496_cf6739f8637c.jpeg","id":"696b2293b84211ac7ace75fb","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"video","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628850419_6f9e081f1573.mp4","id":"696b2273b84211ac7ace75ab","pinned":true,"title":"_users_6d021d13-9254-4a0d-8e14-be83ef1efb47_generated_b2252efa-b351-403d-afb1-611a94acb65d_generated_video_hd.mp4","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628813347_5f622b3145f0.jpeg","id":"696b224eb84211ac7ace7558","pinned":true,"title":"Signup","visible":true}],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1767199897/avatars/09a2fa72-acf3-4246-8a4b-17d94383f195.png","bio":"Turning influence into real work & payments.\nBrands, collaborations & services — all in one INFLU profile.","coverUrl":"/profile.jpg","id":"695534ca815ce71ec10e05ff","name":"One Influ","role":"Professional","username":"oneinflu","verified":false},"theme":"light"}
-[00:01:04.908] Browser GROUPEND 
-[00:01:05.095] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:01:05.141] Browser GROUP   PUBLIC_PROFILE_GET
-[00:01:05.141] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
-[00:01:05.141] Browser GROUPEND 
-[00:01:05.242] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:02:27.470] Server  LOG     ✓ Compiled in 440ms
-[00:02:27.471] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:02:28.959] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:38.501] Browser GROUP   PUBLIC_PROFILE_RESPONSE
+[00:00:38.501] Browser LOG     BODY {"contact":{"email":"hashtaginflu@gmail.com","method":"whatsapp","whatsapp":"+919177970676"},"links":[{"icon":"/tiktok.png","platform":"tiktok","url":"https://tiktok.com/@oneinflu","visible":true},{"icon":"/telegram.png","platform":"telegram","url":"https://t.me/oneinflu","visible":true},{"icon":"/google.png","platform":"google-business","url":"https://g.page/oneinflu","visible":true},{"icon":"/facebook.png","platform":"facebook","url":"https://facebook.com/oneinflu","visible":true},{"icon":"/threads.png","platform":"threads","url":"https://www.threads.net/@oneinflu","visible":true},{"icon":"/linkedin.png","platform":"linkedin","url":"https://www.linkedin.com/in/oneinflu","visible":true},{"icon":"/twitter.png","platform":"x","url":"https://x.com/oneinflu","visible":true},{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/oneinfluapp","visible":true}],"offers":[{"cta":"request","delivery":"5 days","description":"2 reel","includes":["3 reels"],"price":5000,"priceType":"fixed","title":"Instagram reel promotion"},{"cta":"request","delivery":"3 days","description":"book and get podcast","includes":[],"price":100000,"priceType":"fixed","title":"Youtube podcast"},{"cta":"request","delivery":"3 days","description":"","includes":["Youtube brand promotion"],"price":20000,"priceType":"starting","title":"Youtube promotion"},{"cta":"request","delivery":"5 days","description":"facebook","includes":[],"priceType":"custom","title":"Facebook brand promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@upi"},"portfolio":[{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628905310_05384904d0a5.jpeg","id":"696b22aab84211ac7ace764e","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628882496_cf6739f8637c.jpeg","id":"696b2293b84211ac7ace75fb","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"video","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628850419_6f9e081f1573.mp4","id":"696b2273b84211ac7ace75ab","pinned":true,"title":"_users_6d021d13-9254-4a0d-8e14-be83ef1efb47_generated_b2252efa-b351-403d-afb1-611a94acb65d_generated_video_hd.mp4","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628813347_5f622b3145f0.jpeg","id":"696b224eb84211ac7ace7558","pinned":true,"title":"Signup","visible":true}],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1767199897/avatars/09a2fa72-acf3-4246-8a4b-17d94383f195.png","bio":"Turning influence into real work & payments.\nBrands, collaborations & services — all in one INFLU profile.","coverUrl":"/profile.jpg","id":"695534ca815ce71ec10e05ff","name":"One Influ","role":"Professional","username":"oneinflu","verified":false},"theme":"light"}
+[00:00:38.501] Browser GROUPEND 
+[00:00:38.522] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:38.542] Browser GROUP   PUBLIC_PROFILE_GET
+[00:00:38.542] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
+[00:00:38.542] Browser GROUPEND 
+[00:00:38.666] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:38.676] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria212530824-_r_k_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[00:00:38.676] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[00:00:38.747] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:04:28.193] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:04:28.197] Server  LOG     ✓ Compiled in 1439ms
+[00:04:29.283] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -165,85 +255,11 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[00:03:57.573] Server  LOG     ✓ Compiled in 188ms
-[00:04:04.211] Server  LOG     ✓ Compiled in 257ms
-[00:04:04.348] Browser ERROR   uncaughtError: ReferenceError: ShortlistedTab is not defined
-[00:04:15.038] Server  LOG     ✓ Compiled in 693ms
-[00:04:15.216] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:9
-Parsing ecmascript source code failed
-> 1 |         </div>
-    |         ^
-  2 |        </div> 
-  3 |     );
-  4 | }
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[00:04:15.216] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:10
-Parsing ecmascript source code failed
-> 1 |         </div>
-    |          ^^^^^
-  2 |        </div> 
-  3 |     );
-  4 | }
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[00:04:27.957] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:9
-Parsing ecmascript source code failed
-> 1 |         </div>
-    |         ^
-  2 |        </div> 
-  3 |     );
-  4 | }
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[00:04:27.957] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1:10
-Parsing ecmascript source code failed
-> 1 |         </div>
-    |          ^^^^^
-  2 |        </div> 
-  3 |     );
-  4 | }
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[00:04:30.943] Server  LOG     ✓ Compiled in 345ms
-[00:04:37.856] Browser ERROR   uncaughtError: ReferenceError: ShortlistedTab is not defined
-[00:04:42.088] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:04:37.858] Server  LOG     ✓ Compiled in 181ms
+[00:09:13.987] Server  LOG     ✓ Compiled in 400ms
+[00:09:22.721] Server  LOG     ✓ Compiled in 177ms
+[00:10:10.975] Server  LOG     ✓ Compiled in 910ms
+[00:10:41.780] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -256,293 +272,453 @@ It can also happen if the client has a browser extension installed which messes 
 %s%s https://react.dev/link/hydration-mismatch 
 
   ...
-    <AdminLayout params={Promise}>
-      <AppSidebar>
-        <SidebarNavigationSimple items={[...]} footerItems={[...]} featureCard={<FeaturedCardProgressBar>} ...>
-          <MobileNavigationHeader>
-            <$de32f1b87079253c$export$2e1e1122cf0cba88 isOpen={false} onOpenChange={function bound dispatchSetState}>
-              <$64fa3d84918910a7$export$2881499e37b75b9a values={[...]}>
-                <header className="flex h-16 ...">
-                  <a>
-                  <div className="flex items...">
-                    <Button aria-label="Expand nav..." className="group flex...">
-                      <button
-                        className="group flex items-center justify-center rounded-lg bg-primary p-2 text-fg-secondary ..."
-                        style={undefined}
-                        data-rac=""
-                        type="button"
-                        disabled={undefined}
-                        form={undefined}
-                        formAction={undefined}
-                        formEncType={undefined}
-                        formMethod={undefined}
-                        formNoValidate={undefined}
-                        formTarget={undefined}
-                        name={undefined}
-                        value={undefined}
-                        onFocus={function}
-                        onBlur={function}
-                        onKeyDown={function onKeyDown}
-                        onKeyUp={undefined}
-                        tabIndex={0}
-                        aria-haspopup={undefined}
-                        aria-expanded={false}
-                        aria-controls={undefined}
-+                       id="react-aria-_R_b5ralbH1_"
--                       id="react-aria-_R_1d5ralbH1_"
-                        onClick={function onClick}
-                        onPointerDown={function}
-                        onMouseDown={function}
-                        onPointerUp={function}
-                        onPointerEnter={function}
-                        onPointerLeave={function}
-                        onDragStart={function}
-                        data-react-aria-pressable={true}
-                        aria-label="Expand navigation menu"
-                        aria-pressed={undefined}
-                        aria-current={undefined}
-                        aria-disabled={undefined}
-                        ref={{current:null}}
-                        aria-labelledby={undefined}
-                        slot={undefined}
-                        data-disabled={undefined}
-                        data-pressed={undefined}
-                        data-hovered={undefined}
-                        data-focused={undefined}
-                        data-pending={undefined}
-                        data-focus-visible={undefined}
-                      >
-                ...
-          ...
-            <$64fa3d84918910a7$export$2881499e37b75b9a values={[...]}>
-              <InputBase ref={undefined} groupRef={undefined} size="sm" placeholder="Search" icon={function SearchLg} ...>
-                <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} className={function className}>
-                  <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
-                    <SearchLg>
-                    <Input type={undefined} maxLength={undefined} minLength={undefined} pattern={undefined} ...>
-                      <input
-                        aria-label="Search"
-                        type="text"
-                        pattern={undefined}
-                        disabled={false}
-                        readOnly={false}
-                        required={false}
-                        aria-required={undefined}
-                        aria-invalid={undefined}
-                        aria-errormessage={undefined}
-                        aria-activedescendant={undefined}
-                        aria-autocomplete={undefined}
-                        aria-haspopup={undefined}
-                        aria-controls={undefined}
-                        value=""
-                        onChange={function onChange}
-                        autoComplete={undefined}
-                        autoCapitalize={undefined}
-                        maxLength={undefined}
-                        minLength={undefined}
-                        name={undefined}
-                        form={undefined}
-                        placeholder="Search"
-                        inputMode={undefined}
-                        autoCorrect={undefined}
-                        spellCheck={undefined}
-                        enterKeyHint={undefined}
-                        onCopy={undefined}
-                        onCut={undefined}
-                        onPaste={undefined}
-                        onCompositionEnd={undefined}
-                        onCompositionStart={undefined}
-                        onCompositionUpdate={undefined}
-                        onSelect={undefined}
-                        onBeforeInput={undefined}
-                        onInput={undefined}
-                        onFocus={function}
-                        onBlur={function}
-                        onKeyDown={undefined}
-                        onKeyUp={undefined}
-                        tabIndex={0}
-+                       id="react-aria-_R_9j5ralb_"
--                       id="react-aria-_R_16d5ralb_"
-                        aria-labelledby={undefined}
-+                       aria-describedby="react-aria-_R_9j5ralbH3_ react-aria-_R_9j5ralbH4_"
--                       aria-describedby="react-aria-_R_16d5ralbH3_ react-aria-_R_16d5ralbH4_"
-                        className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden placeholder:te..."
-                        onPointerEnter={function}
-                        onPointerLeave={function}
-                        style={undefined}
-                        data-rac=""
-                        ref={{current:null}}
-                        data-focused={undefined}
-                        data-disabled={undefined}
-                        data-hovered={undefined}
-                        data-focus-visible={undefined}
-                        data-invalid={undefined}
-                      >
-                    ...
-          ...
-      ...
-        <InnerLayoutRouter url="/admin/cam..." tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
-          <SegmentViewNode type="page" pagePath="admin/camp...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function AdminCampaignsPage} serverProvidedParams={{...}}>
-              <AdminCampaignsPage params={Promise} searchParams={Promise}>
-                <section className="flex min-h...">
-                  <div className="top-0 z-10...">
-                    <div className="w-full max...">
-                      <div className="flex flex-...">
-                        <div>
-                        <div className="mt-2 md:mt-0">
-                          <Button className="w-full md:..." size="sm" color="primary" onClick={function openCreate}>
-                            <Button data-loading={undefined} data-icon-only={undefined} onClick={function openCreate} ...>
-                              <button
-                                data-loading={undefined}
-                                data-icon-only={undefined}
-                                className="group relative inline-flex h-max cursor-pointer items-center justify-center..."
-                                style={undefined}
-                                data-rac=""
-                                type="button"
-                                disabled={undefined}
-                                form={undefined}
-                                formAction={undefined}
-                                formEncType={undefined}
-                                formMethod={undefined}
-                                formNoValidate={undefined}
-                                formTarget={undefined}
-                                name={undefined}
-                                value={undefined}
-                                onFocus={function}
-                                onBlur={function}
-                                onKeyDown={function onKeyDown}
-                                onKeyUp={undefined}
-                                tabIndex={0}
-                                onClick={function onClick}
-                                onPointerDown={function}
-                                onMouseDown={function}
-                                onPointerUp={function}
-                                onPointerEnter={function}
-                                onPointerLeave={function}
-                                onDragStart={function}
-                                data-react-aria-pressable={true}
-                                aria-haspopup={undefined}
-                                aria-expanded={undefined}
-                                aria-controls={undefined}
-                                aria-pressed={undefined}
-                                aria-current={undefined}
-                                aria-disabled={undefined}
-+                               id="react-aria-_R_26atpet5ralb_"
--                               id="react-aria-_R_8pbn5rl5ralb_"
-                                ref={{current:null}}
-                                aria-labelledby={undefined}
-                                slot={undefined}
-                                data-disabled={undefined}
-                                data-pressed={undefined}
-                                data-hovered={undefined}
-                                data-focused={undefined}
-                                data-pending={undefined}
-                                data-focus-visible={undefined}
-                              >
-                  <div>
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
                   ...
-                    <Button slot="trigger" className="hidden">
-                      <Button data-loading={undefined} data-icon-only={undefined} slot="trigger" type="button" ...>
-                        <button
-                          data-loading={undefined}
-                          data-icon-only={undefined}
-                          className="group relative h-max cursor-pointer items-center justify-center whitespace-nowrap..."
-                          style={undefined}
-                          data-rac=""
-                          type="button"
-                          disabled={undefined}
-                          form={undefined}
-                          formAction={undefined}
-                          formEncType={undefined}
-                          formMethod={undefined}
-                          formNoValidate={undefined}
-                          formTarget={undefined}
-                          name={undefined}
-                          value={undefined}
-                          onFocus={function}
-                          onBlur={function}
-                          onKeyDown={function onKeyDown}
-                          onKeyUp={undefined}
-                          tabIndex={0}
-                          aria-haspopup={undefined}
-                          aria-expanded={false}
-                          aria-controls={undefined}
-+                         id="react-aria-_R_eatpet5ralbH1_"
--                         id="react-aria-_R_1pbn5rl5ralbH1_"
-                          onClick={function onClick}
-                          onPointerDown={function}
-                          onMouseDown={function}
-                          onPointerUp={function}
-                          onPointerEnter={function}
-                          onPointerLeave={function}
-                          onDragStart={function}
-                          data-react-aria-pressable={true}
-                          aria-pressed={undefined}
-                          aria-current={undefined}
-                          aria-disabled={undefined}
-                          ref={{current:null}}
-                          aria-labelledby={undefined}
-                          slot="trigger"
-                          data-disabled={undefined}
-                          data-pressed={undefined}
-                          data-hovered={undefined}
-                          data-focused={undefined}
-                          data-pending={undefined}
-                          data-focus-visible={undefined}
-                        >
-                    ...
-                  ...
-                    <Button slot="trigger" className="hidden">
-                      <Button data-loading={undefined} data-icon-only={undefined} slot="trigger" type="button" ...>
-                        <button
-                          data-loading={undefined}
-                          data-icon-only={undefined}
-                          className="group relative h-max cursor-pointer items-center justify-center whitespace-nowrap..."
-                          style={undefined}
-                          data-rac=""
-                          type="button"
-                          disabled={undefined}
-                          form={undefined}
-                          formAction={undefined}
-                          formEncType={undefined}
-                          formMethod={undefined}
-                          formNoValidate={undefined}
-                          formTarget={undefined}
-                          name={undefined}
-                          value={undefined}
-                          onFocus={function}
-                          onBlur={function}
-                          onKeyDown={function onKeyDown}
-                          onKeyUp={undefined}
-                          tabIndex={0}
-                          aria-haspopup={undefined}
-                          aria-expanded={false}
-                          aria-controls={undefined}
-+                         id="react-aria-_R_iatpet5ralbH1_"
--                         id="react-aria-_R_29bn5rl5ralbH1_"
-                          onClick={function onClick}
-                          onPointerDown={function}
-                          onMouseDown={function}
-                          onPointerUp={function}
-                          onPointerEnter={function}
-                          onPointerLeave={function}
-                          onDragStart={function}
-                          data-react-aria-pressable={true}
-                          aria-pressed={undefined}
-                          aria-current={undefined}
-                          aria-disabled={undefined}
-                          ref={{current:null}}
-                          aria-labelledby={undefined}
-                          slot="trigger"
-                          data-disabled={undefined}
-                          data-pressed={undefined}
-                          data-hovered={undefined}
-                          data-focused={undefined}
-                          data-pending={undefined}
-                          data-focus-visible={undefined}
-                        >
-                    ...
-          ...
 
+[00:52:40.577] Server  LOG     ✓ Compiled in 376ms
+[00:52:55.638] Server  LOG     ✓ Compiled in 137ms
+[00:53:03.493] Server  LOG     ✓ Compiled in 227ms
+[00:53:38.120] Server  LOG     ✓ Compiled in 202ms
+[00:53:51.083] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:55:51.241] Server  LOG     ✓ Compiled in 187ms
+[00:55:59.058] Server  LOG     ✓ Compiled in 394ms
+[00:57:29.735] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:58:08.494] Server  LOG     ✓ Compiled in 227ms
+[00:58:43.131] Server  LOG     ✓ Compiled in 126ms
+[00:58:48.288] Server  LOG     ✓ Compiled in 102ms
+[00:58:53.351] Server  LOG     ✓ Compiled in 100ms
+[00:58:57.017] Server  LOG     ✓ Compiled in 107ms
+[01:02:40.232] Server  LOG     ✓ Compiled in 351ms
+[01:02:46.026] Server  LOG     ✓ Compiled in 152ms
+[01:02:57.381] Server  LOG     ✓ Compiled in 129ms
+[01:05:14.256] Server  LOG     ✓ Compiled in 615ms
+[01:06:31.308] Server  LOG     ✓ Compiled in 219ms
+[01:07:13.328] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                            ...
+                              <SidebarNavigationSimple items={[...]} footerItems={[...]} ...>
+                                ...
+                                  <header className="flex h-16 ...">
+                                    <a>
+                                    <div className="flex items...">
+                                      <Button aria-label="Expand nav..." className="group flex...">
+                                        <button
+                                          className="group flex items-center justify-center rounded-lg bg-primary p-2 ..."
+                                          style={undefined}
+                                          data-rac=""
+                                          type="button"
+                                          disabled={undefined}
+                                          form={undefined}
+                                          formAction={undefined}
+                                          formEncType={undefined}
+                                          formMethod={undefined}
+                                          formNoValidate={undefined}
+                                          formTarget={undefined}
+                                          name={undefined}
+                                          value={undefined}
+                                          onFocus={function}
+                                          onBlur={function}
+                                          onKeyDown={function onKeyDown}
+                                          onKeyUp={undefined}
+                                          tabIndex={0}
+                                          aria-haspopup={undefined}
+                                          aria-expanded={false}
+                                          aria-controls={undefined}
++                                         id="react-aria-_R_b5ralbH1_"
+-                                         id="react-aria-_R_1d5ralbH1_"
+                                          onClick={function onClick}
+                                          onPointerDown={function}
+                                          onMouseDown={function}
+                                          onPointerUp={function}
+                                          onPointerEnter={function}
+                                          onPointerLeave={function}
+                                          onDragStart={function}
+                                          data-react-aria-pressable={true}
+                                          aria-label="Expand navigation menu"
+                                          aria-pressed={undefined}
+                                          aria-current={undefined}
+                                          aria-disabled={undefined}
+                                          ref={{current:null}}
+                                          aria-labelledby={undefined}
+                                          slot={undefined}
+                                          data-disabled={undefined}
+                                          data-pressed={undefined}
+                                          data-hovered={undefined}
+                                          data-focused={undefined}
+                                          data-pending={undefined}
+                                          data-focus-visible={undefined}
+                                        >
+                                ...
+                                  <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} ...>
+                                    <div role="presentation" className="relative f..." onFocus={function} ...>
+                                      <SearchLg>
+                                      <Input type={undefined} maxLength={undefined} minLength={undefined} ...>
+                                        <input
+                                          aria-label="Search"
+                                          type="text"
+                                          pattern={undefined}
+                                          disabled={false}
+                                          readOnly={false}
+                                          required={false}
+                                          aria-required={undefined}
+                                          aria-invalid={undefined}
+                                          aria-errormessage={undefined}
+                                          aria-activedescendant={undefined}
+                                          aria-autocomplete={undefined}
+                                          aria-haspopup={undefined}
+                                          aria-controls={undefined}
+                                          value=""
+                                          onChange={function onChange}
+                                          autoComplete={undefined}
+                                          autoCapitalize={undefined}
+                                          maxLength={undefined}
+                                          minLength={undefined}
+                                          name={undefined}
+                                          form={undefined}
+                                          placeholder="Search"
+                                          inputMode={undefined}
+                                          autoCorrect={undefined}
+                                          spellCheck={undefined}
+                                          enterKeyHint={undefined}
+                                          onCopy={undefined}
+                                          onCut={undefined}
+                                          onPaste={undefined}
+                                          onCompositionEnd={undefined}
+                                          onCompositionStart={undefined}
+                                          onCompositionUpdate={undefined}
+                                          onSelect={undefined}
+                                          onBeforeInput={undefined}
+                                          onInput={undefined}
+                                          onFocus={function}
+                                          onBlur={function}
+                                          onKeyDown={undefined}
+                                          onKeyUp={undefined}
+                                          tabIndex={0}
++                                         id="react-aria-_R_9j5ralb_"
+-                                         id="react-aria-_R_16d5ralb_"
+                                          aria-labelledby={undefined}
++                                         aria-describedby="react-aria-_R_9j5ralbH3_ react-aria-_R_9j5ralbH4_"
+-                                         aria-describedby="react-aria-_R_16d5ralbH3_ react-aria-_R_16d5ralbH4_"
+                                          className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hid..."
+                                          onPointerEnter={function}
+                                          onPointerLeave={function}
+                                          style={undefined}
+                                          data-rac=""
+                                          ref={{current:null}}
+                                          data-focused={undefined}
+                                          data-disabled={undefined}
+                                          data-hovered={undefined}
+                                          data-focus-visible={undefined}
+                                          data-invalid={undefined}
+                                        >
+                                      ...
+                                ...
+                  ...
+
+[01:16:55.812] Server  LOG     ✓ Compiled in 649ms
+[01:17:56.501] Server  LOG     ○ Compiling /events/shortlisted/[code] ...
+[01:18:40.364] Server  LOG     ✓ Compiled in 344ms
+[01:19:08.866] Server  LOG     ✓ Compiled in 245ms
+[01:19:32.886] Server  LOG     ✓ Compiled in 355ms
+[01:19:43.048] Server  LOG     ✓ Compiled in 294ms
+[01:20:03.624] Server  LOG     ✓ Compiled in 291ms
+[01:20:41.952] Server  LOG     ✓ Compiled in 467ms
+[01:23:58.514] Server  LOG     ✓ Compiled in 396ms
+[01:26:08.293] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:08.294] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:13.437] Server  LOG     ✓ Compiled in 797ms
+[01:26:13.500] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:13.500] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:18.071] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:18.072] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:18.072] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:18.073] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:19.093] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:19.093] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:20.712] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:20.713] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:20.713] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:20.713] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:25.572] Server  LOG     ✓ Compiled in 761ms
+[01:26:28.540] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:28.540] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:30.035] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:30.035] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:30.036] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:30.036] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:35.067] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:35.067] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:36.231] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:36.231] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:36.231] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:36.231] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:54.104] Server  LOG     ✓ Compiled in 299ms
+[01:26:58.626] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:26:58.626] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:27:00.087] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:27:00.087] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:27:00.087] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:27:00.087] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:27:37.285] Server  LOG     ✓ Compiled in 330ms
+[01:27:43.002] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:27:43.003] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:15.951] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:15.952] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:17.766] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:17.767] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:19.684] Browser ERROR   Approval failed {}
+[01:28:19.684] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:19.684] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:21.769] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:21.769] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:39.803] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:39.803] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:39.803] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:39.803] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:41.233] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:41.234] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:42.673] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:42.673] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:42.673] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:42.673] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:47.568] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:47.568] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:49.042] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:49.042] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:49.042] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:49.042] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:53.778] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:53.778] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:54.907] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:54.907] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:54.907] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:54.907] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:56.112] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:56.112] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:57.577] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:57.577] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:57.577] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:28:57.577] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[01:29:27.085] Server  LOG     ✓ Compiled in 752ms
+[01:29:42.329] Server  LOG     ✓ Compiled in 188ms
+[01:30:14.265] Server  LOG     ✓ Compiled in 552ms
+[01:31:45.959] Server  LOG     ✓ Compiled in 876ms
+[01:31:46.284] Browser ERROR   ./src/app/events/shortlisted/[code]/page.tsx:428:11
+Parsing ecmascript source code failed
+  426 |                 </Modal>
+  427 |             </ModalOverlay>
+> 428 |         </div>
+      |           ^^^
+  429 |     );
+  430 | }
+  431 |
+
+Expected corresponding JSX closing tag for <main>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/events/shortlisted/[code]/page.tsx [Client Component Browser]
+    ./src/app/events/shortlisted/[code]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/events/shortlisted/[code]/page.tsx [Client Component SSR]
+    ./src/app/events/shortlisted/[code]/page.tsx [Server Component]
+[01:31:46.284] Browser ERROR   ./src/app/events/shortlisted/[code]/page.tsx:428:11
+Parsing ecmascript source code failed
+  426 |                 </Modal>
+  427 |             </ModalOverlay>
+> 428 |         </div>
+      |           ^^^
+  429 |     );
+  430 | }
+  431 |
+
+Expected corresponding JSX closing tag for <main>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/events/shortlisted/[code]/page.tsx [Client Component Browser]
+    ./src/app/events/shortlisted/[code]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/events/shortlisted/[code]/page.tsx [Client Component SSR]
+    ./src/app/events/shortlisted/[code]/page.tsx [Server Component]
+[01:32:07.019] Server  LOG     ✓ Compiled in 161ms
+[01:33:06.004] Server  LOG     ✓ Compiled in 279ms
+[01:34:12.841] Server  LOG     ✓ Compiled in 818ms
+[01:34:12.860] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:34:12.861] Browser ERROR   uncaughtError: ReferenceError: previewImage is not defined
+[01:34:16.289] Browser ERROR   uncaughtError: ReferenceError: previewImage is not defined
+[01:34:52.520] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:34:52.527] Server  LOG     ✓ Compiled in 246ms
+[01:34:54.905] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[01:35:04.080] Server  LOG     ✓ Compiled in 140ms
+[01:36:25.193] Server  LOG     ✓ Compiled in 470ms
+[01:37:11.391] Server  LOG     ✓ Compiled in 670ms
+[01:38:55.201] Server  LOG     ✓ Compiled in 205ms
+[01:39:32.277] Server  LOG     ✓ Compiled in 699ms
+[01:39:54.118] Server  LOG     ✓ Compiled in 660ms
+[01:40:11.843] Server  LOG     ✓ Compiled in 142ms
+[01:40:35.542] Server  LOG     ✓ Compiled in 223ms

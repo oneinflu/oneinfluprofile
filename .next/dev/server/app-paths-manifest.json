@@ -1,8 +1,11 @@
 {
   "/[username]/page": "app/[username]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/admin/campaigns/[id]/page": "app/admin/campaigns/[id]/page.js",
   "/admin/campaigns/page": "app/admin/campaigns/page.js",
   "/admin/page": "app/admin/page.js",
+  "/events/[code]/page": "app/events/[code]/page.js",
+  "/events/shortlisted/[code]/page": "app/events/shortlisted/[code]/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
   "/verify/page": "app/verify/page.js"

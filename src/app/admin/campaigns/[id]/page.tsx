@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Calendar, MarkerPin01, Users01, Share04, Check, UserPlus01 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
@@ -156,24 +156,64 @@ export default function CampaignDetailPage() {
                             </div>
 
                             {event.code && (
-                                <div className="flex items-center gap-2">
-                                    <div className="hidden md:block text-sm text-tertiary">
-                                        Invite Code: <span className="font-mono text-primary">{event.code}</span>
-                                    </div>
-                                    <ButtonUtility
+                                activeTab === "shortlisted" ? (
+                                    <Button
                                         size="sm"
                                         color="secondary"
-                                        icon={clipboard.copied === `campaign-${event._id}` ? Check : Share04}
-                                        onClick={() => {
-                                            const path = event.status === "approved_by_client"
-                                                ? `/events/invite/${encodeURIComponent(String(event.code))}`
-                                                : `/events/${encodeURIComponent(String(event.code))}`;
-                                            const url = `${origin}${path}`;
-                                            clipboard.copy(url, `campaign-${event._id}`);
+                                        iconLeading={clipboard.copied === `shortlisted-${event._id}` ? Check : Share04}
+                                        onClick={async () => {
+                                            const url = `${origin}/events/shortlisted/${encodeURIComponent(String(event.code))}`;
+                                            if (navigator.share) {
+                                                try {
+                                                    await navigator.share({
+                                                        title: 'Shortlisted Profiles',
+                                                        text: 'Check out these shortlisted profiles',
+                                                        url: url
+                                                    });
+                                                } catch (err) {
+                                                    console.error('Error sharing:', err);
+                                                    clipboard.copy(url, `shortlisted-${event._id}`);
+                                                }
+                                            } else {
+                                                clipboard.copy(url, `shortlisted-${event._id}`);
+                                            }
                                         }}
-                                        tooltip="Copy Link"
-                                    />
-                                </div>
+                                    >
+                                        Share to Client
+                                    </Button>
+                                ) : (
+                                    <div className="flex items-center gap-2">
+                                        <div className="hidden md:block text-sm text-tertiary">
+                                            Invite Code: <span className="font-mono text-primary">{event.code}</span>
+                                        </div>
+                                        <ButtonUtility
+                                            size="sm"
+                                            color="secondary"
+                                            icon={clipboard.copied === `campaign-${event._id}` ? Check : Share04}
+                                            onClick={async () => {
+                                                const path = event.status === "approved_by_client"
+                                                    ? `/events/invite/${encodeURIComponent(String(event.code))}`
+                                                    : `/events/${encodeURIComponent(String(event.code))}`;
+                                                const url = `${origin}${path}`;
+                                                if (navigator.share) {
+                                                    try {
+                                                        await navigator.share({
+                                                            title: event.eventName || 'Campaign Invite',
+                                                            text: 'Join this campaign',
+                                                            url: url
+                                                        });
+                                                    } catch (err) {
+                                                        console.error('Error sharing:', err);
+                                                        clipboard.copy(url, `campaign-${event._id}`);
+                                                    }
+                                                } else {
+                                                    clipboard.copy(url, `campaign-${event._id}`);
+                                                }
+                                            }}
+                                            tooltip="Copy Link"
+                                        />
+                                    </div>
+                                )
                             )}
                         </div>
                     </div>
@@ -208,7 +248,7 @@ export default function CampaignDetailPage() {
                                     : "text-tertiary hover:text-primary"
                             }`}
                         >
-                            Shortlisted by me
+                            Shortlisted Profiles
                         </button>
                     </div>
                 </div>
@@ -290,12 +330,231 @@ export default function CampaignDetailPage() {
                                 </div>
                             </div>
                         </div>
+                    ) : activeTab === "shortlisted" ? (
+                        <ShortlistedTab eventCode={event.code} targetCount={event.creatorCountNeeded} />
                     ) : (
                         <ApplicantsTab eventCode={event.code} />
                     )}
                 </div>
             </div>
         </section>
+    );
+}
+
+function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | null; targetCount?: number }) {
+    const { token } = useAuth();
+    const [applicants, setApplicants] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!eventCode || !token) {
+                    setLoading(false);
+                    return;
+                }
+                const res = await api.get<{ success: boolean; data: { applications: any[] } }>(
+                    `/events/public/code/${eventCode}/applications?status=shortlisted`,
+                    { token }
+                );
+                if (!alive) return;
+                setApplicants(res.data?.applications || []);
+            } catch (e) {
+                console.error("Failed to fetch shortlisted applicants", e);
+                setError(true);
+            } finally {
+                if (alive) setLoading(false);
+            }
+        })();
+        return () => { alive = false; };
+    }, [eventCode, token]);
+
+    if (loading) {
+        return (
+            <div className="py-12 text-center">
+                <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            </div>
+        );
+    }
+
+    if (!eventCode) {
+         return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <p className="text-tertiary">This event does not have an invite code.</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <p className="text-tertiary">Unable to load shortlisted applicants at this time.</p>
+            </div>
+        );
+    }
+
+    if (applicants.length === 0) {
+        return (
+            <div className="flex flex-col gap-6">
+                {targetCount > 0 && (
+                    <div className="flex items-center gap-4 rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs">
+                        <div className="flex-1">
+                            <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+                                <div 
+                                    className="h-full bg-brand-solid transition-all duration-500" 
+                                    style={{ width: `${Math.min((applicants.length / targetCount) * 100, 100)}%` }}
+                                />
+                            </div>
+                        </div>
+                        <span className="text-sm font-medium text-secondary whitespace-nowrap">
+                            {applicants.length} out of {targetCount} profiles
+                        </span>
+                    </div>
+                )}
+                <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                    <Users01 className="mx-auto size-8 text-tertiary mb-3" />
+                    <h3 className="text-md font-semibold text-primary">No shortlisted candidates yet</h3>
+                    <p className="mt-1 text-sm text-tertiary">
+                        Candidates you shortlist will appear here.
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="relative flex flex-col gap-6">
+            {targetCount > 0 && (
+                <div className="flex items-center gap-4 rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs">
+                    <div className="flex-1">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+                            <div 
+                                className="h-full bg-brand-solid transition-all duration-500" 
+                                style={{ width: `${Math.min((applicants.length / targetCount) * 100, 100)}%` }}
+                            />
+                        </div>
+                    </div>
+                    <span className="text-sm font-medium text-secondary whitespace-nowrap">
+                        {applicants.length} out of {targetCount} profiles
+                    </span>
+                </div>
+            )}
+            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-secondary text-tertiary">
+                            <tr>
+                                <th className="px-4 py-3 font-medium">Candidate</th>
+                                <th className="px-4 py-3 font-medium">Category</th>
+                                <th className="px-4 py-3 font-medium">Instagram</th>
+                                <th className="px-4 py-3 font-medium">Phone</th>
+                                <th className="px-4 py-3 font-medium">Willing to Attend</th>
+                                <th className="px-4 py-3 font-medium">Dashboard</th>
+                                <th className="px-4 py-3 font-medium">Status</th>
+                                <th className="px-4 py-3 font-medium">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-secondary">
+                            {applicants.map((app, i) => (
+                                <tr key={i} className="hover:bg-primary_hover transition-colors">
+                                    <td className="px-4 py-3 font-medium text-primary">
+                                        <div className="flex items-center gap-3">
+                                            {app.user?.avatarUrl && (
+                                                <img 
+                                                    src={app.user.avatarUrl} 
+                                                    alt="" 
+                                                    className="h-8 w-8 rounded-full object-cover bg-secondary"
+                                                />
+                                            )}
+                                            <div className="flex flex-col">
+                                                <span>{app.user?.name || "Unknown"}</span>
+                                                <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
+                                                
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.user?.category ? (
+                                            <Badge size="sm" color="gray">{app.user.category}</Badge>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.instagramHandle ? (
+                                            <a 
+                                                href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:text-primary hover:underline"
+                                            >
+                                                @{app.instagramHandle}
+                                            </a>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {(app.user?.phone || app.user?.whatsapp) ? (
+                                            <a 
+                                                href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                                className="hover:text-primary hover:underline whitespace-nowrap"
+                                            >
+                                                {app.user?.phone || app.user?.whatsapp}
+                                            </a>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.willingToAttend ? (
+                                            <div className="flex items-center gap-1.5 text-success">
+                                                <Check className="size-3" />
+                                                <span>Yes</span>
+                                            </div>
+                                        ) : (
+                                            <span className="text-tertiary">No</span>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        <div className="flex flex-col gap-1">
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-xs text-tertiary">Shared:</span>
+                                                {app.shareProfessionalDashboard ? (
+                                                    <Badge size="sm" color="success">Yes</Badge>
+                                                ) : (
+                                                    <span className="text-xs">No</span>
+                                                )}
+                                            </div>
+                                            {app.dashboardImageUrl && (
+                                                <a 
+                                                    href={app.dashboardImageUrl} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className="text-xs font-medium text-brand-solid hover:underline flex items-center gap-1"
+                                                >
+                                                    View Screenshot
+                                                </a>
+                                            )}
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        <Badge size="sm" color={
+                                            app.status === "shortlisted" ? "orange" : 
+                                            app.status === "invited" ? "success" : 
+                                            app.status === "approved" ? "success" : 
+                                            app.status === "rejected" ? "error" : 
+                                            "purple"
+                                        }>
+                                            {app.status || "Applied"}
+                                        </Badge>
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     );
 }
 
@@ -308,7 +567,7 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
 
     const handleSelectAll = (isSelected: boolean) => {
         if (isSelected) {
-            setSelectedIds(applicants.map(app => app.id || app._id));
+            setSelectedIds(applicants.map(app => app.user?._id || app.user?.id).filter(Boolean));
         } else {
             setSelectedIds([]);
         }
@@ -331,7 +590,7 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                     return;
                 }
                 const res = await api.get<{ success: boolean; data: { applications: any[] } }>(
-                    `/events/public/code/${eventCode}/applications`,
+                    `/events/public/code/${eventCode}/applications?status=applied`,
                     { token }
                 );
                 if (!alive) return;
@@ -389,13 +648,26 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                     <Button
                         size="md"
                         color="primary"
-                        onClick={() => {
-                            // TODO: Implement shortlist action
-                            console.log("Shortlisting:", selectedIds);
+                        onClick={async () => {
+                            try {
+                                await api.post(
+                                    `/events/public/code/${eventCode}/applications/shortlist`,
+                                    { applicantIds: selectedIds },
+                                    { token }
+                                );
+                                alert(`Successfully shortlisted ${selectedIds.length} applicants`);
+                                setSelectedIds([]);
+                                // Refresh list to reflect status changes if needed, 
+                                // but for now we just clear selection.
+                                // You might want to trigger a re-fetch here.
+                            } catch (e) {
+                                console.error("Failed to shortlist", e);
+                                alert("Failed to shortlist applicants");
+                            }
                         }}
                         className="shadow-lg animate-in slide-in-from-bottom-4 fade-in duration-200"
+                        iconLeading={UserPlus01}
                     >
-                        <UserPlus01 className="mr-2 size-5" />
                         Shortlist {selectedIds.length} profile{selectedIds.length > 1 ? "s" : ""}
                     </Button>
                 </div>
@@ -426,11 +698,26 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                     </thead>
                     <tbody className="divide-y divide-secondary">
                         {applicants.map((app, i) => (
-                            <tr key={i} className={`transition-colors ${selectedIds.includes(app.id || app._id) ? "bg-brand-primary hover:bg-brand-secondary" : "hover:bg-primary_hover"}`}>
+                            <tr 
+                                key={i} 
+                                className={`transition-colors ${selectedIds.includes(app.user?._id || app.user?.id) ? "bg-brand-primary hover:bg-brand-secondary" : "hover:bg-primary_hover"}`}
+                                style={selectedIds.includes(app.user?._id || app.user?.id) ? {
+                                    '--color-bg-brand-primary': 'var(--color-brand-50)',
+                                    '--color-bg-brand-secondary': 'var(--color-brand-100)',
+                                    '--color-text-primary': 'var(--color-gray-900)',
+                                    '--color-text-tertiary': 'var(--color-gray-500)',
+                                    '--color-text-secondary': 'var(--color-gray-700)',
+                                    '--color-bg-secondary': 'var(--color-gray-50)',
+                                } as CSSProperties : undefined}
+                            >
                                 <td className="px-4 py-3">
                                     <Checkbox
-                                        isSelected={selectedIds.includes(app.id || app._id)}
-                                        onChange={(isSelected) => handleSelectOne(app.id || app._id, isSelected)}
+                                        isSelected={selectedIds.includes(app.user?._id || app.user?.id)}
+                                        onChange={(isSelected) => {
+                                            const uid = app.user?._id || app.user?.id;
+                                            if (uid) handleSelectOne(uid, isSelected);
+                                        }}
+                                        isDisabled={!app.user?._id && !app.user?.id}
                                         aria-label={`Select ${app.user?.name || "applicant"}`}
                                     />
                                 </td>
@@ -514,7 +801,13 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                                     </div>
                                 </td>
                                 <td className="px-4 py-3">
-                                    <Badge size="sm" color={app.status === "approved" ? "success" : app.status === "rejected" ? "error" : "gray"}>
+                                    <Badge size="sm" color={
+                                        app.status === "shortlisted" ? "orange" : 
+                                        app.status === "invited" ? "success" : 
+                                        app.status === "approved" ? "success" : 
+                                        app.status === "rejected" ? "error" : 
+                                        "purple"
+                                    }>
                                         {app.status || "Applied"}
                                     </Badge>
                                 </td>
