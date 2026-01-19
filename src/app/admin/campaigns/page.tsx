@@ -78,6 +78,9 @@ export default function AdminCampaignsPage() {
     const [maxAmount, setMaxAmount] = useState<number | undefined>(undefined);
     const [timeline, setTimeline] = useState<string | null>(null);
     const [invoiceRequired, setInvoiceRequired] = useState(false);
+    const [isGuestsAllowedplusone, setIsGuestsAllowedplusone] = useState(true);
+    const [isLimitedMenu, setIsLimitedMenu] = useState(false);
+    const [inhouseFoodandBeverages, setInhouseFoodandBeverages] = useState(true);
     const [loading, setLoading] = useState(true);
     const [campaigns, setCampaigns] = useState<CampaignItem[]>([]);
     const [editId, setEditId] = useState<string | null>(null);
@@ -163,6 +166,9 @@ export default function AdminCampaignsPage() {
         setMaxAmount(undefined);
         setTimeline(null);
         setInvoiceRequired(false);
+        setIsGuestsAllowedplusone(true);
+        setIsLimitedMenu(false);
+        setInhouseFoodandBeverages(true);
     };
 
     const openCreate = () => {
@@ -292,8 +298,11 @@ export default function AdminCampaignsPage() {
                 },
                 dashboardAccessRequired,
                 qrCheckinRequired,
+                isGuestsAllowedplusone,
+                isLimitedMenu,
+                inhouseFoodandBeverages,
                 entryType,
-                deliverables: deliverables.map((d) => ({
+                deliverables: eventType === "paid" ? [] : deliverables.map((d) => ({
                     platform: d.platform,
                     type: d.type,
                     quantity: Number(d.quantity || 1),
@@ -517,12 +526,20 @@ export default function AdminCampaignsPage() {
                                                                 tooltip={
                                                                     clipboard.copied === `campaign-${c.id}`
                                                                         ? "Copied"
-                                                                        : "Copy public link"
+                                                                        : c.status === "approved_by_client"
+                                                                        ? "Copy invite link for creators"
+                                                                        : "Copy client proposal link"
                                                                 }
                                                                 onClick={() => {
-                                                                    const url = `${origin}/events/${encodeURIComponent(
-                                                                        String(c.code),
-                                                                    )}`;
+                                                                    const path =
+                                                                        c.status === "approved_by_client"
+                                                                            ? `/events/invite/${encodeURIComponent(
+                                                                                  String(c.code),
+                                                                              )}`
+                                                                            : `/events/${encodeURIComponent(
+                                                                                  String(c.code),
+                                                                              )}`;
+                                                                    const url = `${origin}${path}`;
                                                                     clipboard.copy(url, `campaign-${c.id}`);
                                                                 }}
                                                             />
@@ -750,6 +767,27 @@ export default function AdminCampaignsPage() {
                                                 isSelected={qrCheckinRequired}
                                                 onChange={setQrCheckinRequired}
                                                 label="QR check-in required"
+                                            />
+                                            <Toggle
+                                                slim
+                                                size="md"
+                                                isSelected={isGuestsAllowedplusone}
+                                                onChange={setIsGuestsAllowedplusone}
+                                                label="Guests allowed +1"
+                                            />
+                                            <Toggle
+                                                slim
+                                                size="md"
+                                                isSelected={isLimitedMenu}
+                                                onChange={setIsLimitedMenu}
+                                                label="Limited menu"
+                                            />
+                                            <Toggle
+                                                slim
+                                                size="md"
+                                                isSelected={inhouseFoodandBeverages}
+                                                onChange={setInhouseFoodandBeverages}
+                                                label="In-house Food & Beverages"
                                             />
                                         </div>
                                     </div>

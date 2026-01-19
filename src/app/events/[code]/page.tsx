@@ -22,6 +22,11 @@ type PublicEvent = {
     entryType?: "invite_only" | "open" | null;
     status?: string;
     code?: string | null;
+    dashboardAccessRequired?: boolean;
+    qrCheckinRequired?: boolean;
+    isGuestsAllowedplusone?: boolean;
+    isLimitedMenu?: boolean;
+    inhouseFoodandBeverages?: boolean;
     creatorCriteria?: {
         minFollowers?: number;
         niches?: string[];
@@ -192,7 +197,8 @@ export default function EventPage() {
         if (!code || !event || approving) return;
         try {
             setApproving(true);
-            const res = await api.patch<any>(`/events/${encodeURIComponent(code)}/approve`);
+            const path = `/events/public/code/${encodeURIComponent(code)}/approve`;
+            const res = await api.post<any>(path);
             const payload: any = res;
             const updated: PublicEvent | null =
                 payload?.data?.event ||
@@ -230,6 +236,41 @@ export default function EventPage() {
                     <p className="mt-1 text-sm text-tertiary">
                         {error ? String(error) : "This event link may be incorrect or has been removed."}
                     </p>
+                </div>
+            </section>
+        );
+    }
+
+    if (event.status === "approved_by_client") {
+        return (
+            <section className="flex min-h-screen items-center justify-center bg-linear-to-br from-[#ffffff] via-[#F4EBFF] to-[#ffffff] dark:bg-linear-to-br dark:from-[#0d1117] dark:via-[#42307D] dark:to-[#000000] px-4">
+                <div className="w-full max-w-lg rounded-3xl bg-primary px-6 py-6 text-center shadow-xs ring-1 ring-secondary_alt">
+                    <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-[#F4EBFF] text-[#7F56D9] dark:bg-[#1D1633] dark:text-[#E9D7FE]">
+                        <span className="text-2xl">✓</span>
+                    </div>
+                    <h1 className="text-xl font-semibold text-primary">
+                        Proposal approved
+                    </h1>
+                    <p className="mt-2 text-sm text-tertiary">
+                        You have approved this campaign proposal. Our team will now start shortlisting curated creators
+                        and share the final creator list with you.
+                    </p>
+                    <div className="mt-4 text-xs text-secondary">
+                        <p>
+                            Event:{" "}
+                            <span className="font-semibold text-primary">
+                                {event.eventName || "Campaign"}
+                            </span>
+                        </p>
+                        {event.brandName ? (
+                            <p className="mt-1">
+                                Brand:{" "}
+                                <span className="font-semibold text-primary">
+                                    {event.brandName}
+                                </span>
+                            </p>
+                        ) : null}
+                    </div>
                 </div>
             </section>
         );

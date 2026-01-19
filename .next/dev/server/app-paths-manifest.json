@@ -2,14 +2,10 @@
   "/[username]/page": "app/[username]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/admin/campaigns/page": "app/admin/campaigns/page.js",
-  "/admin/enquiries/page": "app/admin/enquiries/page.js",
-  "/admin/offers/page": "app/admin/offers/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/payments/page": "app/admin/payments/page.js",
-  "/admin/portfolio/page": "app/admin/portfolio/page.js",
   "/events/[code]/page": "app/events/[code]/page.js",
+  "/events/invite/[code]/page": "app/events/invite/[code]/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/select-category/page": "app/select-category/page.js",
   "/verify/page": "app/verify/page.js"
 }
