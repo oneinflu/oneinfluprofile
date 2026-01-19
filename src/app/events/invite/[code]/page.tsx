@@ -22,6 +22,7 @@ import {
     Tag01,
     ArrowRight
 } from "@untitledui/icons";
+import { Avatar } from "@/components/base/avatar/avatar";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
@@ -32,6 +33,14 @@ import { useClipboard } from "@/hooks/use-clipboard";
 
 type PublicEvent = {
     id?: string;
+    user?: {
+        _id: string;
+        name: string;
+        username?: string;
+        shortBio?: string;
+        avatarUrl?: string;
+        category?: string;
+    };
     _id?: string;
     brandName?: string;
     eventName?: string;
@@ -199,6 +208,20 @@ export default function EventInvitePage() {
                     
                     {/* Event Header Card */}
                     <div className="bg-white/90 dark:bg-[#1F242F]/90 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-white/20 dark:border-white/10 text-center mb-6">
+                        {event.user && (
+                            <div className="flex flex-col items-center justify-center mb-4">
+                                <Avatar 
+                                    size="lg" 
+                                    src={event.user.avatarUrl} 
+                                    alt={event.user.name}
+                                    initials={event.user.name.charAt(0)}
+                                    className="mb-2"
+                                />
+                                <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                                    Invited by <span className="text-gray-900 dark:text-white font-semibold">{event.user.name}</span>
+                                </p>
+                            </div>
+                        )}
                         <div className="inline-flex items-center justify-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 mb-4">
                             Apply for Invitation
                         </div>

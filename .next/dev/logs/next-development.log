@@ -231,3 +231,8 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
+[01:22:33.675] Server  LOG     ✓ Compiled in 1353ms
+[01:23:12.921] Server  LOG     ✓ Compiled in 381ms
+[01:23:13.961] Browser ERROR   uncaughtError: ReferenceError: Avatar is not defined
+[01:24:22.793] Server  LOG     ✓ Compiled in 555ms
+[01:24:22.827] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
