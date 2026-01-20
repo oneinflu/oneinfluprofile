@@ -2,7 +2,26 @@
 
 import { useEffect, useState, CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Calendar, MarkerPin01, Users01, Share04, Check, UserPlus01 } from "@untitledui/icons";
+import { 
+    ArrowLeft, 
+    Calendar, 
+    MarkerPin01, 
+    Users01, 
+    Share04, 
+    Check, 
+    UserPlus01,
+    CreditCard01,
+    File04,
+    Tag01,
+    Clock,
+    InfoCircle,
+    CheckCircle,
+    Star01,
+    PieChart03,
+    CheckDone01,
+    PlayCircle,
+    UploadCloud02
+} from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
 import { useAuth } from "@/providers/auth";
@@ -29,8 +48,26 @@ type EventDetail = {
         niches?: string[];
         city?: string;
     };
-    deliverables?: any[];
-    payment?: any;
+    isGuestsAllowedplusone?: boolean;
+    isLimitedMenu?: boolean;
+    inhouseFoodandBeverages?: boolean;
+    deliverables?: {
+        platform: string;
+        type: string;
+        quantity: number;
+        deadline?: { kind: string; value: number };
+        brandTagMandatory?: boolean;
+        locationTagMandatory?: boolean;
+        hashtagsRequired?: boolean;
+        brandMusicProvided?: boolean;
+        contentApprovalRequired?: boolean;
+    }[];
+    payment?: {
+        type?: "fixed" | "range" | "variable";
+        minAmount?: number;
+        maxAmount?: number;
+        timeline?: string;
+    };
 };
 
 export default function CampaignDetailPage() {
@@ -40,7 +77,7 @@ export default function CampaignDetailPage() {
     const id = String(params?.id || "");
     const [event, setEvent] = useState<EventDetail | null>(null);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted" | "replacement" | "approved">("details");
+    const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted" | "replacement" | "invited">("details");
     const clipboard = useClipboard();
     const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
 
@@ -181,6 +218,31 @@ export default function CampaignDetailPage() {
                                     >
                                         Share to Client
                                     </Button>
+                                ) : activeTab === "invited" ? (
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            size="sm"
+                                            color="secondary"
+                                            iconLeading={File04}
+                                            onClick={() => {
+                                                // TODO: Implement Request logic
+                                                alert("Request for Invitation Banner feature coming soon");
+                                            }}
+                                        >
+                                            Request for Invitation Banner
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            color="secondary"
+                                            iconLeading={UploadCloud02}
+                                            onClick={() => {
+                                                // TODO: Implement Upload logic
+                                                alert("Upload Invitation Banner feature coming soon");
+                                            }}
+                                        >
+                                            Upload Invitation Banner
+                                        </Button>
+                                    </div>
                                 ) : (
                                     <div className="flex items-center gap-2">
                                         <div className="hidden md:block text-sm text-tertiary">
@@ -261,9 +323,9 @@ export default function CampaignDetailPage() {
                             Request for Replacement
                         </button>
                            <button
-                            onClick={() => setActiveTab("approved")}
+                            onClick={() => setActiveTab("invited")}
                             className={`pb-3 text-sm font-semibold transition-colors ${
-                                activeTab === "approved"
+                                activeTab === "invited"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
                             }`}
@@ -278,75 +340,321 @@ export default function CampaignDetailPage() {
             <div className="flex-1 overflow-y-auto px-4 py-8 md:px-8">
                 <div className="mx-auto w-full max-w-8xl">
                     {activeTab === "details" ? (
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            <div className="rounded-xl bg-primary p-5 ring-1 ring-secondary shadow-xs md:col-span-2">
-                                <h3 className="mb-4 text-lg font-semibold text-primary">Event Details</h3>
-                                <div className="grid gap-4 sm:grid-cols-2">
-                                    <div className="flex items-start gap-3">
-                                        <Calendar className="size-5 text-tertiary shrink-0 mt-0.5" />
-                                        <div>
-                                            <p className="text-sm font-medium text-primary">Date & Time</p>
-                                            <p className="text-sm text-tertiary">{formatEventDate(event.date)}</p>
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            {/* Left Column - Main Info */}
+                            <div className="lg:col-span-2 space-y-8">
+                                {/* About Section */}
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2.5 bg-brand-50 dark:bg-brand-900/20 rounded-xl text-brand-600 dark:text-brand-400">
+                                            <File04 className="size-6" />
                                         </div>
+                                        <h3 className="text-xl font-bold text-primary">About Campaign</h3>
                                     </div>
-                                    <div className="flex items-start gap-3">
-                                        <MarkerPin01 className="size-5 text-tertiary shrink-0 mt-0.5" />
-                                        <div>
-                                            <p className="text-sm font-medium text-primary">Location</p>
-                                            <p className="text-sm text-tertiary">
-                                                {[event.venue, event.city].filter(Boolean).join(", ")}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <Users01 className="size-5 text-tertiary shrink-0 mt-0.5" />
-                                        <div>
-                                            <p className="text-sm font-medium text-primary">Creators Required</p>
-                                            <p className="text-sm text-tertiary">{event.creatorCountNeeded || 0} creators</p>
+                                    
+                                    <div className="space-y-6">
+                                        {event.description && (
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-secondary uppercase tracking-wider mb-2">Description</h4>
+                                                <p className="text-secondary leading-relaxed">{event.description}</p>
+                                            </div>
+                                        )}
+
+                                        <div className="grid sm:grid-cols-2 gap-6 pt-4 border-t border-secondary">
+                                            <div className="flex gap-4">
+                                                <div className="shrink-0 mt-1">
+                                                    <Calendar className="size-5 text-tertiary" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-sm font-medium text-primary mb-1">Date & Time</p>
+                                                    <p className="text-sm text-tertiary">{formatEventDate(event.date)}</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex gap-4">
+                                                <div className="shrink-0 mt-1">
+                                                    <MarkerPin01 className="size-5 text-tertiary" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-sm font-medium text-primary mb-1">Location</p>
+                                                    <p className="text-sm text-tertiary">
+                                                        {[event.venue, event.city].filter(Boolean).join(", ")}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                {event.creatorCriteria && (
-                                    <div className="mt-6 border-t border-secondary pt-4">
-                                        <h4 className="mb-3 text-sm font-medium text-primary">Criteria</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {event.creatorCriteria.minFollowers ? (
-                                                <Badge size="md" color="gray">
-                                                    {event.creatorCriteria.minFollowers}+ Followers
-                                                </Badge>
-                                            ) : null}
-                                            {event.creatorCriteria.city && (
-                                                <Badge size="md" color="gray">
-                                                    {event.creatorCriteria.city}
-                                                </Badge>
-                                            )}
-                                            {event.creatorCriteria.niches?.map((n) => (
-                                                <Badge key={n} size="md" color="gray">
-                                                    {n}
-                                                </Badge>
-                                            ))}
+
+                                {/* Criteria Section */}
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2.5 bg-purple-50 dark:bg-purple-900/20 rounded-xl text-purple-600 dark:text-purple-400">
+                                            <Users01 className="size-6" />
                                         </div>
+                                        <h3 className="text-xl font-bold text-primary">Creator Requirements</h3>
                                     </div>
-                                )}
+
+                                    <div className="grid sm:grid-cols-2 gap-8">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-secondary uppercase tracking-wider mb-3">Required Count</h4>
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-3xl font-bold text-primary">{event.creatorCountNeeded || 0}</span>
+                                                <span className="text-tertiary font-medium">Creators</span>
+                                            </div>
+                                        </div>
+
+                                        {event.creatorCriteria && (
+                                            <div className="space-y-6">
+                                                {event.creatorCriteria.minFollowers && (
+                                                    <div>
+                                                        <h4 className="text-sm font-semibold text-secondary uppercase tracking-wider mb-3">Minimum Followers</h4>
+                                                        <Badge size="lg" color="gray" className="font-semibold">
+                                                            {event.creatorCriteria.minFollowers.toLocaleString()}+ Followers
+                                                        </Badge>
+                                                    </div>
+                                                )}
+                                                
+                                                {(event.creatorCriteria.niches?.length || 0) > 0 && (
+                                                    <div>
+                                                        <h4 className="text-sm font-semibold text-secondary uppercase tracking-wider mb-3">Target Niches</h4>
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {event.creatorCriteria.niches?.map((n) => (
+                                                                <Badge key={n} size="lg" color="brand" className="capitalize">
+                                                                    {n}
+                                                                </Badge>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {event.creatorCriteria.city && (
+                                                    <div>
+                                                        <h4 className="text-sm font-semibold text-secondary uppercase tracking-wider mb-3">Location Requirement</h4>
+                                                        <Badge size="lg" color="gray">
+                                                            {event.creatorCriteria.city}
+                                                        </Badge>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="flex flex-col gap-6">
-                                <div className="rounded-xl bg-primary p-5 ring-1 ring-secondary shadow-xs">
-                                    <h3 className="mb-4 text-lg font-semibold text-primary">Deliverables</h3>
+                            {/* Right Column - Logistics & Deliverables */}
+                            <div className="space-y-8">
+                                {/* Deliverables Card */}
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2.5 bg-orange-50 dark:bg-orange-900/20 rounded-xl text-orange-600 dark:text-orange-400">
+                                            <CheckCircle className="size-6" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-primary">Deliverables</h3>
+                                    </div>
+
                                     {event.deliverables && event.deliverables.length > 0 ? (
-                                        <ul className="flex flex-col gap-3">
+                                        <ul className="space-y-4">
                                             {event.deliverables.map((d, i) => (
-                                                <li key={i} className="flex items-center justify-between text-sm">
-                                                    <span className="text-tertiary capitalize">
-                                                        {d.quantity}x {d.platform} {d.type}
-                                                    </span>
+                                                <li key={i} className="group relative flex flex-col gap-4 p-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-gray-800 hover:border-brand-200 dark:hover:border-brand-800 transition-all duration-200">
+                                                    <div className="flex items-start justify-between gap-4">
+                                                        <div className="flex items-center gap-4">
+                                                            <div className="flex items-center justify-center size-12 rounded-xl bg-white dark:bg-black shadow-sm ring-1 ring-gray-900/5 dark:ring-white/10 text-lg font-bold text-brand-600 dark:text-brand-400">
+                                                                {d.quantity}
+                                                            </div>
+                                                            <div className="flex flex-col gap-0.5">
+                                                                <span className="text-base font-bold text-gray-900 dark:text-white capitalize">{d.platform}</span>
+                                                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400 capitalize bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-md w-fit">
+                                                                    {d.type}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        {d.deadline && (
+                                                            <div className="shrink-0">
+                                                                <Badge size="md" color="warning" className="shadow-sm">
+                                                                    <Clock className="mr-1.5 size-3.5" />
+                                                                    {d.deadline.kind === "during_event" ? "Due During Event" : 
+                                                                     d.deadline.kind === "within_hours" ? `Due in ${d.deadline.value}h` : 
+                                                                     `Due in ${d.deadline.value} days`}
+                                                                </Badge>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                    
+                                                    {/* Requirements Tags */}
+                                                    {(d.brandTagMandatory || d.locationTagMandatory || d.hashtagsRequired || d.brandMusicProvided || d.contentApprovalRequired) && (
+                                                        <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200 dark:border-gray-700/50">
+                                                            {d.brandTagMandatory && (
+                                                                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                                                                    <Tag01 className="size-3.5 text-purple-500" />
+                                                                    <span>Brand Tag</span>
+                                                                </div>
+                                                            )}
+                                                            {d.locationTagMandatory && (
+                                                                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                                                                    <MarkerPin01 className="size-3.5 text-red-500" />
+                                                                    <span>Location Tag</span>
+                                                                </div>
+                                                            )}
+                                                            {d.hashtagsRequired && (
+                                                                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                                                                    <span className="text-blue-500 font-bold text-sm">#</span>
+                                                                    <span>Hashtags</span>
+                                                                </div>
+                                                            )}
+                                                            {d.brandMusicProvided && (
+                                                                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                                                                    <PlayCircle className="size-3.5 text-pink-500" />
+                                                                    <span>Brand Music</span>
+                                                                </div>
+                                                            )}
+                                                            {d.contentApprovalRequired && (
+                                                                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2.5 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                                                                    <CheckDone01 className="size-3.5 text-green-500" />
+                                                                    <span>Approval Req.</span>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    )}
                                                 </li>
                                             ))}
                                         </ul>
                                     ) : (
-                                        <p className="text-sm text-tertiary">No deliverables specified</p>
+                                        <div className="flex flex-col items-center justify-center py-8 text-center bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-dashed border-gray-200 dark:border-gray-700">
+                                            <div className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-sm mb-3">
+                                                <CheckCircle className="size-6 text-gray-400" />
+                                            </div>
+                                            <p className="text-sm font-medium text-gray-900 dark:text-white">No deliverables specified</p>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Add deliverables to guide creators</p>
+                                        </div>
                                     )}
+                                </div>
+
+                                {/* Food & Guidelines */}
+                                {(event.isLimitedMenu || event.inhouseFoodandBeverages || event.isGuestsAllowedplusone) && (
+                                    <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="p-2.5 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl text-yellow-600 dark:text-yellow-400">
+                                                <Star01 className="size-6" />
+                                            </div>
+                                            <h3 className="text-xl font-bold text-primary">Food & Guidelines</h3>
+                                        </div>
+
+                                        <div className="grid gap-4">
+                                            {event.isLimitedMenu && (
+                                                <div className="flex items-center gap-4 p-4 rounded-xl bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/20 transition-colors hover:bg-orange-100/50 dark:hover:bg-orange-900/20">
+                                                    <div className="p-2.5 bg-white dark:bg-orange-900/40 rounded-lg text-orange-600 dark:text-orange-400 shadow-sm ring-1 ring-orange-100 dark:ring-orange-900/30">
+                                                        <PieChart03 className="size-5" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-bold text-gray-900 dark:text-white">Limited Menu</p>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400">Special curated selection for guests</p>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {event.inhouseFoodandBeverages && (
+                                                <div className="flex items-center gap-4 p-4 rounded-xl bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 transition-colors hover:bg-green-100/50 dark:hover:bg-green-900/20">
+                                                    <div className="p-2.5 bg-white dark:bg-green-900/40 rounded-lg text-green-600 dark:text-green-400 shadow-sm ring-1 ring-green-100 dark:ring-green-900/30">
+                                                        <CheckDone01 className="size-5" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-bold text-gray-900 dark:text-white">F&B Provided</p>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400">Complimentary food and beverages</p>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {event.isGuestsAllowedplusone && (
+                                                <div className="flex items-center gap-4 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/20 transition-colors hover:bg-blue-100/50 dark:hover:bg-blue-900/20">
+                                                    <div className="p-2.5 bg-white dark:bg-blue-900/40 rounded-lg text-blue-600 dark:text-blue-400 shadow-sm ring-1 ring-blue-100 dark:ring-blue-900/30">
+                                                        <Users01 className="size-5" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-bold text-gray-900 dark:text-white">+1 Guest Allowed</p>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400">You can bring a companion</p>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Payment Card */}
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2.5 bg-green-50 dark:bg-green-900/20 rounded-xl text-green-600 dark:text-green-400">
+                                            <CreditCard01 className="size-6" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-primary">Compensation</h3>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 border border-secondary">
+                                            <span className="text-sm font-medium text-secondary">Type</span>
+                                            <Badge size="md" color={event.eventType === "paid" ? "success" : "gray"}>
+                                                {event.eventType === "paid" ? "Paid Campaign" : "Barter Collaboration"}
+                                            </Badge>
+                                        </div>
+
+                                        {event.payment && (
+                                            <>
+                                                <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-800">
+                                                    <p className="text-xs font-semibold text-green-700 dark:text-green-400 uppercase tracking-wider mb-1">
+                                                        Payment Amount
+                                                    </p>
+                                                    <p className="text-2xl font-bold text-green-800 dark:text-green-300">
+                                                        {event.payment.type === "fixed" && `₹${event.payment.minAmount}`}
+                                                        {event.payment.type === "range" && `₹${event.payment.minAmount} - ₹${event.payment.maxAmount}`}
+                                                        {event.payment.type === "variable" && "Variable"}
+                                                        {!event.payment.type && "TBD"}
+                                                    </p>
+                                                </div>
+
+                                                {event.payment.timeline && (
+                                                    <div className="flex items-start gap-3 p-3">
+                                                        <Clock className="size-5 text-tertiary shrink-0" />
+                                                        <div>
+                                                            <p className="text-sm font-medium text-primary">Payment Timeline</p>
+                                                            <p className="text-sm text-tertiary capitalize">
+                                                                {event.payment.timeline.replace(/_/g, " ")}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Additional Details */}
+                                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="p-2.5 bg-gray-50 dark:bg-gray-800 rounded-xl text-gray-600 dark:text-gray-400">
+                                            <InfoCircle className="size-6" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-primary">Other Details</h3>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-secondary">Entry Type</span>
+                                            <Badge size="md" color="gray" className="capitalize">
+                                                {event.entryType?.replace(/_/g, " ") || "Open"}
+                                            </Badge>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm text-secondary">Campaign Status</span>
+                                            <Badge size="md" color={statusColor(event.status)}>
+                                                {formatStatusLabel(event.status)}
+                                            </Badge>
+                                        </div>
+                                        {event.code && (
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-sm text-secondary">Invite Code</span>
+                                                <span className="font-mono font-medium text-primary bg-secondary px-2 py-1 rounded">
+                                                    {event.code}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -355,21 +663,14 @@ export default function CampaignDetailPage() {
                     ) : activeTab === "replacement" ? (
                         <StatusApplicationTab 
                             eventCode={event.code} 
-                            status="replacement_requested" 
+                            status="replaced" 
                             title="Replacement Requests" 
                             description="Candidates that you have requested to replace will appear here."
                             targetCount={event.creatorCountNeeded}
                             showProgress={false}
                         />
-                    ) : activeTab === "approved" ? (
-                        <StatusApplicationTab 
-                            eventCode={event.code} 
-                            status="approved" 
-                            title="Approved Profiles" 
-                            description="Candidates that have been approved will appear here."
-                            targetCount={event.creatorCountNeeded}
-                            showProgress={true}
-                        />
+                    ) : activeTab === "invited" ? (
+                        <ApprovedProfilesTab eventCode={event.code} />
                     ) : (
                         <ApplicantsTab eventCode={event.code} />
                     )}
@@ -401,7 +702,7 @@ function StatusApplicationTab({
 
     useEffect(() => {
         let alive = true;
-        (async () => {
+        const fetchApplicants = async () => {
             try {
                 if (!eventCode || !token) {
                     setLoading(false);
@@ -419,8 +720,15 @@ function StatusApplicationTab({
             } finally {
                 if (alive) setLoading(false);
             }
-        })();
-        return () => { alive = false; };
+        };
+
+        fetchApplicants();
+        const interval = setInterval(fetchApplicants, 5000);
+
+        return () => { 
+            alive = false;
+            clearInterval(interval);
+        };
     }, [eventCode, token, status]);
 
     if (loading) {
@@ -476,6 +784,9 @@ function StatusApplicationTab({
                     </span>
                 </div>
             )}
+            {/* Debug helper - remove after fixing */}
+           
+            
             <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
@@ -496,13 +807,11 @@ function StatusApplicationTab({
                                 <tr key={i} className="hover:bg-primary_hover transition-colors">
                                     <td className="px-4 py-3 font-medium text-primary">
                                         <div className="flex items-center gap-3">
-                                            {app.user?.avatarUrl && (
-                                                <img 
-                                                    src={app.user.avatarUrl} 
-                                                    alt="" 
-                                                    className="h-8 w-8 rounded-full object-cover bg-secondary"
-                                                />
-                                            )}
+                                            <img 
+                                                src={app.user?.avatarUrl || "/avatar.svg"} 
+                                                alt="" 
+                                                className="h-8 w-8 rounded-full object-cover bg-secondary"
+                                            />
                                             <div className="flex flex-col">
                                                 <span>{app.user?.name || "Unknown"}</span>
                                                 <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
@@ -574,10 +883,10 @@ function StatusApplicationTab({
                                             app.status === "invited" ? "success" : 
                                             app.status === "approved" ? "success" : 
                                             app.status === "rejected" ? "error" : 
-                                            app.status === "replacement_requested" ? "warning" :
+                                            app.status === "replaced" ? "warning" :
                                             "purple"
                                         }>
-                                            {app.status === "replacement_requested" ? "Replacement Req." : (app.status || "Applied")}
+                                            {app.status === "replaced" ? "Replacement Req." : (app.status || "Applied")}
                                         </Badge>
                                     </td>
                                     <td className="px-4 py-3 text-tertiary">
@@ -593,7 +902,7 @@ function StatusApplicationTab({
     );
 }
 
-function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | null; targetCount?: number }) {
+function ShortlistedTab({ eventCode }: { eventCode?: string | null; targetCount?: number }) {
     const { token } = useAuth();
     const [applicants, setApplicants] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -601,7 +910,7 @@ function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | n
 
     useEffect(() => {
         let alive = true;
-        (async () => {
+        const fetchApplicants = async () => {
             try {
                 if (!eventCode || !token) {
                     setLoading(false);
@@ -619,8 +928,15 @@ function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | n
             } finally {
                 if (alive) setLoading(false);
             }
-        })();
-        return () => { alive = false; };
+        };
+
+        fetchApplicants();
+        const interval = setInterval(fetchApplicants, 5000);
+
+        return () => { 
+            alive = false;
+            clearInterval(interval);
+        };
     }, [eventCode, token]);
 
     if (loading) {
@@ -650,21 +966,6 @@ function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | n
     if (applicants.length === 0) {
         return (
             <div className="flex flex-col gap-6">
-                {targetCount > 0 && (
-                    <div className="flex items-center gap-4 rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs">
-                        <div className="flex-1">
-                            <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
-                                <div 
-                                    className="h-full bg-brand-solid transition-all duration-500" 
-                                    style={{ width: `${Math.min((applicants.length / targetCount) * 100, 100)}%` }}
-                                />
-                            </div>
-                        </div>
-                        <span className="text-sm font-medium text-secondary whitespace-nowrap">
-                            {applicants.length} out of {targetCount} profiles
-                        </span>
-                    </div>
-                )}
                 <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
                     <Users01 className="mx-auto size-8 text-tertiary mb-3" />
                     <h3 className="text-md font-semibold text-primary">No shortlisted candidates yet</h3>
@@ -678,21 +979,6 @@ function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | n
 
     return (
         <div className="relative flex flex-col gap-6">
-            {targetCount > 0 && (
-                <div className="flex items-center gap-4 rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs">
-                    <div className="flex-1">
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
-                            <div 
-                                className="h-full bg-brand-solid transition-all duration-500" 
-                                style={{ width: `${Math.min((applicants.length / targetCount) * 100, 100)}%` }}
-                            />
-                        </div>
-                    </div>
-                    <span className="text-sm font-medium text-secondary whitespace-nowrap">
-                        {applicants.length} out of {targetCount} profiles
-                    </span>
-                </div>
-            )}
             <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
@@ -713,13 +999,11 @@ function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | n
                                 <tr key={i} className="hover:bg-primary_hover transition-colors">
                                     <td className="px-4 py-3 font-medium text-primary">
                                         <div className="flex items-center gap-3">
-                                            {app.user?.avatarUrl && (
-                                                <img 
-                                                    src={app.user.avatarUrl} 
-                                                    alt="" 
-                                                    className="h-8 w-8 rounded-full object-cover bg-secondary"
-                                                />
-                                            )}
+                                            <img 
+                                                src={app.user?.avatarUrl || "/avatar.svg"} 
+                                                alt="" 
+                                                className="h-8 w-8 rounded-full object-cover bg-secondary"
+                                            />
                                             <div className="flex flex-col">
                                                 <span>{app.user?.name || "Unknown"}</span>
                                                 <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
@@ -810,6 +1094,207 @@ function ShortlistedTab({ eventCode, targetCount = 0 }: { eventCode?: string | n
     );
 }
 
+function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
+    const { token } = useAuth();
+    const [applicants, setApplicants] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        let alive = true;
+        const fetchApplicants = async () => {
+            try {
+                if (!eventCode || !token) {
+                    setLoading(false);
+                    return;
+                }
+                const res = await api.get<{ success: boolean; data: { applications: any[] } }>(
+                    `/events/public/code/${eventCode}/applications?status=invited`,
+                    { token }
+                );
+                if (!alive) return;
+                setApplicants(res.data?.applications || []);
+            } catch (e) {
+                console.error("Failed to fetch approved applicants", e);
+                setError(true);
+            } finally {
+                if (alive) setLoading(false);
+            }
+        };
+
+        fetchApplicants();
+        const interval = setInterval(fetchApplicants, 5000);
+
+        return () => { 
+            alive = false;
+            clearInterval(interval);
+        };
+    }, [eventCode, token]);
+
+    if (loading) {
+        return (
+            <div className="py-12 text-center">
+                <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            </div>
+        );
+    }
+
+    if (!eventCode) {
+         return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <p className="text-tertiary">This event does not have an invite code.</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <p className="text-tertiary">Unable to load approved profiles at this time.</p>
+            </div>
+        );
+    }
+
+    if (applicants.length === 0) {
+        return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <Users01 className="mx-auto size-8 text-tertiary mb-3" />
+                <h3 className="text-md font-semibold text-primary">No approved profiles yet</h3>
+                <p className="mt-1 text-sm text-tertiary">
+                    Candidates you approve will appear here.
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="relative flex flex-col gap-6">
+            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-secondary text-tertiary">
+                            <tr>
+                                <th className="px-4 py-3 font-medium">Candidate</th>
+                                <th className="px-4 py-3 font-medium">Instagram</th>
+                                <th className="px-4 py-3 font-medium">Phone</th>
+                                <th className="px-4 py-3 font-medium">Attended Event</th>
+                                <th className="px-4 py-3 font-medium">Invitation Shared</th>
+                                <th className="px-4 py-3 font-medium">Task Completion</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-secondary">
+                            {applicants.map((app, i) => (
+                                <tr key={i} className="hover:bg-primary_hover transition-colors">
+                                    <td className="px-4 py-3 font-medium text-primary">
+                                        <div className="flex items-center gap-3">
+                                            <img 
+                                                src={app.user?.avatarUrl || "/avatar.svg"} 
+                                                alt="" 
+                                                className="h-8 w-8 rounded-full object-cover bg-secondary"
+                                            />
+                                            <div className="flex flex-col">
+                                                <span>{app.user?.name || "Unknown"}</span>
+                                                <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.instagramHandle ? (
+                                            <a 
+                                                href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:text-primary hover:underline"
+                                            >
+                                                @{app.instagramHandle}
+                                            </a>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {(app.user?.phone || app.user?.whatsapp) ? (
+                                            <a 
+                                                href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                                className="hover:text-primary hover:underline whitespace-nowrap"
+                                            >
+                                                {app.user?.phone || app.user?.whatsapp}
+                                            </a>
+                                        ) : "—"}
+                                    </td>
+                                    {/* Attended Event */}
+                                    <td className="px-4 py-3 text-tertiary">
+                                        <div className="flex items-center gap-2">
+                                            {app.attendedEvent ? (
+                                                <div className="flex flex-col gap-1">
+                                                     <div className="flex items-center gap-1.5 text-success">
+                                                        <CheckCircle className="size-4 text-success-primary fill-success-primary" />
+                                                        <span className="font-medium text-success-primary">Checked In</span>
+                                                    </div>
+                                                    {app.attendedAt && (
+                                                        <span className="text-xs text-tertiary">
+                                                            {new Date(app.attendedAt).toLocaleString()}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <div className="size-4 rounded border border-tertiary bg-secondary" />
+                                            )}
+                                        </div>
+                                    </td>
+                                    {/* Invitation Shared */}
+                                    <td className="px-4 py-3 text-tertiary">
+                                        <div className="flex items-center gap-2">
+                                            {app.invitationShared ? (
+                                                <div className="flex flex-col gap-1">
+                                                     <div className="flex items-center gap-1.5 text-success">
+                                                        <CheckCircle className="size-4 text-success-primary fill-success-primary" />
+                                                        <span className="font-medium text-success-primary">Sent</span>
+                                                    </div>
+                                                    {app.invitationSharedAt && (
+                                                        <span className="text-xs text-tertiary">
+                                                            {new Date(app.invitationSharedAt).toLocaleString()}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <div className="size-4 rounded border border-tertiary bg-secondary" />
+                                            )}
+                                        </div>
+                                    </td>
+                                    {/* Task Completion */}
+                                    <td className="px-4 py-3 text-tertiary">
+                                        <div className="flex items-center gap-2">
+                                            {app.taskCompleted ? (
+                                                <div className="flex flex-col gap-1">
+                                                     <div className="flex items-center gap-1.5 text-success">
+                                                        <CheckCircle className="size-4 text-success-primary fill-success-primary" />
+                                                        <span className="font-medium text-success-primary">Completed</span>
+                                                    </div>
+                                                    {app.taskData && (
+                                                        <a 
+                                                            href={app.taskData}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-xs text-brand-solid hover:underline truncate max-w-[150px]"
+                                                        >
+                                                            View Data
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <div className="size-4 rounded border border-tertiary bg-secondary" />
+                                            )}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
     const { token } = useAuth();
     const [applicants, setApplicants] = useState<any[]>([]);
@@ -817,9 +1302,13 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
     const [error, setError] = useState(false);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
+    const getAppId = (app: any) => {
+        return app.applicationId || app._id || app.id || app.application?._id || app.appId || app.application_id || "";
+    };
+
     const handleSelectAll = (isSelected: boolean) => {
         if (isSelected) {
-            setSelectedIds(applicants.map(app => app.user?._id || app.user?.id).filter(Boolean));
+            setSelectedIds(applicants.map(app => getAppId(app)).filter(Boolean));
         } else {
             setSelectedIds([]);
         }
@@ -835,7 +1324,7 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
 
     useEffect(() => {
         let alive = true;
-        (async () => {
+        const fetchApplicants = async () => {
             try {
                 if (!eventCode || !token) {
                     setLoading(false);
@@ -853,8 +1342,15 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
             } finally {
                 if (alive) setLoading(false);
             }
-        })();
-        return () => { alive = false; };
+        };
+
+        fetchApplicants();
+        const interval = setInterval(fetchApplicants, 5000);
+
+        return () => { 
+            alive = false;
+            clearInterval(interval);
+        };
     }, [eventCode, token]);
 
     if (loading) {
@@ -904,7 +1400,7 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                             try {
                                 await api.post(
                                     `/events/public/code/${eventCode}/applications/shortlist`,
-                                    { applicantIds: selectedIds },
+                                    { applicationIds: selectedIds },
                                     { token }
                                 );
                                 alert(`Successfully shortlisted ${selectedIds.length} applicants`);
@@ -939,139 +1435,140 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                                     />
                                 </th>
                                 <th className="px-4 py-3 font-medium">Candidate</th>
-                            <th className="px-4 py-3 font-medium">Category</th>
-                            <th className="px-4 py-3 font-medium">Instagram</th>
-                            <th className="px-4 py-3 font-medium">Phone</th>
-                            <th className="px-4 py-3 font-medium">Willing to Attend</th>
-                            <th className="px-4 py-3 font-medium">Dashboard</th>
-                            <th className="px-4 py-3 font-medium">Status</th>
-                            <th className="px-4 py-3 font-medium">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-secondary">
-                        {applicants.map((app, i) => (
-                            <tr 
-                                key={i} 
-                                className={`transition-colors ${selectedIds.includes(app.user?._id || app.user?.id) ? "bg-brand-primary hover:bg-brand-secondary" : "hover:bg-primary_hover"}`}
-                                style={selectedIds.includes(app.user?._id || app.user?.id) ? {
-                                    '--color-bg-brand-primary': 'var(--color-brand-50)',
-                                    '--color-bg-brand-secondary': 'var(--color-brand-100)',
-                                    '--color-text-primary': 'var(--color-gray-900)',
-                                    '--color-text-tertiary': 'var(--color-gray-500)',
-                                    '--color-text-secondary': 'var(--color-gray-700)',
-                                    '--color-bg-secondary': 'var(--color-gray-50)',
-                                } as CSSProperties : undefined}
-                            >
-                                <td className="px-4 py-3">
-                                    <Checkbox
-                                        isSelected={selectedIds.includes(app.user?._id || app.user?.id)}
-                                        onChange={(isSelected) => {
-                                            const uid = app.user?._id || app.user?.id;
-                                            if (uid) handleSelectOne(uid, isSelected);
-                                        }}
-                                        isDisabled={!app.user?._id && !app.user?.id}
-                                        aria-label={`Select ${app.user?.name || "applicant"}`}
-                                    />
-                                </td>
-                                <td className="px-4 py-3 font-medium text-primary">
-                                    <div className="flex items-center gap-3">
-                                        {app.user?.avatarUrl && (
-                                            <img 
-                                                src={app.user.avatarUrl} 
-                                                alt="" 
-                                                className="h-8 w-8 rounded-full object-cover bg-secondary"
-                                            />
-                                        )}
-                                        <div className="flex flex-col">
-                                            <span>{app.user?.name || "Unknown"}</span>
-                                            <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
-                                            {app.user?.shortBio && (
-                                                <span className="text-xs text-tertiary font-normal truncate max-w-[150px]" title={app.user.shortBio}>
-                                                    {app.user.shortBio}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3 text-tertiary">
-                                    {app.user?.category ? (
-                                        <Badge size="sm" color="gray">{app.user.category}</Badge>
-                                    ) : "—"}
-                                </td>
-                                <td className="px-4 py-3 text-tertiary">
-                                    {app.instagramHandle ? (
-                                        <a 
-                                            href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="hover:text-primary hover:underline"
-                                        >
-                                            @{app.instagramHandle}
-                                        </a>
-                                    ) : "—"}
-                                </td>
-                                <td className="px-4 py-3 text-tertiary">
-                                    {(app.user?.phone || app.user?.whatsapp) ? (
-                                        <a 
-                                            href={`tel:${app.user?.phone || app.user?.whatsapp}`}
-                                            className="hover:text-primary hover:underline whitespace-nowrap"
-                                        >
-                                            {app.user?.phone || app.user?.whatsapp}
-                                        </a>
-                                    ) : "—"}
-                                </td>
-                                <td className="px-4 py-3 text-tertiary">
-                                    {app.willingToAttend ? (
-                                        <div className="flex items-center gap-1.5 text-success">
-                                            <Check className="size-3" />
-                                            <span>Yes</span>
-                                        </div>
-                                    ) : (
-                                        <span className="text-tertiary">No</span>
-                                    )}
-                                </td>
-                                <td className="px-4 py-3 text-tertiary">
-                                    <div className="flex flex-col gap-1">
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-xs text-tertiary">Shared:</span>
-                                            {app.shareProfessionalDashboard ? (
-                                                <Badge size="sm" color="success">Yes</Badge>
-                                            ) : (
-                                                <span className="text-xs">No</span>
-                                            )}
-                                        </div>
-                                        {app.dashboardImageUrl && (
-                                            <a 
-                                                href={app.dashboardImageUrl} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer"
-                                                className="text-xs font-medium text-brand-solid hover:underline flex items-center gap-1"
-                                            >
-                                                View Screenshot
-                                            </a>
-                                        )}
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3">
-                                    <Badge size="sm" color={
-                                        app.status === "shortlisted" ? "orange" : 
-                                        app.status === "invited" ? "success" : 
-                                        app.status === "approved" ? "success" : 
-                                        app.status === "rejected" ? "error" : 
-                                        "purple"
-                                    }>
-                                        {app.status || "Applied"}
-                                    </Badge>
-                                </td>
-                                <td className="px-4 py-3 text-tertiary">
-                                    {app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}
-                                </td>
+                                <th className="px-4 py-3 font-medium">Category</th>
+                                <th className="px-4 py-3 font-medium">Instagram</th>
+                                <th className="px-4 py-3 font-medium">Phone</th>
+                                <th className="px-4 py-3 font-medium">Willing to Attend</th>
+                                <th className="px-4 py-3 font-medium">Dashboard</th>
+                                <th className="px-4 py-3 font-medium">Status</th>
+                                <th className="px-4 py-3 font-medium">Date</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-secondary">
+                            {applicants.map((app, i) => {
+                                const appId = getAppId(app);
+                                const isSelected = selectedIds.includes(appId);
+                                return (
+                                    <tr 
+                                        key={appId || i} 
+                                        className={`transition-colors ${isSelected ? "bg-brand-primary hover:bg-brand-secondary" : "hover:bg-primary_hover"}`}
+                                        style={isSelected ? {
+                                            '--color-bg-brand-primary': 'var(--color-brand-50)',
+                                            '--color-bg-brand-secondary': 'var(--color-brand-100)',
+                                            '--color-text-primary': 'var(--color-gray-900)',
+                                            '--color-text-tertiary': 'var(--color-gray-500)',
+                                            '--color-text-secondary': 'var(--color-gray-700)',
+                                            '--color-bg-secondary': 'var(--color-gray-50)',
+                                        } as CSSProperties : undefined}
+                                    >
+                                        <td className="px-4 py-3">
+                                            <Checkbox
+                                                isSelected={isSelected}
+                                                onChange={(checked) => {
+                                                    if (appId) handleSelectOne(appId, checked);
+                                                }}
+                                                isDisabled={!appId}
+                                                aria-label={`Select ${app.user?.name || "applicant"}`}
+                                            />
+                                        </td>
+                                        <td className="px-4 py-3 font-medium text-primary">
+                                            <div className="flex items-center gap-3">
+                                                <img 
+                                                    src={app.user?.avatarUrl || "/avatar.svg"} 
+                                                    alt="" 
+                                                    className="h-8 w-8 rounded-full object-cover bg-secondary"
+                                                />
+                                                <div className="flex flex-col">
+                                                    <span>{app.user?.name || "Unknown"}</span>
+                                                    <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
+                                                    {app.user?.shortBio && (
+                                                        <span className="text-xs text-tertiary font-normal truncate max-w-[150px]" title={app.user.shortBio}>
+                                                            {app.user.shortBio}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3 text-tertiary">
+                                            {app.user?.category ? (
+                                                <Badge size="sm" color="gray">{app.user.category}</Badge>
+                                            ) : "—"}
+                                        </td>
+                                        <td className="px-4 py-3 text-tertiary">
+                                            {app.instagramHandle ? (
+                                                <a 
+                                                    href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="hover:text-primary hover:underline"
+                                                >
+                                                    @{app.instagramHandle}
+                                                </a>
+                                            ) : "—"}
+                                        </td>
+                                        <td className="px-4 py-3 text-tertiary">
+                                            {(app.user?.phone || app.user?.whatsapp) ? (
+                                                <a 
+                                                    href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                                    className="hover:text-primary hover:underline whitespace-nowrap"
+                                                >
+                                                    {app.user?.phone || app.user?.whatsapp}
+                                                </a>
+                                            ) : "—"}
+                                        </td>
+                                        <td className="px-4 py-3 text-tertiary">
+                                            {app.willingToAttend ? (
+                                                <div className="flex items-center gap-1.5 text-success">
+                                                    <Check className="size-3" />
+                                                    <span>Yes</span>
+                                                </div>
+                                            ) : (
+                                                <span className="text-tertiary">No</span>
+                                            )}
+                                        </td>
+                                        <td className="px-4 py-3 text-tertiary">
+                                            <div className="flex flex-col gap-1">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-xs text-tertiary">Shared:</span>
+                                                    {app.shareProfessionalDashboard ? (
+                                                        <Badge size="sm" color="success">Yes</Badge>
+                                                    ) : (
+                                                        <span className="text-xs">No</span>
+                                                    )}
+                                                </div>
+                                                {app.dashboardImageUrl && (
+                                                    <a 
+                                                        href={app.dashboardImageUrl} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="text-xs font-medium text-brand-solid hover:underline flex items-center gap-1"
+                                                    >
+                                                        View Screenshot
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <Badge size="sm" color={
+                                                app.status === "shortlisted" ? "orange" : 
+                                                app.status === "invited" ? "success" : 
+                                                app.status === "approved" ? "success" : 
+                                                app.status === "rejected" ? "error" : 
+                                                "purple"
+                                            }>
+                                                {app.status || "Applied"}
+                                            </Badge>
+                                        </td>
+                                        <td className="px-4 py-3 text-tertiary">
+                                            {app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-       </div> 
     );
 }

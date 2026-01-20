@@ -311,7 +311,8 @@ export default function EventInviteClient() {
                 }
             }
 
-            setStep("notifications");
+            // Skip notifications for now
+            setStep("details");
             setIsFocused(false);
         } catch (e: any) {
             setOtpError(e.message || "Invalid OTP. Please try again.");
@@ -326,7 +327,8 @@ export default function EventInviteClient() {
         } else if (step === "notifications") {
             setStep("otp");
         } else if (step === "details") {
-            setStep("notifications");
+            // Skip notifications for now
+            setStep("otp");
         } else if (step === "dashboard") {
             setStep("details");
         }

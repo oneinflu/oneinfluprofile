@@ -29,6 +29,10 @@ type User = {
 
 type Application = {
     _id?: string;
+    application?: {
+        _id: string;
+    };
+    applicationId?: string;
     user: User;
     instagramUrl: string;
     instagramHandle: string;
@@ -43,8 +47,10 @@ export default function ShortlistedPage() {
     const params = useParams();
     const code = String(params?.code || "");
     const [applicants, setApplicants] = useState<Application[]>([]);
+    const [targetCount, setTargetCount] = useState<number>(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [activeTab, setActiveTab] = useState<"all" | "approved" | "shortlisted" | "replaced">("all");
     
     // Selection state
     const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -62,7 +68,7 @@ export default function ShortlistedPage() {
     // Lottie ref
     const lottieContainer = useRef<HTMLDivElement>(null);
 
-    const hasReplacementPending = applicants.some(app => app.status === 'replacement_requested');
+    const hasReplacementPending = applicants.some(app => app.status === 'replaced');
 
     useEffect(() => {
         let alive = true;
@@ -72,11 +78,23 @@ export default function ShortlistedPage() {
                     setLoading(false);
                     return;
                 }
-                const res = await api.get<{ success: boolean; data: { applications: Application[] } }>(
-                    `/events/public/code/${code}/applicants?status=shortlisted`
-                );
+                const [resApps, resEvent] = await Promise.all([
+                    api.get<{ success: boolean; data: { applications: Application[] } }>(
+                        `/events/public/code/${code}/applicants?status=shortlisted,invited,replaced,approved`
+                    ),
+                    api.get<{ success: boolean; data: { event: { creatorCountNeeded?: number } } }>(
+                        `/events/public/code/${code}`
+                    )
+                ]);
+
                 if (!alive) return;
-                setApplicants(res.data?.applications || []);
+                
+                setTargetCount(resEvent.data?.event?.creatorCountNeeded || 0);
+                const apps = resApps.data?.applications || [];
+                // We trust the API to provide application structure as expected
+                // or we use our getApplicationId helper to find the ID.
+                // We should NOT force _id to be user.id as that breaks replacement.
+                setApplicants(apps);
             } catch (e) {
                 console.error("Failed to fetch shortlisted applicants", e);
                 setError(true);
@@ -100,7 +118,15 @@ export default function ShortlistedPage() {
         }
     }, [success]);
 
-    const getUserId = (app: Application) => app.user._id || app.user.id || "";
+    const getApplicationId = (app: Application) => app.applicationId || "";
+
+    const filteredApplicants = applicants.filter(app => {
+        if (activeTab === 'all') return ['shortlisted', 'invited', 'approved', 'replaced'].includes(app.status);
+        if (activeTab === 'approved') return ['invited', 'approved'].includes(app.status);
+        if (activeTab === 'shortlisted') return app.status === 'shortlisted';
+        if (activeTab === 'replaced') return app.status === 'replaced';
+        return true;
+    });
 
     const handleSelect = (id: string) => {
         if (!id) return;
@@ -114,27 +140,26 @@ export default function ShortlistedPage() {
     };
 
     const handleSelectAll = () => {
-        if (selectedIds.size === applicants.length) {
+        if (selectedIds.size === filteredApplicants.length) {
             setSelectedIds(new Set());
         } else {
-            const allIds = new Set(applicants.map(app => getUserId(app)).filter(Boolean));
+            const allIds = new Set(filteredApplicants.map(app => getApplicationId(app)).filter(Boolean));
             setSelectedIds(allIds);
         }
     };
 
     const handleApprove = async () => {
-        if (!bannerFile || selectedIds.size === 0) return;
+        if (selectedIds.size === 0) return;
         
         try {
             setApproving(true);
-            const formData = new FormData();
-            formData.append("banner", bannerFile);
-            formData.append("applicationIds", JSON.stringify(Array.from(selectedIds)));
             
-            await api.post(`/events/public/code/${code}/applications/approve`, formData);
+            await api.post(`/events/public/code/${code}/applications/approve`, {
+                applicationIds: Array.from(selectedIds),
+                reason: null
+            });
             
             setSuccess(true);
-            setIsModalOpen(false);
             
             // Refresh list after delay
             setTimeout(() => {
@@ -160,10 +185,10 @@ export default function ShortlistedPage() {
             setIsReplaceModalOpen(false);
             setReplaceReason("");
             
-            // Update local state to reflect replacement request
+            // Update local state to mark applicants as replaced
             setApplicants(prev => prev.map(app => 
-                selectedIds.has(getUserId(app)) 
-                    ? { ...app, status: 'replacement_requested' } 
+                selectedIds.has(getApplicationId(app)) 
+                    ? { ...app, status: 'replaced' }
                     : app
             ));
 
@@ -241,18 +266,40 @@ export default function ShortlistedPage() {
                                     Event Dashboard
                                 </h2>
                                 <div className="inline-flex items-center justify-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 dark:bg-brand-900/30 dark:text-brand-300">
-                                    {applicants.length} Applicant{applicants.length !== 1 ? 's' : ''}
+                                    {filteredApplicants.length} Applicant{filteredApplicants.length !== 1 ? 's' : ''}
                                 </div>
                             </div>
                             <h1 className="text-3xl font-bold text-gray-900 dark:text-white leading-tight mt-2">
-                                Shortlisted Profiles
+                                {activeTab === 'approved' ? 'Approved Profiles' :
+                                 activeTab === 'replaced' ? 'Replacement Requests' :
+                                 'Shortlisted Profiles'}
                             </h1>
                             <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm">
                                 Select profiles to approve and send the event banner.
                             </p>
                         </div>
 
-                        {applicants.length > 0 && (
+                        {/* Tabs */}
+                        <div className="mt-8 flex flex-wrap gap-2">
+                            {(['all', 'approved', 'shortlisted', 'replaced'] as const).map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={cx(
+                                        "px-4 py-2 rounded-xl text-sm font-semibold transition-all",
+                                        activeTab === tab
+                                            ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-md ring-1 ring-black/5"
+                                            : "bg-gray-50 text-gray-500 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                                    )}
+                                >
+                                    {tab === 'all' ? 'All' : 
+                                     tab === 'replaced' ? 'Replacement Requested' : 
+                                     tab.charAt(0).toUpperCase() + tab.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+
+                        {filteredApplicants.length > 0 && activeTab === 'shortlisted' && (
                             <div className="mt-6 flex justify-end">
                                 <Button 
                                     color="secondary" 
@@ -260,7 +307,7 @@ export default function ShortlistedPage() {
                                     onClick={handleSelectAll}
                                     className="text-xs font-medium"
                                 >
-                                    {selectedIds.size === applicants.length ? "Deselect All" : "Select All"}
+                                    {selectedIds.size === filteredApplicants.length ? "Deselect All" : "Select All"}
                                 </Button>
                             </div>
                         )}
@@ -269,34 +316,42 @@ export default function ShortlistedPage() {
                     {/* Applicants List */}
                     <div className="p-6 sm:p-10 pt-6 bg-gray-50/50 dark:bg-[#161B26]">
                         <div className="flex flex-col gap-4">
-                            {applicants.map((app, i) => {
-                                const userId = getUserId(app);
-                                const isSelected = selectedIds.has(userId);
-                                const isReplaced = app.status === 'replacement_requested';
+                            {filteredApplicants.length === 0 ? (
+                                <div className="text-center py-10 text-gray-500 dark:text-gray-400">
+                                    No profiles found in this category.
+                                </div>
+                            ) : (
+                                filteredApplicants.map((app, i) => {
+                                const appId = getApplicationId(app);
+                                const isSelected = selectedIds.has(appId);
+                                const isReplaced = app.status === 'replaced';
+                                const isApproved = ['invited', 'approved'].includes(app.status);
                                 
                                 return (
                                     <div 
-                                        key={userId || i} 
+                                        key={appId || i} 
                                         className={cx(
                                             "group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 p-5 shadow-sm transition-all duration-300 cursor-pointer border",
                                             isSelected 
                                                 ? "ring-2 ring-brand-500 border-transparent shadow-md bg-brand-50/5 dark:bg-brand-900/10" 
                                                 : "border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-gray-200 dark:hover:border-gray-600",
-                                            isReplaced && "opacity-75 pointer-events-none grayscale-[0.5]"
+                                            isReplaced && "opacity-75 grayscale-[0.5]"
                                         )}
-                                        onClick={() => !isReplaced && handleSelect(userId)}
+                                        onClick={() => !isReplaced && handleSelect(appId)}
                                     >
                                         <div className="flex items-start gap-4">
-                                            <div className="pt-1" onClick={(e) => e.stopPropagation()}>
-                                                <Checkbox 
-                                                    isSelected={isSelected}
-                                                    onChange={() => !isReplaced && handleSelect(userId)}
-                                                    isDisabled={isReplaced}
-                                                />
-                                            </div>
+                                            {activeTab === 'shortlisted' && (
+                                                <div className="pt-1" onClick={(e) => e.stopPropagation()}>
+                                                    <Checkbox 
+                                                        isSelected={isSelected}
+                                                        onChange={() => !isReplaced && handleSelect(appId)}
+                                                        isDisabled={isReplaced}
+                                                    />
+                                                </div>
+                                            )}
                                             <div className="relative shrink-0">
                                                 <img 
-                                                    src={app.user.avatarUrl} 
+                                                    src={app.user.avatarUrl || "/avatar.svg"} 
                                                     alt={app.user.name} 
                                                     className="size-14 rounded-2xl object-cover ring-1 ring-gray-900/5 dark:ring-white/10"
                                                 />
@@ -305,12 +360,17 @@ export default function ShortlistedPage() {
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-start justify-between gap-2">
                                                     <div>
-                                                        <h3 className="font-bold text-gray-900 dark:text-white truncate pr-2 text-lg flex items-center gap-2">
-                                                            {app.user.name}
+                                                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
+                                                            <h3 className="font-bold text-gray-900 dark:text-white truncate text-lg leading-tight">
+                                                                {app.user.name}
+                                                            </h3>
                                                             {isReplaced && (
-                                                                <Badge size="sm" color="warning">Replacement Requested</Badge>
+                                                                <Badge size="sm" color="warning" className="w-fit">Replacement Requested</Badge>
                                                             )}
-                                                        </h3>
+                                                            {isApproved && (
+                                                                <Badge size="sm" color="success" className="w-fit">Approved</Badge>
+                                                            )}
+                                                        </div>
                                                         <a 
                                                             href={app.instagramUrl}
                                                             target="_blank"
@@ -343,7 +403,7 @@ export default function ShortlistedPage() {
                                         </div>
                                     </div>
                                 );
-                            })}
+                            }))}
                         </div>
                         
                         <div className="mt-10 text-center">
@@ -375,10 +435,10 @@ export default function ShortlistedPage() {
                         <Button 
                             size="lg" 
                             className="flex-1 bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 rounded-xl shadow-sm"
-                            onClick={() => setIsModalOpen(true)}
-                            isDisabled={hasReplacementPending}
+                            onClick={handleApprove}
+                            isDisabled={approving}
                         >
-                            Approve
+                            {approving ? "Approving..." : "Approve"}
                         </Button>
                     </div>
                 </div>

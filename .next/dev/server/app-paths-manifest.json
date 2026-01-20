@@ -1,5 +1,11 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/events/invite/[code]/page": "app/events/invite/[code]/page.js",
-  "/page": "app/page.js"
+  "/[username]/page": "app/[username]/page.js",
+  "/admin/campaigns/[id]/page": "app/admin/campaigns/[id]/page.js",
+  "/admin/campaigns/page": "app/admin/campaigns/page.js",
+  "/admin/my-profile/page": "app/admin/my-profile/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/events/shortlisted/[code]/page": "app/events/shortlisted/[code]/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/verify/page": "app/verify/page.js"
 }
