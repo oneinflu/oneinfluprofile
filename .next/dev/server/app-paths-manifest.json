@@ -2,5 +2,6 @@
   "/admin/campaigns/[id]/page": "app/admin/campaigns/[id]/page.js",
   "/admin/campaigns/page": "app/admin/campaigns/page.js",
   "/events/invite/[code]/page": "app/events/invite/[code]/page.js",
-  "/events/shortlisted/[code]/page": "app/events/shortlisted/[code]/page.js"
+  "/events/shortlisted/[code]/page": "app/events/shortlisted/[code]/page.js",
+  "/events/welcome/[code]/page": "app/events/welcome/[code]/page.js"
 }
