@@ -350,7 +350,8 @@ export default function EventInviteClient() {
                     const permission = await OS.Notifications.requestPermission();
                     console.log("handleSubscribe: Permission result", permission);
 
-                    if (permission !== 'granted') {
+                    // OneSignal v16 returns boolean, older versions might return 'granted'
+                    if (permission !== 'granted' && permission !== true) {
                         console.warn("handleSubscribe: Permission denied");
                         setStep("details");
                     } else {
