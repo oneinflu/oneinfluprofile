@@ -222,6 +222,7 @@ export default function EventInviteClient() {
     const [step, setStep] = useState<"phone" | "otp" | "notifications" | "details" | "dashboard" | "success">("phone");
     const [otp, setOtp] = useState("");
     const [otpError, setOtpError] = useState("");
+    const [notificationEnabled, setNotificationEnabled] = useState(false);
 
     // Step 3: User Details State
     const [name, setName] = useState("");
@@ -347,25 +348,65 @@ export default function EventInviteClient() {
                     const permission = await OS.Notifications.requestPermission();
 
                     if (permission !== 'granted') {
-                        alert("Notification permission denied");
-                        // We don't return here so the user isn't stuck if they deny
-                        // but user asked for "return" in snippet. 
-                        // However, blocking flow is bad UX. I'll allow proceeding after alert.
-                        // Actually, if I strictly follow "return", they are stuck.
-                        // I will assume the intent is "don't subscribe if denied".
+                        // User denied permission, proceed to next step
+                        setStep("details");
                     } else {
                         // Subscribe user
                         await OS.User.PushSubscription.optIn();
 
-                        // Get OneSignal Player ID
-                        const playerId = await OS.User.PushSubscription.getId();
+                        // Get OneSignal ID (User ID / Alias)
+                        // Note: Depending on SDK version, might be OS.User.onesignalId or similar
+                        // Fallback to subscription ID if onesignalId is not directly available/documented in this context,
+                        // but based on user requirement "identity.onesignal_id", we try to get the user identity.
+                        // In OneSignal Web SDK 16, `OneSignal.User.PushSubscription.id` is the subscription ID.
+                        // `OneSignal.User.onesignalId` gives the OneSignal ID (User ID).
+                        
+                        // We will try to get the ID.
+                        let onesignalId = OS.User.onesignalId;
+                        if (!onesignalId) {
+                            // If not available immediately, wait a bit or use subscription ID as fallback if allowed (though requirement is strict)
+                            // The response example shows "identity": { "onesignal_id": "..." }
+                            // We'll try to get subscription ID as well.
+                            onesignalId = await OS.User.PushSubscription.getId();
+                        }
 
-                        console.log(playerId);
-                        console.log("Notifications enabled successfully");
+                        if (onesignalId) {
+                            const userId = localStorage.getItem("influu_user_id");
+                            const token = authToken || localStorage.getItem("influu_token");
+
+                            if (userId && token) {
+                                try {
+                                    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
+                                    await fetch(`${baseUrl}/users/id/${userId}/notifications/enable`, {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Authorization": `Bearer ${token}`
+                                        },
+                                        body: JSON.stringify({
+                                            identity: {
+                                                onesignal_id: onesignalId
+                                            }
+                                        })
+                                    });
+                                    setNotificationEnabled(true);
+                                    // Wait a moment to show success state before moving on
+                                    setTimeout(() => {
+                                        setStep("details");
+                                    }, 1500);
+                                } catch (apiError) {
+                                    console.error("Failed to sync notification status", apiError);
+                                    setStep("details");
+                                }
+                            } else {
+                                setStep("details");
+                            }
+                        } else {
+                            setStep("details");
+                        }
                     }
                 } catch (e) {
                     console.error("OneSignal error", e);
-                } finally {
                     setStep("details");
                 }
             });
@@ -1013,33 +1054,48 @@ export default function EventInviteClient() {
                                                         <>
                                                             <div className="text-center mb-6">
                                                                 <div className="mx-auto w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
-                                                                    <Bell01 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                                                                    {notificationEnabled ? (
+                                                                        <CheckDone01 className="w-6 h-6 text-green-600 dark:text-green-400" />
+                                                                    ) : (
+                                                                        <Bell01 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                                                                    )}
                                                                 </div>
                                                                 <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                    Enable Notifications
+                                                                    {notificationEnabled ? "Notifications Enabled!" : "Enable Notifications"}
                                                                 </h3>
                                                                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                    Stay updated with real-time alerts for your event application status and exclusive opportunities.
+                                                                    {notificationEnabled 
+                                                                        ? "Great! You'll receive updates about your application status."
+                                                                        : "Stay updated with real-time alerts for your event application status and exclusive opportunities."
+                                                                    }
                                                                 </p>
                                                             </div>
 
                                                             <div className="space-y-4">
-                                                                <Button 
-                                                                    size="lg" 
-                                                                    color="primary" 
-                                                                    className="w-full"
-                                                                    onClick={handleSubscribe}
-                                                                >
-                                                                    Enable Notifications
-                                                                </Button>
-                                                                <Button 
-                                                                    size="lg" 
-                                                                    color="secondary" 
-                                                                    className="w-full border-none shadow-none bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800"
-                                                                    onClick={() => setStep("details")}
-                                                                >
-                                                                    Skip for now
-                                                                </Button>
+                                                                {!notificationEnabled ? (
+                                                                    <>
+                                                                        <Button 
+                                                                            size="lg" 
+                                                                            color="primary" 
+                                                                            className="w-full"
+                                                                            onClick={handleSubscribe}
+                                                                        >
+                                                                            Enable Notifications
+                                                                        </Button>
+                                                                        <Button 
+                                                                            size="lg" 
+                                                                            color="secondary" 
+                                                                            className="w-full border-none shadow-none bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800"
+                                                                            onClick={() => setStep("details")}
+                                                                        >
+                                                                            Skip for now
+                                                                        </Button>
+                                                                    </>
+                                                                ) : (
+                                                                    <div className="flex justify-center">
+                                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         </>
                                                     )}

@@ -3356,6 +3356,10 @@
     border-color: var(--border-color-primary);
   }
 
+  .border-purple-600 {
+    border-color: var(--color-purple-600);
+  }
+
   .border-secondary {
     border-color: var(--border-color-secondary);
   }

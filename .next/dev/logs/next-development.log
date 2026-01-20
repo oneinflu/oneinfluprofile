@@ -8,3 +8,6 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
 [00:00:28.413] Browser ERROR   {}
 [00:08:16.602] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
 [00:08:16.841] Browser ERROR   {}
+[00:43:11.375] Server  LOG     ✓ Compiled in 360ms
+[00:43:26.571] Server  LOG     ✓ Compiled in 194ms
+[00:43:39.560] Server  LOG     ✓ Compiled in 350ms
