@@ -1,17 +1,8 @@
-[00:00:01.089] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.306] Server  LOG     ✓ Ready in 1064ms
-[00:00:07.981] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:02.638] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:02.910] Server  LOG     ✓ Ready in 2.3s
+[00:00:18.722] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:09.217] Browser ERROR   {}
-[00:00:14.001] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:18.378] Browser ERROR   {}
-[00:00:21.018] Server  LOG     ✓ Compiled in 938ms
-[00:00:29.130] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:30.892] Browser ERROR   {}
-[00:00:36.490] Browser ERROR   {}
-[00:02:57.520] Server  LOG     ✓ Compiled in 619ms
-[00:05:22.590] Server  LOG     ✓ Compiled in 251ms
-[00:07:50.491] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:19.599] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -24,730 +15,140 @@ It can also happen if the client has a browser extension installed which messes 
 %s%s https://react.dev/link/hydration-mismatch 
 
   ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:07:50.611] Browser ERROR   {}
-[00:07:59.150] Server  LOG     ✓ Compiled in 220ms
-[00:08:37.577] Browser ERROR   {}
-[00:09:27.950] Server  LOG     ✓ Compiled in 290ms
-[00:10:19.317] Server  LOG     ✓ Compiled in 822ms
-[00:10:26.977] Server  LOG     ✓ Compiled in 153ms
-[00:10:36.778] Server  LOG     ✓ Compiled in 177ms
-[00:12:47.038] Browser ERROR   {}
-[00:12:54.934] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:12:55.571] Browser ERROR   {}
-[00:12:59.529] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:12:59.530] Browser ERROR   {}
-[00:13:03.512] Browser ERROR   {}
-[00:13:20.341] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[00:13:20.341] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.341] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.341] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:13:20.341] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:13:20.341] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.341] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.893] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.893] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.893] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.893] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:20.893] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:13:20.893] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:13:20.893] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:13:20.893] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:13:20.893] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:13:20.893] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[00:13:21.098] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:21.236] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:21.406] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:22.006] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:22.090] Browser GROUP   PUBLIC_PROFILE_GET
-[00:13:22.090] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
-[00:13:22.090] Browser GROUPEND 
-[00:13:22.090] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:22.090] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:22.510] Browser ERROR   {}
-[00:13:22.510] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
-          <SegmentViewNode type="page" pagePath="[username]...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
-              <ProfilePage params={Promise} searchParams={Promise}>
-                <section className="lg:hidden ...">
-                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
-                    <div className="w-full max...">
-                      <div>
-                      <ProfileServices>
-                      <ProfileShop>
-                      <ProfilePortfolio username="oneinflu" items={[...]}>
-                        <div className="mt-4">
-                          <div>
-                          <div className="mt-2 overf...">
-                            <div className="flex gap-2...">
->                             <button
->                               type="button"
->                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
->                               onClick={function onClick}
->                             >
-                                <div className="aspect-squ...">
-                                  <img>
-                                  <div className="absolute i...">
-                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
-                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
->                                       <button
->                                         data-loading={undefined}
->                                         data-icon-only={undefined}
->                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
->                                         style={undefined}
->                                         data-rac=""
->                                         type="button"
->                                         disabled={undefined}
->                                         form={undefined}
->                                         formAction={undefined}
->                                         formEncType={undefined}
->                                         formMethod={undefined}
->                                         formNoValidate={undefined}
->                                         formTarget={undefined}
->                                         name={undefined}
->                                         value={undefined}
->                                         onFocus={function}
->                                         onBlur={function}
->                                         onKeyDown={function onKeyDown}
->                                         onKeyUp={undefined}
->                                         tabIndex={0}
->                                         onClick={function onClick}
->                                         onPointerDown={function}
->                                         onMouseDown={function}
->                                         onPointerUp={function}
->                                         onPointerEnter={function}
->                                         onPointerLeave={function}
->                                         onDragStart={function}
->                                         data-react-aria-pressable={true}
->                                         aria-haspopup={undefined}
->                                         aria-expanded={undefined}
->                                         aria-controls={undefined}
->                                         aria-pressed={undefined}
->                                         aria-current={undefined}
->                                         aria-disabled={undefined}
->                                         id="react-aria78557798-_r_k_"
->                                         ref={{current:null}}
->                                         aria-labelledby={undefined}
->                                         slot={undefined}
->                                         data-disabled={undefined}
->                                         data-pressed={undefined}
->                                         data-hovered={undefined}
->                                         data-focused={undefined}
->                                         data-pending={undefined}
->                                         data-focus-visible={undefined}
->                                       >
-                                ...
-                              ...
-                          ...
-                      ...
-                  ...
+    <AdminLayout params={Promise}>
+      <AppSidebar>
+        <SidebarNavigationSimple items={[...]} footerItems={[...]} featureCard={<FeaturedCardProgressBar>} ...>
+          <MobileNavigationHeader>
+            <$de32f1b87079253c$export$2e1e1122cf0cba88 isOpen={false} onOpenChange={function bound dispatchSetState}>
+              <$64fa3d84918910a7$export$2881499e37b75b9a values={[...]}>
+                <header className="flex h-16 ...">
+                  <a>
+                  <div className="flex items...">
+                    <Button aria-label="Expand nav..." className="group flex...">
+                      <button
+                        className="group flex items-center justify-center rounded-lg bg-primary p-2 text-fg-secondary ..."
+                        style={undefined}
+                        data-rac=""
+                        type="button"
+                        disabled={undefined}
+                        form={undefined}
+                        formAction={undefined}
+                        formEncType={undefined}
+                        formMethod={undefined}
+                        formNoValidate={undefined}
+                        formTarget={undefined}
+                        name={undefined}
+                        value={undefined}
+                        onFocus={function}
+                        onBlur={function}
+                        onKeyDown={function onKeyDown}
+                        onKeyUp={undefined}
+                        tabIndex={0}
+                        aria-haspopup={undefined}
+                        aria-expanded={false}
+                        aria-controls={undefined}
++                       id="react-aria-_R_1cndalbH1_"
+-                       id="react-aria-_R_5kndalbH1_"
+                        onClick={function onClick}
+                        onPointerDown={function}
+                        onMouseDown={function}
+                        onPointerUp={function}
+                        onPointerEnter={function}
+                        onPointerLeave={function}
+                        onDragStart={function}
+                        data-react-aria-pressable={true}
+                        aria-label="Expand navigation menu"
+                        aria-pressed={undefined}
+                        aria-current={undefined}
+                        aria-disabled={undefined}
+                        ref={{current:null}}
+                        aria-labelledby={undefined}
+                        slot={undefined}
+                        data-disabled={undefined}
+                        data-pressed={undefined}
+                        data-hovered={undefined}
+                        data-focused={undefined}
+                        data-pending={undefined}
+                        data-focus-visible={undefined}
+                      >
                 ...
           ...
-        ...
-
-[00:13:22.510] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[00:13:22.510] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[00:13:22.510] Browser LOG     BODY {"contact":{"email":"hashtaginflu@gmail.com","method":"whatsapp","whatsapp":"+919177970676"},"links":[{"icon":"/tiktok.png","platform":"tiktok","url":"https://tiktok.com/@oneinflu","visible":true},{"icon":"/telegram.png","platform":"telegram","url":"https://t.me/oneinflu","visible":true},{"icon":"/google.png","platform":"google-business","url":"https://g.page/oneinflu","visible":true},{"icon":"/facebook.png","platform":"facebook","url":"https://facebook.com/oneinflu","visible":true},{"icon":"/threads.png","platform":"threads","url":"https://www.threads.net/@oneinflu","visible":true},{"icon":"/linkedin.png","platform":"linkedin","url":"https://www.linkedin.com/in/oneinflu","visible":true},{"icon":"/twitter.png","platform":"x","url":"https://x.com/oneinflu","visible":true},{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/oneinfluapp","visible":true}],"offers":[{"cta":"request","delivery":"5 days","description":"2 reel","includes":["3 reels"],"price":5000,"priceType":"fixed","title":"Instagram reel promotion"},{"cta":"request","delivery":"3 days","description":"book and get podcast","includes":[],"price":100000,"priceType":"fixed","title":"Youtube podcast"},{"cta":"request","delivery":"3 days","description":"","includes":["Youtube brand promotion"],"price":20000,"priceType":"starting","title":"Youtube promotion"},{"cta":"request","delivery":"5 days","description":"facebook","includes":[],"priceType":"custom","title":"Facebook brand promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@upi"},"portfolio":[{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628905310_05384904d0a5.jpeg","id":"696b22aab84211ac7ace764e","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628882496_cf6739f8637c.jpeg","id":"696b2293b84211ac7ace75fb","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"video","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628850419_6f9e081f1573.mp4","id":"696b2273b84211ac7ace75ab","pinned":true,"title":"_users_6d021d13-9254-4a0d-8e14-be83ef1efb47_generated_b2252efa-b351-403d-afb1-611a94acb65d_generated_video_hd.mp4","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628813347_5f622b3145f0.jpeg","id":"696b224eb84211ac7ace7558","pinned":true,"title":"Signup","visible":true}],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1767199897/avatars/09a2fa72-acf3-4246-8a4b-17d94383f195.png","bio":"Turning influence into real work & payments.\nBrands, collaborations & services — all in one INFLU profile.","coverUrl":"/profile.jpg","id":"695534ca815ce71ec10e05ff","name":"One Influ","role":"Professional","username":"oneinflu","verified":false},"theme":"light"}
-[00:13:22.510] Browser GROUPEND 
-[00:13:22.542] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:22.694] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:23.275] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:23.275] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[00:13:23.522] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:13:23.617] Browser GROUP   PUBLIC_PROFILE_GET
-[00:13:23.617] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
-[00:13:23.617] Browser GROUPEND 
-[00:13:23.617] Browser ERROR   {}
-[00:13:23.835] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
-This will cause a hydration error.%s <button> button 
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
-          <SegmentViewNode type="page" pagePath="[username]...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
-              <ProfilePage params={Promise} searchParams={Promise}>
-                <section className="lg:hidden ...">
-                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
-                    <div className="w-full max...">
-                      <div>
-                      <ProfileServices>
-                      <ProfileShop>
-                      <ProfilePortfolio username="oneinflu" items={[...]}>
-                        <div className="mt-4">
-                          <div>
-                          <div className="mt-2 overf...">
-                            <div className="flex gap-2...">
->                             <button
->                               type="button"
->                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
->                               onClick={function onClick}
->                             >
-                                <div className="aspect-squ...">
-                                  <img>
-                                  <div className="absolute i...">
-                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
-                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
->                                       <button
->                                         data-loading={undefined}
->                                         data-icon-only={undefined}
->                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
->                                         style={undefined}
->                                         data-rac=""
->                                         type="button"
->                                         disabled={undefined}
->                                         form={undefined}
->                                         formAction={undefined}
->                                         formEncType={undefined}
->                                         formMethod={undefined}
->                                         formNoValidate={undefined}
->                                         formTarget={undefined}
->                                         name={undefined}
->                                         value={undefined}
->                                         onFocus={function}
->                                         onBlur={function}
->                                         onKeyDown={function onKeyDown}
->                                         onKeyUp={undefined}
->                                         tabIndex={0}
->                                         onClick={function onClick}
->                                         onPointerDown={function}
->                                         onMouseDown={function}
->                                         onPointerUp={function}
->                                         onPointerEnter={function}
->                                         onPointerLeave={function}
->                                         onDragStart={function}
->                                         data-react-aria-pressable={true}
->                                         aria-haspopup={undefined}
->                                         aria-expanded={undefined}
->                                         aria-controls={undefined}
->                                         aria-pressed={undefined}
->                                         aria-current={undefined}
->                                         aria-disabled={undefined}
->                                         id="react-aria7329746460-_r_k_"
->                                         ref={{current:null}}
->                                         aria-labelledby={undefined}
->                                         slot={undefined}
->                                         data-disabled={undefined}
->                                         data-pressed={undefined}
->                                         data-hovered={undefined}
->                                         data-focused={undefined}
->                                         data-pending={undefined}
->                                         data-focus-visible={undefined}
->                                       >
-                                ...
-                              ...
-                          ...
-                      ...
-                  ...
-                ...
+            <$64fa3d84918910a7$export$2881499e37b75b9a values={[...]}>
+              <InputBase ref={undefined} groupRef={undefined} size="sm" placeholder="Search" icon={function SearchLg} ...>
+                <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} className={function className}>
+                  <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
+                    <SearchLg>
+                    <Input type={undefined} maxLength={undefined} minLength={undefined} pattern={undefined} ...>
+                      <input
+                        aria-label="Search"
+                        type="text"
+                        pattern={undefined}
+                        disabled={false}
+                        readOnly={false}
+                        required={false}
+                        aria-required={undefined}
+                        aria-invalid={undefined}
+                        aria-errormessage={undefined}
+                        aria-activedescendant={undefined}
+                        aria-autocomplete={undefined}
+                        aria-haspopup={undefined}
+                        aria-controls={undefined}
+                        value=""
+                        onChange={function onChange}
+                        autoComplete={undefined}
+                        autoCapitalize={undefined}
+                        maxLength={undefined}
+                        minLength={undefined}
+                        name={undefined}
+                        form={undefined}
+                        placeholder="Search"
+                        inputMode={undefined}
+                        autoCorrect={undefined}
+                        spellCheck={undefined}
+                        enterKeyHint={undefined}
+                        onCopy={undefined}
+                        onCut={undefined}
+                        onPaste={undefined}
+                        onCompositionEnd={undefined}
+                        onCompositionStart={undefined}
+                        onCompositionUpdate={undefined}
+                        onSelect={undefined}
+                        onBeforeInput={undefined}
+                        onInput={undefined}
+                        onFocus={function}
+                        onBlur={function}
+                        onKeyDown={undefined}
+                        onKeyUp={undefined}
+                        tabIndex={0}
++                       id="react-aria-_R_16cndalb_"
+-                       id="react-aria-_R_4pkndalb_"
+                        aria-labelledby={undefined}
++                       aria-describedby="react-aria-_R_16cndalbH3_ react-aria-_R_16cndalbH4_"
+-                       aria-describedby="react-aria-_R_4pkndalbH3_ react-aria-_R_4pkndalbH4_"
+                        className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden placeholder:te..."
+                        onPointerEnter={function}
+                        onPointerLeave={function}
+                        style={undefined}
+                        data-rac=""
+                        ref={{current:null}}
+                        data-focused={undefined}
+                        data-disabled={undefined}
+                        data-hovered={undefined}
+                        data-focus-visible={undefined}
+                        data-invalid={undefined}
+                      >
+                    ...
           ...
-        ...
+      ...
 
-[00:13:23.835] Browser ERROR   <%s> cannot contain a nested %s.
-See this log for the ancestor stack trace. button <button>
-[00:13:23.835] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[00:13:23.835] Browser LOG     BODY {"contact":{"email":"hashtaginflu@gmail.com","method":"whatsapp","whatsapp":"+919177970676"},"links":[{"icon":"/tiktok.png","platform":"tiktok","url":"https://tiktok.com/@oneinflu","visible":true},{"icon":"/telegram.png","platform":"telegram","url":"https://t.me/oneinflu","visible":true},{"icon":"/google.png","platform":"google-business","url":"https://g.page/oneinflu","visible":true},{"icon":"/facebook.png","platform":"facebook","url":"https://facebook.com/oneinflu","visible":true},{"icon":"/threads.png","platform":"threads","url":"https://www.threads.net/@oneinflu","visible":true},{"icon":"/linkedin.png","platform":"linkedin","url":"https://www.linkedin.com/in/oneinflu","visible":true},{"icon":"/twitter.png","platform":"x","url":"https://x.com/oneinflu","visible":true},{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/oneinfluapp","visible":true}],"offers":[{"cta":"request","delivery":"5 days","description":"2 reel","includes":["3 reels"],"price":5000,"priceType":"fixed","title":"Instagram reel promotion"},{"cta":"request","delivery":"3 days","description":"book and get podcast","includes":[],"price":100000,"priceType":"fixed","title":"Youtube podcast"},{"cta":"request","delivery":"3 days","description":"","includes":["Youtube brand promotion"],"price":20000,"priceType":"starting","title":"Youtube promotion"},{"cta":"request","delivery":"5 days","description":"facebook","includes":[],"priceType":"custom","title":"Facebook brand promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@upi"},"portfolio":[{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628905310_05384904d0a5.jpeg","id":"696b22aab84211ac7ace764e","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628882496_cf6739f8637c.jpeg","id":"696b2293b84211ac7ace75fb","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"video","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628850419_6f9e081f1573.mp4","id":"696b2273b84211ac7ace75ab","pinned":true,"title":"_users_6d021d13-9254-4a0d-8e14-be83ef1efb47_generated_b2252efa-b351-403d-afb1-611a94acb65d_generated_video_hd.mp4","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628813347_5f622b3145f0.jpeg","id":"696b224eb84211ac7ace7558","pinned":true,"title":"Signup","visible":true}],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1767199897/avatars/09a2fa72-acf3-4246-8a4b-17d94383f195.png","bio":"Turning influence into real work & payments.\nBrands, collaborations & services — all in one INFLU profile.","coverUrl":"/profile.jpg","id":"695534ca815ce71ec10e05ff","name":"One Influ","role":"Professional","username":"oneinflu","verified":false},"theme":"light"}
-[00:13:23.835] Browser GROUPEND 
-[00:13:23.961] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[00:15:24.382] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:15:24.396] Server  LOG     ✓ Compiled in 266ms
-[00:15:26.148] Browser ERROR   {}
-[00:15:33.326] Server  LOG     ✓ Compiled in 183ms
-[00:15:47.076] Browser ERROR   {}
-[00:17:14.776] Server  LOG     ✓ Compiled in 463ms
-[00:17:20.343] Server  LOG     ✓ Compiled in 164ms
-[00:17:57.530] Server  LOG     ✓ Compiled in 1408ms
-[00:20:02.839] Server  LOG     ✓ Compiled in 156ms
-[00:20:11.933] Server  LOG     ✓ Compiled in 278ms
-[00:20:20.904] Server  LOG     ✓ Compiled in 166ms
-[00:20:54.762] Server  LOG     ✓ Compiled in 306ms
-[00:21:06.269] Server  LOG     ✓ Compiled in 519ms
-[03:25:27.228] Server  LOG     ✓ Compiled in 1426ms
-[03:25:47.363] Server  LOG     ✓ Compiled in 601ms
-[05:51:18.969] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[05:51:19.457] Browser ERROR   {}
-[05:51:27.646] Browser ERROR   {}
-[05:51:38.285] Browser ERROR   {}
-[05:51:57.628] Browser ERROR   {}
-[05:52:08.353] Browser ERROR   {}
-[05:53:49.816] Browser ERROR   {}
-[05:53:50.517] Server  LOG     ✓ Compiled in 415ms
-[05:54:00.706] Server  LOG     ✓ Compiled in 211ms
-[05:54:10.282] Server  LOG     ✓ Compiled in 198ms
-[05:54:34.481] Server  LOG     ✓ Compiled in 200ms
-[05:55:05.673] Server  LOG     ✓ Compiled in 376ms
-[05:57:00.170] Server  LOG     ✓ Compiled in 278ms
-[06:09:24.947] Server  LOG     ✓ Compiled in 251ms
-[06:09:33.575] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:09:33.649] Browser ERROR   {}
-[06:10:34.338] Server  LOG     ✓ Compiled in 338ms
-[06:10:41.711] Server  LOG     ✓ Compiled in 129ms
-[06:10:49.473] Server  LOG     ✓ Compiled in 161ms
-[06:12:11.908] Server  LOG     ✓ Compiled in 319ms
-[06:12:43.981] Server  LOG     ✓ Compiled in 277ms
-[06:12:54.453] Server  LOG     ✓ Compiled in 236ms
-[06:14:39.701] Server  LOG     ✓ Compiled in 409ms
-[06:14:46.061] Server  LOG     ✓ Compiled in 123ms
-[06:14:53.280] Server  LOG     ✓ Compiled in 206ms
-[06:20:43.622] Browser ERROR   {}
-[06:23:33.097] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:23:33.097] Browser ERROR   {}
-[06:24:28.024] Browser ERROR   {}
-[06:25:37.066] Server  LOG     ✓ Compiled in 365ms
-[06:25:50.049] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:25:50.049] Browser ERROR   {}
-[06:25:55.907] Server  LOG     ✓ Compiled in 532ms
-[06:25:56.142] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1353:26
-Parsing ecmascript source code failed
-  1351 |                                 </td>
-  1352 |                             </tr>
-> 1353 |                         ))}
-       |                          ^
-  1354 |                     </tbody>
-  1355 |                 </table>
-  1356 |             </div>
-
-Expected '</', got ')'
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[06:25:56.143] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1353:26
-Parsing ecmascript source code failed
-  1351 |                                 </td>
-  1352 |                             </tr>
-> 1353 |                         ))}
-       |                          ^
-  1354 |                     </tbody>
-  1355 |                 </table>
-  1356 |             </div>
-
-Expected '</', got ')'
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[06:26:03.830] Server  LOG     ✓ Compiled in 358ms
-[06:26:32.165] Server  LOG     ✓ Compiled in 293ms
-[06:26:41.805] Server  LOG     ✓ Compiled in 503ms
-[06:26:57.397] Server  LOG     ✓ Compiled in 206ms
-[06:28:52.329] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:28:52.510] Browser ERROR   {}
-[06:29:04.574] Server  LOG     ✓ Compiled in 367ms
-[06:29:13.235] Server  LOG     ✓ Compiled in 637ms
-[06:29:32.357] Server  LOG     ✓ Compiled in 385ms
-[06:35:12.544] Server  LOG     ✓ Compiled in 522ms
-[06:35:18.807] Server  LOG     ✓ Compiled in 251ms
-[06:35:32.267] Browser ERROR   {}
-[06:35:40.270] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:35:40.270] Browser ERROR   {}
-[06:36:50.045] Server  LOG     ✓ Compiled in 315ms
-[06:36:59.490] Server  LOG     ✓ Compiled in 692ms
-[06:37:07.871] Server  LOG     ✓ Compiled in 414ms
-[06:37:25.754] Server  LOG     ✓ Compiled in 149ms
-[06:37:55.700] Browser ERROR   {}
-[06:38:05.157] Browser ERROR   {}
-[06:39:28.624] Server  LOG     ✓ Compiled in 507ms
-[06:39:33.226] Browser ERROR   Failed to fetch replaced applicants {}
-[06:39:36.201] Browser ERROR   Failed to fetch replaced applicants {}
-[06:39:37.435] Server  LOG     ✓ Compiled in 124ms
-[06:39:45.240] Browser ERROR   Failed to fetch replaced applicants {}
-[06:39:51.146] Browser ERROR   Failed to fetch replaced applicants {}
-[06:39:54.784] Server  LOG     ✓ Compiled in 154ms
-[06:39:56.148] Browser ERROR   Failed to fetch replaced applicants {}
-[06:40:01.158] Browser ERROR   Failed to fetch replaced applicants {}
-[06:40:09.801] Browser ERROR   Failed to fetch replaced applicants {}
-[06:40:17.376] Server  LOG     ✓ Compiled in 620ms
-[06:40:31.448] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:40:31.539] Browser ERROR   {}
-[06:42:32.428] Server  LOG     ✓ Compiled in 357ms
-[06:42:47.779] Server  LOG     ✓ Compiled in 323ms
-[06:45:30.983] Server  LOG     ✓ Compiled in 651ms
-[06:45:31.175] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1344:51
-Parsing ecmascript source code failed
-  1342 |
-  1343 | function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
-> 1344 |                                         onChange={(isSelected) => handleSelectAll(isSelected)}
-       |                                                   ^
-  1345 |                                         aria-label="Select all applicants"
-  1346 |                                     />
-  1347 |                                 </th>
-
-Unexpected token `(`. Expected identifier, string literal, numeric literal or [ for the computed key
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[06:45:31.177] Browser ERROR   ./src/app/admin/campaigns/[id]/page.tsx:1344:51
-Parsing ecmascript source code failed
-  1342 |
-  1343 | function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
-> 1344 |                                         onChange={(isSelected) => handleSelectAll(isSelected)}
-       |                                                   ^
-  1345 |                                         aria-label="Select all applicants"
-  1346 |                                     />
-  1347 |                                 </th>
-
-Unexpected token `(`. Expected identifier, string literal, numeric literal or [ for the computed key
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component Browser]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/campaigns/[id]/page.tsx [Client Component SSR]
-    ./src/app/admin/campaigns/[id]/page.tsx [Server Component]
-[06:47:35.695] Server  LOG     ✓ Compiled in 372ms
-[06:50:15.200] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[06:50:15.286] Browser ERROR   {}
-[06:50:30.137] Server  LOG     ✓ Compiled in 294ms
-[06:50:49.413] Server  LOG     ✓ Compiled in 250ms
-[06:50:56.596] Server  LOG     ✓ Compiled in 417ms
-[06:52:15.551] Server  LOG     ✓ Compiled in 600ms
-[06:52:39.452] Server  LOG     ✓ Compiled in 334ms
+[00:00:20.617] Browser ERROR   {}
+[00:08:14.556] Browser ERROR   {}
+[00:08:35.081] Browser ERROR   {}
+[00:12:31.146] Server  LOG     ✓ Compiled in 3.6s
+[00:13:06.273] Server  LOG     ✓ Compiled in 1565ms
+[00:14:05.621] Server  LOG     ✓ Compiled in 632ms
+[00:14:48.797] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[00:14:50.590] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[00:15:30.449] Browser ERROR   {}
+[00:16:08.242] Browser ERROR   {}
+[00:16:31.270] Browser ERROR   {}

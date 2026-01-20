@@ -20,7 +20,9 @@ import {
     PieChart03,
     CheckDone01,
     PlayCircle,
-    UploadCloud02
+    UploadCloud02,
+    Mail01,
+    XCircle
 } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
@@ -1178,7 +1180,7 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                                 <th className="px-4 py-3 font-medium">Instagram</th>
                                 <th className="px-4 py-3 font-medium">Phone</th>
                                 <th className="px-4 py-3 font-medium">Attended Event</th>
-                                <th className="px-4 py-3 font-medium">Invitation Shared</th>
+                                <th className="px-4 py-3 font-medium">Invitation Accepted</th>
                                 <th className="px-4 py-3 font-medium">Task Completion</th>
                             </tr>
                         </thead>
@@ -1223,65 +1225,74 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                                     {/* Attended Event */}
                                     <td className="px-4 py-3 text-tertiary">
                                         <div className="flex items-center gap-2">
-                                            {app.attendedEvent ? (
+                                            {app.checkedIn ? (
                                                 <div className="flex flex-col gap-1">
                                                      <div className="flex items-center gap-1.5 text-success">
                                                         <CheckCircle className="size-4 text-success-primary fill-success-primary" />
                                                         <span className="font-medium text-success-primary">Checked In</span>
                                                     </div>
-                                                    {app.attendedAt && (
+                                                    {app.checkedInAt && (
                                                         <span className="text-xs text-tertiary">
-                                                            {new Date(app.attendedAt).toLocaleString()}
+                                                            {new Date(app.checkedInAt).toLocaleString()}
                                                         </span>
                                                     )}
                                                 </div>
                                             ) : (
-                                                <div className="size-4 rounded border border-tertiary bg-secondary" />
+                                                <div className="flex items-center gap-1.5 text-tertiary">
+                                                    <XCircle className="size-4" />
+                                                    <span className="text-sm">Not yet</span>
+                                                </div>
                                             )}
                                         </div>
                                     </td>
                                     {/* Invitation Shared */}
                                     <td className="px-4 py-3 text-tertiary">
                                         <div className="flex items-center gap-2">
-                                            {app.invitationShared ? (
-                                                <div className="flex flex-col gap-1">
-                                                     <div className="flex items-center gap-1.5 text-success">
-                                                        <CheckCircle className="size-4 text-success-primary fill-success-primary" />
-                                                        <span className="font-medium text-success-primary">Sent</span>
-                                                    </div>
-                                                    {app.invitationSharedAt && (
-                                                        <span className="text-xs text-tertiary">
-                                                            {new Date(app.invitationSharedAt).toLocaleString()}
-                                                        </span>
-                                                    )}
+                                            {app.isInvitationShared ? (
+                                                <div className="flex items-center gap-1.5 text-success">
+                                                    <Mail01 className="size-4" />
+                                                    <Check className="size-3" />
+                                                    <span className="font-medium">Sent</span>
                                                 </div>
                                             ) : (
-                                                <div className="size-4 rounded border border-tertiary bg-secondary" />
+                                                <Button
+                                                    size="sm"
+                                                    color="secondary"
+                                                    iconLeading={Share04}
+                                                    onClick={() => {
+                                                        const url = `${window.location.origin}/events/invite/${encodeURIComponent(String(eventCode))}`;
+                                                        if (navigator.share) {
+                                                            navigator.share({
+                                                                title: 'Campaign Invite',
+                                                                text: 'Join this campaign',
+                                                                url: url
+                                                            }).catch(console.error);
+                                                        } else {
+                                                            alert(`Share this link: ${url}`);
+                                                        }
+                                                    }}
+                                                >
+                                                    Share
+                                                </Button>
                                             )}
                                         </div>
                                     </td>
                                     {/* Task Completion */}
                                     <td className="px-4 py-3 text-tertiary">
                                         <div className="flex items-center gap-2">
-                                            {app.taskCompleted ? (
-                                                <div className="flex flex-col gap-1">
-                                                     <div className="flex items-center gap-1.5 text-success">
-                                                        <CheckCircle className="size-4 text-success-primary fill-success-primary" />
-                                                        <span className="font-medium text-success-primary">Completed</span>
-                                                    </div>
-                                                    {app.taskData && (
-                                                        <a 
-                                                            href={app.taskData}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="text-xs text-brand-solid hover:underline truncate max-w-[150px]"
-                                                        >
-                                                            View Data
-                                                        </a>
-                                                    )}
-                                                </div>
+                                            {app.taskCompletion ? (
+                                                 <Button
+                                                    size="sm"
+                                                    color="secondary"
+                                                    iconLeading={File04}
+                                                    onClick={() => {
+                                                         if (app.taskData) window.open(app.taskData, '_blank');
+                                                    }}
+                                                >
+                                                    Show Work
+                                                </Button>
                                             ) : (
-                                                <div className="size-4 rounded border border-tertiary bg-secondary" />
+                                                <span className="text-tertiary text-sm">Not yet uploaded</span>
                                             )}
                                         </div>
                                     </td>
