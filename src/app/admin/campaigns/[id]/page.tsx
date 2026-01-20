@@ -40,7 +40,7 @@ export default function CampaignDetailPage() {
     const id = String(params?.id || "");
     const [event, setEvent] = useState<EventDetail | null>(null);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted">("details");
+    const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted" | "replacement" | "approved">("details");
     const clipboard = useClipboard();
     const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
 
@@ -250,6 +250,26 @@ export default function CampaignDetailPage() {
                         >
                             Shortlisted Profiles
                         </button>
+                           <button
+                            onClick={() => setActiveTab("replacement")}
+                            className={`pb-3 text-sm font-semibold transition-colors ${
+                                activeTab === "replacement"
+                                    ? "border-b-2 border-brand-solid text-brand-solid"
+                                    : "text-tertiary hover:text-primary"
+                            }`}
+                        >
+                            Request for Replacement
+                        </button>
+                           <button
+                            onClick={() => setActiveTab("approved")}
+                            className={`pb-3 text-sm font-semibold transition-colors ${
+                                activeTab === "approved"
+                                    ? "border-b-2 border-brand-solid text-brand-solid"
+                                    : "text-tertiary hover:text-primary"
+                            }`}
+                        >
+                            Approved Profiles
+                        </button>
                     </div>
                 </div>
             </div>
@@ -332,12 +352,244 @@ export default function CampaignDetailPage() {
                         </div>
                     ) : activeTab === "shortlisted" ? (
                         <ShortlistedTab eventCode={event.code} targetCount={event.creatorCountNeeded} />
+                    ) : activeTab === "replacement" ? (
+                        <StatusApplicationTab 
+                            eventCode={event.code} 
+                            status="replacement_requested" 
+                            title="Replacement Requests" 
+                            description="Candidates that you have requested to replace will appear here."
+                            targetCount={event.creatorCountNeeded}
+                            showProgress={false}
+                        />
+                    ) : activeTab === "approved" ? (
+                        <StatusApplicationTab 
+                            eventCode={event.code} 
+                            status="approved" 
+                            title="Approved Profiles" 
+                            description="Candidates that have been approved will appear here."
+                            targetCount={event.creatorCountNeeded}
+                            showProgress={true}
+                        />
                     ) : (
                         <ApplicantsTab eventCode={event.code} />
                     )}
                 </div>
             </div>
         </section>
+    );
+}
+
+function StatusApplicationTab({ 
+    eventCode, 
+    status, 
+    title, 
+    description,
+    targetCount = 0,
+    showProgress = false
+}: { 
+    eventCode?: string | null; 
+    status: string;
+    title: string;
+    description: string;
+    targetCount?: number;
+    showProgress?: boolean;
+}) {
+    const { token } = useAuth();
+    const [applicants, setApplicants] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        let alive = true;
+        (async () => {
+            try {
+                if (!eventCode || !token) {
+                    setLoading(false);
+                    return;
+                }
+                const res = await api.get<{ success: boolean; data: { applications: any[] } }>(
+                    `/events/public/code/${eventCode}/applications?status=${status}`,
+                    { token }
+                );
+                if (!alive) return;
+                setApplicants(res.data?.applications || []);
+            } catch (e) {
+                console.error(`Failed to fetch ${status} applicants`, e);
+                setError(true);
+            } finally {
+                if (alive) setLoading(false);
+            }
+        })();
+        return () => { alive = false; };
+    }, [eventCode, token, status]);
+
+    if (loading) {
+        return (
+            <div className="py-12 text-center">
+                <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            </div>
+        );
+    }
+
+    if (!eventCode) {
+         return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <p className="text-tertiary">This event does not have an invite code.</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <p className="text-tertiary">Unable to load applicants at this time.</p>
+            </div>
+        );
+    }
+
+    if (applicants.length === 0) {
+        return (
+            <div className="rounded-xl bg-primary p-8 text-center ring-1 ring-secondary shadow-xs">
+                <Users01 className="mx-auto size-8 text-tertiary mb-3" />
+                <h3 className="text-md font-semibold text-primary">{title}</h3>
+                <p className="mt-1 text-sm text-tertiary">
+                    {description}
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="relative flex flex-col gap-6">
+            {showProgress && targetCount > 0 && (
+                <div className="flex items-center gap-4 rounded-xl bg-primary p-4 ring-1 ring-secondary shadow-xs">
+                    <div className="flex-1">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
+                            <div 
+                                className="h-full bg-brand-solid transition-all duration-500" 
+                                style={{ width: `${Math.min((applicants.length / targetCount) * 100, 100)}%` }}
+                            />
+                        </div>
+                    </div>
+                    <span className="text-sm font-medium text-secondary whitespace-nowrap">
+                        {applicants.length} out of {targetCount} profiles
+                    </span>
+                </div>
+            )}
+            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-secondary text-tertiary">
+                            <tr>
+                                <th className="px-4 py-3 font-medium">Candidate</th>
+                                <th className="px-4 py-3 font-medium">Category</th>
+                                <th className="px-4 py-3 font-medium">Instagram</th>
+                                <th className="px-4 py-3 font-medium">Phone</th>
+                                <th className="px-4 py-3 font-medium">Willing to Attend</th>
+                                <th className="px-4 py-3 font-medium">Dashboard</th>
+                                <th className="px-4 py-3 font-medium">Status</th>
+                                <th className="px-4 py-3 font-medium">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-secondary">
+                            {applicants.map((app, i) => (
+                                <tr key={i} className="hover:bg-primary_hover transition-colors">
+                                    <td className="px-4 py-3 font-medium text-primary">
+                                        <div className="flex items-center gap-3">
+                                            {app.user?.avatarUrl && (
+                                                <img 
+                                                    src={app.user.avatarUrl} 
+                                                    alt="" 
+                                                    className="h-8 w-8 rounded-full object-cover bg-secondary"
+                                                />
+                                            )}
+                                            <div className="flex flex-col">
+                                                <span>{app.user?.name || "Unknown"}</span>
+                                                <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.user?.category ? (
+                                            <Badge size="sm" color="gray">{app.user.category}</Badge>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.instagramHandle ? (
+                                            <a 
+                                                href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:text-primary hover:underline"
+                                            >
+                                                @{app.instagramHandle}
+                                            </a>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {(app.user?.phone || app.user?.whatsapp) ? (
+                                            <a 
+                                                href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                                className="hover:text-primary hover:underline whitespace-nowrap"
+                                            >
+                                                {app.user?.phone || app.user?.whatsapp}
+                                            </a>
+                                        ) : "—"}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.willingToAttend ? (
+                                            <div className="flex items-center gap-1.5 text-success">
+                                                <Check className="size-3" />
+                                                <span>Yes</span>
+                                            </div>
+                                        ) : (
+                                            <span className="text-tertiary">No</span>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        <div className="flex flex-col gap-1">
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-xs text-tertiary">Shared:</span>
+                                                {app.shareProfessionalDashboard ? (
+                                                    <Badge size="sm" color="success">Yes</Badge>
+                                                ) : (
+                                                    <span className="text-xs">No</span>
+                                                )}
+                                            </div>
+                                            {app.dashboardImageUrl && (
+                                                <a 
+                                                    href={app.dashboardImageUrl} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className="text-xs font-medium text-brand-solid hover:underline flex items-center gap-1"
+                                                >
+                                                    View Screenshot
+                                                </a>
+                                            )}
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        <Badge size="sm" color={
+                                            app.status === "shortlisted" ? "orange" : 
+                                            app.status === "invited" ? "success" : 
+                                            app.status === "approved" ? "success" : 
+                                            app.status === "rejected" ? "error" : 
+                                            app.status === "replacement_requested" ? "warning" :
+                                            "purple"
+                                        }>
+                                            {app.status === "replacement_requested" ? "Replacement Req." : (app.status || "Applied")}
+                                        </Badge>
+                                    </td>
+                                    <td className="px-4 py-3 text-tertiary">
+                                        {app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     );
 }
 

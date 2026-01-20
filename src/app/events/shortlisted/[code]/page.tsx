@@ -51,13 +51,18 @@ export default function ShortlistedPage() {
     
     // Modal & Upload state
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isReplaceModalOpen, setIsReplaceModalOpen] = useState(false);
     const [bannerFile, setBannerFile] = useState<File | null>(null);
     const [approving, setApproving] = useState(false);
+    const [replacing, setReplacing] = useState(false);
+    const [replaceReason, setReplaceReason] = useState("");
     const [success, setSuccess] = useState(false);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
 
     // Lottie ref
     const lottieContainer = useRef<HTMLDivElement>(null);
+
+    const hasReplacementPending = applicants.some(app => app.status === 'replacement_requested');
 
     useEffect(() => {
         let alive = true;
@@ -120,31 +125,57 @@ export default function ShortlistedPage() {
     const handleApprove = async () => {
         if (!bannerFile || selectedIds.size === 0) return;
         
-        setApproving(true);
         try {
-            const fd = new FormData();
-            fd.append("applicantIds", JSON.stringify(Array.from(selectedIds)));
-            fd.append("banner", bannerFile);
-
-            // Using the assumed endpoint
-            const endpoint = `${process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app"}/events/public/code/${code}/applications/approve`;
+            setApproving(true);
+            const formData = new FormData();
+            formData.append("banner", bannerFile);
+            formData.append("applicationIds", JSON.stringify(Array.from(selectedIds)));
             
-            const res = await fetch(endpoint, {
-                method: "POST",
-                body: fd
-            });
-
-            if (!res.ok) {
-                throw new Error("Failed to approve");
-            }
-
+            await api.post(`/events/public/code/${code}/applications/approve`, formData);
+            
             setSuccess(true);
             setIsModalOpen(false);
+            
+            // Refresh list after delay
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
         } catch (e) {
-            console.error("Approval failed", e);
-            alert("Failed to approve applicants. Please try again.");
+            console.error("Failed to approve applications", e);
         } finally {
             setApproving(false);
+        }
+    };
+
+    const handleReplaceRequest = async () => {
+        if (selectedIds.size === 0) return;
+        
+        try {
+            setReplacing(true);
+            await api.post(`/events/public/code/${code}/applications/replace`, {
+                applicationIds: Array.from(selectedIds),
+                reason: replaceReason
+            });
+            
+            setIsReplaceModalOpen(false);
+            setReplaceReason("");
+            
+            // Update local state to reflect replacement request
+            setApplicants(prev => prev.map(app => 
+                selectedIds.has(getUserId(app)) 
+                    ? { ...app, status: 'replacement_requested' } 
+                    : app
+            ));
+
+            setSelectedIds(new Set());
+            
+            // Show toast or some feedback (for now just reload or clear selection)
+            // ideally we should show a success message
+            
+        } catch (e) {
+            console.error("Failed to request replacement", e);
+        } finally {
+            setReplacing(false);
         }
     };
 
@@ -241,6 +272,8 @@ export default function ShortlistedPage() {
                             {applicants.map((app, i) => {
                                 const userId = getUserId(app);
                                 const isSelected = selectedIds.has(userId);
+                                const isReplaced = app.status === 'replacement_requested';
+                                
                                 return (
                                     <div 
                                         key={userId || i} 
@@ -248,15 +281,17 @@ export default function ShortlistedPage() {
                                             "group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 p-5 shadow-sm transition-all duration-300 cursor-pointer border",
                                             isSelected 
                                                 ? "ring-2 ring-brand-500 border-transparent shadow-md bg-brand-50/5 dark:bg-brand-900/10" 
-                                                : "border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-gray-200 dark:hover:border-gray-600"
+                                                : "border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-gray-200 dark:hover:border-gray-600",
+                                            isReplaced && "opacity-75 pointer-events-none grayscale-[0.5]"
                                         )}
-                                        onClick={() => handleSelect(userId)}
+                                        onClick={() => !isReplaced && handleSelect(userId)}
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className="pt-1" onClick={(e) => e.stopPropagation()}>
                                                 <Checkbox 
                                                     isSelected={isSelected}
-                                                    onChange={() => handleSelect(userId)}
+                                                    onChange={() => !isReplaced && handleSelect(userId)}
+                                                    isDisabled={isReplaced}
                                                 />
                                             </div>
                                             <div className="relative shrink-0">
@@ -270,8 +305,11 @@ export default function ShortlistedPage() {
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-start justify-between gap-2">
                                                     <div>
-                                                        <h3 className="font-bold text-gray-900 dark:text-white truncate pr-2 text-lg">
+                                                        <h3 className="font-bold text-gray-900 dark:text-white truncate pr-2 text-lg flex items-center gap-2">
                                                             {app.user.name}
+                                                            {isReplaced && (
+                                                                <Badge size="sm" color="warning">Replacement Requested</Badge>
+                                                            )}
                                                         </h3>
                                                         <a 
                                                             href={app.instagramUrl}
@@ -322,19 +360,95 @@ export default function ShortlistedPage() {
                 "fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 ease-in-out w-[min(90vw,600px)]",
                 selectedIds.size > 0 ? "translate-y-0 opacity-100" : "translate-y-[150%] opacity-0"
             )}>
-                <div className="rounded-2xl bg-gray-900/90 dark:bg-white/90 backdrop-blur-md p-2 shadow-2xl ring-1 ring-white/10 dark:ring-black/10 flex items-center justify-between pl-6 pr-2 gap-4">
-                    <div className="text-sm font-semibold text-white dark:text-gray-900">
+                <div className="rounded-2xl bg-gray-900/90 dark:bg-white/90 backdrop-blur-md p-2 shadow-2xl ring-1 ring-white/10 dark:ring-black/10 flex flex-col gap-2">
+                    <div className="px-2 pt-2 text-sm font-semibold text-white dark:text-gray-900 text-center">
                         {selectedIds.size} profile{selectedIds.size !== 1 ? 's' : ''} selected
                     </div>
-                    <Button 
-                        size="lg" 
-                        className="bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 rounded-xl px-8 shadow-sm"
-                        onClick={() => setIsModalOpen(true)}
-                    >
-                        Approve
-                    </Button>
+                    <div className="flex items-center gap-2 w-full">
+                        <Button 
+                            size="lg" 
+                            className="flex-1 bg-white/10 text-white hover:bg-white/20 dark:bg-black/5 dark:text-gray-900 dark:hover:bg-black/10 rounded-xl shadow-none border-0"
+                            onClick={() => setIsReplaceModalOpen(true)}
+                        >
+                            Replace
+                        </Button>
+                        <Button 
+                            size="lg" 
+                            className="flex-1 bg-white text-gray-900 hover:bg-gray-100 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 rounded-xl shadow-sm"
+                            onClick={() => setIsModalOpen(true)}
+                            isDisabled={hasReplacementPending}
+                        >
+                            Approve
+                        </Button>
+                    </div>
                 </div>
             </div>
+
+            {/* Replacement Modal */}
+            <ModalOverlay 
+                isOpen={isReplaceModalOpen} 
+                onOpenChange={setIsReplaceModalOpen}
+                isDismissable
+                className={cx(
+                    "fixed inset-0 z-50 flex min-h-dvh w-full items-end justify-center overflow-y-auto bg-black/50 backdrop-blur-sm pb-0 sm:items-center sm:p-4",
+                    "animate-in fade-in duration-300 data-[exiting]:animate-out data-[exiting]:fade-out data-[exiting]:duration-200"
+                )}
+            >
+                <Modal
+                    className={({ isEntering, isExiting }) => cx(
+                        "w-full max-w-md max-h-[85dvh] flex flex-col overflow-hidden rounded-t-2xl bg-primary shadow-xl ring-1 ring-secondary sm:rounded-2xl",
+                        isEntering ? "animate-in slide-in-from-bottom duration-300 sm:zoom-in-95" : "",
+                        isExiting ? "animate-out slide-out-to-bottom duration-200 sm:zoom-out-95" : ""
+                    )}
+                >
+                    <Dialog className="outline-none flex flex-col h-full overflow-y-auto p-6" aria-label="Request Replacement">
+                        <div className="flex items-center justify-between mb-4 shrink-0">
+                            <h2 className="text-lg font-semibold text-primary">Request Replacement</h2>
+                            <button 
+                                onClick={() => setIsReplaceModalOpen(false)}
+                                className="text-tertiary hover:text-primary transition-colors"
+                            >
+                                <X className="size-5" />
+                            </button>
+                        </div>
+                        
+                        <p className="text-sm text-tertiary mb-6 shrink-0">
+                            Please let us know why you'd like to replace the selected profiles. Our team will find better matches for you.
+                        </p>
+                        
+                        <div className="flex-1 flex flex-col min-h-0 w-full">
+                            <textarea
+                                value={replaceReason}
+                                onChange={(e) => setReplaceReason(e.target.value)}
+                                placeholder="e.g., Not enough engagement, style doesn't match brand..."
+                                className="w-full h-32 rounded-xl border border-secondary bg-primary p-4 text-sm text-primary placeholder-tertiary focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 mb-6 resize-none block"
+                            />
+                            
+                            <div className="mt-auto flex flex-col gap-3 shrink-0">
+                                <Button 
+                                    size="lg" 
+                                    color="primary"
+                                    onClick={handleReplaceRequest}
+                                    isLoading={replacing}
+                                    isDisabled={!replaceReason.trim()}
+                                    className="w-full justify-center"
+                                >
+                                    Submit Request
+                                </Button>
+                                <Button 
+                                    size="lg" 
+                                    color="secondary"
+                                    onClick={() => setIsReplaceModalOpen(false)}
+                                    isDisabled={replacing}
+                                    className="w-full justify-center"
+                                >
+                                    Cancel
+                                </Button>
+                            </div>
+                        </div>
+                    </Dialog>
+                </Modal>
+            </ModalOverlay>
 
             {/* Dashboard Preview Modal */}
             <ModalOverlay 
