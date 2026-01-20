@@ -223,6 +223,7 @@ export default function EventInviteClient() {
     const [otp, setOtp] = useState("");
     const [otpError, setOtpError] = useState("");
     const [notificationEnabled, setNotificationEnabled] = useState(false);
+    const [isSubscribing, setIsSubscribing] = useState(false);
 
     // Step 3: User Details State
     const [name, setName] = useState("");
@@ -332,6 +333,7 @@ export default function EventInviteClient() {
     };
 
     const handleSubscribe = async () => {
+        setIsSubscribing(true);
         console.log("handleSubscribe: Starting");
         try {
             const OneSignal = (window as any).OneSignalDeferred || (window as any).OneSignal;
@@ -339,6 +341,7 @@ export default function EventInviteClient() {
             if (!OneSignal) {
                 console.error("handleSubscribe: OneSignal not found");
                 setStep("details");
+                setIsSubscribing(false);
                 return;
             }
 
@@ -354,6 +357,7 @@ export default function EventInviteClient() {
                     if (permission !== 'granted' && permission !== true) {
                         console.warn("handleSubscribe: Permission denied");
                         setStep("details");
+                        setIsSubscribing(false);
                     } else {
                         // Subscribe user
                         console.log("handleSubscribe: Opting in");
@@ -382,6 +386,12 @@ export default function EventInviteClient() {
                             const userId = localStorage.getItem("influu_user_id");
                             const token = authToken || localStorage.getItem("influu_token");
                             
+                            // Link the user in OneSignal
+                            if (userId) {
+                                console.log("handleSubscribe: Logging in to OneSignal with userId", userId);
+                                await OS.login(userId);
+                            }
+
                             console.log("handleSubscribe: Credentials", { userId, hasToken: !!token, onesignalId });
 
                             if (userId && token) {
@@ -430,15 +440,18 @@ export default function EventInviteClient() {
                         // However, we need to be careful not to skip if we are in success state.
                         // Actually, I returned in the success block.
                         setStep("details");
+                        setIsSubscribing(false);
                     }
                 } catch (e) {
                     console.error("OneSignal error", e);
                     setStep("details");
+                    setIsSubscribing(false);
                 }
             });
         } catch (e) {
             console.error("Subscription error", e);
             setStep("details");
+            setIsSubscribing(false);
         }
     };
 
@@ -1098,7 +1111,7 @@ export default function EventInviteClient() {
                                                             </div>
 
                                                             <div className="space-y-4">
-                                                                {!notificationEnabled ? (
+                                                                {!notificationEnabled && !isSubscribing ? (
                                                                     <>
                                                                         <Button 
                                                                             size="lg" 
