@@ -332,52 +332,64 @@ export default function EventInviteClient() {
     };
 
     const handleSubscribe = async () => {
+        console.log("handleSubscribe: Starting");
         try {
             const OneSignal = (window as any).OneSignalDeferred || (window as any).OneSignal;
             
             if (!OneSignal) {
-                // If OneSignal isn't loaded for some reason, just proceed
+                console.error("handleSubscribe: OneSignal not found");
                 setStep("details");
                 return;
             }
 
             // We use push to ensure it runs when OneSignal is ready
             OneSignal.push(async function(OS: any) {
+                console.log("handleSubscribe: OneSignal ready");
                 try {
                     // Ask permission ONLY when user clicks
                     const permission = await OS.Notifications.requestPermission();
+                    console.log("handleSubscribe: Permission result", permission);
 
                     if (permission !== 'granted') {
-                        // User denied permission, proceed to next step
+                        console.warn("handleSubscribe: Permission denied");
                         setStep("details");
                     } else {
                         // Subscribe user
+                        console.log("handleSubscribe: Opting in");
                         await OS.User.PushSubscription.optIn();
 
-                        // Get OneSignal ID (User ID / Alias)
-                        // Note: Depending on SDK version, might be OS.User.onesignalId or similar
-                        // Fallback to subscription ID if onesignalId is not directly available/documented in this context,
-                        // but based on user requirement "identity.onesignal_id", we try to get the user identity.
-                        // In OneSignal Web SDK 16, `OneSignal.User.PushSubscription.id` is the subscription ID.
-                        // `OneSignal.User.onesignalId` gives the OneSignal ID (User ID).
-                        
-                        // We will try to get the ID.
+                        // Wait a bit for the subscription to propagate and ID to be generated
+                        // Sometimes the ID is not available immediately
                         let onesignalId = OS.User.onesignalId;
+                        console.log("handleSubscribe: Initial onesignalId", onesignalId);
+
                         if (!onesignalId) {
-                            // If not available immediately, wait a bit or use subscription ID as fallback if allowed (though requirement is strict)
-                            // The response example shows "identity": { "onesignal_id": "..." }
-                            // We'll try to get subscription ID as well.
-                            onesignalId = await OS.User.PushSubscription.getId();
+                             console.log("handleSubscribe: onesignalId not found, trying PushSubscription.getId()");
+                             onesignalId = await OS.User.PushSubscription.getId();
+                             console.log("handleSubscribe: PushSubscription.getId() result", onesignalId);
+                        }
+                        
+                        // If still no ID, wait a bit and try again (retry logic)
+                        if (!onesignalId) {
+                            console.log("handleSubscribe: Still no ID, waiting 500ms...");
+                            await new Promise(r => setTimeout(r, 500));
+                            onesignalId = OS.User.onesignalId || await OS.User.PushSubscription.getId();
+                            console.log("handleSubscribe: Retry ID result", onesignalId);
                         }
 
                         if (onesignalId) {
                             const userId = localStorage.getItem("influu_user_id");
                             const token = authToken || localStorage.getItem("influu_token");
+                            
+                            console.log("handleSubscribe: Credentials", { userId, hasToken: !!token, onesignalId });
 
                             if (userId && token) {
                                 try {
                                     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
-                                    await fetch(`${baseUrl}/users/id/${userId}/notifications/enable`, {
+                                    const url = `${baseUrl}/users/id/${userId}/notifications/enable`;
+                                    console.log("handleSubscribe: Hitting API", url);
+                                    
+                                    const res = await fetch(url, {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json",
@@ -389,21 +401,34 @@ export default function EventInviteClient() {
                                             }
                                         })
                                     });
-                                    setNotificationEnabled(true);
-                                    // Wait a moment to show success state before moving on
-                                    setTimeout(() => {
-                                        setStep("details");
-                                    }, 1500);
+                                    
+                                    if (!res.ok) {
+                                        console.error("handleSubscribe: API Error", res.status, await res.text());
+                                    } else {
+                                        console.log("handleSubscribe: API Success");
+                                        setNotificationEnabled(true);
+                                        // Wait a moment to show success state before moving on
+                                        setTimeout(() => {
+                                            setStep("details");
+                                        }, 1500);
+                                        return; // Don't fall through to setStep("details") immediately
+                                    }
                                 } catch (apiError) {
                                     console.error("Failed to sync notification status", apiError);
-                                    setStep("details");
                                 }
                             } else {
-                                setStep("details");
+                                console.error("handleSubscribe: Missing userId or token");
                             }
                         } else {
-                            setStep("details");
+                            console.error("handleSubscribe: Could not retrieve OneSignal ID");
                         }
+                        
+                        // If we didn't succeed (e.g. no ID, api error), we proceed to details
+                        // Only if we didn't setNotificationEnabled (which implies success)
+                        // But since we returned early on success, this is fine.
+                        // However, we need to be careful not to skip if we are in success state.
+                        // Actually, I returned in the success block.
+                        setStep("details");
                     }
                 } catch (e) {
                     console.error("OneSignal error", e);
