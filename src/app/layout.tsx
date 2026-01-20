@@ -49,8 +49,10 @@ export default function RootLayout({
                                 appId: "faba9dc9-fbc3-487b-a574-58b2deed46b4", 
                                 safari_web_id: "web.onesignal.auto.5a4f7f6e-eec9-48b6-8a5c-3683e8870b3c", 
                                 notifyButton: { 
-                                    enable: true, 
-                                }, 
+                                    enable: false, 
+                                },
+                                autoResubscribe: false,
+                                allowLocalhostAsSecureOrigin: true
                             }); 
                         }); 
                     `}
