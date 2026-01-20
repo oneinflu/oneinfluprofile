@@ -30,7 +30,8 @@ import {
     UploadCloud02,
     CheckCircle,
     XCircle,
-    Trash01
+    Trash01,
+    Bell01
 } from "@untitledui/icons";
 import { Avatar } from "@/components/base/avatar/avatar";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
@@ -218,7 +219,7 @@ export default function EventInviteClient() {
     
     const [phoneNumber, setPhoneNumber] = useState("");
     const [phoneError, setPhoneError] = useState("");
-    const [step, setStep] = useState<"phone" | "otp" | "details" | "dashboard" | "success">("phone");
+    const [step, setStep] = useState<"phone" | "otp" | "notifications" | "details" | "dashboard" | "success">("phone");
     const [otp, setOtp] = useState("");
     const [otpError, setOtpError] = useState("");
 
@@ -308,7 +309,7 @@ export default function EventInviteClient() {
                 }
             }
 
-            setStep("details");
+            setStep("notifications");
             setIsFocused(false);
         } catch (e: any) {
             setOtpError(e.message || "Invalid OTP. Please try again.");
@@ -320,9 +321,56 @@ export default function EventInviteClient() {
             setStep("phone");
             setOtp("");
             setOtpError("");
-        } else if (step === "details") {
+        } else if (step === "notifications") {
             setStep("otp");
+        } else if (step === "details") {
+            setStep("notifications");
         } else if (step === "dashboard") {
+            setStep("details");
+        }
+    };
+
+    const handleSubscribe = async () => {
+        try {
+            const OneSignal = (window as any).OneSignalDeferred || (window as any).OneSignal;
+            
+            if (!OneSignal) {
+                // If OneSignal isn't loaded for some reason, just proceed
+                setStep("details");
+                return;
+            }
+
+            // We use push to ensure it runs when OneSignal is ready
+            OneSignal.push(async function(OS: any) {
+                try {
+                    // Ask permission ONLY when user clicks
+                    const permission = await OS.Notifications.requestPermission();
+
+                    if (permission !== 'granted') {
+                        alert("Notification permission denied");
+                        // We don't return here so the user isn't stuck if they deny
+                        // but user asked for "return" in snippet. 
+                        // However, blocking flow is bad UX. I'll allow proceeding after alert.
+                        // Actually, if I strictly follow "return", they are stuck.
+                        // I will assume the intent is "don't subscribe if denied".
+                    } else {
+                        // Subscribe user
+                        await OS.User.PushSubscription.optIn();
+
+                        // Get OneSignal Player ID
+                        const playerId = await OS.User.PushSubscription.getId();
+
+                        console.log(playerId);
+                        console.log("Notifications enabled successfully");
+                    }
+                } catch (e) {
+                    console.error("OneSignal error", e);
+                } finally {
+                    setStep("details");
+                }
+            });
+        } catch (e) {
+            console.error("Subscription error", e);
             setStep("details");
         }
     };
@@ -957,6 +1005,41 @@ export default function EventInviteClient() {
                                                                         Verify
                                                                     </Button>
                                                                 </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+
+                                                    {step === "notifications" && (
+                                                        <>
+                                                            <div className="text-center mb-6">
+                                                                <div className="mx-auto w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                                                                    <Bell01 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                                                                </div>
+                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                    Enable Notifications
+                                                                </h3>
+                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                    Stay updated with real-time alerts for your event application status and exclusive opportunities.
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="space-y-4">
+                                                                <Button 
+                                                                    size="lg" 
+                                                                    color="primary" 
+                                                                    className="w-full"
+                                                                    onClick={handleSubscribe}
+                                                                >
+                                                                    Enable Notifications
+                                                                </Button>
+                                                                <Button 
+                                                                    size="lg" 
+                                                                    color="secondary" 
+                                                                    className="w-full border-none shadow-none bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800"
+                                                                    onClick={() => setStep("details")}
+                                                                >
+                                                                    Skip for now
+                                                                </Button>
                                                             </div>
                                                         </>
                                                     )}

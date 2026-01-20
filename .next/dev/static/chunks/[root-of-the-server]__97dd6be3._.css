@@ -7124,6 +7124,16 @@
     }
   }
 
+  .hover\:bg-gray-50:where([data-rac])[data-hovered] {
+    background-color: var(--color-gray-50);
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-gray-50:where(:not([data-rac])):hover {
+      background-color: var(--color-gray-50);
+    }
+  }
+
   .hover\:bg-gray-100:where([data-rac])[data-hovered] {
     background-color: var(--color-gray-100);
   }

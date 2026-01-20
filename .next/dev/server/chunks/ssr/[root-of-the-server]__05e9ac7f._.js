@@ -354,8 +354,10 @@ function RootLayout({ children }) {
                                 appId: "faba9dc9-fbc3-487b-a574-58b2deed46b4", 
                                 safari_web_id: "web.onesignal.auto.5a4f7f6e-eec9-48b6-8a5c-3683e8870b3c", 
                                 notifyButton: { 
-                                    enable: true, 
-                                }, 
+                                    enable: false, 
+                                },
+                                autoResubscribe: false,
+                                allowLocalhostAsSecureOrigin: true
                             }); 
                         }); 
                     `
@@ -380,12 +382,12 @@ function RootLayout({ children }) {
                                     fallback: null,
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$application$2f$site$2d$header$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["SiteHeader"], {}, void 0, false, {
                                         fileName: "[project]/src/app/layout.tsx",
-                                        lineNumber: 64,
+                                        lineNumber: 66,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/layout.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 65,
                                     columnNumber: 29
                                 }, this),
                                 children,
@@ -393,38 +395,38 @@ function RootLayout({ children }) {
                                     fallback: null,
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$marketing$2f$footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["MarketingFooter"], {}, void 0, false, {
                                         fileName: "[project]/src/app/layout.tsx",
-                                        lineNumber: 68,
+                                        lineNumber: 70,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/layout.tsx",
-                                    lineNumber: 67,
+                                    lineNumber: 69,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$application$2f$theme$2d$toggle$2f$theme$2d$fab$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ThemeFab"], {}, void 0, false, {
                                     fileName: "[project]/src/app/layout.tsx",
-                                    lineNumber: 70,
+                                    lineNumber: 72,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/layout.tsx",
-                            lineNumber: 62,
+                            lineNumber: 64,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 61,
+                        lineNumber: 63,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/layout.tsx",
-                    lineNumber: 60,
+                    lineNumber: 62,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/layout.tsx",
-                lineNumber: 59,
+                lineNumber: 61,
                 columnNumber: 13
             }, this)
         ]
