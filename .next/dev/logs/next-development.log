@@ -1,1725 +1,8 @@
-[00:00:02.638] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:02.910] Server  LOG     ✓ Ready in 2.3s
-[00:00:18.722] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:02.132] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:02.155] Server  LOG     ✓ Ready in 1836ms
+[00:00:02.157] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:19.599] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <AdminLayout params={Promise}>
-      <AppSidebar>
-        <SidebarNavigationSimple items={[...]} footerItems={[...]} featureCard={<FeaturedCardProgressBar>} ...>
-          <MobileNavigationHeader>
-            <$de32f1b87079253c$export$2e1e1122cf0cba88 isOpen={false} onOpenChange={function bound dispatchSetState}>
-              <$64fa3d84918910a7$export$2881499e37b75b9a values={[...]}>
-                <header className="flex h-16 ...">
-                  <a>
-                  <div className="flex items...">
-                    <Button aria-label="Expand nav..." className="group flex...">
-                      <button
-                        className="group flex items-center justify-center rounded-lg bg-primary p-2 text-fg-secondary ..."
-                        style={undefined}
-                        data-rac=""
-                        type="button"
-                        disabled={undefined}
-                        form={undefined}
-                        formAction={undefined}
-                        formEncType={undefined}
-                        formMethod={undefined}
-                        formNoValidate={undefined}
-                        formTarget={undefined}
-                        name={undefined}
-                        value={undefined}
-                        onFocus={function}
-                        onBlur={function}
-                        onKeyDown={function onKeyDown}
-                        onKeyUp={undefined}
-                        tabIndex={0}
-                        aria-haspopup={undefined}
-                        aria-expanded={false}
-                        aria-controls={undefined}
-+                       id="react-aria-_R_1cndalbH1_"
--                       id="react-aria-_R_5kndalbH1_"
-                        onClick={function onClick}
-                        onPointerDown={function}
-                        onMouseDown={function}
-                        onPointerUp={function}
-                        onPointerEnter={function}
-                        onPointerLeave={function}
-                        onDragStart={function}
-                        data-react-aria-pressable={true}
-                        aria-label="Expand navigation menu"
-                        aria-pressed={undefined}
-                        aria-current={undefined}
-                        aria-disabled={undefined}
-                        ref={{current:null}}
-                        aria-labelledby={undefined}
-                        slot={undefined}
-                        data-disabled={undefined}
-                        data-pressed={undefined}
-                        data-hovered={undefined}
-                        data-focused={undefined}
-                        data-pending={undefined}
-                        data-focus-visible={undefined}
-                      >
-                ...
-          ...
-            <$64fa3d84918910a7$export$2881499e37b75b9a values={[...]}>
-              <InputBase ref={undefined} groupRef={undefined} size="sm" placeholder="Search" icon={function SearchLg} ...>
-                <Group isDisabled={undefined} isInvalid={undefined} ref={undefined} className={function className}>
-                  <div role="presentation" className="relative f..." onFocus={function} onBlur={function} ...>
-                    <SearchLg>
-                    <Input type={undefined} maxLength={undefined} minLength={undefined} pattern={undefined} ...>
-                      <input
-                        aria-label="Search"
-                        type="text"
-                        pattern={undefined}
-                        disabled={false}
-                        readOnly={false}
-                        required={false}
-                        aria-required={undefined}
-                        aria-invalid={undefined}
-                        aria-errormessage={undefined}
-                        aria-activedescendant={undefined}
-                        aria-autocomplete={undefined}
-                        aria-haspopup={undefined}
-                        aria-controls={undefined}
-                        value=""
-                        onChange={function onChange}
-                        autoComplete={undefined}
-                        autoCapitalize={undefined}
-                        maxLength={undefined}
-                        minLength={undefined}
-                        name={undefined}
-                        form={undefined}
-                        placeholder="Search"
-                        inputMode={undefined}
-                        autoCorrect={undefined}
-                        spellCheck={undefined}
-                        enterKeyHint={undefined}
-                        onCopy={undefined}
-                        onCut={undefined}
-                        onPaste={undefined}
-                        onCompositionEnd={undefined}
-                        onCompositionStart={undefined}
-                        onCompositionUpdate={undefined}
-                        onSelect={undefined}
-                        onBeforeInput={undefined}
-                        onInput={undefined}
-                        onFocus={function}
-                        onBlur={function}
-                        onKeyDown={undefined}
-                        onKeyUp={undefined}
-                        tabIndex={0}
-+                       id="react-aria-_R_16cndalb_"
--                       id="react-aria-_R_4pkndalb_"
-                        aria-labelledby={undefined}
-+                       aria-describedby="react-aria-_R_16cndalbH3_ react-aria-_R_16cndalbH4_"
--                       aria-describedby="react-aria-_R_4pkndalbH3_ react-aria-_R_4pkndalbH4_"
-                        className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden placeholder:te..."
-                        onPointerEnter={function}
-                        onPointerLeave={function}
-                        style={undefined}
-                        data-rac=""
-                        ref={{current:null}}
-                        data-focused={undefined}
-                        data-disabled={undefined}
-                        data-hovered={undefined}
-                        data-focus-visible={undefined}
-                        data-invalid={undefined}
-                      >
-                    ...
-          ...
-      ...
-
-[00:00:20.617] Browser ERROR   {}
-[00:08:14.556] Browser ERROR   {}
-[00:08:35.081] Browser ERROR   {}
-[00:12:31.146] Server  LOG     ✓ Compiled in 3.6s
-[00:13:06.273] Server  LOG     ✓ Compiled in 1565ms
-[00:14:05.621] Server  LOG     ✓ Compiled in 632ms
-[00:14:48.797] Browser WARN    WARN: A component changed from uncontrolled to controlled.
-[00:14:50.590] Browser WARN    WARN: A component changed from uncontrolled to controlled.
-[00:15:30.449] Browser ERROR   {}
-[00:16:08.242] Browser ERROR   {}
-[00:16:31.270] Browser ERROR   {}
-[01:44:04.888] Server  LOG     ○ Compiling /events/welcome/[code] ...
-[01:44:06.779] Server  ERROR   ⨯ ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-
-
-
-./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-
-
-[01:44:07.043] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.043] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.507] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.508] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.510] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.510] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.707] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:07.707] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:08.416] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:08.416] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:08.416] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:08.416] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:08.575] Browser ERROR   uncaughtError: Error: ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-
-
-[01:44:08.857] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:08.857] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:09.189] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:09.189] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:09.399] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:09.400] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:09.400] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:09.400] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:39.499] Server  LOG     ✓ Compiled in 965ms
-[01:44:40.339] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:40.339] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:40.339] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:40.339] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:40.340] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:44:40.340] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown
-     | ^^^^^^^^^^^
-> 19 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  20 | import { api } from "@/utils/api";
-  21 | import { Button } from "@/components/base/buttons/button";
-  22 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:45:54.373] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown,
-     | ^^^^^^^^^^^
-> 19 |     File04
-     | ^^^^^^^^^^^
-> 20 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
-  23 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:45:54.373] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown,
-     | ^^^^^^^^^^^
-> 19 |     File04
-     | ^^^^^^^^^^^
-> 20 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
-  23 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:45:54.374] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown,
-     | ^^^^^^^^^^^
-> 19 |     File04
-     | ^^^^^^^^^^^
-> 20 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
-  23 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:45:54.374] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown,
-     | ^^^^^^^^^^^
-> 19 |     File04
-     | ^^^^^^^^^^^
-> 20 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
-  23 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:45:54.374] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown,
-     | ^^^^^^^^^^^
-> 19 |     File04
-     | ^^^^^^^^^^^
-> 20 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
-  23 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:45:54.374] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:6:1
-Export Utensils01 doesn't exist in target module
-   4 | import { useParams } from "next/navigation";
-   5 | import { motion, AnimatePresence } from "motion/react";
->  6 | import { 
-     | ^^^^^^^^^
->  7 |     Map02, 
-     | ^^^^^^^^^^^
->  8 |     Calendar, 
-     | ^^^^^^^^^^^
->  9 |     Clock, 
-     | ^^^^^^^^^^^
-> 10 |     MarkerPin01, 
-     | ^^^^^^^^^^^
-> 11 |     Users01, 
-     | ^^^^^^^^^^^
-> 12 |     QrCode01, 
-     | ^^^^^^^^^^^
-> 13 |     X, 
-     | ^^^^^^^^^^^
-> 14 |     Check, 
-     | ^^^^^^^^^^^
-> 15 |     Utensils01, 
-     | ^^^^^^^^^^^
-> 16 |     UserPlus01, 
-     | ^^^^^^^^^^^
-> 17 |     Camera01,
-     | ^^^^^^^^^^^
-> 18 |     ChevronDown,
-     | ^^^^^^^^^^^
-> 19 |     File04
-     | ^^^^^^^^^^^
-> 20 | } from "@untitledui/icons";
-     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
-  23 | import { Badge } from "@/components/base/badges/badges";
-
-The export Utensils01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import Pencil01?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:46:00.515] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:46:00.517] Server  LOG     ✓ Compiled in 357ms
-[01:46:04.359] Browser ERROR   uncaughtError: ReferenceError: Utensils01 is not defined
-[01:46:05.371] Browser ERROR   {}
-[01:47:59.061] Server  LOG     ✓ Compiled in 509ms
-[01:47:59.065] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:48:01.368] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:04.762] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -1757,239 +40,277 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[01:48:01.368] Browser ERROR   {}
-[01:48:18.640] Server  LOG     ✓ Compiled in 222ms
-[01:48:19.357] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:19:5
-Ecmascript file had an error
-  17 |     ChevronDown,
-  18 |     File04,
-> 19 |     File04
-     |     ^^^^^^
-  20 | } from "@untitledui/icons";
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
+[00:00:04.763] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-the name `File04` is defined multiple times
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:48:19.360] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:19:5
-Ecmascript file had an error
-  17 |     ChevronDown,
-  18 |     File04,
-> 19 |     File04
-     |     ^^^^^^
-  20 | } from "@untitledui/icons";
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-the name `File04` is defined multiple times
+%s%s https://react.dev/link/hydration-mismatch 
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:48:19.360] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:19:5
-Ecmascript file had an error
-  17 |     ChevronDown,
-  18 |     File04,
-> 19 |     File04
-     |     ^^^^^^
-  20 | } from "@untitledui/icons";
-  21 | import { api } from "@/utils/api";
-  22 | import { Button } from "@/components/base/buttons/button";
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
 
-the name `File04` is defined multiple times
+[00:00:05.755] Browser ERROR   {}
+[00:00:05.790] Browser ERROR   {}
+[00:00:07.728] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:08.035] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:48:20.497] Server  LOG     ✓ Compiled in 517ms
-[01:52:17.802] Server  LOG     ✓ Compiled in 1337ms
-[01:52:43.866] Browser ERROR   {}
-[01:52:52.517] Server  LOG     ✓ Compiled in 618ms
-[01:53:07.070] Browser ERROR   Camera error: {}
-[01:54:35.984] Server  LOG     ✓ Compiled in 706ms
-[01:54:36.402] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:234:19
-Parsing ecmascript source code failed
-  232 |                         </div>
-  233 |                     </div>
-> 234 |                 </motion.section>
-      |                   ^^^^^^^^^^^^^^
-  235 |
-  236 |                 {/* +1 Guest */}
-  237 |                 <motion.section 
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-Expected corresponding JSX closing tag for <div>
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:54:36.402] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:234:19
-Parsing ecmascript source code failed
-  232 |                         </div>
-  233 |                     </div>
-> 234 |                 </motion.section>
-      |                   ^^^^^^^^^^^^^^
-  235 |
-  236 |                 {/* +1 Guest */}
-  237 |                 <motion.section 
+https://react.dev/link/hydration-mismatch
 
-Expected corresponding JSX closing tag for <div>
+  ...
+    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
+      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
+        <script>
+        <AuthProvider>
+          <Suspense fallback={null}>
+            <SiteHeader>
+              <header className="sticky top...">
+                <div className="mx-auto ma...">
+                  <div className="rounded-2x...">
+                    <div className="flex items...">
+                      <a>
+                      <div className="flex items...">
+                        <Button href="/admin" size="sm" color="primary">
+                          <Link data-loading={undefined} data-icon-only={undefined} href="/admin" isDisabled={undefined} ...>
+                            <a
+                              ref={{current:null}}
+                              slot={undefined}
+                              data-loading={undefined}
+                              data-icon-only={undefined}
++                             className="group relative inline-flex h-max cursor-pointer items-center justify-center w..."
+-                             className="group relative inline-flex h-max cursor-pointer items-center whitespace-nowra..."
+                              style={undefined}
+                              data-rac=""
++                             href="/admin"
+-                             href="/login"
+                              target={undefined}
+                              rel={undefined}
+                              download={undefined}
+                              ping={undefined}
+                              referrerPolicy={undefined}
+                              onFocus={function}
+                              onBlur={function}
+                              onKeyDown={function onKeyDown}
+                              onKeyUp={undefined}
+                              tabIndex={0}
+                              onClick={function onClick}
+                              onPointerDown={function}
+                              onMouseDown={function}
+                              onPointerUp={function}
+                              onPointerEnter={function}
+                              onPointerLeave={function}
+                              onDragStart={function}
+                              data-react-aria-pressable={true}
+                              aria-disabled={undefined}
+                              aria-current={undefined}
+                              data-focused={undefined}
+                              data-hovered={undefined}
+                              data-pressed={undefined}
+                              data-focus-visible={undefined}
+                              data-current={undefined}
+                              data-disabled={undefined}
+                            >
+                              <span
+                                data-text={true}
++                               className="transition-inherit-all px-0.5"
+-                               className="transition-inherit-all"
+                              >
++                               Go to My Profile
+-                               Login
+          ...
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:54:36.403] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:234:19
-Parsing ecmascript source code failed
-  232 |                         </div>
-  233 |                     </div>
-> 234 |                 </motion.section>
-      |                   ^^^^^^^^^^^^^^
-  235 |
-  236 |                 {/* +1 Guest */}
-  237 |                 <motion.section 
+[00:00:08.035] Browser ERROR   {}
+[00:00:15.378] Browser ERROR   {}
+[00:00:15.560] Browser ERROR   Failed to fetch invitation {}
+[00:02:36.775] Server  LOG     ✓ Compiled in 1208ms
+[00:03:28.597] Server  LOG     ✓ Compiled in 476ms
+[00:04:31.171] Server  LOG     ✓ Compiled in 173ms
+[00:04:50.165] Server  LOG     ✓ Compiled in 141ms
+[00:07:35.500] Browser ERROR   {}
+[00:07:35.660] Browser ERROR   Failed to fetch invitation {}
+[00:08:04.297] Browser ERROR   {}
+[00:08:07.128] Browser ERROR   {}
+[00:08:13.014] Browser ERROR   {}
+[00:08:32.554] Server  LOG     ✓ Compiled in 252ms
+[00:08:58.188] Server  LOG     ✓ Compiled in 214ms
+[00:09:35.719] Server  LOG     ✓ Compiled in 84ms
+[00:12:12.824] Server  LOG     ✓ Compiled in 176ms
+[00:14:06.698] Server  LOG     ✓ Compiled in 106ms
+[00:14:21.583] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-Expected corresponding JSX closing tag for <div>
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:54:49.058] Server  LOG     ✓ Compiled in 705ms
-[01:54:50.303] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:234:19
-Parsing ecmascript source code failed
-  232 |                         </div>
-  233 |                     </div>
-> 234 |                 </motion.section>
-      |                   ^^^^^^^^^^^^^^
-  235 |
-  236 |                 {/* +1 Guest */}
-  237 |                 <motion.section 
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-Expected corresponding JSX closing tag for <div>
+%s%s https://react.dev/link/hydration-mismatch 
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:58:01.122] Server  LOG     ✓ Compiled in 706ms
-[01:58:26.905] Server  LOG     ✓ Compiled in 342ms
-[01:58:27.058] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:451:39
-Parsing ecmascript source code failed
-  449 |                                 onClick={stopCamera}
-  450 |                             >
-> 451 |                                 Close Scanner
-      |                                       ^^^^^^^
-  452 |                             </Button>
-  453 |                         </div>
-  454 |                     </motion.div>
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
 
-Expected ';', '}' or <eof>
+[00:14:21.583] Browser ERROR   {}
+[00:14:57.758] Server  LOG     ✓ Compiled in 175ms
+[00:15:43.325] Server  LOG     ✓ Compiled in 148ms
+[00:15:46.413] Server  LOG     ✓ Compiled in 177ms
+[00:15:47.194] Server  LOG     ✓ Compiled in 131ms
+[00:15:47.836] Server  LOG     ✓ Compiled in 235ms
+[00:15:48.202] Server  LOG     ✓ Compiled in 200ms
+[00:15:48.904] Server  LOG     ✓ Compiled in 100ms
+[00:15:49.559] Server  LOG     ✓ Compiled in 130ms
+[00:15:50.087] Server  LOG     ✓ Compiled in 109ms
+[00:15:50.668] Server  LOG     ✓ Compiled in 299ms
+[00:15:50.963] Server  LOG     ✓ Compiled in 193ms
+[00:15:51.487] Server  LOG     ✓ Compiled in 248ms
+[00:15:51.923] Server  LOG     ✓ Compiled in 222ms
+[00:15:52.337] Server  LOG     ✓ Compiled in 154ms
+[00:15:53.232] Server  LOG     ✓ Compiled in 192ms
+[00:15:53.519] Server  LOG     ✓ Compiled in 98ms
+[00:15:53.973] Server  LOG     ✓ Compiled in 112ms
+[00:16:17.981] Server  LOG     ✓ Compiled in 169ms
+[00:16:30.771] Server  LOG     ✓ Compiled in 131ms
+[00:16:51.480] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:58:27.342] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:451:39
-Parsing ecmascript source code failed
-  449 |                                 onClick={stopCamera}
-  450 |                             >
-> 451 |                                 Close Scanner
-      |                                       ^^^^^^^
-  452 |                             </Button>
-  453 |                         </div>
-  454 |                     </motion.div>
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-Expected ';', '}' or <eof>
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[01:58:27.343] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:451:39
-Parsing ecmascript source code failed
-  449 |                                 onClick={stopCamera}
-  450 |                             >
-> 451 |                                 Close Scanner
-      |                                       ^^^^^^^
-  452 |                             </Button>
-  453 |                         </div>
-  454 |                     </motion.div>
+%s%s https://react.dev/link/hydration-mismatch 
 
-Expected ';', '}' or <eof>
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[02:00:21.356] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:455:39
-Parsing ecmascript source code failed
-  453 |                                 onClick={stopCamera}
-  454 |                             >
-> 455 |                                 Close Scanner
-      |                                       ^^^^^^^
-  456 |                             </Button>
-  457 |                         </div>
-  458 |                     </motion.div>
+[00:16:51.538] Browser ERROR   {}
+[00:16:53.955] Browser ERROR   {}
+[00:17:20.109] Server  LOG     ✓ Compiled in 126ms
+[00:18:39.013] Server  LOG     ✓ Compiled in 333ms
+[00:18:45.923] Server  LOG     ✓ Compiled in 253ms
+[00:18:53.773] Server  LOG     ✓ Compiled in 929ms
+[00:19:14.939] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-Expected ';', '}' or <eof>
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[02:00:21.358] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:455:39
-Parsing ecmascript source code failed
-  453 |                                 onClick={stopCamera}
-  454 |                             >
-> 455 |                                 Close Scanner
-      |                                       ^^^^^^^
-  456 |                             </Button>
-  457 |                         </div>
-  458 |                     </motion.div>
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-Expected ';', '}' or <eof>
+%s%s https://react.dev/link/hydration-mismatch 
 
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[02:00:21.358] Browser ERROR   ./src/app/events/welcome/[code]/welcome-client.tsx:455:39
-Parsing ecmascript source code failed
-  453 |                                 onClick={stopCamera}
-  454 |                             >
-> 455 |                                 Close Scanner
-      |                                       ^^^^^^^
-  456 |                             </Button>
-  457 |                         </div>
-  458 |                     </motion.div>
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
 
-Expected ';', '}' or <eof>
-
-Import trace:
-  Server Component:
-    ./src/app/events/welcome/[code]/welcome-client.tsx
-    ./src/app/events/welcome/[code]/page.tsx
-[02:00:43.753] Server  LOG     ✓ Compiled in 288ms
-[02:00:56.356] Server  LOG     ✓ Compiled in 572ms
-[02:03:08.109] Server  LOG     ✓ Compiled in 429ms
-[02:03:33.386] Server  LOG     ✓ Compiled in 287ms
-[02:03:37.941] Server  LOG     ✓ Compiled in 399ms
-[02:03:47.990] Server  LOG     ✓ Compiled in 191ms
-[02:03:55.314] Server  LOG     ✓ Compiled in 503ms
-[02:04:11.984] Server  LOG     ✓ Compiled in 543ms
-[02:04:27.360] Server  LOG     ✓ Compiled in 700ms
-[02:04:45.364] Server  LOG     ✓ Compiled in 279ms
-[02:04:48.043] Server  LOG     ✓ Compiled in 771ms
-[02:05:05.067] Server  LOG     ✓ Compiled in 820ms
-[02:05:24.173] Server  LOG     ✓ Compiled in 167ms
-[02:05:32.292] Server  LOG     ✓ Compiled in 196ms
-[02:05:38.022] Server  LOG     ✓ Compiled in 306ms
-[02:06:08.500] Server  LOG     ✓ Compiled in 314ms
-[02:06:25.194] Server  LOG     ✓ Compiled in 252ms
+[00:19:15.153] Browser ERROR   {}
+[00:19:28.724] Browser ERROR   {}
