@@ -1,14 +1,11 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { Button } from "@/components/base/buttons/button";
-import { cx } from "@/utils/cx";
-import { useAuth } from "@/providers/auth";
+import { Header } from "@/components/marketing/header-navigation/header";
 
 export const SiteHeader = () => {
     const pathname = usePathname();
     const search = useSearchParams();
-    const { user } = useAuth();
     const firstSegment = (pathname.split("/")[1] || "").trim();
     const disallow = new Set([
         "login",
@@ -29,32 +26,5 @@ export const SiteHeader = () => {
 
     if (isAdmin || disallow.has(firstSegment) || isDynamicProfile || isEmbed) return null;
 
-    return (
-        <header className="sticky top-1.5 z-40">
-            <div className="mx-auto max-w-6xl px-4">
-                <div className="rounded-2xl bg-primary shadow-xs backdrop-blur px-4 py-3">
-                <div className="flex items-center justify-between">
-                    <a
-                        href="/"
-                        aria-label="Go to homepage"
-                        className="flex items-center gap-2 rounded-xs outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2"
-                    >
-                        <img src="/light.svg" alt="INFLU" className="h-8 w-auto dark:hidden" />
-                        <img src="/logo.svg" alt="INFLU" className={cx("hidden h-8 w-auto dark:block")} />
-                    </a>
-                    <div className="flex items-center gap-3">
-                        {user?.username ? (
-                            <Button href={`/admin`} size="sm" color="primary">Go to My Profile</Button>
-                        ) : (
-                            <>
-                                <Button href="/login" size="sm" color="link-gray">Login</Button>
-                                <Button href="/register" size="sm" color="primary">Get started</Button>
-                            </>
-                        )}
-                    </div>
-                </div>
-                </div>
-            </div>
-        </header>
-    );
+    return <Header isFloating className="sticky top-4 z-40" />;
 };

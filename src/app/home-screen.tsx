@@ -3,10 +3,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { HomeHero } from "@/components/marketing/home-hero";
-import { HomePain } from "@/components/marketing/home-pain";
+
+import { HomeProblems } from "@/components/marketing/home-problems";
+import { HomeIdentity } from "@/components/marketing/home-identity";
 import { FeaturesAlternatingLayout01 } from "@/components/marketing/home-shift";
 import { HomeWho } from "@/components/marketing/home-who";
 import { NewsletterIPhoneMockup01 } from "@/components/marketing/home-cta";
+import { HomeFlow } from "@/components/marketing/home-flow";
 
 
 export const HomeScreen = () => {
@@ -84,10 +87,11 @@ export const HomeScreen = () => {
                 )}
             </AnimatePresence>
             <HomeHero />
-            <HomePain />
-            <FeaturesAlternatingLayout01 />
-            <HomeWho />
-         <NewsletterIPhoneMockup01 />
+        
+            <HomeProblems />
+           
+            <HomeFlow />
+          
          
         </div>
     );

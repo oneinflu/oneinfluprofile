@@ -31,6 +31,8 @@ import { api } from "@/utils/api";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { Checkbox } from "@/components/base/checkbox/checkbox";
+import { ShowWorkModal } from "./show-work-modal";
+import { ReportTab } from "./report-tab";
 
 type EventDetail = {
     _id: string;
@@ -79,7 +81,7 @@ export default function CampaignDetailPage() {
     const id = String(params?.id || "");
     const [event, setEvent] = useState<EventDetail | null>(null);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted" | "replacement" | "invited">("details");
+    const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted" | "replacement" | "invited" | "report">("details");
     const clipboard = useClipboard();
     const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
 
@@ -333,6 +335,16 @@ export default function CampaignDetailPage() {
                             }`}
                         >
                             Approved Profiles
+                        </button>
+                        <button
+                            onClick={() => setActiveTab("report")}
+                            className={`pb-3 text-sm font-semibold transition-colors ${
+                                activeTab === "report"
+                                    ? "border-b-2 border-brand-solid text-brand-solid"
+                                    : "text-tertiary hover:text-primary"
+                            }`}
+                        >
+                            Report
                         </button>
                     </div>
                 </div>
@@ -673,6 +685,8 @@ export default function CampaignDetailPage() {
                         />
                     ) : activeTab === "invited" ? (
                         <ApprovedProfilesTab eventCode={event.code} />
+                    ) : activeTab === "report" ? (
+                        <ReportTab eventCode={event.code} />
                     ) : (
                         <ApplicantsTab eventCode={event.code} />
                     )}
@@ -902,7 +916,7 @@ function StatusApplicationTab({
             </div>
         </div>
     );
-}
+} // StatusApplicationTab End
 
 function ShortlistedTab({ eventCode }: { eventCode?: string | null; targetCount?: number }) {
     const { token } = useAuth();
@@ -1101,6 +1115,8 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
     const [applicants, setApplicants] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [showWorkOpen, setShowWorkOpen] = useState(false);
+    const [selectedUserForWork, setSelectedUserForWork] = useState<string | null>(null);
 
     useEffect(() => {
         let alive = true;
@@ -1286,7 +1302,8 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                                                     color="secondary"
                                                     iconLeading={File04}
                                                     onClick={() => {
-                                                         if (app.taskData) window.open(app.taskData, '_blank');
+                                                        setSelectedUserForWork(app.user?._id || app.user?.id);
+                                                        setShowWorkOpen(true);
                                                     }}
                                                 >
                                                     Show Work
@@ -1302,6 +1319,12 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                     </table>
                 </div>
             </div>
+            <ShowWorkModal
+                isOpen={showWorkOpen}
+                onClose={() => setShowWorkOpen(false)}
+                eventCode={eventCode || ""}
+                userId={selectedUserForWork || ""}
+            />
         </div>
     );
 }

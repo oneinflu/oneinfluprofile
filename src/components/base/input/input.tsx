@@ -16,7 +16,7 @@ export interface InputBaseProps extends TextFieldProps {
      * Input size.
      * @default "sm"
      */
-    size?: "sm" | "md";
+    size?: "sm" | "md" | "lg";
     /** Placeholder text. */
     placeholder?: string;
     /** Class name for the icon. */
@@ -74,6 +74,12 @@ export const InputBase = ({
             iconLeading: "left-3.5",
             iconTrailing: "right-3.5",
             shortcut: "pr-3",
+        },
+        lg: {
+            root: cx("px-4 py-3", hasTrailingIcon && "pr-10", hasLeadingIcon && "pl-11"),
+            iconLeading: "left-4",
+            iconTrailing: "right-4",
+            shortcut: "pr-3.5",
         },
     });
 

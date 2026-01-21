@@ -6,7 +6,6 @@ import { ChevronDown } from "@untitledui/icons";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
-import { DropdownMenuSimple } from "@/components/marketing/header-navigation/dropdown-header-navigation";
 import { cx } from "@/utils/cx";
 import { useAuth } from "@/providers/auth";
 
@@ -14,14 +13,17 @@ type HeaderNavItem = {
     label: string;
     href?: string;
     menu?: ReactNode;
+    isImportant?: boolean;
 };
 
 const headerNavItems: HeaderNavItem[] = [
-    { label: "Products", href: "/products", menu: <DropdownMenuSimple /> },
-    { label: "Services", href: "/Services", menu: <DropdownMenuSimple /> },
+    { label: "Home", href: "/" },
+    { label: "For Creators", href: "/creators" },
+    { label: "For Hosts", href: "/hosts", isImportant: true },
+    { label: "For Brands", href: "/brands" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Trust", href: "/trust" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Resources", href: "/resources", menu: <DropdownMenuSimple /> },
-    { label: "About", href: "/about" },
 ];
 
 const footerNavItems = [
@@ -85,7 +87,7 @@ const MobileFooter = () => {
                     <Button size="lg" href={`/${user.username}`}>Go to My Profile</Button>
                 ) : (
                     <>
-                        <Button size="lg" href="/register">Get Started</Button>
+                        <Button size="lg" href="/register">Create Profile</Button>
                         <Button color="secondary" size="lg" href="/login">Log in</Button>
                     </>
                 )}
@@ -172,7 +174,10 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                         ) : (
                                             <a
                                                 href={navItem.href}
-                                                className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-secondary_hover focus:outline-offset-2 focus-visible:outline-2"
+                                                className={cx(
+                                                    "flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold outline-focus-ring transition duration-100 ease-linear focus:outline-offset-2 focus-visible:outline-2",
+                                                    navItem.isImportant ? "text-brand-solid hover:text-brand-solid_hover" : "text-secondary hover:text-secondary_hover"
+                                                )}
                                             >
                                                 <span className="px-0.5">{navItem.label}</span>
                                             </a>
@@ -194,7 +199,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                     Log in
                                 </Button>
                                 <Button color="primary" size={isFloating ? "md" : "lg"} href="/register">
-                                    Get Started
+                                    Create Profile
                                 </Button>
                             </>
                         )}
