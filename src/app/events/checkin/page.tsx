@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import CheckinClient from "./checkin-client";
 import { Great_Vibes } from "next/font/google";
@@ -13,5 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <CheckinClient fontClassName={greatVibes.className} />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+      <CheckinClient fontClassName={greatVibes.className} />
+    </Suspense>
+  );
 }
