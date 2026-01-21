@@ -342,7 +342,18 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
 
                     if (code) {
                         console.log("QR Code found:", code.data);
-                        alert(`QR Code Scanned: ${code.data}`);
+                        // Assuming the scanned code is a URL to the checkin page
+                        try {
+                            const url = new URL(code.data);
+                            if (event?.code) url.searchParams.set("eventCode", event.code);
+                            if (invitation?.inviteCode) url.searchParams.set("inviteCode", invitation.inviteCode);
+                            window.location.href = url.toString();
+                        } catch (e) {
+                            // If not a valid URL, just alert for now, or assume it's a code and append to base checkin URL?
+                            // For now, robustly assume it's the checkin URL as per requirements
+                            alert(`QR Code Scanned: ${code.data}`);
+                        }
+                        
                         stopCamera();
                         return; // Stop scanning loop
                     }

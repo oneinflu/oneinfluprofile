@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import Confetti from "react-confetti";
 import { 
@@ -21,6 +22,7 @@ type CheckInResponse = {
     status: string;
     message?: string;
     data?: {
+        guestName?: string;
         application: {
             _id: string;
             checkedIn: boolean;
@@ -40,8 +42,9 @@ type CheckInResponse = {
 };
 
 export default function CheckinClient({ fontClassName }: { fontClassName?: string }) {
-    const [eventCode, setEventCode] = useState("");
-    const [inviteCode, setInviteCode] = useState("");
+    const searchParams = useSearchParams();
+    const [eventCode, setEventCode] = useState(searchParams?.get("eventCode") || "");
+    const [inviteCode, setInviteCode] = useState(searchParams?.get("inviteCode") || "");
     const [verifying, setVerifying] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
@@ -143,82 +146,68 @@ export default function CheckinClient({ fontClassName }: { fontClassName?: strin
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                            className="w-full text-center space-y-8"
+                            className="w-full text-center space-y-10"
                         >
                             <motion.div
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                                className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-green-900/30 ring-8 ring-green-900/10 shadow-2xl shadow-green-500/20 backdrop-blur-md"
+                                className="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-green-500/20 ring-4 ring-green-500/10 shadow-[0_0_40px_-10px_rgba(34,197,94,0.4)] backdrop-blur-md"
                             >
-                                <CheckDone01 className="h-16 w-16 text-green-400" strokeWidth={3} />
+                                <CheckDone01 className="h-20 w-20 text-green-400" strokeWidth={4} />
                             </motion.div>
 
-                            <div className="space-y-4">
-                                <motion.h1 
+                            <div className="space-y-6">
+                                <div>
+                                    <motion.h1 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.4 }}
+                                        className={cx("text-6xl font-bold text-white tracking-tight drop-shadow-xl mb-4", fontClassName)}
+                                    >
+                                        Welcome {successData.guestName ? successData.guestName.split(' ')[0] : ""}!
+                                    </motion.h1>
+                                    <motion.p 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 }}
+                                        className="text-2xl text-green-400 font-semibold tracking-wide uppercase"
+                                    >
+                                        You are checked in
+                                    </motion.p>
+                                </div>
+
+                                <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.4 }}
-                                    className={cx("text-5xl font-bold text-white tracking-tight drop-shadow-lg", fontClassName)}
+                                    transition={{ delay: 0.6 }}
+                                    className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm max-w-sm mx-auto"
                                 >
-                                    Welcome!
-                                </motion.h1>
+                                    <p className="text-gray-300 text-lg leading-relaxed">
+                                        Please show this screen to the <span className="text-white font-bold">bouncer</span> or <span className="text-white font-bold">manager</span> to let you in.
+                                    </p>
+                                </motion.div>
+
                                 <motion.p 
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5 }}
-                                    className="text-xl text-gray-300 font-medium"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.8 }}
+                                    className="text-brand-200 font-medium italic text-lg"
                                 >
-                                    Access Granted
+                                    Have a nice evening!
                                 </motion.p>
                             </div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6 }}
-                                className="bg-gray-900/60 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-white/10"
-                            >
-                                <div className="space-y-5">
-                                    <div className="flex items-center gap-4 text-left">
-                                        <div className="h-12 w-12 rounded-2xl bg-brand-900/30 flex items-center justify-center shrink-0 border border-brand-500/20">
-                                            <Ticket02 className="h-6 w-6 text-brand-400" />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-0.5">Event</p>
-                                            <p className="font-bold text-xl text-white line-clamp-1">{successData.event.eventName || "Event Name"}</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
-                                    
-                                    <div className="flex items-center gap-4 text-left">
-                                        <div className="h-12 w-12 rounded-2xl bg-brand-900/30 flex items-center justify-center shrink-0 border border-brand-500/20">
-                                            <Building02 className="h-6 w-6 text-brand-400" />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-0.5">Location</p>
-                                            <p className="font-bold text-xl text-white line-clamp-1">
-                                                {successData.event.venue || successData.event.city || "Venue Details"}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Verified Timestamp */}
-                                    <div className="pt-2 text-center">
-                                         <p className="text-xs text-green-500/80 font-mono bg-green-900/20 inline-block px-3 py-1 rounded-full border border-green-900/30">
-                                            Checked in at {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                         </p>
-                                    </div>
-                                </div>
-                            </motion.div>
-
+                            {/* Minimal Event Info Footer */}
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 1 }}
+                                className="pt-8 border-t border-white/10"
                             >
-                                <p className="text-xs text-gray-500 uppercase tracking-[0.3em] font-semibold">Please show this screen to entry</p>
+                                <p className="text-sm text-gray-500 uppercase tracking-widest mb-2">Event Access</p>
+                                <p className="text-white font-semibold text-lg">{successData.event.eventName}</p>
+                                <p className="text-gray-400 text-sm">{successData.event.venue || successData.event.city}</p>
                             </motion.div>
                         </motion.div>
                     ) : (
