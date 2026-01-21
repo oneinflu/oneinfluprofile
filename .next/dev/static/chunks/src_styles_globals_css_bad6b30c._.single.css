@@ -7832,6 +7832,10 @@
     padding-inline: calc(var(--spacing) * 3);
   }
 
+  .group-has-\[\&\>select\]\:px-3\.5:is(:where(.group):has(* > select) *) {
+    padding-inline: calc(var(--spacing) * 3.5);
+  }
+
   .group-has-\[\&\>select\]\:pr-6:is(:where(.group):has(* > select) *) {
     padding-right: calc(var(--spacing) * 6);
   }
@@ -7846,6 +7850,10 @@
 
   .group-has-\[\&\>select\]\:pl-3:is(:where(.group):has(* > select) *) {
     padding-left: calc(var(--spacing) * 3);
+  }
+
+  .group-has-\[\&\>select\]\:pl-3\.5:is(:where(.group):has(* > select) *) {
+    padding-left: calc(var(--spacing) * 3.5);
   }
 
   .group-has-\[\&\>select\]\:shadow-none:is(:where(.group):has(* > select) *) {
