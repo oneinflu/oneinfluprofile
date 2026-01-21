@@ -1,857 +1,140 @@
-[00:00:02.132] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:02.155] Server  LOG     ✓ Ready in 1836ms
-[00:00:02.157] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.925] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:01.984] Server  LOG     ✓ Ready in 1574ms
+[00:00:10.626] Server  WARN    ⚠ Cross origin request detected from 172.20.10.3 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:04.762] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
+[00:00:11.054] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:12.136] Browser ERROR   {}
+[00:00:19.052] Browser ERROR   {}
+[00:00:19.343] Browser ERROR   Failed to fetch invitation {"data":{"message":"No application found for user","status":"no_application","success":false},"name":"ApiError","status":404}
+[00:00:19.714] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:25.959] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:00:25.959] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:25.959] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:25.959] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:25.959] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:25.959] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:25.959] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:26.069] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:26.320] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:26.758] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:26.758] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:26.758] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:26.758] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:26.758] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:26.758] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:26.758] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:26.758] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:26.758] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:26.758] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:26.784] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:27.526] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:27.596] Browser GROUP   PUBLIC_PROFILE_GET
+[00:00:27.596] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/oneinflu/profile
+[00:00:27.596] Browser GROUPEND 
+[00:00:27.747] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:27.767] Browser ERROR   {}
+[00:00:27.993] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
 
   ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria8302019580-_r_k_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
                   ...
-
-[00:00:04.763] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/sh..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:00:05.755] Browser ERROR   {}
-[00:00:05.790] Browser ERROR   {}
-[00:00:07.728] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:08.035] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
-            <SiteHeader>
-              <header className="sticky top...">
-                <div className="mx-auto ma...">
-                  <div className="rounded-2x...">
-                    <div className="flex items...">
-                      <a>
-                      <div className="flex items...">
-                        <Button href="/admin" size="sm" color="primary">
-                          <Link data-loading={undefined} data-icon-only={undefined} href="/admin" isDisabled={undefined} ...>
-                            <a
-                              ref={{current:null}}
-                              slot={undefined}
-                              data-loading={undefined}
-                              data-icon-only={undefined}
-+                             className="group relative inline-flex h-max cursor-pointer items-center justify-center w..."
--                             className="group relative inline-flex h-max cursor-pointer items-center whitespace-nowra..."
-                              style={undefined}
-                              data-rac=""
-+                             href="/admin"
--                             href="/login"
-                              target={undefined}
-                              rel={undefined}
-                              download={undefined}
-                              ping={undefined}
-                              referrerPolicy={undefined}
-                              onFocus={function}
-                              onBlur={function}
-                              onKeyDown={function onKeyDown}
-                              onKeyUp={undefined}
-                              tabIndex={0}
-                              onClick={function onClick}
-                              onPointerDown={function}
-                              onMouseDown={function}
-                              onPointerUp={function}
-                              onPointerEnter={function}
-                              onPointerLeave={function}
-                              onDragStart={function}
-                              data-react-aria-pressable={true}
-                              aria-disabled={undefined}
-                              aria-current={undefined}
-                              data-focused={undefined}
-                              data-hovered={undefined}
-                              data-pressed={undefined}
-                              data-focus-visible={undefined}
-                              data-current={undefined}
-                              data-disabled={undefined}
-                            >
-                              <span
-                                data-text={true}
-+                               className="transition-inherit-all px-0.5"
--                               className="transition-inherit-all"
-                              >
-+                               Go to My Profile
--                               Login
+                ...
           ...
+        ...
 
-[00:00:08.035] Browser ERROR   {}
-[00:00:15.378] Browser ERROR   {}
-[00:00:15.560] Browser ERROR   Failed to fetch invitation {}
-[00:02:36.775] Server  LOG     ✓ Compiled in 1208ms
-[00:03:28.597] Server  LOG     ✓ Compiled in 476ms
-[00:04:31.171] Server  LOG     ✓ Compiled in 173ms
-[00:04:50.165] Server  LOG     ✓ Compiled in 141ms
-[00:07:35.500] Browser ERROR   {}
-[00:07:35.660] Browser ERROR   Failed to fetch invitation {}
-[00:08:04.297] Browser ERROR   {}
-[00:08:07.128] Browser ERROR   {}
-[00:08:13.014] Browser ERROR   {}
-[00:08:32.554] Server  LOG     ✓ Compiled in 252ms
-[00:08:58.188] Server  LOG     ✓ Compiled in 214ms
-[00:09:35.719] Server  LOG     ✓ Compiled in 84ms
-[00:12:12.824] Server  LOG     ✓ Compiled in 176ms
-[00:14:06.698] Server  LOG     ✓ Compiled in 106ms
-[00:14:21.583] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:14:21.583] Browser ERROR   {}
-[00:14:57.758] Server  LOG     ✓ Compiled in 175ms
-[00:15:43.325] Server  LOG     ✓ Compiled in 148ms
-[00:15:46.413] Server  LOG     ✓ Compiled in 177ms
-[00:15:47.194] Server  LOG     ✓ Compiled in 131ms
-[00:15:47.836] Server  LOG     ✓ Compiled in 235ms
-[00:15:48.202] Server  LOG     ✓ Compiled in 200ms
-[00:15:48.904] Server  LOG     ✓ Compiled in 100ms
-[00:15:49.559] Server  LOG     ✓ Compiled in 130ms
-[00:15:50.087] Server  LOG     ✓ Compiled in 109ms
-[00:15:50.668] Server  LOG     ✓ Compiled in 299ms
-[00:15:50.963] Server  LOG     ✓ Compiled in 193ms
-[00:15:51.487] Server  LOG     ✓ Compiled in 248ms
-[00:15:51.923] Server  LOG     ✓ Compiled in 222ms
-[00:15:52.337] Server  LOG     ✓ Compiled in 154ms
-[00:15:53.232] Server  LOG     ✓ Compiled in 192ms
-[00:15:53.519] Server  LOG     ✓ Compiled in 98ms
-[00:15:53.973] Server  LOG     ✓ Compiled in 112ms
-[00:16:17.981] Server  LOG     ✓ Compiled in 169ms
-[00:16:30.771] Server  LOG     ✓ Compiled in 131ms
-[00:16:51.480] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:16:51.538] Browser ERROR   {}
-[00:16:53.955] Browser ERROR   {}
-[00:17:20.109] Server  LOG     ✓ Compiled in 126ms
-[00:18:39.013] Server  LOG     ✓ Compiled in 333ms
-[00:18:45.923] Server  LOG     ✓ Compiled in 253ms
-[00:18:53.773] Server  LOG     ✓ Compiled in 929ms
-[00:19:14.939] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:19:15.153] Browser ERROR   {}
-[00:19:28.724] Browser ERROR   {}
-[01:32:00.165] Server  LOG     ✓ Compiled in 474ms
-[01:32:02.507] Server  LOG     ✓ Compiled in 175ms
-[01:32:13.439] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[01:32:14.036] Browser ERROR   {}
-[01:33:46.470] Server  LOG     ✓ Compiled in 524ms
-[01:34:29.773] Server  LOG     ✓ Compiled in 136ms
-[01:38:30.701] Server  LOG     ✓ Compiled in 679ms
-[01:39:28.167] Server  LOG     ✓ Compiled in 576ms
-[01:43:24.194] Server  LOG     ✓ Compiled in 676ms
-[01:43:26.576] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:43:26.862] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:45:55.141] Server  LOG     ✓ Compiled in 377ms
-[01:46:09.323] Server  LOG     ✓ Compiled in 192ms
-[01:47:12.772] Server  LOG     ✓ Compiled in 373ms
-[01:47:48.171] Browser ERROR   Failed to fetch invitation {}
-[01:47:48.357] Browser ERROR   Failed to fetch invitation {}
-[01:49:32.910] Server  LOG     ✓ Compiled in 406ms
-[01:49:34.083] Browser ERROR   Failed to fetch invitation {}
-[01:49:34.087] Browser ERROR   Failed to fetch invitation {}
-[01:49:45.839] Server  LOG     ✓ Compiled in 255ms
-[01:51:20.504] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[01:51:20.504] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.504] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.504] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:51:20.504] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:51:20.505] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.505] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.730] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:20.844] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.845] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.845] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.845] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:20.845] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[01:51:20.845] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[01:51:20.845] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[01:51:20.845] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[01:51:20.845] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[01:51:20.845] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[01:51:20.992] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:21.235] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:22.055] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:22.275] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:22.294] Browser GROUP   PUBLIC_PROFILE_GET
-[01:51:22.294] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[01:51:22.294] Browser GROUPEND 
-[01:51:22.294] Browser ERROR   {}
-[01:51:22.424] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[01:51:22.424] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[01:51:22.424] Browser GROUPEND 
-[01:51:22.573] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:22.696] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:23.713] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:23.839] Browser GROUP   PUBLIC_PROFILE_GET
-[01:51:23.839] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[01:51:23.839] Browser GROUPEND 
-[01:51:23.839] Browser ERROR   {}
-[01:51:24.100] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:24.127] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[01:51:24.127] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[01:51:24.127] Browser GROUPEND 
-[01:51:24.374] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:25.422] Browser GROUP   PUBLIC_PROFILE_GET
-[01:51:25.422] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/testphoneuser/profile
-[01:51:25.422] Browser GROUPEND 
-[01:51:25.422] Browser ERROR   {}
-[01:51:25.546] Browser GROUP   PUBLIC_PROFILE_GET
-[01:51:25.547] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[01:51:25.547] Browser GROUPEND 
-[01:51:25.547] Browser ERROR   {}
-[01:51:25.550] Browser GROUP   PUBLIC_PROFILE_RESPONSE
-[01:51:25.550] Browser LOG     BODY {"contact":{"email":null,"method":"email","whatsapp":"9182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://www.instagram.com/testinguser","visible":true}],"offers":[],"payment":{"payEnabled":false,"upiId":null},"portfolio":[],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1768827467/avatars/a7e21669-3ad2-4381-b58e-083c2b26df4c.png","bio":"kkkk","coverUrl":"/profile.jpg","id":"6969dca8e117facaf1fa8db5","name":"New Tester","role":"creator","username":"testphoneuser","verified":false},"theme":"light"}
-[01:51:25.550] Browser GROUPEND 
-[01:51:25.698] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:25.764] Browser GROUP   PUBLIC_PROFILE_GET
-[01:51:25.764] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[01:51:25.764] Browser GROUPEND 
-[01:51:25.764] Browser ERROR   {}
-[01:51:26.037] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:26.624] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:51:26.624] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:51:26.624] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:26.624] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:26.624] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:26.624] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:51:26.695] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:27.796] Browser ERROR   {}
-[01:51:34.343] Browser ERROR   {}
-[01:51:34.501] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:51:50.876] Browser ERROR   {}
-[01:51:58.809] Browser ERROR   {}
-[01:54:17.220] Browser ERROR   Failed to fetch invitation {}
-[01:54:17.220] Browser ERROR   Failed to fetch invitation {}
-[01:55:26.204] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[01:55:26.309] Browser ERROR   {}
-[01:55:26.451] Browser ERROR   Failed to fetch invitation {}
-[01:55:29.539] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:55:29.573] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[01:55:29.574] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:29.574] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:29.574] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:55:29.574] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:55:29.574] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:29.574] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:29.678] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:55:30.525] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:55:30.588] Browser GROUP   PUBLIC_PROFILE_GET
-[01:55:30.588] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[01:55:30.588] Browser GROUPEND 
-[01:55:30.588] Browser ERROR   {}
-[01:55:30.588] Browser GROUP   PUBLIC_PROFILE_GET
-[01:55:30.589] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[01:55:30.589] Browser GROUPEND 
-[01:55:30.589] Browser ERROR   {}
-[01:55:30.731] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:55:31.452] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:55:31.603] Browser GROUP   PUBLIC_PROFILE_GET
-[01:55:31.603] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/null/profile
-[01:55:31.603] Browser GROUPEND 
-[01:55:31.603] Browser ERROR   {}
-[01:55:31.755] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:55:31.976] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:55:31.976] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[01:55:31.976] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:31.976] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:31.976] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:31.976] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[01:55:32.750] Browser ERROR   {}
-[01:55:43.249] Browser ERROR   {}
-[01:55:47.561] Browser ERROR   {}
-[01:55:47.754] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[01:56:09.137] Browser ERROR   Failed to fetch invitation {}
-[01:56:09.137] Browser ERROR   Failed to fetch invitation {}
-[01:58:41.966] Server  LOG     ✓ Compiled in 458ms
-[01:59:03.930] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[01:59:04.032] Browser ERROR   {}
-[01:59:04.354] Browser ERROR   Failed to fetch invitation {}
-[02:02:23.795] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/utils/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:02:23.796] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/utils/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[02:02:23.796] Server  LOG     ✓ Compiled in 634ms
-[02:02:26.105] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:02:26.105] Browser ERROR   {}
-[02:02:27.059] Browser ERROR   Failed to fetch invitation {"name":"ApiError","status":404}
-[02:02:27.059] Browser ERROR   {}
-[02:02:27.074] Browser ERROR   Failed to fetch invitation {"name":"ApiError","status":404}
-[02:02:37.033] Server  LOG     ✓ Compiled in 179ms
-[02:02:54.490] Server  LOG     ✓ Compiled in 320ms
-[02:03:14.095] Server  LOG     ✓ Compiled in 138ms
-[02:03:37.426] Server  LOG     ✓ Compiled in 286ms
-[02:03:45.341] Server  LOG     ✓ Compiled in 248ms
-[02:05:26.821] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:05:26.821] Browser ERROR   {}
-[02:05:27.122] Browser ERROR   Failed to fetch invitation {"name":"ApiError","status":404}
-[02:07:45.802] Browser ERROR   {}
-[02:08:16.422] Server  LOG     ✓ Compiled in 410ms
-[02:10:46.344] Server  LOG     ✓ Compiled in 337ms
-[02:10:47.066] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:10:47.072] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:10:48.498] Server  LOG     ✓ Compiled in 299ms
-[02:10:48.614] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:10:48.616] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:10:49.619] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:10:50.075] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:10:52.096] Browser ERROR   {}
-[02:10:53.627] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:10:54.190] Browser ERROR   {}
-[02:10:56.273] Server  LOG     ✓ Compiled in 1219ms
-[02:10:56.307] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:10:59.084] Browser ERROR   {}
-[02:10:59.084] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:10:59.764] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:12:03.331] Server  LOG     ✓ Compiled in 1045ms
-[02:12:03.351] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:12:05.431] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:12:06.058] Browser ERROR   {}
-[02:12:06.058] Browser ERROR   uncaughtError: ReferenceError: guestDetails is not defined
-[02:12:21.717] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:12:22.808] Server  LOG     ✓ Compiled in 1621ms
-[02:12:23.046] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:12:24.500] Server  LOG     ✓ Compiled in 172ms
-[02:12:25.214] Browser ERROR   {}
-[02:12:25.214] Browser ERROR   uncaughtError: ReferenceError: handleToggleGuest is not defined
-[02:13:27.097] Server  LOG     ✓ Compiled in 848ms
-[02:13:27.119] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:13:30.063] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/we..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:13:30.063] Browser ERROR   {}
-[02:13:30.063] Browser ERROR   uncaughtError: ReferenceError: handleToggleGuest is not defined
-[02:13:45.499] Server  LOG     ✓ Compiled in 566ms
-[02:13:45.503] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:13:48.062] Browser ERROR   {}
-[02:13:56.725] Server  LOG     ✓ Compiled in 301ms
-[02:14:14.573] Browser ERROR   {}
-[02:14:36.664] Browser ERROR   {}
-[02:18:14.253] Browser ERROR   {}
-[02:18:17.715] Server  LOG     ✓ Compiled in 484ms
-[02:19:04.916] Server  LOG     ✓ Compiled in 277ms
-[02:20:30.550] Server  LOG     ○ Compiling /events/checkin/[code] ...
-[02:20:33.641] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/ch..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:20:33.641] Browser ERROR   {}
-[02:21:17.053] Browser ERROR   Failed to fetch event {}
-[02:22:09.509] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/ch..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:22:09.586] Browser ERROR   Failed to fetch event {}
-[02:22:09.586] Browser ERROR   {}
-[02:22:44.685] Server  LOG     ✓ Compiled in 693ms
-[02:24:03.192] Server  LOG     ✓ Compiled in 314ms
-[02:24:42.758] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/events/ch..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[02:24:42.830] Browser ERROR   {}
-[02:24:57.053] Browser ERROR   Failed to fetch event {}
-[02:46:02.398] Server  LOG     ✓ Compiled in 1092ms
+[00:00:27.993] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[00:00:28.023] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:28.037] Browser GROUP   PUBLIC_PROFILE_RESPONSE
+[00:00:28.037] Browser LOG     BODY {"contact":{"email":"hashtaginflu@gmail.com","method":"whatsapp","whatsapp":"+919177970676"},"links":[{"icon":"/tiktok.png","platform":"tiktok","url":"https://tiktok.com/@oneinflu","visible":true},{"icon":"/telegram.png","platform":"telegram","url":"https://t.me/oneinflu","visible":true},{"icon":"/google.png","platform":"google-business","url":"https://g.page/oneinflu","visible":true},{"icon":"/facebook.png","platform":"facebook","url":"https://facebook.com/oneinflu","visible":true},{"icon":"/threads.png","platform":"threads","url":"https://www.threads.net/@oneinflu","visible":true},{"icon":"/linkedin.png","platform":"linkedin","url":"https://www.linkedin.com/in/oneinflu","visible":true},{"icon":"/twitter.png","platform":"x","url":"https://x.com/oneinflu","visible":true},{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/oneinfluapp","visible":true}],"offers":[{"cta":"request","delivery":"5 days","description":"2 reel","includes":["3 reels"],"price":5000,"priceType":"fixed","title":"Instagram reel promotion"},{"cta":"request","delivery":"3 days","description":"book and get podcast","includes":[],"price":100000,"priceType":"fixed","title":"Youtube podcast"},{"cta":"request","delivery":"3 days","description":"","includes":["Youtube brand promotion"],"price":20000,"priceType":"starting","title":"Youtube promotion"},{"cta":"request","delivery":"5 days","description":"facebook","includes":[],"priceType":"custom","title":"Facebook brand promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@upi"},"portfolio":[{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628905310_05384904d0a5.jpeg","id":"696b22aab84211ac7ace764e","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628882496_cf6739f8637c.jpeg","id":"696b2293b84211ac7ace75fb","pinned":true,"title":"Free","visible":true},{"brand":"","contentType":"video","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628850419_6f9e081f1573.mp4","id":"696b2273b84211ac7ace75ab","pinned":true,"title":"_users_6d021d13-9254-4a0d-8e14-be83ef1efb47_generated_b2252efa-b351-403d-afb1-611a94acb65d_generated_video_hd.mp4","visible":true},{"brand":"","contentType":"image","description":"","externalUrl":null,"fileUrl":"https://oneinflu.b-cdn.net/users/695534ca815ce71ec10e05ff/1768628813347_5f622b3145f0.jpeg","id":"696b224eb84211ac7ace7558","pinned":true,"title":"Signup","visible":true}],"profile":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1767199897/avatars/09a2fa72-acf3-4246-8a4b-17d94383f195.png","bio":"Turning influence into real work & payments.\nBrands, collaborations & services — all in one INFLU profile.","coverUrl":"/profile.jpg","id":"695534ca815ce71ec10e05ff","name":"One Influ","role":"Professional","username":"oneinflu","verified":false},"theme":"light"}
+[00:00:28.037] Browser GROUPEND 
+[00:00:28.274] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:28.607] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:28.607] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:28.607] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:28.607] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:28.607] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:28.607] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:28.752] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:00:29.368] Browser ERROR   {}
+[00:00:33.959] Browser ERROR   {}
+[00:00:34.189] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:09:40.753] Server  LOG     ✓ Compiled in 2s

@@ -822,10 +822,19 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                     <div className="p-8 pt-10">
                         {invitation && (
                             <div className="text-center">
-                                <div className="mb-4 text-display-lg font-mono font-bold tracking-widest text-brand-solid break-all">
-                                    {invitation.inviteCode || invitation.applicationId.slice(-6).toUpperCase()}
+                                <div className="mb-2 text-display-lg font-mono font-bold tracking-widest text-brand-solid break-all">
+                                    {invitation.inviteCode || "—"}
                                 </div>
-                                <p className="text-sm text-tertiary mb-6">Use this code after you scan QR</p>
+                                <p className="text-xs text-tertiary uppercase tracking-wider mb-6">Invitation Code</p>
+
+                                {event.code && (
+                                    <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-100 dark:border-gray-800">
+                                        <p className="text-xl font-mono font-semibold text-primary tracking-widest">
+                                            {event.code}
+                                        </p>
+                                        <p className="text-xs text-tertiary uppercase tracking-wider mt-1">Event Code</p>
+                                    </div>
+                                )}
                                 <div className="inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700 dark:bg-green-900/20 dark:text-green-400">
                                     <CheckDone01 className="size-3" />
                                     {invitation.status === "invited" ? "Confirmed Invitation" : "Status: " + invitation.status}
