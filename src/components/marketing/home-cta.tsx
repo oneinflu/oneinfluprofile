@@ -1,64 +1,58 @@
- "use client";
+"use client";
 
- import { motion, useScroll, useTransform } from "motion/react";
- import { useRef } from "react";
- import { Button } from "@/components/base/buttons/button";
- 
- export const NewsletterIPhoneMockup01 = () => {
-     const ref = useRef<HTMLDivElement>(null);
-     const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-     const yImage = useTransform(scrollYProgress, [0, 1], [0, -40]);
-     const yContent = useTransform(scrollYProgress, [0, 1], [20, -20]);
- 
-     return (
-         <section className="overflow-hidden px-4 pt-16 md:py-24">
-             <div ref={ref} className="mx-auto  w-full max-w-6xl bg-brand-solid rounded-3xl">
-                 <div className="relative grid grid-cols-1 items-center gap-10 rounded-3xl p-8 text-white md:grid-cols-2 md:p-12">
-                     <motion.div
-                         initial={{ y: 20, opacity: 0 }}
-                         whileInView={{ y: 0, opacity: 1 }}
-                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                         viewport={{ once: true, margin: "-10%" }}
-                         style={{ y: yContent }}
-                         className="z-10 flex flex-col items-start"
-                     >
-                         <h2 className="text-display-sm md:text-display-md lg:text-display-lg font-semibold">Turn your bio link into a business.</h2>
-                         <p className="mt-4 text-md md:text-lg text-white/85">Stop sending people everywhere.
- Give your clients one clear place to understand your work, contact you instantly, and pay without friction.</p>
-                         <motion.div
-                             initial={{ y: 20, opacity: 0 }}
-                             whileInView={{ y: 0, opacity: 1 }}
-                             transition={{ delay: 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                             viewport={{ once: true, margin: "-10%" }}
-                             className="mt-8 md:mt-10"
-                         >
-                             <Button href="/register" size="xl" className="rounded-full !bg-black !text-white hover:!bg-[#0A0D12] !ring-transparent">
-                                 Create your free INFLU link
-                             </Button>
-                             <p className="mt-3 text-sm text-white/85">
-                                 Takes less than 2 minutes · No credit card required · Free forever
-                             </p>
-                         </motion.div>
-                     </motion.div>
- 
-                     <motion.div
-                         initial={{ y: 20, opacity: 0 }}
-                         whileInView={{ y: 0, opacity: 1 }}
-                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                         viewport={{ once: true, margin: "-10%" }}
-                         style={{ y: yImage }}
-                         className="relative hidden md:flex items-end justify-center md:min-h-100 md:w-full md:-mb-17"
-                     >
-                         <img
-                             src="/mockup.png"
-                             alt=""
-                             className="z-10 w-full max-w-71 rounded-2xl md:max-w-78.5 md:drop-shadow-iphone-mockup"
-                         />
+import { motion } from "motion/react";
+import { ArrowRight } from "@untitledui/icons";
 
-                         
-                     </motion.div>
-                 </div>
-             </div>
-         </section>
-     );
- };
+export const HomeCTA = () => {
+    return (
+        <section className="py-24 md:py-32 bg-white dark:bg-gray-950 px-4">
+            <div className="container mx-auto max-w-7xl">
+                <div className="relative w-full overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] isolate">
+                    {/* Video Background */}
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 h-full w-full object-cover"
+                    >
+                        <source src="/cta.webm" type="video/webm" />
+                    </video>
+
+                    {/* Overlay - Subtle dark gradient to ensure text readability */}
+                    <div className="absolute inset-0 bg-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    
+                    {/* Border/Ring overlay for that thin line look */}
+                    <div className="absolute inset-0 rounded-[2.5rem] md:rounded-[3.5rem] ring-1 ring-white/20 pointer-events-none" />
+
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col items-center justify-center px-6 py-24 md:py-32 text-center">
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-10 tracking-tight leading-[1.1] max-w-4xl drop-shadow-sm"
+                        >
+                            Ready to harness the power of Influence?
+                        </motion.h2>
+
+                        <motion.button
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#E9F4A8] text-gray-900 text-lg md:text-xl font-semibold transition-colors hover:bg-[#dce98a]"
+                        >
+                            Get a demo
+                            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        </motion.button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};

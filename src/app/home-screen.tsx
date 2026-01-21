@@ -8,7 +8,7 @@ import { HomeProblems } from "@/components/marketing/home-problems";
 import { HomeIdentity } from "@/components/marketing/home-identity";
 import { FeaturesAlternatingLayout01 } from "@/components/marketing/home-shift";
 import { HomeWho } from "@/components/marketing/home-who";
-import { NewsletterIPhoneMockup01 } from "@/components/marketing/home-cta";
+import { HomeCTA } from "@/components/marketing/home-cta";
 import { HomeFlow } from "@/components/marketing/home-flow";
 
 
@@ -92,6 +92,7 @@ export const HomeScreen = () => {
            
             <HomeFlow />
           
+            <HomeCTA />
          
         </div>
     );

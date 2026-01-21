@@ -243,3 +243,676 @@ It can also happen if the client has a browser extension installed which messes 
 [01:17:49.894] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
 [01:17:50.248] Browser ERROR   {}
 [01:39:59.109] Server  LOG     ✓ Compiled in 630ms
+[02:45:53.550] Server  LOG     ✓ Compiled in 1056ms
+[02:51:49.733] Server  LOG     ✓ Compiled in 381ms
+[02:52:05.602] Server  LOG     ✓ Compiled in 484ms
+[02:52:20.189] Server  LOG     ✓ Compiled in 286ms
+[02:53:40.092] Server  LOG     ✓ Compiled in 399ms
+[02:53:51.587] Server  LOG     ✓ Compiled in 499ms
+[02:54:11.858] Server  LOG     ✓ Compiled in 396ms
+[02:55:19.304] Server  LOG     ✓ Compiled in 166ms
+[02:57:27.139] Server  LOG     ✓ Compiled in 378ms
+[03:03:35.297] Server  LOG     ✓ Compiled in 859ms
+[03:05:05.517] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:05:06.669] Browser ERROR   {}
+[03:06:14.080] Server  LOG     ✓ Compiled in 206ms
+[03:06:32.374] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:06:32.374] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:06:32.810] Browser ERROR   {}
+[03:06:53.728] Server  LOG     ✓ Compiled in 139ms
+[03:07:06.529] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:07:06.529] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:07:06.794] Browser ERROR   {}
+[03:07:25.268] Server  LOG     ✓ Compiled in 494ms
+[03:08:33.894] Server  LOG     ✓ Compiled in 448ms
+[03:09:29.546] Server  LOG     ✓ Compiled in 222ms
+[03:09:41.066] Server  LOG     ✓ Compiled in 189ms
+[03:09:52.051] Server  LOG     ✓ Compiled in 322ms
+[03:09:56.495] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:09:56.495] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:09:57.529] Browser ERROR   {}
+[03:10:10.147] Server  LOG     ✓ Compiled in 427ms
+[03:11:47.327] Server  LOG     ✓ Compiled in 276ms
+[03:11:48.395] Browser ERROR   uncaughtError: Error: Target ref is defined but not hydrated. For more information and steps for solving, visit https://motion.dev/troubleshooting/use-scroll-ref
+[03:12:04.414] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:12:04.415] Server  LOG     ✓ Compiled in 341ms
+[03:12:06.404] Browser ERROR   {}
+[03:12:08.402] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:14:35.033] Server  LOG     ✓ Compiled in 232ms
+[03:20:00.140] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.155] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.163] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.172] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.179] Server  LOG     ✓ Compiled in 1182ms
+[03:20:00.191] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.192] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.194] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.375] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.422] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.429] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.435] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.442] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.447] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.452] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.473] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.476] Server  ERROR   ⨯ ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[03:20:00.477] Browser ERROR   ./src/components/marketing/home-problems.tsx:6:1
+Module not found: Can't resolve 'lucide-react'
+  4 | import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "motion/react";
+  5 | import { cx } from "@/utils/cx";
+> 6 | import { X } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Data for the 15 cards
+  9 | const problems = [
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[03:20:22.769] Server  LOG     ✓ Compiled in 2.1s
+[03:21:09.498] Server  LOG     ✓ Compiled in 953ms
+[03:22:51.923] Server  LOG     ✓ Compiled in 1130ms
+[03:23:31.715] Server  LOG     ✓ Compiled in 615ms
+[03:23:32.396] Browser ERROR   ./src/components/marketing/home-problems.tsx:198:30
+Parsing ecmascript source code failed
+  196 |                         </motion.div>
+  197 |                     ))}
+> 198 |                 </motion.div>
+      |                              ^
+> 199 |             </div>
+      | ^^^^^^^^^^^^^
+  200 |
+  201 |             {/* Answer Modal */}
+  202 |             <AnimatePresence>
+
+Expected '</', got 'jsx text (
+            )'
+
+Import traces:
+  Client Component Browser:
+    ./src/components/marketing/home-problems.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Client Component Browser]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/marketing/home-problems.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Client Component SSR]
+    ./src/app/home-screen.tsx [Server Component]
+    ./src/app/page.tsx [Server Component]
+[03:23:48.799] Server  LOG     ✓ Compiled in 153ms
+[03:25:36.921] Server  LOG     ✓ Compiled in 542ms
+[03:28:11.695] Server  LOG     ✓ Compiled in 703ms
+[03:28:46.900] Server  LOG     ✓ Compiled in 417ms
+[03:30:28.527] Server  LOG     ✓ Compiled in 731ms
+[03:32:54.648] Server  LOG     ✓ Compiled in 671ms
+[03:33:04.812] Server  LOG     ✓ Compiled in 1024ms
+[03:33:26.402] Server  LOG     ✓ Compiled in 865ms
+[03:33:57.864] Server  LOG     ✓ Compiled in 206ms
+[03:34:22.533] Server  LOG     ✓ Compiled in 146ms
