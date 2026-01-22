@@ -11,7 +11,7 @@ export const MarketingFooter = () => {
     const firstSegment = (pathname.split("/")[1] || "").trim();
     const disallow = new Set(["login", "register", "add-links", "onboarding", "complete", "select-category", "select-platforms", "verify", "username", "admin"]);
     const isAdmin = firstSegment === "admin";
-    const allowStatic = new Set(["", "terms", "privacy"]);
+    const allowStatic = new Set(["", "terms", "privacy", "creators"]);
     const isDynamicProfile = firstSegment.length > 0 && !disallow.has(firstSegment) && !allowStatic.has(firstSegment);
     const isEmbed = Boolean(search.get("embed"));
 

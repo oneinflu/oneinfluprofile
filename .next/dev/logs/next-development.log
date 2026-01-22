@@ -916,3 +916,787 @@ Import traces:
 [03:33:26.402] Server  LOG     ✓ Compiled in 865ms
 [03:33:57.864] Server  LOG     ✓ Compiled in 206ms
 [03:34:22.533] Server  LOG     ✓ Compiled in 146ms
+[03:35:40.333] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                            ...
+                              <section className="py-24 md:p...">
+                                <div className="container ...">
+                                  <div className="relative w...">
+                                    <video
+                                      autoPlay={true}
+                                      loop={true}
+                                      muted={true}
+                                      playsInline={true}
+                                      className="absolute inset-0 h-full w-full object-cover"
+-                                     data-video="0"
+                                    >
+                                    ...
+                  ...
+
+[03:35:40.333] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:35:40.503] Browser ERROR   {}
+[03:35:49.854] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
+                  <HomeScreen params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <AnimatePresence>
+                      <HomeHero>
+                      <HomeProblems>
+                      <HomeFlow>
+                      <HomeCTA>
+                        <section className="py-24 md:p...">
+                          <div className="container ...">
+                            <div className="relative w...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="absolute inset-0 h-full w-full object-cover"
+-                               data-video="0"
+                              >
+                              ...
+              ...
+            ...
+
+[03:35:49.854] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[03:35:50.168] Browser ERROR   {}
+[15:47:01.433] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
+                  <HomeScreen params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <AnimatePresence>
+                      <HomeHero>
+                      <HomeProblems>
+                      <HomeFlow>
+                      <HomeCTA>
+                        <section className="py-24 md:p...">
+                          <div className="container ...">
+                            <div className="relative w...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="absolute inset-0 h-full w-full object-cover"
+-                               data-video="0"
+                              >
+                              ...
+              ...
+            ...
+
+[15:47:02.430] Browser ERROR   {}
+[15:47:06.022] Server  LOG     ✓ Compiled in 555ms
+[15:47:14.845] Server  LOG     ✓ Compiled in 247ms
+[15:50:50.812] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[15:50:55.066] Server  LOG     ○ Compiling /creators ...
+[15:50:56.750] Browser ERROR   {}
+[15:54:55.423] Server  LOG     ✓ Compiled in 1724ms
+[15:54:57.432] Browser LOG     Autoplay blocked
+[15:54:57.432] Browser LOG     Autoplay blocked
+[15:54:57.432] Browser WARN    Image with src "/mockup.webp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:15.724] Server  LOG     ✓ Compiled in 168ms
+[15:56:05.481] Server  ERROR   ⨯ ./src/app/creators/page.tsx:1:1
+Module not found: Can't resolve '@/components/marketing/creators/hero'
+> 1 | import { CreatorsHero } from "@/components/marketing/creators/hero";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export default function CreatorsPage() {
+  4 |     return (
+
+Import map: aliased to relative './src/components/marketing/creators/hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[15:56:05.489] Server  ERROR   ⨯ ./src/app/creators/page.tsx:1:1
+Module not found: Can't resolve '@/components/marketing/creators/hero'
+> 1 | import { CreatorsHero } from "@/components/marketing/creators/hero";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export default function CreatorsPage() {
+  4 |     return (
+
+Import map: aliased to relative './src/components/marketing/creators/hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[15:56:05.522] Server  LOG     ✓ Compiled in 586ms
+[15:56:06.434] Browser ERROR   ./src/app/creators/page.tsx:1:1
+Module not found: Can't resolve '@/components/marketing/creators/hero'
+> 1 | import { CreatorsHero } from "@/components/marketing/creators/hero";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export default function CreatorsPage() {
+  4 |     return (
+
+Import map: aliased to relative './src/components/marketing/creators/hero' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found
+[15:56:14.418] Browser ERROR   ./src/app/creators/page.tsx:1:1
+Module not found: Can't resolve '@/components/marketing/creators/hero'
+> 1 | import { CreatorsHero } from "@/components/marketing/creators/hero";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export default function CreatorsPage() {
+  4 |     return (
+
+Import map: aliased to relative './src/components/marketing/creators/hero' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found
+[15:56:15.538] Browser ERROR   ./src/app/creators/page.tsx:1:1
+Module not found: Can't resolve '@/components/marketing/creators/hero'
+> 1 | import { CreatorsHero } from "@/components/marketing/creators/hero";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export default function CreatorsPage() {
+  4 |     return (
+
+Import map: aliased to relative './src/components/marketing/creators/hero' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found
+[15:56:16.043] Server  LOG     ✓ Compiled in 2.7s
+[15:56:20.495] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/creators" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[15:56:20.500] Browser ERROR   {}
+[15:57:49.962] Server  LOG     ✓ Compiled in 1495ms
+[15:58:03.055] Server  LOG     ✓ Compiled in 1020ms
+[15:59:50.983] Server  LOG     ✓ Compiled in 1135ms
+[16:01:14.689] Server  LOG     ✓ Compiled in 1031ms
+[16:01:16.780] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:02:02.662] Server  LOG     ✓ Compiled in 695ms
+[16:02:02.918] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:02:04.225] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:02:04.792] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/creators" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                            ...
+                              <div className="relative m..." style={{opacity:0, ...}} ...>
+                                <div className="relative z...">
+                                  <div>
+                                  <img>
+                                  <div className="absolute i...">
+                                    <video
+                                      autoPlay={true}
+                                      loop={true}
+                                      muted={true}
+                                      playsInline={true}
+                                      className="h-full w-full object-cover opacity-95"
+-                                     data-video="0"
+                                    >
+                                    ...
+                  ...
+
+[16:02:04.903] Browser ERROR   {}
+[16:03:32.116] Server  LOG     ✓ Compiled in 693ms
+[16:03:33.364] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:04:50.196] Server  LOG     ✓ Compiled in 59ms
+[16:04:50.760] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:04:51.138] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter url="/creators" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="creators/p...">
+        <SegmentTrieNode>
+        <CreatorsPage>
+          <main className="min-h-scre...">
+            <CreatorsHero>
+              <section className="py-6 md:py...">
+                <div className="container ...">
+                  <div className="relative o...">
+                    <div>
+                    <div>
+                    <div>
+                    <div className="grid grid-...">
+                      <div>
+                      <motion.div initial={{opacity:0,x:20, ...}} animate={{opacity:1,x:0,rotate:0}} ...>
+                        <div className="relative m..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div className="relative z...">
+                            <div>
+                            <img>
+                            <div className="absolute i...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="h-full w-full object-cover opacity-95"
+-                               data-video="0"
+                              >
+                              ...
+            ...
+      ...
+
+[16:04:51.138] Browser ERROR   {}
+[16:05:07.768] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
+                  <HomeScreen params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <AnimatePresence>
+                      <HomeHero>
+                      <HomeProblems>
+                      <HomeFlow>
+                      <HomeCTA>
+                        <section className="py-12 md:p...">
+                          <div className="container ...">
+                            <div className="relative w...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="absolute inset-0 h-full w-full object-cover"
+-                               data-video="0"
+                              >
+                              ...
+              ...
+            ...
+
+[16:05:07.768] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[16:05:07.984] Browser ERROR   {}
+[16:05:18.679] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:05:19.010] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter url="/creators" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="creators/p...">
+        <SegmentTrieNode>
+        <CreatorsPage>
+          <main className="min-h-scre...">
+            <CreatorsHero>
+              <section className="py-6 md:py...">
+                <div className="container ...">
+                  <div className="relative o...">
+                    <div>
+                    <div>
+                    <div>
+                    <div className="grid grid-...">
+                      <div>
+                      <motion.div initial={{opacity:0,x:20, ...}} animate={{opacity:1,x:0,rotate:0}} ...>
+                        <div className="relative m..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div className="relative z...">
+                            <div>
+                            <img>
+                            <div className="absolute i...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="h-full w-full object-cover opacity-95"
+-                               data-video="0"
+                              >
+                              ...
+            ...
+      ...
+
+[16:05:19.010] Browser ERROR   {}
+[16:05:30.788] Server  LOG     ✓ Compiled in 551ms
+[16:05:44.347] Server  LOG     ✓ Compiled in 163ms
+[16:08:31.075] Server  LOG     ✓ Compiled in 256ms
+[16:10:31.937] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:10:32.487] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter url="/creators" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="creators/p...">
+        <SegmentTrieNode>
+        <CreatorsPage>
+          <main className="min-h-scre...">
+            <CreatorsHero>
+              <section className="py-6 md:py...">
+                <div className="container ...">
+                  <div className="relative o...">
+                    <div>
+                    <div>
+                    <div>
+                    <div className="grid grid-...">
+                      <div>
+                      <motion.div initial={{opacity:0,x:20, ...}} animate={{opacity:1,x:0,rotate:0}} ...>
+                        <div className="relative m..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div className="relative z...">
+                            <div>
+                            <img>
+                            <div className="absolute i...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="h-full w-full object-cover opacity-95"
+-                               data-video="0"
+                              >
+                              ...
+            ...
+      ...
+
+[16:10:32.487] Browser ERROR   {}
+[16:10:34.889] Server  LOG     ✓ Compiled in 526ms
+[16:10:35.084] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:10:46.527] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:10:46.920] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter url="/creators" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="creators/p...">
+        <SegmentTrieNode>
+        <CreatorsPage>
+          <main className="min-h-scre...">
+            <CreatorsHero>
+              <section className="py-6 md:py...">
+                <div className="container ...">
+                  <div className="relative o...">
+                    <div>
+                    <div>
+                    <div>
+                    <div className="grid grid-...">
+                      <div>
+                      <motion.div initial={{opacity:0,x:20, ...}} animate={{opacity:1,x:0,rotate:0}} ...>
+                        <div className="relative m..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div className="relative z...">
+                            <div>
+                            <img>
+                            <div className="absolute i...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="h-full w-full object-cover opacity-95"
+-                               data-video="0"
+                              >
+                              ...
+            ...
+      ...
+
+[16:10:46.920] Browser ERROR   {}
+[16:10:50.407] Server  LOG     ✓ Finished filesystem cache database compaction in 13.4s
+[16:11:42.158] Server  LOG     ✓ Compiled in 3.2s
+[16:14:18.559] Server  LOG     ✓ Compiled in 1181ms
+[16:14:18.837] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:14:52.401] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[16:17:18.191] Server  LOG     ✓ Compiled in 809ms
+[16:17:18.892] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:18:38.750] Server  LOG     ✓ Compiled in 257ms
+[16:18:58.330] Server  LOG     ✓ Compiled in 231ms
+[16:21:10.222] Server  LOG     ✓ Compiled in 323ms
+[16:21:28.384] Server  LOG     ✓ Compiled in 179ms
+[16:21:31.574] Server  LOG     ✓ Compiled in 122ms
+[16:23:02.982] Server  LOG     ✓ Compiled in 640ms
+[16:23:03.260] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[16:23:24.062] Server  LOG     ✓ Compiled in 189ms
+[16:24:53.564] Server  LOG     ✓ Compiled in 257ms
+[17:07:25.136] Server  LOG     ✓ Compiled in 583ms
+[17:07:25.696] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:08:48.818] Server  LOG     ✓ Compiled in 1253ms
+[17:08:49.371] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:10:07.783] Server  LOG     ✓ Compiled in 870ms
+[17:10:07.912] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:11:19.543] Server  LOG     ✓ Compiled in 1070ms
+[17:11:20.619] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:13:50.240] Server  LOG     ✓ Compiled in 676ms
+[17:13:50.614] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:14:02.978] Server  LOG     ✓ Compiled in 335ms
+[17:14:03.196] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:16:05.049] Server  LOG     ✓ Compiled in 879ms
+[17:16:05.204] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:16:54.137] Server  LOG     ✓ Compiled in 591ms
+[17:18:24.796] Server  LOG     ✓ Compiled in 1013ms
+[17:18:25.858] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:19:16.363] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:19:17.059] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/creators" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                            ...
+                              <div className="relative m..." style={{opacity:0, ...}} ...>
+                                <div className="relative z...">
+                                  <div>
+                                  <img>
+                                  <div className="absolute i...">
+                                    <video
+                                      autoPlay={true}
+                                      loop={true}
+                                      muted={true}
+                                      playsInline={true}
+                                      className="h-full w-full object-cover opacity-95"
+-                                     data-video="0"
+                                    >
+                                    ...
+                  ...
+
+[17:19:17.059] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[17:19:17.713] Browser ERROR   {}
+[17:19:57.640] Server  LOG     ✓ Compiled in 581ms
+[17:19:58.697] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:20:39.451] Server  LOG     ✓ Compiled in 722ms
+[17:20:39.575] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:21:27.689] Server  LOG     ✓ Compiled in 424ms
+[17:21:27.840] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:21:38.835] Server  LOG     ✓ Compiled in 119ms
+[17:21:57.534] Server  LOG     ✓ Compiled in 276ms
+[17:22:57.172] Server  LOG     ✓ Compiled in 794ms
+[17:22:57.912] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:17.651] Server  LOG     ✓ Compiled in 114ms
+[17:23:47.964] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:48.588] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:49.482] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:49.498] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/hosts" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[17:23:49.498] Browser GROUP   PUBLIC_PROFILE_GET
+[17:23:49.498] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/hosts/profile
+[17:23:49.498] Browser GROUPEND 
+[17:23:49.498] Browser ERROR   {}
+[17:23:49.631] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:49.860] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:50.024] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:50.578] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:50.618] Browser GROUP   PUBLIC_PROFILE_GET
+[17:23:50.618] Browser LOG     REQUEST GET https://newyearbackendcode-zrp62.ondigitalocean.app/users/hosts/profile
+[17:23:50.618] Browser GROUPEND 
+[17:23:50.618] Browser ERROR   {}
+[17:23:50.807] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:51.845] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[17:23:52.245] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter url="/creators" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="creators/p...">
+        <SegmentTrieNode>
+        <CreatorsPage>
+          <main className="min-h-scre...">
+            <CreatorsHero>
+              <section className="py-6 md:py...">
+                <div className="container ...">
+                  <div className="relative o...">
+                    <div>
+                    <div>
+                    <div>
+                    <div className="grid grid-...">
+                      <div>
+                      <motion.div initial={{opacity:0,x:20, ...}} animate={{opacity:1,x:0,rotate:0}} ...>
+                        <div className="relative m..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div className="relative z...">
+                            <div>
+                            <img>
+                            <div className="absolute i...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="h-full w-full object-cover opacity-95"
+-                               data-video="0"
+                              >
+                              ...
+            ...
+      ...
+
+[17:23:52.245] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[17:23:52.353] Browser ERROR   {}
+[17:25:22.605] Server  LOG     ✓ Compiled in 268ms
+[17:25:35.414] Server  LOG     ✓ Compiled in 199ms
+[17:25:53.544] Server  LOG     ✓ Compiled in 120ms
+[17:26:30.132] Server  LOG     ✓ Compiled in 157ms
+[17:26:32.268] Server  LOG     ✓ Compiled in 110ms

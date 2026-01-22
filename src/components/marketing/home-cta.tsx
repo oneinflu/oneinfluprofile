@@ -5,7 +5,7 @@ import { ArrowRight } from "@untitledui/icons";
 
 export const HomeCTA = () => {
     return (
-        <section className="py-24 md:py-32 bg-white dark:bg-gray-950 px-4">
+        <section className="py-12 md:py-24 bg-white dark:bg-gray-950 px-4">
             <div className="container mx-auto max-w-7xl">
                 <div className="relative w-full overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] isolate">
                     {/* Video Background */}
