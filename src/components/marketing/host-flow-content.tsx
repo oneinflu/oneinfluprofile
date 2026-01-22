@@ -251,48 +251,164 @@ export const HostStep3Content = () => (
     </div>
 );
 
-export const HostStep3Visual = () => (
-    <div className="relative w-full aspect-square md:aspect-[4/3] max-w-xl mx-auto">
-        {/* Main Visual: Scanner Interface */}
-        <div className="absolute inset-0 bg-black rounded-3xl overflow-hidden border-8 border-gray-900 shadow-2xl">
-            {/* Camera View */}
-            <div className="absolute inset-0 bg-gray-900">
-                <div className="absolute inset-0 opacity-50 bg-[url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center" />
-                
-                {/* Scanning Frame */}
-                <div className="absolute inset-12 border-2 border-white/30 rounded-xl overflow-hidden">
-                    <motion.div 
-                        animate={{ top: ["0%", "100%", "0%"] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                        className="absolute left-0 right-0 h-0.5 bg-green-500 shadow-[0_0_20px_rgba(34,197,94,0.8)]" 
-                    />
+export const HostStep3Visual = ({ isMobile }: { isMobile?: boolean }) => (
+    <div className="relative w-full aspect-square md:aspect-[4/3] max-w-xl mx-auto flex items-center justify-center">
+        {/* DASHBOARD BACKGROUND (The "Source of Truth") */}
+        <div className="absolute inset-0 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col">
+            {/* Dashboard Header */}
+            <div className="h-12 border-b border-gray-100 dark:border-gray-800 flex items-center px-4 justify-between bg-gray-50 dark:bg-gray-800/50">
+                <div className="flex items-center gap-2">
+                    <div className="size-3 rounded-full bg-red-400" />
+                    <div className="size-3 rounded-full bg-amber-400" />
+                    <div className="size-3 rounded-full bg-green-400" />
+                </div>
+                <div className="text-xs font-mono text-gray-400">admin.oneinflu.com/events/live</div>
+            </div>
+
+            {/* Dashboard Content */}
+            <div className="flex-1 p-6 font-mono text-sm relative">
+                <div className="flex justify-between items-end mb-6">
+                    <div>
+                        <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Live Event Status</div>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">Summer Launch Party</div>
+                    </div>
+                    <div className="text-right">
+                        <div className="text-gray-500 text-xs uppercase tracking-wider mb-1">Checked In</div>
+                        <div className="text-2xl font-bold text-green-500">142<span className="text-gray-400 text-lg">/200</span></div>
+                    </div>
                 </div>
 
-                {/* Detected Overlay */}
-                <motion.div 
-                    initial={{ y: 100, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1, duration: 0.5 }}
-                    className="absolute bottom-0 left-0 right-0 bg-white dark:bg-gray-900 rounded-t-2xl p-6 pb-8"
-                >
-                    <div className="flex items-center gap-4">
-                        <div className="size-14 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-green-500 p-0.5">
-                             <div className="size-full rounded-full bg-gray-300 dark:bg-gray-700" />
-                        </div>
-                        <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Sarah Jenkins</h3>
-                                <CheckVerified02 className="size-4 text-brand-500" />
-                            </div>
-                            <div className="text-sm text-gray-500">Invited Guest • +1 Allowed</div>
-                        </div>
-                        <div className="size-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600">
-                            <Check className="size-6" />
-                        </div>
+                {/* Guest List Table */}
+                <div className="space-y-3">
+                    <div className="grid grid-cols-12 text-xs text-gray-400 uppercase tracking-wider pb-2 border-b border-gray-100 dark:border-gray-800">
+                        <div className="col-span-5">Guest Name</div>
+                        <div className="col-span-4">Ticket Type</div>
+                        <div className="col-span-3 text-right">Status</div>
                     </div>
-                </motion.div>
+
+                    {/* List Items */}
+                    {[
+                        { name: "Alex Rivera", type: "VIP Creator", status: "Checked In", time: "8:30 PM" },
+                        { name: "Sarah Jenkins", type: "Brand Partner", status: "Just Now", highlight: true },
+                        { name: "Mike Chen", type: "Standard Access", status: "Pending", time: "--" },
+                        { name: "Emily Davis", type: "VIP Creator", status: "Pending", time: "--" },
+                        { name: "James Wilson", type: "Press Pass", status: "Pending", time: "--" },
+                    ].map((guest, i) => (
+                        <div key={i} className={cx(
+                            "grid grid-cols-12 items-center py-2 px-3 rounded-lg transition-colors",
+                            guest.highlight ? "bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/30" : "hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                        )}>
+                            <div className="col-span-5 font-medium text-gray-900 dark:text-white flex items-center gap-2">
+                                <div className={cx("size-2 rounded-full", guest.status === "Pending" ? "bg-gray-300" : "bg-green-500")} />
+                                {guest.name}
+                            </div>
+                            <div className="col-span-4 text-gray-500">{guest.type}</div>
+                            <div className="col-span-3 text-right">
+                                {guest.highlight ? (
+                                    <motion.span 
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 1.6 }} // Sync with phone success
+                                        className="inline-flex items-center gap-1 text-green-600 font-bold"
+                                    >
+                                        <Check className="size-3" /> Check-in
+                                    </motion.span>
+                                ) : (
+                                    <span className={cx(guest.status === "Checked In" ? "text-green-600" : "text-gray-400")}>
+                                        {guest.status}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
+
+        {/* DEVICE MOCKUP (Floating in front) */}
+        <motion.div 
+            initial={{ y: 40, x: isMobile ? 0 : 20 }}
+            whileInView={{ y: 20, x: isMobile ? 0 : 40 }}
+            transition={{ duration: 1 }}
+            className="absolute right-0 bottom-[-40px] md:right-[-20px] md:bottom-[-20px] w-64 h-[450px] bg-gray-900 rounded-[2.5rem] border-[6px] border-gray-800 shadow-2xl overflow-hidden ring-1 ring-white/10 rotate-[-6deg]"
+        >
+            {/* Dynamic Island / Notch */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-gray-800 rounded-b-xl z-30" />
+
+            {/* SCREEN CONTENT */}
+            <div className="relative w-full h-full bg-gray-950 flex flex-col">
+                
+                {/* 1. SCANNING INTERFACE (Base Layer) */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                    {/* Camera Feed Background Effect */}
+                    <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80')] bg-cover bg-center" />
+                    <div className="absolute inset-0 bg-black/60" />
+
+                    {/* Scanning Frame */}
+                    <div className="relative w-48 h-48 border-2 border-white/20 rounded-2xl overflow-hidden">
+                        {/* Corner Accents */}
+                        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/50 rounded-tl-lg" />
+                        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/50 rounded-tr-lg" />
+                        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/50 rounded-bl-lg" />
+                        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/50 rounded-br-lg" />
+
+                        {/* Scanning Laser */}
+                        <motion.div 
+                            animate={{ top: ["0%", "100%", "0%"] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                            className="absolute left-0 right-0 h-0.5 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,1)]"
+                        />
+                    </div>
+
+                    <div className="mt-6 text-white/60 text-xs font-medium animate-pulse">
+                        Scanning Ticket...
+                    </div>
+                </div>
+
+                {/* 2. APPROVED OVERLAY (Transitions In) */}
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ delay: 1.5, duration: 0.5, type: "spring" }}
+                    className="absolute inset-0 z-20 bg-gray-900/95 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center"
+                >
+                    {/* Success Icon */}
+                    <div className="size-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4 ring-4 ring-green-500/10">
+                        <div className="size-10 rounded-full bg-green-500 flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+                            <Check className="size-6 text-white stroke-[4]" />
+                        </div>
+                    </div>
+
+                    {/* Status */}
+                    <h3 className="text-xl font-bold text-white mb-1">Approved</h3>
+                    <div className="flex items-center gap-2 px-2 py-0.5 bg-green-500/10 rounded-full border border-green-500/20 mb-4">
+                        <div className="size-1.5 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[10px] font-semibold text-green-400 uppercase tracking-wide">Checked In</span>
+                    </div>
+
+                    {/* Guest Profile */}
+                    <div className="w-full bg-gray-800/50 rounded-xl p-3 border border-gray-700 mb-4">
+                        <div className="flex items-center gap-3 text-left">
+                            <img 
+                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80" 
+                                alt="Guest" 
+                                className="size-10 rounded-full object-cover border-2 border-gray-600"
+                            />
+                            <div>
+                                <div className="text-white text-sm font-bold">Sarah Jenkins</div>
+                                <div className="text-gray-400 text-xs">Brand Partner</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Welcome Message */}
+                    <div className="text-white/80 font-medium text-sm">
+                        "Welcome Sarah!"
+                    </div>
+                </motion.div>
+
+            </div>
+        </motion.div>
     </div>
 );
 
