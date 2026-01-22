@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         siteName: "INFLU",
         images: [
             {
-                url: "/home.png",
+                url: "https://oneinflu.com/home.png",
                 width: 1200,
                 height: 630,
                 alt: "INFLU Platform Preview",
@@ -35,7 +35,11 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "INFLU – Influencer Events, Creator Profiles & Campaign Management",
         description: "INFLU is an influencer event platform to manage creator profiles, host events, QR entry, content submissions and campaign reports — all in one place.",
-        images: ["/home.png"],
+        images: ["https://oneinflu.com/home.png"],
+    },
+    other: {
+        "twitter:domain": "oneinflu.com",
+        "twitter:url": "https://oneinflu.com/",
     },
 };
 

@@ -522,3 +522,9 @@ It can also happen if the client has a browser extension installed which messes 
 
 [05:31:52.035] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
 [05:31:52.579] Browser ERROR   {}
+[05:45:06.119] Server  LOG     ✓ Compiled in 835ms
+[05:45:08.332] Server  LOG     ✓ Compiled in 167ms
+[05:45:08.540] Server  LOG     ✓ Compiled in 91ms
+[05:47:10.952] Server  LOG     ✓ Compiled in 309ms
+[05:47:12.922] Server  LOG     ✓ Compiled in 134ms
+[05:47:13.231] Server  LOG     ✓ Compiled in 198ms

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         siteName: "INFLU",
         images: [
             {
-                url: "/home.png",
+                url: "https://oneinflu.com/home.png",
                 width: 1200,
                 height: 630,
                 alt: "INFLU Pricing",
@@ -35,7 +35,11 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "INFLU Pricing | Free for Creators · Smart Plans for Hosts & Brands",
         description: "Explore INFLU pricing for creators, hosts, and brands. Creators join free. Hosts manage events, approvals, QR check-ins, and reports — free for early access.",
-        images: ["/home.png"],
+        images: ["https://oneinflu.com/home.png"],
+    },
+    other: {
+        "twitter:domain": "oneinflu.com",
+        "twitter:url": "https://oneinflu.com/pricing",
     },
 };
 
