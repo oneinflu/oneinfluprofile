@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         siteName: "INFLU",
         images: [
             {
-                url: "https://oneinflu.com/host.png",
+                url: "https://oneinflu.com/host.webp",
                 width: 1200,
                 height: 630,
                 alt: "INFLU for Hosts",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Influencer Event Management for Hosts & Agencies | INFLU",
         description: "Manage influencer events end-to-end — creator applications, shortlisting, QR entry, content tracking and final reports. Built for hosts & agencies.",
-        images: ["https://oneinflu.com/host.png"],
+        images: ["https://oneinflu.com/host.webp"],
     },
     other: {
         "twitter:domain": "oneinflu.com",

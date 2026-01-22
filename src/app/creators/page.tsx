@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         siteName: "INFLU",
         images: [
             {
-                url: "https://oneinflu.com/creator.png",
+                url: "https://oneinflu.com/creator.webp",
                 width: 1200,
                 height: 630,
                 alt: "INFLU for Creators",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Creator Profile & Event Platform for Influencers | INFLU",
         description: "Create a public creator profile, apply to influencer events, manage collaborations, submit content and build proof brands trust — free for creators.",
-        images: ["https://oneinflu.com/creator.png"],
+        images: ["https://oneinflu.com/creator.webp"],
     },
     other: {
         "twitter:domain": "oneinflu.com",
