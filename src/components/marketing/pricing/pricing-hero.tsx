@@ -53,7 +53,7 @@ export const PricingHero = () => {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="flex flex-col items-center gap-4 mt-4"
                 >
-                    <Button size="xl" className="text-lg px-8 rounded-full">
+                    <Button size="xl" className="text-lg px-8 rounded-full" href="/register">
                         Get early access 
                     </Button>
                     <p className="text-sm text-tertiary">

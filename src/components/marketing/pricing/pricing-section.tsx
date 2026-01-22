@@ -101,10 +101,10 @@ export const PricingSection = () => {
                             onSelectionChange={setSelectedTab}
                         >
                             <TabList items={[]} className="bg-white dark:bg-gray-900 p-1 rounded-full shadow-sm border border-gray-200 dark:border-gray-800" type="button-minimal" fullWidth>
-                                <Tab id="hosts" className="rounded-full py-2.5 data-[selected=true]:bg-primary data-[selected=true]:text-white data-[selected=true]:shadow-md">
+                                <Tab id="hosts" className="rounded-full py-2.5 data-[selected=true]:bg-primary data-[selected=true]:text-gray-900 dark:data-[selected=true]:text-white data-[selected=true]:shadow-md text-gray-500 dark:text-gray-400">
                                     For Hosts
                                 </Tab>
-                                <Tab id="creators" className="rounded-full py-2.5 data-[selected=true]:bg-primary data-[selected=true]:text-white data-[selected=true]:shadow-md">
+                                <Tab id="creators" className="rounded-full py-2.5 data-[selected=true]:bg-primary data-[selected=true]:text-gray-900 dark:data-[selected=true]:text-white data-[selected=true]:shadow-md text-gray-500 dark:text-gray-400">
                                     For Creators
                                 </Tab>
                             </TabList>

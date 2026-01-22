@@ -44,8 +44,8 @@ events, and brand work — without switching systems.
                     <motion.div
                         className="flex flex-col sm:flex-row items-center gap-3 pt-2"
                     >
-                        <Button href="/how-it-works" size="xl" color="secondary" className="w-full sm:w-auto rounded-full !bg-[#FFD400] !text-black hover:!bg-[#F2C400] !ring-transparent px-8">▶ See how it works</Button>
-                        <Button href="/register" size="xl" color="link-gray" className="w-full sm:w-auto text-[#334155] hover:text-[#0f172a] dark:text-[#cbd5e1] dark:hover:text-[#e5e7eb]">Start now</Button>
+                        <Button href="/register" size="xl" color="secondary" className="w-full sm:w-auto rounded-full !bg-[#FFD400] !text-black hover:!bg-[#F2C400] !ring-transparent px-8">▶ Get Started</Button>
+                      
                     </motion.div>
                     
                     <motion.div

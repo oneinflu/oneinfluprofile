@@ -45,9 +45,10 @@ export const HomeCTA = () => {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => window.location.href = "/register"}
                             className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#E9F4A8] text-gray-900 text-lg md:text-xl font-semibold transition-colors hover:bg-[#dce98a]"
                         >
-                            Get a demo
+                            Get Started
                             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                         </motion.button>
                     </div>

@@ -11742,6 +11742,10 @@
     background-color: var(--background-color-primary);
   }
 
+  .data-\[selected\=true\]\:text-gray-900[data-selected="true"] {
+    color: var(--color-gray-900);
+  }
+
   .data-\[selected\=true\]\:text-white[data-selected="true"] {
     color: var(--color-white);
   }
@@ -15583,6 +15587,10 @@
     .dark\:hover\:text-brand-400:where(.dark-mode, .dark-mode *):where(:not([data-rac])):hover {
       color: var(--color-brand-400);
     }
+  }
+
+  .dark\:data-\[selected\=true\]\:text-white:where(.dark-mode, .dark-mode *)[data-selected="true"] {
+    color: var(--color-white);
   }
 
   .placement-right\:slide-in-from-left-0\.5[data-placement="right"] {
