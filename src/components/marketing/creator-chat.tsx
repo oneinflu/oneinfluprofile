@@ -16,7 +16,7 @@ const avatars = [
 
 export const CreatorChat = () => {
     return (
-        <section className="py-24  relative overflow-hidden">
+        <section className="py-24  dark:bg-black relative overflow-hidden">
             {/* Floating Avatars */}
             {avatars.map((avatar, i) => (
                 <motion.div
@@ -31,7 +31,7 @@ export const CreatorChat = () => {
                         size="2xl" 
                         src={avatar.src} 
                         alt={avatar.alt} 
-                        className="border-2 border-white/20 shadow-2xl" 
+                        className="border-2 border-gray-200 dark:border-white/20 shadow-2xl" 
                     />
                 </motion.div>
             ))}
@@ -41,17 +41,17 @@ export const CreatorChat = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight"
+                    className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight"
                 >
                     Turn your presence into <br />
-                    <span className="text-[#E9F4A8]">real opportunities</span>
+                    <span className="text-brand-500 dark:text-[#E9F4A8]">real opportunities</span>
                 </motion.h2>
 
                 <motion.p 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+                    className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
                 >
                   Your INFLU profile isn’t just a bio link.
 It’s where creators get discovered, brands evaluate trust,
@@ -63,13 +63,13 @@ and collaborations actually move forward — without DMs, forms, or chaos.
                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="inline-flex items-start md:items-center gap-3 md:gap-4 bg-[#E9F4A8] text-black px-5 py-5 md:px-8 md:py-6 rounded-3xl md:rounded-full max-w-2xl shadow-[0_0_40px_rgba(233,244,168,0.2)] w-full md:w-auto"
+                    className="inline-flex items-start md:items-center gap-3 md:gap-4 bg-brand-50 dark:bg-[#E9F4A8] text-black px-5 py-5 md:px-8 md:py-6 rounded-3xl md:rounded-full max-w-2xl shadow-[0_0_40px_rgba(126,86,217,0.15)] dark:shadow-[0_0_40px_rgba(233,244,168,0.2)] w-full md:w-auto border border-brand-100 dark:border-none"
                 >
-                    <div className="flex-shrink-0 bg-black/10 p-2 md:p-3 rounded-full mt-0.5 md:mt-0">
+                    <div className="flex-shrink-0 bg-brand-100 dark:bg-black/10 text-brand-600 dark:text-black p-2 md:p-3 rounded-full mt-0.5 md:mt-0">
                         <MessageSmileCircle className="w-5 h-5 md:w-8 md:h-8" />
                     </div>
                     <div className="text-left">
-                        <p className="font-semibold text-sm md:text-lg mb-1 leading-tight md:leading-normal">This is INFLU — your public work identity.</p>
+                        <p className="font-semibold text-sm md:text-lg mb-1 leading-tight md:leading-normal text-gray-900 dark:text-black">This is INFLU — your public work identity.</p>
                         <TypewriterText text="One link to showcase services, shop links, events, collaborations,
 and everything brands need to say yes faster." />
                     </div>
@@ -85,7 +85,7 @@ const TypewriterText = ({ text }: { text: string }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-black/80 text-sm md:text-base leading-relaxed"
+            className="text-gray-600 dark:text-black/80 text-sm md:text-base leading-relaxed"
         >
             <span className="inline-block">
                 {text.split("").map((char, index) => (

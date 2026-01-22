@@ -12,7 +12,7 @@ export const ThemeFab = () => {
     useEffect(() => setMounted(true), []);
     const pathname = usePathname() || "/";
     const first = pathname.split("/").filter(Boolean)[0] || "";
-    const staticPages = new Set(["admin", "login", "register", "select-category", "select-platforms", "username", "onboarding", "verify", "add-links", "terms", "privacy"]);
+    const staticPages = new Set(["admin", "login", "register", "select-category", "select-platforms", "username", "onboarding", "verify", "add-links", "terms", "privacy", "creators"]);
     const isProfilePage = first.length > 0 && !staticPages.has(first);
     if (isProfilePage) return null;
 
