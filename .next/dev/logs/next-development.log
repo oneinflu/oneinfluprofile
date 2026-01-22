@@ -306,3 +306,174 @@ It can also happen if the client has a browser extension installed which messes 
 [01:39:14.320] Browser ERROR   {}
 [01:39:19.324] Browser ERROR   {}
 [01:39:25.817] Server  LOG     ✓ Compiled in 142ms
+[01:39:57.211] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[01:39:57.376] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[01:39:57.509] Browser ERROR   {}
+[05:10:49.710] Server  LOG     ✓ Compiled in 610ms
+[05:12:09.909] Server  LOG     ✓ Compiled in 340ms
+[05:13:08.845] Server  LOG     ✓ Compiled in 289ms
+[05:13:15.474] Server  LOG     ✓ Compiled in 211ms
+[05:23:34.316] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[05:23:44.028] Server  LOG     ✓ Compiled in 193ms
+[05:23:52.782] Server  LOG     ✓ Compiled in 228ms
+[05:25:55.967] Server  LOG     ✓ Compiled in 237ms
+[05:27:33.820] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[05:27:34.760] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[05:27:35.040] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <InnerLayoutRouter url="/creators" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="creators/p...">
+        <SegmentTrieNode>
+        <CreatorsPage>
+          <main className={"min-h-sc..."}>
+            <CreatorsHero>
+              <section className="py-6 md:py...">
+                <div className="container ...">
+                  <div className="relative o...">
+                    <div>
+                    <div>
+                    <div>
+                    <div className="grid grid-...">
+                      <div>
+                      <motion.div initial={{opacity:0,x:20, ...}} animate={{opacity:1,x:0,rotate:0}} ...>
+                        <div className="relative m..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                          <div className="relative z...">
+                            <div>
+                            <img>
+                            <div className="absolute i...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="h-full w-full object-cover opacity-95"
+-                               data-video="0"
+                              >
+                              ...
+            ...
+      ...
+
+[05:27:35.040] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[05:27:35.356] Browser ERROR   {}
+[05:28:29.304] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[05:28:30.063] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/hosts" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[05:28:30.239] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[05:28:30.239] Browser ERROR   {}
+[05:29:43.737] Server  LOG     ✓ Compiled in 272ms
+[05:29:43.856] Server  WARN    ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[05:30:58.579] Browser ERROR   ./src/app/pricing/page.tsx:41:8
+Parsing ecmascript source code failed
+  39 |     },
+  40 |
+> 41 | export default function PricingPage() {
+     |        ^^^^^^^
+  42 |     return (
+  43 |         <main className="min-h-screen">
+  44 |             <PricingHero />
+
+Unexpected token `default`. Expected ... , *,  (, [, :, , ?, =, an identifier, public, protected, private, readonly, <.
+[05:30:58.579] Browser ERROR   ./src/app/pricing/page.tsx:41:8
+Parsing ecmascript source code failed
+  39 |     },
+  40 |
+> 41 | export default function PricingPage() {
+     |        ^^^^^^^
+  42 |     return (
+  43 |         <main className="min-h-screen">
+  44 |             <PricingHero />
+
+Unexpected token `default`. Expected ... , *,  (, [, :, , ?, =, an identifier, public, protected, private, readonly, <.
+[05:31:05.525] Server  LOG     ✓ Compiled in 178ms

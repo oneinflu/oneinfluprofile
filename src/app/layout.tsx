@@ -40,6 +40,15 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
+                <Script src="https://www.googletagmanager.com/gtag/js?id=G-N8G4PGG8SZ" />
+                <Script id="google-analytics">
+                    {`
+                        window.dataLayer = window.dataLayer || []; 
+                        function gtag(){dataLayer.push(arguments);} 
+                        gtag('js', new Date()); 
+                        gtag('config', 'G-N8G4PGG8SZ'); 
+                    `}
+                </Script>
                 <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer />
                 <Script id="onesignal-init">
                     {`

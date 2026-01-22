@@ -2,8 +2,41 @@ import type { Metadata } from "next";
 import { HomeScreen } from "./home-screen";
 
 export const metadata: Metadata = {
-    title: "INFLU — One smart link. Get hired and paid.",
-    description: "Showcase services and portfolio, receive enquiries, and get paid — all from one INFLU link.",
+    title: "INFLU – Influencer Events, Creator Profiles & Campaign Management",
+    description: "INFLU is an influencer event platform to manage creator profiles, host events, QR entry, content submissions and campaign reports — all in one place.",
+    keywords: [
+        "influencer marketing platform",
+        "influencer event platform",
+        "creator collaboration platform",
+        "influencer events india",
+        "creator marketing software",
+        "influencer campaign management",
+        "event based influencer marketing",
+        "creator profile platform",
+        "influencer collaboration tool",
+    ],
+    openGraph: {
+        title: "INFLU – Influencer Events, Creator Profiles & Campaign Management",
+        description: "INFLU is an influencer event platform to manage creator profiles, host events, QR entry, content submissions and campaign reports — all in one place.",
+        url: "https://oneinflu.com",
+        siteName: "INFLU",
+        images: [
+            {
+                url: "/home.png",
+                width: 1200,
+                height: 630,
+                alt: "INFLU Platform Preview",
+            },
+        ],
+        locale: "en_US",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "INFLU – Influencer Events, Creator Profiles & Campaign Management",
+        description: "INFLU is an influencer event platform to manage creator profiles, host events, QR entry, content submissions and campaign reports — all in one place.",
+        images: ["/home.png"],
+    },
 };
 
 export default HomeScreen;
