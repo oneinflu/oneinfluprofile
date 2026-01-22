@@ -5,7 +5,7 @@ import { CreatorFeatures } from "@/components/marketing/creator-features";
 
 export default function CreatorsPage() {
     return (
-        <main className="min-h-screen pt-0 pb-20">
+        <main className="min-h-screen ">
             <CreatorsHero />
             <CreatorChat />
             <CreatorFeatures />
