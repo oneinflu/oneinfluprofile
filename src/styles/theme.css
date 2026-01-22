@@ -90,6 +90,7 @@
     /* ANIMATIONS */
     --animate-marquee: marquee 60s linear infinite;
     --animate-caret-blink: caret-blink 1s infinite;
+    --animate-gradient-x: gradient-x 15s ease infinite;
 
     @keyframes marquee {
         0% {
@@ -99,15 +100,23 @@
             transform: translateX(-100%);
         }
     }
-
     @keyframes caret-blink {
         0%,
-        50% {
+        70%,
+        100% {
             opacity: 1;
         }
-        51%,
-        100% {
+        20%,
+        50% {
             opacity: 0;
+        }
+    }
+    @keyframes gradient-x {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
         }
     }
 

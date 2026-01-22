@@ -6,6 +6,7 @@ import { ChevronDown } from "@untitledui/icons";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
+import { usePathname } from "next/navigation";
 import { cx } from "@/utils/cx";
 import { useAuth } from "@/providers/auth";
 
@@ -19,7 +20,7 @@ type HeaderNavItem = {
 const headerNavItems: HeaderNavItem[] = [
     { label: "Home", href: "/" },
     { label: "For Creators", href: "/creators" },
-    { label: "For Hosts", href: "/hosts", isImportant: true },
+    { label: "For Hosts", href: "/hosts" },
     { label: "For Brands", href: "/brands" },
     { label: "How It Works", href: "/how-it-works" },
     { label: "Trust", href: "/trust" },
@@ -107,6 +108,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
     const headerRef = useRef<HTMLElement>(null);
     const { user } = useAuth();
     const [mobileOpen, setMobileOpen] = useState(false);
+    const pathname = usePathname();
 
     return (
         <header
@@ -176,7 +178,9 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                                 href={navItem.href}
                                                 className={cx(
                                                     "flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold outline-focus-ring transition duration-100 ease-linear focus:outline-offset-2 focus-visible:outline-2",
-                                                    navItem.isImportant ? "text-brand-solid hover:text-brand-solid_hover" : "text-secondary hover:text-secondary_hover"
+                                                    (navItem.isImportant || (navItem.href && navItem.href !== '/' && pathname?.startsWith(navItem.href)) || (navItem.href === '/' && pathname === '/')) 
+                                                        ? "text-brand-solid hover:text-brand-solid_hover" 
+                                                        : "text-secondary hover:text-secondary_hover"
                                                 )}
                                             >
                                                 <span className="px-0.5">{navItem.label}</span>
