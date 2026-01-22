@@ -21,9 +21,6 @@ const headerNavItems: HeaderNavItem[] = [
     { label: "Home", href: "/" },
     { label: "For Creators", href: "/creators" },
     { label: "For Hosts", href: "/hosts" },
-    { label: "For Brands", href: "/brands" },
-    { label: "How It Works", href: "/how-it-works" },
-    { label: "Trust", href: "/trust" },
     { label: "Pricing", href: "/pricing" },
 ];
 

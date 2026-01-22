@@ -20,7 +20,7 @@ export const SiteHeader = () => {
         "admin",
     ]);
     const isAdmin = firstSegment === "admin";
-    const allowStatic = new Set(["", "terms", "privacy", "creators", "hosts"]);
+    const allowStatic = new Set(["", "terms", "privacy", "creators", "hosts", "pricing"]);
     const isDynamicProfile = firstSegment.length > 0 && !disallow.has(firstSegment) && !allowStatic.has(firstSegment);
     const isEmbed = Boolean(search.get("embed"));
 
