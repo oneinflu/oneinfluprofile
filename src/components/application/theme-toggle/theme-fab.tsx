@@ -13,7 +13,7 @@ export const ThemeFab = () => {
     const pathname = usePathname() || "/";
     const first = pathname.split("/").filter(Boolean)[0] || "";
     const staticPages = new Set(["admin", "login", "register", "select-category", "select-platforms", "username", "onboarding", "verify", "add-links", "terms", "privacy", "creators", "hosts", "pricing"]);
-    const isProfilePage = first.length > 0 && !staticPages.has(first);
+    const isProfilePage = false;
     if (isProfilePage) return null;
 
     if (!mounted) return null;

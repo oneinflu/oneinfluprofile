@@ -247,6 +247,31 @@ export default function CampaignDetailPage() {
                                             Upload Invitation Banner
                                         </Button>
                                     </div>
+                                ) : activeTab === "details" ? (
+                                    <Button
+                                        size="sm"
+                                        color="secondary"
+                                        iconLeading={clipboard.copied === `client-${event._id}` ? Check : Share04}
+                                        onClick={async () => {
+                                            const url = `${origin}/events/${encodeURIComponent(String(event.code))}`;
+                                            if (navigator.share) {
+                                                try {
+                                                    await navigator.share({
+                                                        title: event.eventName || 'Campaign Proposal',
+                                                        text: 'Check out this campaign proposal',
+                                                        url: url
+                                                    });
+                                                } catch (err) {
+                                                    console.error('Error sharing:', err);
+                                                    clipboard.copy(url, `client-${event._id}`);
+                                                }
+                                            } else {
+                                                clipboard.copy(url, `client-${event._id}`);
+                                            }
+                                        }}
+                                    >
+                                        Share to Client
+                                    </Button>
                                 ) : (
                                     <div className="flex items-center gap-2">
                                         <div className="hidden md:block text-sm text-tertiary">

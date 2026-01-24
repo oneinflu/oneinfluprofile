@@ -28,6 +28,8 @@ interface SidebarNavigationProps {
     hideBorder?: boolean;
     /** Additional CSS classes to apply to the sidebar. */
     className?: string;
+    /** Custom logout handler. */
+    onLogout?: () => void;
 }
 
 export const SidebarNavigationSimple = ({
@@ -38,12 +40,17 @@ export const SidebarNavigationSimple = ({
     showAccountCard = true,
     hideBorder = false,
     className,
+    onLogout,
 }: SidebarNavigationProps) => {
     const MAIN_SIDEBAR_WIDTH = 296;
     const { logout } = useAuth();
     const router = useRouter();
     const handleLogout: React.MouseEventHandler = async (e) => {
         e.preventDefault();
+        if (onLogout) {
+            onLogout();
+            return;
+        }
         await logout();
         try { router.replace("/login"); } catch {}
         try { if (typeof window !== "undefined") window.location.replace("/login"); } catch {}

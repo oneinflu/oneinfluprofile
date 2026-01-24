@@ -18,8 +18,9 @@ export const SiteHeader = () => {
         "verify",
         "username",
         "admin",
+        "super",
     ]);
-    const isAdmin = firstSegment === "admin";
+    const isAdmin = firstSegment === "admin" || firstSegment === "super";
     const allowStatic = new Set(["", "terms", "privacy", "creators", "hosts", "pricing"]);
     const isDynamicProfile = firstSegment.length > 0 && !disallow.has(firstSegment) && !allowStatic.has(firstSegment);
     const isEmbed = Boolean(search.get("embed"));

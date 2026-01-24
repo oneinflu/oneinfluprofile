@@ -55,7 +55,13 @@ const VerifyContent = () => {
         if (mode === "login") {
             if (!identifier) return;
             await loginVerifyOtp(identifier, code);
-            router.push("/admin");
+            const isSuper = typeof window !== "undefined" ? sessionStorage.getItem("influu_super_login") : null;
+            if (isSuper === "true") {
+                sessionStorage.removeItem("influu_super_login");
+                router.push("/super/dashboard");
+            } else {
+                router.push("/admin");
+            }
             return;
         }
         if (!id) return;
