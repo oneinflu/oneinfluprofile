@@ -10,6 +10,7 @@ import { AvatarAddButton } from "@/components/base/avatar/base-components/avatar
 import { Copy01, Check, ChevronUp, ChevronDown, MessageChatCircle, CurrencyDollarCircle } from "@untitledui/icons";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Select } from "@/components/base/select/select";
+import { ComboBox } from "@/components/base/select/combobox";
 import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
 import { Badge } from "@/components/base/badges/badges";
@@ -23,6 +24,7 @@ export default function MyprofilePage() {
     const [originalUsername, setOriginalUsername] = useState("");
     const [usernameError, setUsernameError] = useState<string | null>(null);
     const [role, setRole] = useState("");
+    const [roleInput, setRoleInput] = useState("");
     const [bio, setBio] = useState("");
     const [photoUrl, setPhotoUrl] = useState<string | null>(null);
     const [previewVersion, setPreviewVersion] = useState(0);
@@ -33,6 +35,7 @@ export default function MyprofilePage() {
     const [emailOtpSessionId, setEmailOtpSessionId] = useState<string | null>(null);
     const [emailOtp, setEmailOtp] = useState<string>("");
     const [upiId, setUpiId] = useState<string>("");
+    const [niches, setNiches] = useState<Array<{ id: string; name: string }>>([]);
     const [ctas, setCtas] = useState<Array<{ id: "request" | "whatsapp" | "pay"; label: string; enabled: boolean; connected?: boolean }>>([
         { id: "request", label: "Request Service", enabled: true },
         { id: "whatsapp", label: "Chat on WhatsApp", enabled: false, connected: false },
@@ -69,18 +72,37 @@ export default function MyprofilePage() {
     };
 
     useEffect(() => {
+        (async () => {
+            try {
+                const res = await api.get<{ success: boolean; status: string; data: { niches: Array<{ id: string; name: string }> } }>("/niches");
+                if (res.success && res.data?.niches) {
+                    setNiches(res.data.niches);
+                }
+            } catch (e) {
+                console.error("Failed to fetch niches", e);
+            }
+        })();
+    }, []);
+
+    useEffect(() => {
         let alive = true;
         (async () => {
             try {
                 if (!token || !user?.id) return;
-                const me = await api.get<{ id: string; username: string; email: string; phone?: string | null; whatsapp?: string | null; contactPreference?: "email" | "whatsapp" | null; name?: string; shortBio?: string; avatarUrl?: string; category?: string; upi?: string }>(`/users/id/${user.id}`, { token });
+                // Add timestamp to prevent caching
+                const me = await api.get<any>(`/users/id/${user.id}?t=${Date.now()}`, { token });
+              
                 if (!alive) return;
                 setName(me.name || "");
                 setUsername(me.username || "");
                 setOriginalUsername(me.username || "");
-                const raw = String(me.category || "").trim().toLowerCase();
-                const toId: Record<string, string> = { creator: "creator", business: "business", personal: "personal" };
-                setRole(toId[raw] || "");
+                
+                // Robustly find the niche
+                const rawNiche = me.niche || me.nicheName || me.category || "";
+                console.log("Found niche:", rawNiche);
+                
+                setRole(rawNiche);
+                setRoleInput(rawNiche);
                 setBio(me.shortBio || "");
                 setPhotoUrl(me.avatarUrl || null);
                 setCtas((prev) => prev.map((c) => (c.id === "pay" ? { ...c, enabled: Boolean(me.upi) } : c)));
@@ -115,6 +137,29 @@ export default function MyprofilePage() {
     }, [token, user?.id]);
 
     // Save on blur only; no per-keystroke autosave
+
+    const filteredNiches = useMemo(() => {
+        const term = roleInput.toLowerCase();
+        const seen = new Set<string>();
+        const results: Array<{ id: string; label: string }> = [];
+
+        // Always include the current role if it matches the term (or if no term)
+        // This ensures the value is displayed even if niches haven't loaded yet
+        if (role && (!term || role.toLowerCase().includes(term))) {
+            results.push({ id: role, label: role });
+            seen.add(role);
+        }
+
+        for (const n of niches) {
+            // Avoid duplicates if the role is already in the list
+            if (!seen.has(n.name) && (!term || n.name.toLowerCase().includes(term))) {
+                results.push({ id: n.name, label: n.name });
+                seen.add(n.name);
+            }
+        }
+        
+        return results;
+    }, [niches, roleInput, role]);
 
     return (
         <section className="flex min-h-screen flex-col lg:pl-[300px]">
@@ -170,24 +215,23 @@ export default function MyprofilePage() {
                                 </div>
                                 <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-2">
                                     <Input label="Name" size="md" value={name} onChange={(val) => { setName(val); }} placeholder="Your name" />
-                                    <Select
-                                        label="Role / niche"
+                                    <ComboBox
+                                        label="Your Niche"
                                         size="md"
-                                        placeholder="Select role"
+                                        placeholder="Select Niche"
                                         selectedKey={role || null}
-                                        items={[
-                                            { id: "creator", label: "Creator" },
-                                            { id: "business", label: "Business" },
-                                            { id: "personal", label: "Personal" },
-                                        ]}
+                                        inputValue={roleInput}
+                                        onInputChange={setRoleInput}
+                                        items={filteredNiches}
                                         onSelectionChange={(key) => {
-                                            const id = String(key || "");
-                                            setRole(id);
+                                            const val = String(key || "");
+                                            setRole(val);
+                                            setRoleInput(val);
                                             setPreviewVersion((v) => v + 1);
                                         }}
                                     >
-                                        {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
-                                    </Select>
+                                        {(item) => <Select.Item id={item.id} textValue={item.label}>{item.label}</Select.Item>}
+                                    </ComboBox>
                                 </div>
                             </div>
                            
@@ -238,7 +282,7 @@ export default function MyprofilePage() {
                                                 if (name) data.name = name;
                                                 if (val) data.username = val;
                                                 data.shortBio = bio;
-                                                if (role) data.category = role;
+                                                if (role) data.nicheName = role;
                                                 await updateUserById(user.id, data);
                                                 if (val) setOriginalUsername(val);
                                                 setUsernameError(null);
