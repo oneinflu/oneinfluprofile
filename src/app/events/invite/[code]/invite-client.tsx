@@ -236,6 +236,8 @@ export default function EventInviteClient() {
     // Step 4: Dashboard Upload State
     const [dashboardScreenshot, setDashboardScreenshot] = useState<File | null>(null);
     const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
+    const [detailsError, setDetailsError] = useState<string | null>(null);
+    const [dashboardError, setDashboardError] = useState<string | null>(null);
 
     // Focus state for mobile keyboard handling
     const [isFocused, setIsFocused] = useState(false);
@@ -467,10 +469,19 @@ export default function EventInviteClient() {
 
     const handleDetailsSubmit = async () => {
         console.log("handleDetailsSubmit: Starting submission");
-        // Basic validation
+        setDetailsError(null);
+
+        // Validation: All fields are mandatory
+        if (!photo) {
+            setDetailsError("Please upload a profile photo");
+            return;
+        }
         if (!name.trim()) {
-            console.warn("handleDetailsSubmit: Name is empty");
-            // Can add error state here if needed
+            setDetailsError("Please enter your full name");
+            return;
+        }
+        if (!instagramHandle.trim()) {
+            setDetailsError("Please enter your Instagram handle");
             return;
         }
 
@@ -497,15 +508,18 @@ export default function EventInviteClient() {
 
             if (!storedUsername) {
                  console.error("Username not found in local storage");
+                 setDetailsError("Session error. Please refresh and try again.");
                  return;
             }
 
-            // 1. Update basic profile
+            // 1. Update basic profile with all details
             const formData = new FormData();
             formData.append("name", name);
             if (photo instanceof File) {
                 formData.append("avatar", photo);
             }
+            // "instagramUserId or instagramHandle or instagramUrl" - using instagramHandle as the key
+            formData.append("instagramHandle", instagramHandle);
 
             const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
             console.log("handleDetailsSubmit: Sending profile update to", `${baseUrl}/users/${storedUsername}/profile/basic`);
@@ -519,28 +533,23 @@ export default function EventInviteClient() {
             });
 
             if (!profileRes.ok) {
-                console.error("Failed to update profile", await profileRes.text());
-            } else {
-                console.log("handleDetailsSubmit: Profile updated successfully");
-            }
+                const errorText = await profileRes.text();
+                console.error("Failed to update profile", errorText);
+                setDetailsError("Failed to update profile. Please try again.");
+                return;
+            } 
+            
+            const profileData = await profileRes.json();
+            console.log("handleDetailsSubmit: Profile updated successfully", profileData);
 
-            // 2. Upsert Instagram social link
-            if (instagramHandle.trim()) {
-                console.log("handleDetailsSubmit: Upserting Instagram handle");
-                await api.post(`/users/${storedUsername}/social-links/instagram/upsert`, {
-                    instagramUserId: instagramHandle,
-                    visible: true
-                }, { token });
-            }
-
-            // 3. Save preferences to localStorage
+            // 2. Save preferences to localStorage
             localStorage.setItem("influu_isWillingToAttend", String(willingToAttend));
             localStorage.setItem("influu_shareProfessionalDashboard", String(shareDashboard));
 
             setStep("dashboard");
         } catch (e: any) {
             console.error("Failed to update profile", e);
-            // Maybe show error to user?
+            setDetailsError(e.message || "An unexpected error occurred.");
         }
     };
 
@@ -560,6 +569,12 @@ export default function EventInviteClient() {
     const handleFinalSubmit = async () => {
         // Here you would typically submit all the data to the backend
         console.log("handleFinalSubmit: Starting final submission");
+        setDashboardError(null);
+
+        if (!dashboardScreenshot) {
+            setDashboardError("Please upload your dashboard screenshot");
+            return;
+        }
         
         try {
             const token = authToken || localStorage.getItem("influu_token");
@@ -1202,6 +1217,12 @@ export default function EventInviteClient() {
                                                                     <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
                                                                 </div>
 
+                                                                {detailsError && (
+                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                        {detailsError}
+                                                                    </p>
+                                                                )}
+
                                                                 <div className="pt-2">
                                                                     <Button size="lg" color="primary" onClick={handleDetailsSubmit} className="w-full">
                                                                         Next Step
@@ -1263,6 +1284,12 @@ export default function EventInviteClient() {
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+
+                                                                {dashboardError && (
+                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                        {dashboardError}
+                                                                    </p>
+                                                                )}
 
                                                                 <div className="pt-2">
                                                                     <Button size="lg" color="primary" onClick={handleFinalSubmit} className="w-full">
