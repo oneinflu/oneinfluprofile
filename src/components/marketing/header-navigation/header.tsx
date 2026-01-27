@@ -191,7 +191,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
 
                     <div className="hidden items-center gap-3 md:flex">
                         {user?.username ? (
-                            <Button color="primary" size={isFloating ? "md" : "lg"} href={`/${user.username}`}>
+                            <Button color="primary" size={isFloating ? "md" : "lg"} href="/admin">
                                 Go to My Profile
                             </Button>
                         ) : (
