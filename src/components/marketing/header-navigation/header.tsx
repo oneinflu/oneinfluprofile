@@ -82,7 +82,7 @@ const MobileFooter = () => {
             </div>
             <div className="flex flex-col gap-3">
                 {user?.username ? (
-                    <Button size="lg" href={`/${user.username}`}>Go to My Profile</Button>
+                    <Button size="lg" href="/admin">Go to My Profile</Button>
                 ) : (
                     <>
                         <Button size="lg" href="/register">Create Profile</Button>
