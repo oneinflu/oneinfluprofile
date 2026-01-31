@@ -82,11 +82,7 @@ export default function RootLayout({
                         </AuthProvider>
                     </Theme>
                 </RouteProvider>
-                <Script id="zoho-salesiq-init">
-                    {`window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`}
-                </Script>
-                <Script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq3a8b4b5718cbe761263beeffac01a95a05e4a35b3399bf652940fa21ce71de5c" defer />
-            </body>
+                  </body>
         </html>
     );
 }
