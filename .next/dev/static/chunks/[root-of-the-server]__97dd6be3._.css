@@ -5302,6 +5302,16 @@
     background-color: var(--background-color-secondary-solid);
   }
 
+  .bg-secondary\/10 {
+    background-color: #fafafa1a;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-secondary\/10 {
+      background-color: color-mix(in oklab, var(--background-color-secondary) 10%, transparent);
+    }
+  }
+
   .bg-secondary\/20 {
     background-color: #fafafa33;
   }
@@ -8433,6 +8443,16 @@
 
   .ring-secondary {
     --tw-ring-color: var(--ring-color-secondary);
+  }
+
+  .ring-secondary\/20 {
+    --tw-ring-color: #e9eaeb33;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .ring-secondary\/20 {
+      --tw-ring-color: color-mix(in oklab, var(--ring-color-secondary) 20%, transparent);
+    }
   }
 
   .ring-secondary_alt {

@@ -26,10 +26,15 @@ export async function request<T = unknown>(
   { method = "GET", body, token, headers = {}, signal }: RequestOptions = {},
 ): Promise<T> {
   const url = path.startsWith("http") ? path : `${BASE_URL}${path}`;
-  const finalHeaders: Record<string, string> = { "Content-Type": "application/json", ...headers };
+  const finalHeaders: Record<string, string> = { ...headers };
+  if (!(body instanceof FormData)) {
+    finalHeaders["Content-Type"] = "application/json";
+  }
   if (token) finalHeaders.Authorization = `Bearer ${token}`;
   const init: RequestInit = { method, headers: finalHeaders, signal };
-  if (body !== undefined && method !== "GET") init.body = JSON.stringify(body);
+  if (body !== undefined && method !== "GET") {
+    init.body = body instanceof FormData ? body : JSON.stringify(body);
+  }
   const res = await fetch(url, init);
   const isJson = res.headers.get("content-type")?.includes("application/json");
   const payload = isJson ? await res.json() : undefined;

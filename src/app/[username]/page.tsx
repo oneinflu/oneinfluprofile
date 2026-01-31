@@ -250,30 +250,6 @@ export default function ProfilePage() {
         return () => { alive = false; };
     }, [username]);
 
-    const [publicData, setPublicData] = useState<any>(null);
-    const [publicError, setPublicError] = useState<string | null>(null);
-    useEffect(() => {
-        if (!username) return;
-        const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/${encodeURIComponent(username)}/profile`;
-        console.group("PUBLIC_PROFILE_GET");
-        console.log("REQUEST GET", url);
-        console.groupEnd();
-        let alive = true;
-        api.get(url)
-            .then((data) => {
-                if (!alive) return;
-                console.group("PUBLIC_PROFILE_RESPONSE");
-                console.log("BODY", data);
-                console.groupEnd();
-                setPublicData(data);
-                setPublicError(null);
-            })
-            .catch((err) => {
-                if (!alive) return;
-                setPublicError(String(err?.message || "Error"));
-            });
-        return () => { alive = false; };
-    }, [username]);
     const [requestOpen, setRequestOpen] = useState(false);
     const [prefillService, setPrefillService] = useState<string | null>(null);
     const openRequest = (service?: string) => {
