@@ -32,6 +32,7 @@ import { useClipboard } from "@/hooks/use-clipboard";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { Checkbox } from "@/components/base/checkbox/checkbox";
 import { ShowWorkModal } from "./show-work-modal";
+import { UploadBannerModal } from "./upload-banner-modal";
 import { ReportTab } from "./report-tab";
 
 type EventDetail = {
@@ -73,6 +74,7 @@ type EventDetail = {
         maxAmount?: number;
         timeline?: string;
     };
+    invitationBannerUrl?: string | null;
 };
 
 export default function CampaignDetailPage() {
@@ -85,6 +87,8 @@ export default function CampaignDetailPage() {
     const [activeTab, setActiveTab] = useState<"details" | "applicants" | "shortlisted" | "replacement" | "invited" | "report">("details");
     const clipboard = useClipboard();
     const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
+    const [isUploadBannerOpen, setIsUploadBannerOpen] = useState(false);
+    const [copiedToast, setCopiedToast] = useState<string | null>(null);
 
     useEffect(() => {
         let alive = true;
@@ -215,75 +219,91 @@ export default function CampaignDetailPage() {
                                                 } catch (err) {
                                                     console.error('Error sharing:', err);
                                                     clipboard.copy(url, `shortlisted-${event._id}`);
+                                                    setCopiedToast("Link copied to clipboard!");
+                                                    setTimeout(() => setCopiedToast(null), 3000);
                                                 }
                                             } else {
                                                 clipboard.copy(url, `shortlisted-${event._id}`);
+                                                setCopiedToast("Link copied to clipboard!");
+                                                setTimeout(() => setCopiedToast(null), 3000);
                                             }
                                         }}
                                     >
                                         Share to Client
                                     </Button>
                                 ) : activeTab === "invited" ? (
+                                    <Button
+                                        size="sm"
+                                        color="secondary"
+                                        iconLeading={clipboard.copied === `welcome-${event._id}` ? Check : Share04}
+                                        onClick={async () => {
+                                            const url = `${origin}/events/welcome/${encodeURIComponent(String(event.code))}`;
+                                            if (navigator.share) {
+                                                try {
+                                                    await navigator.share({
+                                                        title: 'Welcome to the Campaign',
+                                                        text: 'Welcome! Here are the next steps.',
+                                                        url: url
+                                                    });
+                                                } catch (err) {
+                                                    console.error('Error sharing:', err);
+                                                    clipboard.copy(url, `welcome-${event._id}`);
+                                                    setCopiedToast("Link copied to clipboard!");
+                                                    setTimeout(() => setCopiedToast(null), 3000);
+                                                }
+                                            } else {
+                                                clipboard.copy(url, `welcome-${event._id}`);
+                                                setCopiedToast("Link copied to clipboard!");
+                                                setTimeout(() => setCopiedToast(null), 3000);
+                                            }
+                                        }}
+                                    >
+                                        Share Welcome Invite
+                                    </Button>
+                                ) : activeTab === "details" ? (
                                     <div className="flex items-center gap-2">
-                                        <Button
-                                            size="sm"
-                                            color="secondary"
-                                            iconLeading={File04}
-                                            onClick={() => {
-                                                // TODO: Implement Request logic
-                                                alert("Request for Invitation Banner feature coming soon");
-                                            }}
-                                        >
-                                            Request for Invitation Banner
-                                        </Button>
                                         <Button
                                             size="sm"
                                             color="secondary"
                                             iconLeading={UploadCloud02}
-                                            onClick={() => {
-                                                // TODO: Implement Upload logic
-                                                alert("Upload Invitation Banner feature coming soon");
-                                            }}
+                                            onClick={() => setIsUploadBannerOpen(true)}
                                         >
-                                            Upload Invitation Banner
+                                            {event.invitationBannerUrl ? "Manage Banner" : "Upload Invitation Banner"}
                                         </Button>
-                                    </div>
-                                ) : activeTab === "details" ? (
-                                    event.doClientApprovalNeeded ? (
+                                        {event.doClientApprovalNeeded && (
+                                            <Button
+                                                size="sm"
+                                                color="secondary"
+                                                iconLeading={clipboard.copied === `client-${event._id}` ? Check : Share04}
+                                                onClick={async () => {
+                                                    const url = `${origin}/events/${encodeURIComponent(String(event.code))}`;
+                                                    if (navigator.share) {
+                                                        try {
+                                                            await navigator.share({
+                                                                title: event.eventName || 'Campaign Proposal',
+                                                                text: 'Check out this campaign proposal',
+                                                                url: url
+                                                            });
+                                                        } catch (err) {
+                                                            console.error('Error sharing:', err);
+                                                            clipboard.copy(url, `client-${event._id}`);
+                                                            setCopiedToast("Link copied to clipboard!");
+                                                            setTimeout(() => setCopiedToast(null), 3000);
+                                                        }
+                                                    } else {
+                                                        clipboard.copy(url, `client-${event._id}`);
+                                                        setCopiedToast("Link copied to clipboard!");
+                                                        setTimeout(() => setCopiedToast(null), 3000);
+                                                    }
+                                                }}
+                                            >
+                                                Share to Client
+                                            </Button>
+                                        )}
                                         <Button
                                             size="sm"
                                             color="secondary"
-                                            iconLeading={clipboard.copied === `client-${event._id}` ? Check : Share04}
-                                            onClick={async () => {
-                                                const url = `${origin}/events/${encodeURIComponent(String(event.code))}`;
-                                                if (navigator.share) {
-                                                    try {
-                                                        await navigator.share({
-                                                            title: event.eventName || 'Campaign Proposal',
-                                                            text: 'Check out this campaign proposal',
-                                                            url: url
-                                                        });
-                                                    } catch (err) {
-                                                        console.error('Error sharing:', err);
-                                                        clipboard.copy(url, `client-${event._id}`);
-                                                    }
-                                                } else {
-                                                    clipboard.copy(url, `client-${event._id}`);
-                                                }
-                                            }}
-                                        >
-                                            Share to Client
-                                        </Button>
-                                    ) : null
-                                ) : (
-                                    <div className="flex items-center gap-2">
-                                        <div className="hidden md:block text-sm text-tertiary">
-                                            Invite Code: <span className="font-mono text-primary">{event.code}</span>
-                                        </div>
-                                        <ButtonUtility
-                                            size="sm"
-                                            color="secondary"
-                                            icon={clipboard.copied === `campaign-${event._id}` ? Check : Share04}
+                                            iconLeading={clipboard.copied === `campaign-${event._id}` ? Check : Share04}
                                             onClick={async () => {
                                                 const path = `/events/invite/${encodeURIComponent(String(event.code))}`;
                                                 const url = `${origin}${path}`;
@@ -297,13 +317,66 @@ export default function CampaignDetailPage() {
                                                     } catch (err) {
                                                         console.error('Error sharing:', err);
                                                         clipboard.copy(url, `campaign-${event._id}`);
+                                                        setCopiedToast("Link copied to clipboard!");
+                                                        setTimeout(() => setCopiedToast(null), 3000);
                                                     }
                                                 } else {
                                                     clipboard.copy(url, `campaign-${event._id}`);
+                                                    setCopiedToast("Link copied to clipboard!");
+                                                    setTimeout(() => setCopiedToast(null), 3000);
                                                 }
                                             }}
-                                            tooltip="Copy Link"
-                                        />
+                                        >
+                                            Share Invite
+                                        </Button>
+                                    </div>
+                                ) : activeTab === "report" ? (
+                                    <Button
+                                        size="sm"
+                                        color="secondary"
+                                        iconLeading={clipboard.copied === `submit-${event.code}` ? Check : Share04}
+                                        onClick={() => {
+                                            const url = `${origin}/events/submit-work/${event.code}`;
+                                            clipboard.copy(url, `submit-${event.code}`);
+                                            setCopiedToast("Link copied to clipboard!");
+                                            setTimeout(() => setCopiedToast(null), 3000);
+                                        }}
+                                    >
+                                        Request Work Submission
+                                    </Button>
+                                ) : (
+                                    <div className="flex items-center gap-2 w-full md:w-auto">
+                                       
+                                        <Button
+                                            size="sm"
+                                            color="secondary"
+                                            className="w-full md:w-auto"
+                                            iconLeading={clipboard.copied === `campaign-${event._id}` ? Check : Share04}
+                                            onClick={async () => {
+                                                const path = `/events/invite/${encodeURIComponent(String(event.code))}`;
+                                                const url = `${origin}${path}`;
+                                                if (navigator.share) {
+                                                    try {
+                                                        await navigator.share({
+                                                            title: event.eventName || 'Campaign Invite',
+                                                            text: 'Join this campaign',
+                                                            url: url
+                                                        });
+                                                    } catch (err) {
+                                                        console.error('Error sharing:', err);
+                                                        clipboard.copy(url, `campaign-${event._id}`);
+                                                        setCopiedToast("Link copied to clipboard!");
+                                                        setTimeout(() => setCopiedToast(null), 3000);
+                                                    }
+                                                } else {
+                                                    clipboard.copy(url, `campaign-${event._id}`);
+                                                    setCopiedToast("Link copied to clipboard!");
+                                                    setTimeout(() => setCopiedToast(null), 3000);
+                                                }
+                                            }}
+                                        >
+                                            Share Invite
+                                        </Button>
                                     </div>
                                 )
                             )}
@@ -311,10 +384,10 @@ export default function CampaignDetailPage() {
                     </div>
 
                     {/* Tabs */}
-                    <div className="mt-8 flex items-center gap-6 border-b border-secondary">
+                    <div className="mt-8 flex items-center gap-6 border-b border-secondary overflow-x-auto no-scrollbar">
                         <button
                             onClick={() => setActiveTab("details")}
-                            className={`pb-3 text-sm font-semibold transition-colors ${
+                            className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 ${
                                 activeTab === "details"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
@@ -324,7 +397,7 @@ export default function CampaignDetailPage() {
                         </button>
                         <button
                             onClick={() => setActiveTab("applicants")}
-                            className={`pb-3 text-sm font-semibold transition-colors ${
+                            className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 ${
                                 activeTab === "applicants"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
@@ -334,7 +407,7 @@ export default function CampaignDetailPage() {
                         </button>
                         <button
                             onClick={() => setActiveTab("shortlisted")}
-                            className={`pb-3 text-sm font-semibold transition-colors ${
+                            className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 ${
                                 activeTab === "shortlisted"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
@@ -344,7 +417,7 @@ export default function CampaignDetailPage() {
                         </button>
                            <button
                             onClick={() => setActiveTab("replacement")}
-                            className={`pb-3 text-sm font-semibold transition-colors ${
+                            className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 ${
                                 activeTab === "replacement"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
@@ -354,7 +427,7 @@ export default function CampaignDetailPage() {
                         </button>
                            <button
                             onClick={() => setActiveTab("invited")}
-                            className={`pb-3 text-sm font-semibold transition-colors ${
+                            className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 ${
                                 activeTab === "invited"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
@@ -364,7 +437,7 @@ export default function CampaignDetailPage() {
                         </button>
                         <button
                             onClick={() => setActiveTab("report")}
-                            className={`pb-3 text-sm font-semibold transition-colors ${
+                            className={`pb-3 text-sm font-semibold transition-colors whitespace-nowrap shrink-0 ${
                                 activeTab === "report"
                                     ? "border-b-2 border-brand-solid text-brand-solid"
                                     : "text-tertiary hover:text-primary"
@@ -383,6 +456,19 @@ export default function CampaignDetailPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             {/* Left Column - Main Info */}
                             <div className="lg:col-span-2 space-y-8">
+                                {/* Banner Section */}
+                                {event.invitationBannerUrl && (
+                                    <div className="bg-white dark:bg-gray-900 rounded-2xl p-2 shadow-sm border border-secondary overflow-hidden">
+                                        <div className="relative w-full aspect-[21/9] rounded-xl overflow-hidden bg-secondary/30">
+                                            <img 
+                                                src={event.invitationBannerUrl} 
+                                                alt="Campaign Banner" 
+                                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
                                 {/* About Section */}
                                 <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border border-secondary">
                                     <div className="flex items-center gap-3 mb-6">
@@ -722,6 +808,16 @@ export default function CampaignDetailPage() {
                     )}
                 </div>
             </div>
+            {copiedToast && (
+                <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] w-[min(92vw,640px)] rounded-2xl bg-secondary px-6 py-4 text-lg font-semibold text-primary shadow-2xl ring-1 ring-secondary_alt">
+                    {copiedToast}
+                </div>
+            )}
+            <UploadBannerModal
+                isOpen={isUploadBannerOpen}
+                onClose={() => setIsUploadBannerOpen(false)}
+                eventCode={event.code || ""}
+            />
         </section>
     );
 }
@@ -745,6 +841,57 @@ function StatusApplicationTab({
     const [applicants, setApplicants] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [selectedApplicantIds, setSelectedApplicantIds] = useState<string[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    
+    const getAppId = (app: any) => {
+        return app.applicationId || app._id || app.id || app.application?._id || app.appId || app.application_id || "";
+    };
+
+    const totalPages = Math.ceil(applicants.length / itemsPerPage);
+    const paginatedApplicants = applicants.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const handleSelectAll = (isSelected: boolean) => {
+        if (isSelected) {
+            setSelectedApplicantIds(applicants.map(app => getAppId(app)).filter(Boolean));
+        } else {
+            setSelectedApplicantIds([]);
+        }
+    };
+
+    const handleSelectOne = (id: string, isSelected: boolean) => {
+        if (isSelected) {
+            setSelectedApplicantIds(prev => [...prev, id]);
+        } else {
+            setSelectedApplicantIds(prev => prev.filter(selectedId => selectedId !== id));
+        }
+    };
+
+    const handleBulkAction = async () => {
+        if (selectedApplicantIds.length === 0) return;
+        setIsSubmitting(true);
+        try {
+            // Default to 'approve' (invite) for shortlisted
+            // For replaced, maybe also 'approve' (re-invite?)
+            const endpoint = `/events/public/code/${eventCode}/applications/approve`;
+            await api.post(endpoint, { applicationIds: selectedApplicantIds }, { token });
+
+            alert(`Successfully approved ${selectedApplicantIds.length} candidates`);
+            setApplicants(prev => prev.filter(a => !selectedApplicantIds.includes(getAppId(a))));
+            setSelectedApplicantIds([]);
+        } catch (e) {
+            console.error("Failed to approve candidates", e);
+            alert("Failed to approve candidates");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     useEffect(() => {
         let alive = true;
@@ -833,11 +980,167 @@ function StatusApplicationTab({
             {/* Debug helper - remove after fixing */}
            
             
-            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+            {/* Floating Action Button */}
+            {selectedApplicantIds.length > 0 && (
+                <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 lg:pl-[300px]">
+                    <Button
+                        size="md"
+                        color="primary"
+                        onClick={handleBulkAction}
+                        isLoading={isSubmitting}
+                        className="shadow-lg animate-in slide-in-from-bottom-4 fade-in duration-200"
+                        iconLeading={CheckCircle}
+                    >
+                        Approve {selectedApplicantIds.length} candidate{selectedApplicantIds.length > 1 ? "s" : ""}
+                    </Button>
+                </div>
+            )}
+            
+            {/* Mobile View - Cards */}
+            <div className="md:hidden flex flex-col gap-4">
+                <div className="flex items-center justify-between bg-primary p-4 rounded-xl border border-secondary shadow-sm">
+                     <Checkbox
+                        isSelected={applicants.length > 0 && selectedApplicantIds.length === applicants.length}
+                        isIndeterminate={selectedApplicantIds.length > 0 && selectedApplicantIds.length < applicants.length}
+                        onChange={(isSelected) => handleSelectAll(isSelected)}
+                    >
+                        <span className="text-sm font-medium text-primary ml-2">Select All</span>
+                    </Checkbox>
+                </div>
+
+                {paginatedApplicants.map((app, i) => {
+                    const appId = getAppId(app);
+                    const isSelected = selectedApplicantIds.includes(appId);
+                    return (
+                        <div 
+                            key={appId || i} 
+                            className={`bg-primary p-4 rounded-xl border border-secondary shadow-sm flex flex-col gap-4 transition-colors ${isSelected ? "ring-2 ring-brand-solid" : ""}`}
+                        >
+                            {/* Header */}
+                            <div className="flex items-start justify-between gap-3">
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1">
+                                        <Checkbox
+                                            isSelected={isSelected}
+                                            onChange={(checked) => {
+                                                if (appId) handleSelectOne(appId, checked);
+                                            }}
+                                            isDisabled={!appId}
+                                        />
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <img 
+                                            src={app.user?.avatarUrl || "/avatar.svg"} 
+                                            alt="" 
+                                            className="h-10 w-10 rounded-full object-cover bg-secondary"
+                                        />
+                                        <div className="flex flex-col">
+                                            <span className="font-medium text-primary">{app.user?.name || "Unknown"}</span>
+                                            <span className="text-xs text-tertiary">@{app.user?.username}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Badge size="sm" color={
+                                    app.status === "shortlisted" ? "orange" : 
+                                    app.status === "invited" ? "success" : 
+                                    app.status === "approved" ? "success" : 
+                                    app.status === "rejected" ? "error" : 
+                                    app.status === "replaced" ? "warning" :
+                                    "purple"
+                                }>
+                                    {app.status === "replaced" ? "Replacement Req." : (app.status || "Applied")}
+                                </Badge>
+                            </div>
+
+                            {/* Info Grid */}
+                            <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm pt-2 border-t border-secondary">
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Category</span>
+                                    <span className="font-medium text-primary">
+                                        {app.user?.category ? <Badge size="sm" color="gray">{app.user.category}</Badge> : "—"}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Date</span>
+                                    <span className="text-primary">{app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}</span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Instagram</span>
+                                    {app.instagramHandle ? (
+                                        <a 
+                                            href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-brand-solid hover:underline truncate"
+                                        >
+                                            @{app.instagramHandle}
+                                        </a>
+                                    ) : "—"}
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Phone</span>
+                                    {(app.user?.phone || app.user?.whatsapp) ? (
+                                        <a 
+                                            href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                            className="text-brand-solid hover:underline truncate"
+                                        >
+                                            {app.user?.phone || app.user?.whatsapp}
+                                        </a>
+                                    ) : "—"}
+                                </div>
+                            </div>
+
+                            {/* Additional Info */}
+                            <div className="flex flex-col gap-2 pt-2 border-t border-secondary">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-tertiary">Willing to Attend</span>
+                                    {app.willingToAttend ? (
+                                        <div className="flex items-center gap-1.5 text-success">
+                                            <Check className="size-3" />
+                                            <span className="text-sm font-medium">Yes</span>
+                                        </div>
+                                    ) : (
+                                        <span className="text-sm text-tertiary">No</span>
+                                    )}
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-tertiary">Dashboard Shared</span>
+                                    <div className="flex items-center gap-2">
+                                        {app.shareProfessionalDashboard ? (
+                                            <Badge size="sm" color="success">Yes</Badge>
+                                        ) : (
+                                            <span className="text-sm text-tertiary">No</span>
+                                        )}
+                                        {app.dashboardImageUrl && (
+                                            <a 
+                                                href={app.dashboardImageUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-xs font-medium text-brand-solid hover:underline"
+                                            >
+                                                View
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+            <div className="hidden md:block rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-secondary text-tertiary">
                             <tr>
+                                <th className="px-4 py-3 w-10">
+                                    <Checkbox 
+                                        isSelected={applicants.length > 0 && selectedApplicantIds.length === applicants.length}
+                                        isIndeterminate={selectedApplicantIds.length > 0 && selectedApplicantIds.length < applicants.length}
+                                        onChange={(isSelected) => handleSelectAll(isSelected)}
+                                    />
+                                </th>
                                 <th className="px-4 py-3 font-medium">Candidate</th>
                                 <th className="px-4 py-3 font-medium">Category</th>
                                 <th className="px-4 py-3 font-medium">Instagram</th>
@@ -849,8 +1152,20 @@ function StatusApplicationTab({
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-secondary">
-                            {applicants.map((app, i) => (
-                                <tr key={i} className="hover:bg-primary_hover transition-colors">
+                            {paginatedApplicants.map((app, i) => {
+                                const appId = getAppId(app);
+                                const isSelected = selectedApplicantIds.includes(appId);
+                                return (
+                                <tr key={appId || i} className={`hover:bg-primary_hover transition-colors ${isSelected ? "bg-primary_hover" : ""}`}>
+                                    <td className="px-4 py-3">
+                                        <Checkbox 
+                                            isSelected={isSelected}
+                                            onChange={(checked) => {
+                                                if (appId) handleSelectOne(appId, checked);
+                                            }}
+                                            isDisabled={!appId}
+                                        />
+                                    </td>
                                     <td className="px-4 py-3 font-medium text-primary">
                                         <div className="flex items-center gap-3">
                                             <img 
@@ -939,11 +1254,65 @@ function StatusApplicationTab({
                                         {app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}
                                     </td>
                                 </tr>
-                            ))}
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
             </div>
+            
+            {totalPages > 1 && (
+                <div className="flex items-center justify-between border-t border-secondary pt-4">
+                    <div className="flex flex-1 justify-between sm:hidden">
+                        <Button
+                            size="sm"
+                            color="secondary"
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            Previous
+                        </Button>
+                        <p className="text-sm text-tertiary flex items-center">
+                            Page {currentPage} of {totalPages}
+                        </p>
+                        <Button
+                            size="sm"
+                            color="secondary"
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </Button>
+                    </div>
+                    <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                        <div>
+                            <p className="text-sm text-tertiary">
+                                Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, applicants.length)}</span> of <span className="font-medium">{applicants.length}</span> results
+                            </p>
+                        </div>
+                        <div>
+                            <div className="flex gap-2">
+                                <Button
+                                    size="sm"
+                                    color="secondary"
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    Previous
+                                </Button>
+                                <Button
+                                    size="sm"
+                                    color="secondary"
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    Next
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 } // StatusApplicationTab End
@@ -953,6 +1322,12 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
     const [applicants, setApplicants] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [selectedApplicantIds, setSelectedApplicantIds] = useState<string[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
     useEffect(() => {
         let alive = true;
@@ -985,13 +1360,65 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
         };
     }, [eventCode, token]);
 
+    // Derived state for pagination
+    const totalPages = Math.ceil(applicants.length / itemsPerPage);
+    const paginatedApplicants = applicants.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
     const handleStatusUpdate = async (applicationId: string, newStatus: string) => {
+        if (!applicationId) return;
         try {
-            await api.patch(`/events/applications/${applicationId}`, { status: newStatus }, { token });
-            setApplicants(prev => prev.filter(a => a._id !== applicationId));
+            if (newStatus === "invited") {
+                await api.post(`/events/public/code/${eventCode}/applications/approve`, { applicationIds: [applicationId] }, { token });
+            } else if (newStatus === "replaced") {
+                await api.post(`/events/public/code/${eventCode}/applications/replace`, { applicationIds: [applicationId] }, { token });
+            } else {
+                await api.patch(`/events/applications/${applicationId}`, { status: newStatus }, { token });
+            }
+            setApplicants(prev => prev.filter(a => a.applicationId !== applicationId));
+            setSelectedApplicantIds(prev => prev.filter(id => id !== applicationId));
         } catch (e) {
             console.error("Failed to update status", e);
             alert("Failed to update status");
+        }
+    };
+
+    const handleBulkAction = async (action: 'approve' | 'replace') => {
+        if (selectedApplicantIds.length === 0) return;
+        setIsSubmitting(true);
+        try {
+            const endpoint = action === 'approve'
+                ? `/events/public/code/${eventCode}/applications/approve`
+                : `/events/public/code/${eventCode}/applications/replace`;
+
+            await api.post(endpoint, { applicationIds: selectedApplicantIds }, { token });
+
+            setApplicants(prev => prev.filter(a => !selectedApplicantIds.includes(a.applicationId)));
+            setSelectedApplicantIds([]);
+        } catch (e) {
+            console.error(`Failed to ${action} candidates`, e);
+            alert(`Failed to ${action} candidates`);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const toggleSelection = (id: string) => {
+        setSelectedApplicantIds(prev => 
+            prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+        );
+    };
+
+    const toggleAll = (isSelected: boolean) => {
+        if (isSelected) {
+            setSelectedApplicantIds(applicants.map(a => a.applicationId));
+        } else {
+            setSelectedApplicantIds([]);
         }
     };
 
@@ -1035,11 +1462,205 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
 
     return (
         <div className="relative flex flex-col gap-6">
-            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+            {/* Action Bar */}
+            {doClientApprovalNeeded === false && selectedApplicantIds.length > 0 && (
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-primary p-2 rounded-lg ring-1 ring-secondary shadow-xs sticky top-0 z-10">
+                    <span className="text-sm font-medium text-primary px-2">
+                        {selectedApplicantIds.length} selected
+                    </span>
+                    <div className="hidden sm:block h-4 w-px bg-secondary mx-2" />
+                    <div className="flex gap-2 w-full sm:w-auto">
+                        <Button 
+                            size="sm" 
+                            color="secondary"
+                            onClick={() => handleBulkAction('approve')}
+                            disabled={isSubmitting}
+                            className="flex-1 sm:flex-none"
+                        >
+                            Approve Selected
+                        </Button>
+                        <Button 
+                            size="sm" 
+                            color="secondary"
+                            onClick={() => handleBulkAction('replace')}
+                            disabled={isSubmitting}
+                            className="flex-1 sm:flex-none"
+                        >
+                            Replace Selected
+                        </Button>
+                    </div>
+                </div>
+            )}
+
+            {/* Mobile View - Cards */}
+            <div className="md:hidden flex flex-col gap-4">
+                {doClientApprovalNeeded === false && (
+                    <div className="flex items-center justify-between bg-primary p-4 rounded-xl border border-secondary shadow-sm">
+                        <Checkbox
+                            isSelected={applicants.length > 0 && selectedApplicantIds.length === applicants.length}
+                            isIndeterminate={selectedApplicantIds.length > 0 && selectedApplicantIds.length < applicants.length}
+                            onChange={(isSelected) => toggleAll(isSelected)}
+                        >
+                            <span className="text-sm font-medium text-primary ml-2">Select All</span>
+                        </Checkbox>
+                    </div>
+                )}
+
+                {paginatedApplicants.map((app, i) => {
+                    const isSelected = selectedApplicantIds.includes(app.applicationId);
+                    return (
+                        <div 
+                            key={app.applicationId || i} 
+                            className={`bg-primary p-4 rounded-xl border border-secondary shadow-sm flex flex-col gap-4 transition-colors ${isSelected ? "ring-2 ring-brand-solid" : ""}`}
+                        >
+                            {/* Header */}
+                            <div className="flex items-start justify-between gap-3">
+                                <div className="flex items-start gap-3">
+                                    {doClientApprovalNeeded === false && (
+                                        <div className="mt-1">
+                                            <Checkbox
+                                                isSelected={isSelected}
+                                                onChange={() => toggleSelection(app.applicationId)}
+                                            />
+                                        </div>
+                                    )}
+                                    <div className="flex items-center gap-3">
+                                        <img 
+                                            src={app.user?.avatarUrl || "/avatar.svg"} 
+                                            alt="" 
+                                            className="h-10 w-10 rounded-full object-cover bg-secondary"
+                                        />
+                                        <div className="flex flex-col">
+                                            <span className="font-medium text-primary">{app.user?.name || "Unknown"}</span>
+                                            <span className="text-xs text-tertiary">@{app.user?.username}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Badge size="sm" color={
+                                    app.status === "shortlisted" ? "orange" : 
+                                    app.status === "invited" ? "success" : 
+                                    app.status === "approved" ? "success" : 
+                                    app.status === "rejected" ? "error" : 
+                                    "purple"
+                                }>
+                                    {app.status || "Applied"}
+                                </Badge>
+                            </div>
+
+                            {/* Info Grid */}
+                            <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm pt-2 border-t border-secondary">
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Category</span>
+                                    <span className="font-medium text-primary">
+                                        {app.user?.category ? <Badge size="sm" color="gray">{app.user.category}</Badge> : "—"}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Date</span>
+                                    <span className="text-primary">{app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}</span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Instagram</span>
+                                    {app.instagramHandle ? (
+                                        <a 
+                                            href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-brand-solid hover:underline truncate"
+                                        >
+                                            @{app.instagramHandle}
+                                        </a>
+                                    ) : "—"}
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Phone</span>
+                                    {(app.user?.phone || app.user?.whatsapp) ? (
+                                        <a 
+                                            href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                            className="text-brand-solid hover:underline truncate"
+                                        >
+                                            {app.user?.phone || app.user?.whatsapp}
+                                        </a>
+                                    ) : "—"}
+                                </div>
+                            </div>
+
+                            {/* Additional Info */}
+                            <div className="flex flex-col gap-2 pt-2 border-t border-secondary">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-tertiary">Willing to Attend</span>
+                                    {app.willingToAttend ? (
+                                        <div className="flex items-center gap-1.5 text-success">
+                                            <Check className="size-3" />
+                                            <span className="text-sm font-medium">Yes</span>
+                                        </div>
+                                    ) : (
+                                        <span className="text-sm text-tertiary">No</span>
+                                    )}
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-tertiary">Dashboard Shared</span>
+                                    <div className="flex items-center gap-2">
+                                        {app.shareProfessionalDashboard ? (
+                                            <Badge size="sm" color="success">Yes</Badge>
+                                        ) : (
+                                            <span className="text-sm text-tertiary">No</span>
+                                        )}
+                                        {app.dashboardImageUrl && (
+                                            <a 
+                                                href={app.dashboardImageUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-xs font-medium text-brand-solid hover:underline"
+                                            >
+                                                View
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Actions */}
+                            {doClientApprovalNeeded === false && (
+                                <div className="grid grid-cols-2 gap-3 pt-2 border-t border-secondary">
+                                    <Button
+                                        size="sm"
+                                        color="secondary"
+                                        onClick={() => handleStatusUpdate(app.applicationId, "invited")}
+                                        className="w-full justify-center"
+                                    >
+                                        Approve
+                                    </Button>
+                                    <Button
+                                        size="sm"
+                                        color="secondary"
+                                        onClick={() => handleStatusUpdate(app.applicationId, "replaced")}
+                                        className="w-full justify-center"
+                                    >
+                                        Replace
+                                    </Button>
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Desktop View - Table */}
+            <div className="hidden md:block rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-secondary text-tertiary">
                             <tr>
+                                {doClientApprovalNeeded === false && (
+                                    <th className="px-4 py-3 w-10">
+                                        <Checkbox 
+                                            isSelected={applicants.length > 0 && selectedApplicantIds.length === applicants.length}
+                                            isIndeterminate={selectedApplicantIds.length > 0 && selectedApplicantIds.length < applicants.length}
+                                            onChange={(isSelected) => toggleAll(isSelected)}
+                                        />
+                                    </th>
+                                )}
                                 <th className="px-4 py-3 font-medium">Candidate</th>
                                 <th className="px-4 py-3 font-medium">Category</th>
                                 <th className="px-4 py-3 font-medium">Instagram</th>
@@ -1054,8 +1675,16 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-secondary">
-                            {applicants.map((app, i) => (
+                            {paginatedApplicants.map((app, i) => (
                                 <tr key={i} className="hover:bg-primary_hover transition-colors">
+                                    {doClientApprovalNeeded === false && (
+                                        <td className="px-4 py-3">
+                                            <Checkbox 
+                                                isSelected={selectedApplicantIds.includes(app.applicationId)}
+                                                onChange={() => toggleSelection(app.applicationId)}
+                                            />
+                                        </td>
+                                    )}
                                     <td className="px-4 py-3 font-medium text-primary">
                                         <div className="flex items-center gap-3">
                                             <img 
@@ -1066,7 +1695,6 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
                                             <div className="flex flex-col">
                                                 <span>{app.user?.name || "Unknown"}</span>
                                                 <span className="text-xs text-tertiary font-normal">@{app.user?.username}</span>
-                                                
                                             </div>
                                         </div>
                                     </td>
@@ -1149,7 +1777,7 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
                                                 <Button
                                                     size="sm"
                                                     color="secondary"
-                                                    onClick={() => handleStatusUpdate(app._id, "invited")}
+                                                    onClick={() => handleStatusUpdate(app.applicationId, "invited")}
                                                     title="Approve"
                                                 >
                                                     Approve
@@ -1157,7 +1785,7 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
                                                 <Button
                                                     size="sm"
                                                     color="secondary"
-                                                    onClick={() => handleStatusUpdate(app._id, "replaced")}
+                                                    onClick={() => handleStatusUpdate(app.applicationId, "replaced")}
                                                     title="Replace"
                                                 >
                                                     Replace
@@ -1171,6 +1799,60 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
                     </table>
                 </div>
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+                <div className="flex items-center justify-between border-t border-secondary pt-4">
+                    <div className="flex flex-1 justify-between sm:hidden">
+                        <Button
+                            size="sm"
+                            color="secondary"
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            Previous
+                        </Button>
+                        <p className="text-sm text-tertiary flex items-center">
+                            Page {currentPage} of {totalPages}
+                        </p>
+                        <Button
+                            size="sm"
+                            color="secondary"
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            Next
+                        </Button>
+                    </div>
+                    <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                        <div>
+                            <p className="text-sm text-tertiary">
+                                Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(currentPage * itemsPerPage, applicants.length)}</span> of <span className="font-medium">{applicants.length}</span> results
+                            </p>
+                        </div>
+                        <div>
+                            <div className="flex gap-2">
+                                <Button
+                                    size="sm"
+                                    color="secondary"
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    Previous
+                                </Button>
+                                <Button
+                                    size="sm"
+                                    color="secondary"
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    Next
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
@@ -1182,6 +1864,36 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
     const [error, setError] = useState(false);
     const [showWorkOpen, setShowWorkOpen] = useState(false);
     const [selectedUserForWork, setSelectedUserForWork] = useState<string | null>(null);
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    
+    const getAppId = (app: any) => {
+        return app.applicationId || app._id || app.id || app.application?._id || app.appId || app.application_id || "";
+    };
+
+    const totalPages = Math.ceil(applicants.length / itemsPerPage);
+    const paginatedApplicants = applicants.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const handleSelectAll = (isSelected: boolean) => {
+        if (isSelected) {
+            setSelectedIds(applicants.map(app => getAppId(app)).filter(Boolean));
+        } else {
+            setSelectedIds([]);
+        }
+    };
+
+    const handleSelectOne = (id: string, isSelected: boolean) => {
+        if (isSelected) {
+            setSelectedIds(prev => [...prev, id]);
+        } else {
+            setSelectedIds(prev => prev.filter(selectedId => selectedId !== id));
+        }
+    };
 
     useEffect(() => {
         let alive = true;
@@ -1252,7 +1964,102 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
 
     return (
         <div className="relative flex flex-col gap-6">
-            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+            {/* Mobile View - Cards */}
+            <div className="md:hidden flex flex-col gap-4">
+                {paginatedApplicants.map((app, i) => {
+                    const appId = getAppId(app);
+                    return (
+                    <div 
+                        key={appId || i} 
+                        className="bg-primary p-4 rounded-xl border border-secondary shadow-sm flex flex-col gap-4 transition-colors"
+                    >
+                        {/* Header */}
+                        <div className="flex items-start justify-between gap-3">
+                            <div className="flex items-start gap-3">
+                                <div className="flex items-center gap-3">
+                                    <img 
+                                        src={app.user?.avatarUrl || "/avatar.svg"} 
+                                        alt="" 
+                                        className="h-10 w-10 rounded-full object-cover bg-secondary"
+                                    />
+                                    <div className="flex flex-col">
+                                        <span className="font-medium text-primary">{app.user?.name || "Unknown"}</span>
+                                        <span className="text-xs text-tertiary">@{app.user?.username}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <Badge size="sm" color="success">Invited</Badge>
+                        </div>
+
+                        {/* Info Grid */}
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm pt-2 border-t border-secondary">
+                            <div className="flex flex-col gap-1">
+                                <span className="text-xs text-tertiary">Instagram</span>
+                                {app.instagramHandle ? (
+                                    <a 
+                                        href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-brand-solid hover:underline truncate"
+                                    >
+                                        @{app.instagramHandle}
+                                    </a>
+                                ) : "—"}
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <span className="text-xs text-tertiary">Phone</span>
+                                {(app.user?.phone || app.user?.whatsapp) ? (
+                                    <a 
+                                        href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                        className="text-brand-solid hover:underline truncate"
+                                    >
+                                        {app.user?.phone || app.user?.whatsapp}
+                                    </a>
+                                ) : "—"}
+                            </div>
+                            <div className="col-span-2 flex flex-col gap-1">
+                                <span className="text-xs text-tertiary">Attendance</span>
+                                {app.checkedIn ? (
+                                    <div className="flex items-center gap-1.5 text-success">
+                                        <CheckCircle className="size-4 text-success-primary fill-success-primary" />
+                                        <span className="font-medium text-success-primary">Checked In {app.checkedInAt && `at ${new Date(app.checkedInAt).toLocaleTimeString()}`}</span>
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center gap-1.5 text-tertiary">
+                                        <XCircle className="size-4" />
+                                        <span>Not yet checked in</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex flex-col gap-3 pt-2 border-t border-secondary">
+                            {app.taskCompletion && (
+                                <div className="flex flex-col gap-2">
+                                    <span className="text-xs text-tertiary">Task Completion</span>
+                                     <Button
+                                        size="md"
+                                        color="secondary"
+                                        className="w-full justify-center"
+                                        iconLeading={File04}
+                                        onClick={() => {
+                                            setSelectedUserForWork(app.user?._id || app.user?.id);
+                                            setShowWorkOpen(true);
+                                        }}
+                                    >
+                                        Show Work
+                                    </Button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    );
+                })}
+            </div>
+
+            {/* Desktop View - Table */}
+            <div className="hidden md:block rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-secondary text-tertiary">
@@ -1261,13 +2068,14 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                                 <th className="px-4 py-3 font-medium">Instagram</th>
                                 <th className="px-4 py-3 font-medium">Phone</th>
                                 <th className="px-4 py-3 font-medium">Attended Event</th>
-                                <th className="px-4 py-3 font-medium">Invitation Accepted</th>
                                 <th className="px-4 py-3 font-medium">Task Completion</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-secondary">
-                            {applicants.map((app, i) => (
-                                <tr key={i} className="hover:bg-primary_hover transition-colors">
+                            {paginatedApplicants.map((app, i) => {
+                                const appId = getAppId(app);
+                                return (
+                                <tr key={appId || i} className="hover:bg-primary_hover transition-colors">
                                     <td className="px-4 py-3 font-medium text-primary">
                                         <div className="flex items-center gap-3">
                                             <img 
@@ -1326,38 +2134,6 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                                             )}
                                         </div>
                                     </td>
-                                    {/* Invitation Shared */}
-                                    <td className="px-4 py-3 text-tertiary">
-                                        <div className="flex items-center gap-2">
-                                            {app.isInvitationShared ? (
-                                                <div className="flex items-center gap-1.5 text-success">
-                                                    <Mail01 className="size-4" />
-                                                    <Check className="size-3" />
-                                                    <span className="font-medium">Sent</span>
-                                                </div>
-                                            ) : (
-                                                <Button
-                                                    size="sm"
-                                                    color="secondary"
-                                                    iconLeading={Share04}
-                                                    onClick={() => {
-                                                        const url = `${window.location.origin}/events/invite/${encodeURIComponent(String(eventCode))}`;
-                                                        if (navigator.share) {
-                                                            navigator.share({
-                                                                title: 'Campaign Invite',
-                                                                text: 'Join this campaign',
-                                                                url: url
-                                                            }).catch(console.error);
-                                                        } else {
-                                                            alert(`Share this link: ${url}`);
-                                                        }
-                                                    }}
-                                                >
-                                                    Share
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </td>
                                     {/* Task Completion */}
                                     <td className="px-4 py-3 text-tertiary">
                                         <div className="flex items-center gap-2">
@@ -1379,11 +2155,38 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                                         </div>
                                     </td>
                                 </tr>
-                            ))}
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+                <div className="flex items-center justify-between border-t border-secondary pt-4">
+                    <Button
+                        size="sm"
+                        color="secondary"
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </Button>
+                    <span className="text-sm text-tertiary">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <Button
+                        size="sm"
+                        color="secondary"
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                    >
+                        Next
+                    </Button>
+                </div>
+            )}
+
             <ShowWorkModal
                 isOpen={showWorkOpen}
                 onClose={() => setShowWorkOpen(false)}
@@ -1400,9 +2203,18 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
 
     const getAppId = (app: any) => {
         return app.applicationId || app._id || app.id || app.application?._id || app.appId || app.application_id || "";
+    };
+
+    const totalPages = Math.ceil(applicants.length / itemsPerPage);
+    const paginatedApplicants = applicants.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
     };
 
     const handleSelectAll = (isSelected: boolean) => {
@@ -1520,7 +2332,146 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                 </div>
             )}
             
-            <div className="rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
+            
+            {/* Mobile View - Cards */}
+            <div className="md:hidden flex flex-col gap-4">
+                <div className="flex items-center justify-between bg-primary p-4 rounded-xl border border-secondary shadow-sm">
+                     <Checkbox
+                        isSelected={applicants.length > 0 && selectedIds.length === applicants.length}
+                        isIndeterminate={selectedIds.length > 0 && selectedIds.length < applicants.length}
+                        onChange={(isSelected) => handleSelectAll(isSelected)}
+                    >
+                        <span className="text-sm font-medium text-primary ml-2">Select All</span>
+                    </Checkbox>
+                </div>
+
+                {paginatedApplicants.map((app, i) => {
+                    const appId = getAppId(app);
+                    const isSelected = selectedIds.includes(appId);
+                    return (
+                        <div 
+                            key={appId || i} 
+                            className={`bg-primary p-4 rounded-xl border border-secondary shadow-sm flex flex-col gap-4 transition-colors ${isSelected ? "ring-2 ring-brand-solid" : ""}`}
+                        >
+                            {/* Header */}
+                            <div className="flex items-start justify-between gap-3">
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1">
+                                        <Checkbox
+                                            isSelected={isSelected}
+                                            onChange={(checked) => {
+                                                if (appId) handleSelectOne(appId, checked);
+                                            }}
+                                            isDisabled={!appId}
+                                        />
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <img 
+                                            src={app.user?.avatarUrl || "/avatar.svg"} 
+                                            alt="" 
+                                            className="h-10 w-10 rounded-full object-cover bg-secondary"
+                                        />
+                                        <div className="flex flex-col">
+                                            <span className="font-medium text-primary">{app.user?.name || "Unknown"}</span>
+                                            <span className="text-xs text-tertiary">@{app.user?.username}</span>
+                                            {app.user?.shortBio && (
+                                                <span className="text-xs text-tertiary truncate max-w-[150px]">
+                                                    {app.user.shortBio}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <Badge size="sm" color={
+                                    app.status === "shortlisted" ? "orange" : 
+                                    app.status === "invited" ? "success" : 
+                                    app.status === "approved" ? "success" : 
+                                    app.status === "rejected" ? "error" : 
+                                    "purple"
+                                }>
+                                    {app.status || "Applied"}
+                                </Badge>
+                            </div>
+
+                            {/* Info Grid */}
+                            <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm pt-2 border-t border-secondary">
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Category</span>
+                                    <span className="font-medium text-primary">
+                                        {app.user?.category ? <Badge size="sm" color="gray">{app.user.category}</Badge> : "—"}
+                                    </span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Date</span>
+                                    <span className="text-primary">{app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}</span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Instagram</span>
+                                    {app.instagramHandle ? (
+                                        <a 
+                                            href={app.instagramUrl || `https://instagram.com/${app.instagramHandle}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-brand-solid hover:underline truncate"
+                                        >
+                                            @{app.instagramHandle}
+                                        </a>
+                                    ) : "—"}
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-xs text-tertiary">Phone</span>
+                                    {(app.user?.phone || app.user?.whatsapp) ? (
+                                        <a 
+                                            href={`tel:${app.user?.phone || app.user?.whatsapp}`}
+                                            className="text-brand-solid hover:underline truncate"
+                                        >
+                                            {app.user?.phone || app.user?.whatsapp}
+                                        </a>
+                                    ) : "—"}
+                                </div>
+                            </div>
+
+                            {/* Additional Info */}
+                            <div className="flex flex-col gap-2 pt-2 border-t border-secondary">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-tertiary">Willing to Attend</span>
+                                    {app.willingToAttend ? (
+                                        <div className="flex items-center gap-1.5 text-success">
+                                            <Check className="size-3" />
+                                            <span className="text-sm font-medium">Yes</span>
+                                        </div>
+                                    ) : (
+                                        <span className="text-sm text-tertiary">No</span>
+                                    )}
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-tertiary">Dashboard Shared</span>
+                                    <div className="flex items-center gap-2">
+                                        {app.shareProfessionalDashboard ? (
+                                            <Badge size="sm" color="success">Yes</Badge>
+                                        ) : (
+                                            <span className="text-sm text-tertiary">No</span>
+                                        )}
+                                        {app.dashboardImageUrl && (
+                                            <a 
+                                                href={app.dashboardImageUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-xs font-medium text-brand-solid hover:underline"
+                                            >
+                                                View
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Desktop View - Table */}
+            <div className="hidden md:block rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-secondary text-tertiary">
@@ -1544,7 +2495,7 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-secondary">
-                            {applicants.map((app, i) => {
+                            {paginatedApplicants.map((app, i) => {
                                 const appId = getAppId(app);
                                 const isSelected = selectedIds.includes(appId);
                                 return (
@@ -1560,6 +2511,7 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                                             '--color-bg-secondary': 'var(--color-gray-50)',
                                         } as CSSProperties : undefined}
                                     >
+
                                         <td className="px-4 py-3">
                                             <Checkbox
                                                 isSelected={isSelected}

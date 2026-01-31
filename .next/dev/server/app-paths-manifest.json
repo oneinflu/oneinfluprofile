@@ -3,8 +3,11 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/admin/campaigns/[id]/page": "app/admin/campaigns/[id]/page.js",
   "/admin/campaigns/page": "app/admin/campaigns/page.js",
+  "/admin/offers/page": "app/admin/offers/page.js",
   "/admin/page": "app/admin/page.js",
   "/events/invite/[code]/page": "app/events/invite/[code]/page.js",
+  "/events/submit-work/[code]/page": "app/events/submit-work/[code]/page.js",
+  "/events/welcome/[code]/page": "app/events/welcome/[code]/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
   "/verify/page": "app/verify/page.js"

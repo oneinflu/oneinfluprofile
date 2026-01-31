@@ -590,3 +590,734 @@ It can also happen if the client has a browser extension installed which messes 
 [03:01:41.284] Browser ERROR   {}
 [03:03:44.178] Server  LOG     ✓ Compiled in 686ms
 [03:04:10.108] Server  LOG     ✓ Compiled in 527ms
+[03:12:00.502] Browser ERROR   {}
+[03:12:10.231] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:12:10.449] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:12:11.062] Browser ERROR   {}
+[03:12:51.622] Browser LOG     handleDetailsSubmit: Starting submission
+[03:12:51.623] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"697e4b3200fb47f04891275c","username":"vpfyixhbax"}
+[03:12:51.623] Browser LOG     handleDetailsSubmit: Sending profile update to https://newyearbackendcode-zrp62.ondigitalocean.app/users/vpfyixhbax/profile/basic
+[03:12:56.190] Browser LOG     handleDetailsSubmit: Profile updated successfully {"data":{"instagram":"https://www.instagram.com/suuryaprabhat@gmail.com","user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","id":"697e4b3200fb47f04891275c","name":"surya","niche":null,"username":"vpfyixhbax"}},"status":"ok","success":true}
+[03:12:56.190] Browser LOG     handleFinalSubmit: Starting final submission
+[03:12:56.190] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/BDC66EZU/apply
+[03:12:56.190] Browser ERROR   handleFinalSubmit: Submission failed {"error":"no_file_or_url"}
+[03:13:04.726] Browser LOG     handleDetailsSubmit: Starting submission
+[03:13:04.726] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"697e4b3200fb47f04891275c","username":"vpfyixhbax"}
+[03:13:04.726] Browser LOG     handleDetailsSubmit: Sending profile update to https://newyearbackendcode-zrp62.ondigitalocean.app/users/vpfyixhbax/profile/basic
+[03:13:08.014] Browser LOG     handleDetailsSubmit: Profile updated successfully {"data":{"instagram":"https://www.instagram.com/suuryaprabhat@gmail.com","user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","id":"697e4b3200fb47f04891275c","name":"surya","niche":null,"username":"vpfyixhbax"}},"status":"ok","success":true}
+[03:13:08.014] Browser LOG     handleFinalSubmit: Starting final submission
+[03:13:08.014] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/BDC66EZU/apply
+[03:13:08.189] Browser ERROR   handleFinalSubmit: Submission failed {"error":"no_file_or_url"}
+[03:13:12.812] Browser LOG     handleDetailsSubmit: Starting submission
+[03:13:12.812] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"697e4b3200fb47f04891275c","username":"vpfyixhbax"}
+[03:13:12.813] Browser LOG     handleDetailsSubmit: Sending profile update to https://newyearbackendcode-zrp62.ondigitalocean.app/users/vpfyixhbax/profile/basic
+[03:13:17.743] Browser LOG     handleDetailsSubmit: Profile updated successfully {"data":{"instagram":"https://www.instagram.com/suuryaprabhat@gmail.com","user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","id":"697e4b3200fb47f04891275c","name":"surya","niche":null,"username":"vpfyixhbax"}},"status":"ok","success":true}
+[03:13:17.744] Browser LOG     handleFinalSubmit: Starting final submission
+[03:13:17.744] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/BDC66EZU/apply
+[03:13:17.744] Browser ERROR   handleFinalSubmit: Submission failed {"error":"no_file_or_url"}
+[03:16:56.312] Server  LOG     ✓ Compiled in 1052ms
+[03:22:17.326] Browser LOG     handleDetailsSubmit: Starting submission
+[03:22:17.339] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"697e4b3200fb47f04891275c","username":"vpfyixhbax"}
+[03:22:17.343] Browser LOG     handleDetailsSubmit: Sending profile update to https://newyearbackendcode-zrp62.ondigitalocean.app/users/vpfyixhbax/profile/basic
+[03:22:21.611] Browser LOG     handleDetailsSubmit: Profile updated successfully {"data":{"instagram":"https://www.instagram.com/suuryaprabhat@gmail.com","user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","id":"697e4b3200fb47f04891275c","name":"surya","niche":null,"username":"vpfyixhbax"}},"status":"ok","success":true}
+[03:22:21.617] Browser LOG     handleFinalSubmit: Starting final submission
+[03:22:21.617] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/BDC66EZU/apply
+[03:22:21.786] Browser LOG     handleFinalSubmit: Success {"data":{"application":{"_id":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","bringingPlusOne":false,"checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"doClientApprovalNeeded":false,"inviteCode":null,"isInvitationShared":false,"plusOneName":null,"plusOnePhone":null,"replacedReason":null,"shareProfessionalDashboard":false,"status":"applied","submittedLinks":[],"taskCompletion":false,"user":"697e4b3200fb47f04891275c","willingToAttend":true}},"message":"Applied successfully","status":"ok","success":true}
+[03:22:21.786] Browser LOG     {"dashboardScreenshot":null,"instagramHandle":"suuryaprabhat@gmail.com","name":"surya","otp":"287814","phoneNumber":"7673925340","photo":{},"shareDashboard":false,"willingToAttend":true}
+[03:23:39.343] Server  LOG     ✓ Compiled in 612ms
+[03:23:54.900] Server  LOG     ✓ Compiled in 241ms
+[03:24:02.105] Browser ERROR   {}
+[03:24:02.614] Server  LOG     ✓ Compiled in 828ms
+[03:24:18.867] Server  LOG     ✓ Compiled in 205ms
+[03:24:32.076] Browser ERROR   Failed to update status {"name":"ApiError","status":404}
+[03:24:40.874] Browser ERROR   Failed to update status {"name":"ApiError","status":404}
+[03:25:15.154] Browser ERROR   Failed to update status {"name":"ApiError","status":404}
+[03:30:04.150] Server  LOG     ✓ Compiled in 446ms
+[03:30:14.319] Server  LOG     ✓ Compiled in 293ms
+[03:30:23.549] Server  LOG     ✓ Compiled in 313ms
+[03:30:24.673] Browser ERROR   uncaughtError: ReferenceError: selectedApplicantIds is not defined
+[03:30:50.949] Server  LOG     ✓ Compiled in 325ms
+[03:30:51.030] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:30:53.677] Browser ERROR   {}
+[03:34:12.011] Server  LOG     ✓ Compiled in 880ms
+[03:34:12.681] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[03:34:21.146] Server  LOG     ✓ Compiled in 487ms
+[03:34:57.070] Server  LOG     ✓ Compiled in 577ms
+[03:35:23.104] Server  LOG     ✓ Compiled in 844ms
+[03:35:37.742] Server  LOG     ✓ Compiled in 618ms
+[03:35:49.698] Server  LOG     ✓ Compiled in 236ms
+[03:37:50.476] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:37:50.968] Browser ERROR   {}
+[03:40:52.672] Server  LOG     ✓ Compiled in 1148ms
+[03:41:08.740] Browser LOG     handleStatusUpdate {"newStatus":"invited"}
+[03:41:08.744] Browser ERROR   No applicationId provided
+[03:41:11.490] Browser LOG     handleStatusUpdate {"newStatus":"invited"}
+[03:41:11.490] Browser ERROR   No applicationId provided
+[03:41:13.422] Server  LOG     ✓ Compiled in 971ms
+[03:41:20.221] Browser ERROR   {}
+[03:41:26.631] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:41:31.229] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:41:33.912] Browser LOG     handleStatusUpdate {"newStatus":"invited"}
+[03:41:33.913] Browser ERROR   No applicationId provided
+[03:41:36.236] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:41:41.239] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:41:47.679] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:41:52.694] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:41:56.308] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:01.236] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:07.683] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:11.230] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:16.876] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:22.728] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:23.335] Server  LOG     ✓ Compiled in 829ms
+[03:42:26.361] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:31.280] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:31.627] Browser LOG     handleStatusUpdate {"newStatus":"invited"}
+[03:42:31.627] Browser ERROR   No applicationId provided
+[03:42:35.373] Browser LOG     handleStatusUpdate {"newStatus":"invited"}
+[03:42:35.375] Browser ERROR   No applicationId provided
+[03:42:36.194] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:37.574] Browser LOG     handleStatusUpdate {"newStatus":"invited"}
+[03:42:37.574] Browser ERROR   No applicationId provided
+[03:42:42.673] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:47.675] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:51.322] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:42:56.239] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:02.677] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:07.673] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:12.672] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:17.682] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:22.673] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:27.677] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:32.656] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:36.289] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:41.254] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:46.263] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:51.230] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:43:56.228] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:00.709] Server  LOG     ✓ Compiled in 463ms
+[03:44:01.244] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:06.297] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:07.385] Server  LOG     ✓ Compiled in 351ms
+[03:44:11.266] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:16.267] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:17.148] Server  LOG     ✓ Compiled in 944ms
+[03:44:21.273] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:27.672] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:32.714] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:36.318] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:41.232] Browser LOG     Fetched applicants: [{"applicationId":"697e4d7e5a44b6af865f9b60","appliedAt":"2026-01-31T18:44:14.871Z","checkedIn":false,"checkedInAt":null,"dashboardImageUrl":null,"instagramHandle":"suuryaprabhat@gmail.com","instagramUrl":"https://www.instagram.com/suuryaprabhat@gmail.com","isInvitationShared":false,"shareProfessionalDashboard":false,"status":"shortlisted","taskCompletion":false,"user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769884488/avatars/vpfyixhbax.png","category":"Creator","id":"697e4b3200fb47f04891275c","name":"surya","phone":"7673925340","shortBio":null,"username":"vpfyixhbax"},"willingToAttend":true}]
+[03:44:44.038] Browser LOG     handleStatusUpdate {"applicationId":"697e4d7e5a44b6af865f9b60","newStatus":"invited"}
+[03:44:44.038] Browser LOG     Sending approve payload: {"applicationIds":["697e4d7e5a44b6af865f9b60"]}
+[03:44:46.228] Browser LOG     Fetched applicants: []
+[03:48:34.609] Server  LOG     ✓ Compiled in 696ms
+[03:48:57.796] Server  LOG     ✓ Compiled in 374ms
+[03:49:03.800] Server  LOG     ✓ Compiled in 278ms
+[03:49:44.563] Server  LOG     ○ Compiling /events/welcome/[code] ...
+[03:49:47.052] Browser ERROR   {}
+[03:49:47.195] Browser ERROR   Failed to fetch invitation {"data":{"message":"No application found for user","status":"no_application","success":false},"name":"ApiError","status":404}
+[03:49:47.322] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:52:23.272] Server  LOG     ✓ Compiled in 910ms
+[03:52:32.391] Server  LOG     ✓ Compiled in 452ms
+[03:52:53.308] Server  LOG     ✓ Compiled in 381ms
+[03:52:59.762] Server  LOG     ✓ Compiled in 375ms
+[03:53:27.556] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:28.185] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:28.460] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:28.905] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:29.009] Browser ERROR   {}
+[03:53:29.358] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?v=0" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria5876034540-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[03:53:29.358] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[03:53:29.418] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:29.692] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:29.898] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:30.121] Browser ERROR   {}
+[03:53:30.121] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria365007723-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[03:53:30.121] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[03:53:30.242] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:30.402] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:30.844] Browser ERROR   {}
+[03:53:31.118] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria4267036385-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[03:53:31.118] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[03:53:31.282] Browser ERROR   {}
+[03:53:31.324] Browser ERROR   {}
+[03:53:31.376] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:31.571] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:31.640] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:32.052] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:32.137] Browser ERROR   {}
+[03:53:32.215] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[03:53:32.695] Browser ERROR   {}
+[03:53:32.760] Browser ERROR   {}
+[03:53:45.434] Server  LOG     ✓ Compiled in 1814ms
+[03:53:45.644] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:53:45.644] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:54:15.916] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:54:15.917] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:54:22.805] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:54:22.806] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:54:26.488] Browser ERROR   Failed to upload banner {"data":{"message":"Event not found or not in shortlist stage","status":"not_found","success":false},"name":"ApiError","status":404}
+[03:54:26.488] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:54:26.488] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:55:37.076] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:55:37.077] Browser ERROR   {}
+[03:55:40.061] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:55:40.062] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:56:14.295] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:56:14.295] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:56:14.516] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:56:14.522] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:56:32.357] Server  LOG     ✓ Compiled in 1694ms
+[03:57:01.085] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:57:01.086] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:57:10.730] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:57:10.731] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:57:10.980] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:57:10.980] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:57:13.909] Server  LOG     ✓ Compiled in 448ms
+[03:57:19.734] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:57:19.999] Browser ERROR   {}
+[03:57:22.520] Server  LOG     ✓ Compiled in 515ms
+[03:57:29.606] Server  LOG     ✓ Compiled in 528ms
+[03:58:07.233] Server  LOG     ✓ Compiled in 394ms
+[03:58:20.282] Server  LOG     ✓ Compiled in 394ms
+[03:59:23.296] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:59:23.299] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:59:25.489] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:59:25.489] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:59:25.720] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:59:25.720] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[03:59:38.001] Server  LOG     ✓ Compiled in 1118ms
+[04:01:13.443] Server  LOG     ✓ Compiled in 855ms
+[04:03:44.951] Server  LOG     ✓ Compiled in 646ms
+[04:04:15.949] Server  LOG     ✓ Compiled in 1039ms
+[04:04:30.661] Server  LOG     ✓ Finished filesystem cache database compaction in 11.0s
+[04:04:49.801] Server  LOG     ✓ Compiled in 1370ms
+[04:05:07.399] Server  LOG     ✓ Compiled in 613ms
+[04:05:34.607] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:34.608] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:39.224] Server  LOG     ✓ Compiled in 692ms
+[04:05:39.372] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:39.372] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:40.860] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:40.862] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:42.446] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:42.446] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:46.814] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:46.821] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:48.850] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:48.850] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:49.090] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:05:49.090] Browser WARN    If a Dialog does not contain a <Heading slot="title">, it must have an aria-label or aria-labelledby attribute for accessibility.
+[04:08:27.888] Server  LOG     ✓ Compiled in 787ms
+[04:09:29.473] Server  LOG     ✓ Compiled in 484ms
+[04:15:12.044] Server  LOG     ✓ Compiled in 1168ms
+[04:15:40.665] Server  LOG     ✓ Compiled in 435ms
+[04:16:11.018] Server  LOG     ✓ Compiled in 397ms
+[04:16:28.823] Server  LOG     ✓ Compiled in 1162ms
+[04:17:35.079] Server  LOG     ✓ Compiled in 552ms
+[04:18:42.323] Server  LOG     ✓ Compiled in 628ms
+[04:22:36.840] Server  LOG     ✓ Compiled in 1097ms
+[04:24:02.460] Server  LOG     ✓ Compiled in 254ms
+[04:24:03.628] Browser ERROR   {}
+[04:24:03.895] Browser ERROR   Failed to fetch invitation {"data":{"message":"No application found for user","status":"no_application","success":false},"name":"ApiError","status":404}
+[04:24:04.179] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[04:25:21.716] Server  LOG     ✓ Compiled in 2.1s
+[04:25:22.685] Browser ERROR   uncaughtError: ReferenceError: selectedApplicantIds is not defined
+[04:25:33.399] Server  LOG     ✓ Compiled in 585ms
+[04:25:33.655] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[04:25:38.698] Browser ERROR   {}
+[04:25:43.261] Browser ERROR   uncaughtError: ReferenceError: selectedApplicantIds is not defined
+[04:25:54.875] Server  LOG     ✓ Compiled in 1335ms
+[04:25:54.933] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[04:25:58.678] Browser ERROR   {}
+[04:26:12.091] Server  LOG     ✓ Compiled in 1263ms
+[04:26:15.250] Server  LOG     ✓ Compiled in 545ms
+[04:27:26.830] Browser ERROR   Failed to fetch invitation {"data":{"message":"No application found for user","status":"no_application","success":false},"name":"ApiError","status":404}
+[04:28:56.087] Server  LOG     ✓ Compiled in 1158ms
+[04:29:06.396] Server  LOG     ✓ Compiled in 502ms
+[04:29:18.783] Server  LOG     ✓ Compiled in 730ms
+[04:30:37.780] Server  LOG     ✓ Compiled in 343ms
+[04:30:57.107] Server  LOG     ✓ Compiled in 624ms
+[04:31:04.900] Server  LOG     ✓ Compiled in 1042ms
+[04:31:12.202] Server  LOG     ✓ Finished filesystem cache database compaction in 12.6s
+[04:33:02.811] Server  LOG     ✓ Compiled in 1293ms
+[04:33:34.673] Browser ERROR   Failed to fetch invitation {"data":{"message":"No application found for user","status":"no_application","success":false},"name":"ApiError","status":404}
+[04:33:55.811] Server  LOG     ✓ Compiled in 1436ms
+[04:34:27.367] Server  LOG     ✓ Compiled in 1218ms
+[04:34:43.664] Server  LOG     ✓ Compiled in 989ms
+[04:34:59.207] Server  LOG     ✓ Compiled in 651ms
+[04:35:07.250] Server  LOG     ✓ Compiled in 898ms
+[04:35:14.337] Server  LOG     ✓ Compiled in 546ms
+[04:35:22.550] Server  LOG     ✓ Compiled in 430ms
+[04:35:42.131] Server  LOG     ✓ Compiled in 122ms
+[04:35:42.139] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/cam..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[04:37:14.206] Server  LOG     ✓ Compiled in 1064ms
+[04:37:24.343] Server  LOG     ✓ Compiled in 588ms
+[04:37:42.426] Server  LOG     ✓ Compiled in 2.5s

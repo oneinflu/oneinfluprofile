@@ -49,23 +49,7 @@ export default function RootLayout({
                         gtag('config', 'G-N8G4PGG8SZ'); 
                     `}
                 </Script>
-                <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer />
-                <Script id="onesignal-init">
-                    {`
-                        window.OneSignalDeferred = window.OneSignalDeferred || []; 
-                        OneSignalDeferred.push(async function(OneSignal) { 
-                            await OneSignal.init({ 
-                                appId: "faba9dc9-fbc3-487b-a574-58b2deed46b4", 
-                                safari_web_id: "web.onesignal.auto.5a4f7f6e-eec9-48b6-8a5c-3683e8870b3c", 
-                                notifyButton: { 
-                                    enable: false, 
-                                },
-                                autoResubscribe: false,
-                                allowLocalhostAsSecureOrigin: true
-                            }); 
-                        }); 
-                    `}
-                </Script>
+               
             </head>
             <body className={cx(inter.variable, "bg-primary antialiased")}>
                 <RouteProvider>

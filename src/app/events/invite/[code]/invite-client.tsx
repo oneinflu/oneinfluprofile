@@ -232,6 +232,7 @@ export default function EventInviteClient() {
     const [instagramHandle, setInstagramHandle] = useState("");
     const [willingToAttend, setWillingToAttend] = useState(false);
     const [shareDashboard, setShareDashboard] = useState(false);
+    const [isSubmittingDetails, setIsSubmittingDetails] = useState(false);
 
     // Step 4: Dashboard Upload State
     const [dashboardScreenshot, setDashboardScreenshot] = useState<File | null>(null);
@@ -553,6 +554,7 @@ export default function EventInviteClient() {
         }
 
         try {
+            setIsSubmittingDetails(true);
             const token = localStorage.getItem("influu_token");
             let storedUsername = localStorage.getItem("influu_username");
             const userId = localStorage.getItem("influu_user_id");
@@ -621,6 +623,8 @@ export default function EventInviteClient() {
         } catch (e: any) {
             console.error("Failed to update profile", e);
             setDetailsError(e.message || "An unexpected error occurred.");
+        } finally {
+            setIsSubmittingDetails(false);
         }
     };
 
@@ -1218,10 +1222,12 @@ export default function EventInviteClient() {
                                                                     <Toggle isSelected={willingToAttend} onChange={setWillingToAttend} />
                                                                 </div>
 
-                                                                <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
-                                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Share professional dashboard?</span>
-                                                                    <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
-                                                                </div>
+                                                                {event?.dashboardAccessRequired === true && (
+                                                                    <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
+                                                                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Share professional dashboard?</span>
+                                                                        <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
+                                                                    </div>
+                                                                )}
 
                                                                 {detailsError && (
                                                                     <p className="text-center text-sm text-red-500 dark:text-red-400">
@@ -1230,8 +1236,14 @@ export default function EventInviteClient() {
                                                                 )}
 
                                                                 <div className="pt-2">
-                                                                    <Button size="lg" color="primary" onClick={handleDetailsSubmit} className="w-full">
-                                                                        Next Step
+                                                                    <Button 
+                                                                        size="lg" 
+                                                                        color="primary" 
+                                                                        onClick={handleDetailsSubmit} 
+                                                                        className="w-full"
+                                                                        disabled={isSubmittingDetails}
+                                                                    >
+                                                                        {isSubmittingDetails ? "Processing..." : "Next Step"}
                                                                     </Button>
                                                                 </div>
                                                             </div>

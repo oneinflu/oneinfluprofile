@@ -74,6 +74,7 @@ type PublicEvent = {
         invoiceRequired?: boolean;
         perCreator?: boolean;
     } | null;
+    invitationBannerUrl?: string | null;
 };
 
 type UserInvitation = {
@@ -764,7 +765,7 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                     animate={{ scale: 1 }}
                     transition={{ duration: 10, ease: "linear" }}
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('/banner.webp')" }}
+                    style={{ backgroundImage: `url('${event.invitationBannerUrl || "/banner.webp"}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/90" />
                 <div className="absolute inset-0 flex flex-col justify-center items-center p-6 lg:p-12">

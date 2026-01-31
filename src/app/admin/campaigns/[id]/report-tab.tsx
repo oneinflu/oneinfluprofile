@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { api } from "@/utils/api";
 import { useAuth } from "@/providers/auth";
 import { InstagramEmbed } from "@/components/foundations/instagram-embed";
-import { Users01, Clock, Link01, ChevronDown } from "@untitledui/icons";
+import { Users01, Clock, Link01, ChevronDown, Share04, Check } from "@untitledui/icons";
 import { motion, AnimatePresence } from "motion/react";
 import { cx } from "@/utils/cx";
+import { Button } from "@/components/base/buttons/button";
+import { useClipboard } from "@/hooks/use-clipboard";
 
 interface ReportTabProps {
     eventCode?: string | null;
@@ -38,6 +40,8 @@ export function ReportTab({ eventCode }: ReportTabProps) {
     const [totalCreators, setTotalCreators] = useState(0);
     const [submittedLinksCount, setSubmittedLinksCount] = useState(0);
     const [pendingWorksCount, setPendingWorksCount] = useState(0);
+    const clipboard = useClipboard();
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
 
     useEffect(() => {
         if (!eventCode || !token) {
@@ -127,6 +131,11 @@ export function ReportTab({ eventCode }: ReportTabProps) {
 
     return (
         <div className="flex flex-col gap-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <h3 className="text-lg font-semibold text-primary">Overview</h3>
+               
+            </div>
+
             {/* Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="p-6 rounded-2xl bg-white dark:bg-gray-900 border border-secondary shadow-sm">
