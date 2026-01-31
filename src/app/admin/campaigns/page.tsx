@@ -9,7 +9,7 @@ import { Select } from "@/components/base/select/select";
 import { Toggle } from "@/components/base/toggle/toggle";
 import { Badge } from "@/components/base/badges/badges";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
-import { Check, Edit01, Share04, Trash01 } from "@untitledui/icons";
+import { Check, Edit01, Share04, Trash01, XClose } from "@untitledui/icons";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
@@ -58,16 +58,18 @@ export default function AdminCampaignsPage() {
     const [entryType, setEntryType] = useState<"invite_only" | "open" | null>(null);
     const [creatorCountNeeded, setCreatorCountNeeded] = useState<number | undefined>(undefined);
     const [minFollowers, setMinFollowers] = useState<number | undefined>(undefined);
-    const [nichesText, setNichesText] = useState("");
+    const [niches, setNiches] = useState<string[]>([]);
+    const [nicheInput, setNicheInput] = useState("");
     const [criteriaCity, setCriteriaCity] = useState("");
     const [dashboardAccessRequired, setDashboardAccessRequired] = useState(false);
     const [qrCheckinRequired, setQrCheckinRequired] = useState(false);
+    const [doClientApprovalNeeded, setDoClientApprovalNeeded] = useState(false);
     const [deliverables, setDeliverables] = useState<
         Array<{
-            platform: "instagram" | "youtube" | "x" | "blog";
-            type: "reel" | "story" | "post" | "short" | "video";
+            platform: "instagram" | "youtube" | "x" | "blog" | "snapchat" | "facebook";
+            type: "reel" | "story" | "post" | "short" | "video" | "carousel";
             quantity: number;
-            deadline: { kind: "during_event" | "within_hours" | "within_days"; value: number | null };
+            deadline: { kind: "during_event" | "within_hours" | "within_days" | "scheduled_date"; value: number | null; date: string | null };
             brandTagMandatory?: boolean;
             locationTagMandatory?: boolean;
             hashtagsRequired?: boolean;
@@ -75,7 +77,7 @@ export default function AdminCampaignsPage() {
             contentApprovalRequired?: boolean;
         }>
     >([]);
-    const [paymentType, setPaymentType] = useState<"range" | "fixed" | null>(null);
+    const [paymentType, setPaymentType] = useState<"range" | "fixed" | "variable" | null>(null);
     const [minAmount, setMinAmount] = useState<number | undefined>(undefined);
     const [maxAmount, setMaxAmount] = useState<number | undefined>(undefined);
     const [timeline, setTimeline] = useState<string | null>(null);
@@ -136,7 +138,7 @@ export default function AdminCampaignsPage() {
     const addDeliverable = () => {
         setDeliverables((prev) => [
             ...prev,
-            { platform: "instagram", type: "reel", quantity: 1, deadline: { kind: "within_hours", value: 24 } },
+            { platform: "instagram", type: "reel", quantity: 1, deadline: { kind: "within_hours", value: 24, date: null } },
         ]);
     };
 
@@ -158,10 +160,12 @@ export default function AdminCampaignsPage() {
         setEntryType(null);
         setCreatorCountNeeded(undefined);
         setMinFollowers(undefined);
-        setNichesText("");
+        setNiches([]);
+        setNicheInput("");
         setCriteriaCity("");
         setDashboardAccessRequired(false);
         setQrCheckinRequired(false);
+        setDoClientApprovalNeeded(false);
         setDeliverables([]);
         setPaymentType(null);
         setMinAmount(undefined);
@@ -209,12 +213,12 @@ export default function AdminCampaignsPage() {
         setMinFollowers(
             typeof criteria.minFollowers === "number" ? (criteria.minFollowers as number) : undefined,
         );
-        setNichesText(
-            Array.isArray(criteria.niches) ? (criteria.niches as string[]).join(", ") : "",
-        );
+        setNiches(Array.isArray(criteria.niches) ? (criteria.niches as string[]) : []);
+        setNicheInput("");
         setCriteriaCity(criteria.city || "");
         setDashboardAccessRequired(Boolean((e as any).dashboardAccessRequired));
         setQrCheckinRequired(Boolean((e as any).qrCheckinRequired));
+        setDoClientApprovalNeeded(Boolean((e as any).doClientApprovalNeeded));
         const ds = Array.isArray((e as any).deliverables) ? ((e as any).deliverables as any[]) : [];
         setDeliverables(
             ds.map((d) => ({
@@ -224,6 +228,7 @@ export default function AdminCampaignsPage() {
                 deadline: {
                     kind: d.deadline?.kind ?? "within_hours",
                     value: typeof d.deadline?.value === "number" ? d.deadline.value : null,
+                    date: d.deadline?.date || null,
                 },
                 brandTagMandatory: Boolean(d.brandTagMandatory),
                 locationTagMandatory: Boolean(d.locationTagMandatory),
@@ -234,7 +239,7 @@ export default function AdminCampaignsPage() {
         );
         if ((e as any).eventType === "paid" && (e as any).payment) {
             const p = (e as any).payment;
-            setPaymentType((p.type as "fixed" | "range" | null) ?? null);
+            setPaymentType((p.type as "fixed" | "range" | "variable" | null) ?? null);
             setMinAmount(typeof p.minAmount === "number" ? (p.minAmount as number) : undefined);
             setMaxAmount(typeof p.maxAmount === "number" ? (p.maxAmount as number) : undefined);
             setTimeline((p.timeline as string | null) ?? null);
@@ -295,11 +300,12 @@ export default function AdminCampaignsPage() {
                 creatorCountNeeded: Number(creatorCountNeeded || 0),
                 creatorCriteria: {
                     minFollowers: Number(minFollowers || 0),
-                    niches: nichesText.split(",").map((s) => s.trim()).filter(Boolean),
+                    niches,
                     city: criteriaCity.trim(),
                 },
                 dashboardAccessRequired,
                 qrCheckinRequired,
+                doClientApprovalNeeded,
                 isGuestsAllowedplusone,
                 isLimitedMenu,
                 inhouseFoodandBeverages,
@@ -308,7 +314,11 @@ export default function AdminCampaignsPage() {
                     platform: d.platform,
                     type: d.type,
                     quantity: Number(d.quantity || 1),
-                    deadline: { kind: d.deadline.kind, value: d.deadline.value },
+                    deadline: {
+                        kind: d.deadline.kind,
+                        value: d.deadline.value,
+                        date: d.deadline.date || null,
+                    },
                     brandTagMandatory: Boolean(d.brandTagMandatory),
                     locationTagMandatory: Boolean(d.locationTagMandatory),
                     hashtagsRequired: Boolean(d.hashtagsRequired),
@@ -747,13 +757,53 @@ export default function AdminCampaignsPage() {
                                             value={String(minFollowers ?? "")}
                                             onChange={(v) => setMinFollowers(Number(v || 0) || undefined)}
                                         />
-                                        <Input
-                                            size="md"
-                                            label="Niches (comma-separated)"
-                                            placeholder="tech, lifestyle"
-                                            value={nichesText}
-                                            onChange={setNichesText}
-                                        />
+                                        <div className="flex flex-col gap-1.5">
+                                            <label className="text-sm font-medium text-primary">Niches</label>
+                                            <div className="flex flex-wrap items-center gap-2 rounded-lg border border-secondary px-3 py-2 bg-primary shadow-sm ring-1 ring-transparent focus-within:ring-2 focus-within:ring-brand focus-within:border-brand">
+                                                {niches.map((niche, idx) => (
+                                                    <Badge key={idx} size="md" color="gray" className="flex items-center gap-1 pr-1">
+                                                        {niche}
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setNiches((prev) => prev.filter((_, i) => i !== idx))}
+                                                            className="ml-1 rounded-full p-0.5 hover:bg-secondary text-tertiary hover:text-primary"
+                                                        >
+                                                            <XClose className="h-3 w-3" />
+                                                        </button>
+                                                    </Badge>
+                                                ))}
+                                                <input
+                                                    className="flex-1 min-w-[120px] bg-transparent outline-none text-md text-primary placeholder:text-tertiary"
+                                                    placeholder={niches.length === 0 ? "Add niche (press Enter)..." : ""}
+                                                    value={nicheInput}
+                                                    onChange={(e) => {
+                                                        const val = e.target.value;
+                                                        if (val.includes(",")) {
+                                                            const parts = val.split(",");
+                                                            const newNiches = parts.map((s) => s.trim()).filter(Boolean);
+                                                            if (newNiches.length > 0) {
+                                                                setNiches((prev) => [...prev, ...newNiches]);
+                                                            }
+                                                            setNicheInput("");
+                                                        } else {
+                                                            setNicheInput(val);
+                                                        }
+                                                    }}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === "Enter") {
+                                                            e.preventDefault();
+                                                            if (nicheInput.trim()) {
+                                                                setNiches((prev) => [...prev, nicheInput.trim()]);
+                                                                setNicheInput("");
+                                                            }
+                                                        }
+                                                        if (e.key === "Backspace" && !nicheInput && niches.length > 0) {
+                                                            setNiches((prev) => prev.slice(0, -1));
+                                                        }
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
                                         <Input
                                             size="md"
                                             label="Preferred city"
@@ -775,6 +825,13 @@ export default function AdminCampaignsPage() {
                                                 isSelected={qrCheckinRequired}
                                                 onChange={setQrCheckinRequired}
                                                 label="QR check-in required"
+                                            />
+                                            <Toggle
+                                                slim
+                                                size="md"
+                                                isSelected={doClientApprovalNeeded}
+                                                onChange={setDoClientApprovalNeeded}
+                                                label="Do client approval needed"
                                             />
                                             <Toggle
                                                 slim
@@ -823,6 +880,8 @@ export default function AdminCampaignsPage() {
                                                                 { id: "youtube", label: "YouTube" },
                                                                 { id: "x", label: "X" },
                                                                 { id: "blog", label: "Blog" },
+                                                                { id: "snapchat", label: "Snapchat" },
+                                                                { id: "facebook", label: "Facebook" },
                                                             ]}
                                                         >
                                                             {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
@@ -840,6 +899,7 @@ export default function AdminCampaignsPage() {
                                                                 { id: "post", label: "Post" },
                                                                 { id: "short", label: "Short" },
                                                                 { id: "video", label: "Video" },
+                                                                { id: "carousel", label: "Carousel" },
                                                             ]}
                                                         >
                                                             {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
@@ -866,25 +926,44 @@ export default function AdminCampaignsPage() {
                                                                 { id: "during_event", label: "During event" },
                                                                 { id: "within_hours", label: "Within hours" },
                                                                 { id: "within_days", label: "Within days" },
+                                                                { id: "scheduled_date", label: "Scheduled date" },
                                                             ]}
                                                         >
                                                             {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
                                                         </Select>
-                                                        <Input
-                                                            size="md"
-                                                            label="Deadline value"
-                                                            type="number"
-                                                            placeholder="e.g., 48"
-                                                            value={String(d.deadline.value ?? "")}
-                                                            onChange={(v) =>
-                                                                updateDeliverable(idx, {
-                                                                    deadline: {
-                                                                        ...d.deadline,
-                                                                        value: v ? Number(v) : null,
-                                                                    },
-                                                                })
-                                                            }
-                                                        />
+                                                        {d.deadline.kind === "within_hours" || d.deadline.kind === "within_days" ? (
+                                                            <Input
+                                                                size="md"
+                                                                label="Deadline value"
+                                                                type="number"
+                                                                placeholder="e.g., 48"
+                                                                value={String(d.deadline.value ?? "")}
+                                                                onChange={(v) =>
+                                                                    updateDeliverable(idx, {
+                                                                        deadline: {
+                                                                            ...d.deadline,
+                                                                            value: v ? Number(v) : null,
+                                                                        },
+                                                                    })
+                                                                }
+                                                            />
+                                                        ) : null}
+                                                        {d.deadline.kind === "scheduled_date" ? (
+                                                            <Input
+                                                                size="md"
+                                                                label="Deadline date"
+                                                                type="date"
+                                                                value={d.deadline.date ?? ""}
+                                                                onChange={(v) =>
+                                                                    updateDeliverable(idx, {
+                                                                        deadline: {
+                                                                            ...d.deadline,
+                                                                            date: v || null,
+                                                                        },
+                                                                    })
+                                                                }
+                                                            />
+                                                        ) : null}
                                                     </div>
                                                     <div className="mt-2 grid grid-cols-1 gap-2">
                                                         <Toggle

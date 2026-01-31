@@ -3132,6 +3132,10 @@
     min-width: 44px;
   }
 
+  .min-w-\[120px\] {
+    min-width: 120px;
+  }
+
   .flex-1 {
     flex: 1;
   }
@@ -9457,6 +9461,10 @@
     color: var(--text-color-placeholder);
   }
 
+  .placeholder\:text-tertiary::placeholder {
+    color: var(--text-color-tertiary);
+  }
+
   .before\:absolute:before {
     content: var(--tw-content);
     position: absolute;
@@ -10014,6 +10022,10 @@
 
   .autofill\:text-primary:autofill {
     color: var(--text-color-primary);
+  }
+
+  .focus-within\:border-brand:where([data-rac])[data-focus-within], .focus-within\:border-brand:where(:not([data-rac])):focus-within {
+    border-color: var(--border-color-brand);
   }
 
   .focus-within\:ring-2:where([data-rac])[data-focus-within], .focus-within\:ring-2:where(:not([data-rac])):focus-within {

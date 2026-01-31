@@ -467,6 +467,73 @@ export default function EventInviteClient() {
         }
     };
 
+    const handleFinalSubmit = async () => {
+        // Here you would typically submit all the data to the backend
+        console.log("handleFinalSubmit: Starting final submission");
+        setDashboardError(null);
+
+        if ((event?.dashboardAccessRequired === true || shareDashboard) && !dashboardScreenshot) {
+            setDashboardError("Please upload your dashboard screenshot");
+            return;
+        }
+        
+        try {
+            const token = authToken || localStorage.getItem("influu_token");
+            if (!token) {
+                console.error("handleFinalSubmit: Missing token");
+                // Should redirect to login or show error
+                return;
+            }
+
+            const isWilling = localStorage.getItem("influu_isWillingToAttend");
+            const shareDash = localStorage.getItem("influu_shareProfessionalDashboard");
+            
+            const formData = new FormData();
+            formData.append("willingToAttend", isWilling || "false");
+            formData.append("shareProfessionalDashboard", shareDash || "false");
+            
+            if (dashboardScreenshot) {
+                formData.append("dashboard", dashboardScreenshot);
+            }
+
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
+            const endpoint = `/events/public/code/${encodeURIComponent(code)}/apply`;
+            console.log("handleFinalSubmit: Submitting to", `${baseUrl}${endpoint}`);
+
+            const res = await fetch(`${baseUrl}${endpoint}`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData
+            });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error("handleFinalSubmit: Submission failed", errorText);
+                // Handle error (show toast etc)
+                return;
+            }
+
+            const data = await res.json();
+            console.log("handleFinalSubmit: Success", data);
+
+            console.log({
+                phoneNumber,
+                otp,
+                name,
+                photo,
+                instagramHandle,
+                willingToAttend,
+                shareDashboard,
+                dashboardScreenshot
+            });
+            setStep("success");
+        } catch (e) {
+            console.error("handleFinalSubmit: Error during submission", e);
+        }
+    };
+
     const handleDetailsSubmit = async () => {
         console.log("handleDetailsSubmit: Starting submission");
         setDetailsError(null);
@@ -546,7 +613,11 @@ export default function EventInviteClient() {
             localStorage.setItem("influu_isWillingToAttend", String(willingToAttend));
             localStorage.setItem("influu_shareProfessionalDashboard", String(shareDashboard));
 
-            setStep("dashboard");
+            if (event?.dashboardAccessRequired === true || shareDashboard) {
+                setStep("dashboard");
+            } else {
+                await handleFinalSubmit();
+            }
         } catch (e: any) {
             console.error("Failed to update profile", e);
             setDetailsError(e.message || "An unexpected error occurred.");
@@ -566,72 +637,7 @@ export default function EventInviteClient() {
         setDashboardPreview(null);
     };
 
-    const handleFinalSubmit = async () => {
-        // Here you would typically submit all the data to the backend
-        console.log("handleFinalSubmit: Starting final submission");
-        setDashboardError(null);
 
-        if (!dashboardScreenshot) {
-            setDashboardError("Please upload your dashboard screenshot");
-            return;
-        }
-        
-        try {
-            const token = authToken || localStorage.getItem("influu_token");
-            if (!token) {
-                console.error("handleFinalSubmit: Missing token");
-                // Should redirect to login or show error
-                return;
-            }
-
-            const isWilling = localStorage.getItem("influu_isWillingToAttend");
-            const shareDash = localStorage.getItem("influu_shareProfessionalDashboard");
-            
-            const formData = new FormData();
-            formData.append("willingToAttend", isWilling || "false");
-            formData.append("shareProfessionalDashboard", shareDash || "false");
-            
-            if (dashboardScreenshot) {
-                formData.append("dashboard", dashboardScreenshot);
-            }
-
-            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
-            const endpoint = `/events/public/code/${encodeURIComponent(code)}/apply`;
-            console.log("handleFinalSubmit: Submitting to", `${baseUrl}${endpoint}`);
-
-            const res = await fetch(`${baseUrl}${endpoint}`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData
-            });
-
-            if (!res.ok) {
-                const errorText = await res.text();
-                console.error("handleFinalSubmit: Submission failed", errorText);
-                // Handle error (show toast etc)
-                return;
-            }
-
-            const data = await res.json();
-            console.log("handleFinalSubmit: Success", data);
-
-            console.log({
-                phoneNumber,
-                otp,
-                name,
-                photo,
-                instagramHandle,
-                willingToAttend,
-                shareDashboard,
-                dashboardScreenshot
-            });
-            setStep("success");
-        } catch (e) {
-            console.error("handleFinalSubmit: Error during submission", e);
-        }
-    };
 
     useEffect(() => setMounted(true), []);
 

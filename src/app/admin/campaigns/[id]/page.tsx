@@ -66,6 +66,7 @@ type EventDetail = {
         brandMusicProvided?: boolean;
         contentApprovalRequired?: boolean;
     }[];
+    doClientApprovalNeeded?: boolean;
     payment?: {
         type?: "fixed" | "range" | "variable";
         minAmount?: number;
@@ -248,30 +249,32 @@ export default function CampaignDetailPage() {
                                         </Button>
                                     </div>
                                 ) : activeTab === "details" ? (
-                                    <Button
-                                        size="sm"
-                                        color="secondary"
-                                        iconLeading={clipboard.copied === `client-${event._id}` ? Check : Share04}
-                                        onClick={async () => {
-                                            const url = `${origin}/events/${encodeURIComponent(String(event.code))}`;
-                                            if (navigator.share) {
-                                                try {
-                                                    await navigator.share({
-                                                        title: event.eventName || 'Campaign Proposal',
-                                                        text: 'Check out this campaign proposal',
-                                                        url: url
-                                                    });
-                                                } catch (err) {
-                                                    console.error('Error sharing:', err);
+                                    event.doClientApprovalNeeded ? (
+                                        <Button
+                                            size="sm"
+                                            color="secondary"
+                                            iconLeading={clipboard.copied === `client-${event._id}` ? Check : Share04}
+                                            onClick={async () => {
+                                                const url = `${origin}/events/${encodeURIComponent(String(event.code))}`;
+                                                if (navigator.share) {
+                                                    try {
+                                                        await navigator.share({
+                                                            title: event.eventName || 'Campaign Proposal',
+                                                            text: 'Check out this campaign proposal',
+                                                            url: url
+                                                        });
+                                                    } catch (err) {
+                                                        console.error('Error sharing:', err);
+                                                        clipboard.copy(url, `client-${event._id}`);
+                                                    }
+                                                } else {
                                                     clipboard.copy(url, `client-${event._id}`);
                                                 }
-                                            } else {
-                                                clipboard.copy(url, `client-${event._id}`);
-                                            }
-                                        }}
-                                    >
-                                        Share to Client
-                                    </Button>
+                                            }}
+                                        >
+                                            Share to Client
+                                        </Button>
+                                    ) : null
                                 ) : (
                                     <div className="flex items-center gap-2">
                                         <div className="hidden md:block text-sm text-tertiary">
@@ -282,9 +285,7 @@ export default function CampaignDetailPage() {
                                             color="secondary"
                                             icon={clipboard.copied === `campaign-${event._id}` ? Check : Share04}
                                             onClick={async () => {
-                                                const path = event.status === "approved_by_client"
-                                                    ? `/events/invite/${encodeURIComponent(String(event.code))}`
-                                                    : `/events/${encodeURIComponent(String(event.code))}`;
+                                                const path = `/events/invite/${encodeURIComponent(String(event.code))}`;
                                                 const url = `${origin}${path}`;
                                                 if (navigator.share) {
                                                     try {
@@ -698,7 +699,11 @@ export default function CampaignDetailPage() {
                             </div>
                         </div>
                     ) : activeTab === "shortlisted" ? (
-                        <ShortlistedTab eventCode={event.code} targetCount={event.creatorCountNeeded} />
+                        <ShortlistedTab 
+                            eventCode={event.code} 
+                            targetCount={event.creatorCountNeeded} 
+                            doClientApprovalNeeded={event.doClientApprovalNeeded}
+                        />
                     ) : activeTab === "replacement" ? (
                         <StatusApplicationTab 
                             eventCode={event.code} 
@@ -943,7 +948,7 @@ function StatusApplicationTab({
     );
 } // StatusApplicationTab End
 
-function ShortlistedTab({ eventCode }: { eventCode?: string | null; targetCount?: number }) {
+function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: string | null; targetCount?: number; doClientApprovalNeeded?: boolean }) {
     const { token } = useAuth();
     const [applicants, setApplicants] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -979,6 +984,16 @@ function ShortlistedTab({ eventCode }: { eventCode?: string | null; targetCount?
             clearInterval(interval);
         };
     }, [eventCode, token]);
+
+    const handleStatusUpdate = async (applicationId: string, newStatus: string) => {
+        try {
+            await api.patch(`/events/applications/${applicationId}`, { status: newStatus }, { token });
+            setApplicants(prev => prev.filter(a => a._id !== applicationId));
+        } catch (e) {
+            console.error("Failed to update status", e);
+            alert("Failed to update status");
+        }
+    };
 
     if (loading) {
         return (
@@ -1033,6 +1048,9 @@ function ShortlistedTab({ eventCode }: { eventCode?: string | null; targetCount?
                                 <th className="px-4 py-3 font-medium">Dashboard</th>
                                 <th className="px-4 py-3 font-medium">Status</th>
                                 <th className="px-4 py-3 font-medium">Date</th>
+                                {doClientApprovalNeeded === false && (
+                                    <th className="px-4 py-3 font-medium text-right">Actions</th>
+                                )}
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-secondary">
@@ -1125,6 +1143,28 @@ function ShortlistedTab({ eventCode }: { eventCode?: string | null; targetCount?
                                     <td className="px-4 py-3 text-tertiary">
                                         {app.appliedAt ? new Date(app.appliedAt).toLocaleDateString() : "—"}
                                     </td>
+                                    {doClientApprovalNeeded === false && (
+                                        <td className="px-4 py-3 text-right">
+                                            <div className="flex items-center justify-end gap-2">
+                                                <Button
+                                                    size="sm"
+                                                    color="secondary"
+                                                    onClick={() => handleStatusUpdate(app._id, "invited")}
+                                                    title="Approve"
+                                                >
+                                                    Approve
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    color="secondary"
+                                                    onClick={() => handleStatusUpdate(app._id, "replaced")}
+                                                    title="Replace"
+                                                >
+                                                    Replace
+                                                </Button>
+                                            </div>
+                                        </td>
+                                    )}
                                 </tr>
                             ))}
                         </tbody>

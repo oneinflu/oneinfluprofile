@@ -257,3 +257,336 @@ See this log for the ancestor stack trace. button <button>
 [00:00:35.168] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
 [00:00:49.065] Browser ERROR   {}
 [00:05:40.366] Server  LOG     ✓ Compiled in 468ms
+[01:01:49.814] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
+                  <HomeScreen params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <AnimatePresence>
+                      <HomeHero>
+                      <HomeProblems>
+                      <HomeFlow>
+                      <HomeCTA>
+                        <section className="py-12 md:p...">
+                          <div className="container ...">
+                            <div className="relative w...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="absolute inset-0 h-full w-full object-cover"
+-                               data-video="0"
+                              >
+                              ...
+              ...
+            ...
+
+[01:01:49.814] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[01:01:50.484] Browser ERROR   {}
+[01:01:53.075] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:01:53.075] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.075] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.295] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:53.404] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:01:53.404] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:01:53.404] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.404] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.481] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:53.600] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:53.707] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.707] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.707] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.707] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:01:53.707] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:01:53.707] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:01:53.707] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:01:53.707] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:01:53.707] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:01:53.707] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:01:53.847] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:53.920] Browser ERROR   {}
+[01:01:54.116] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:54.159] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria2078499548-_r_1d_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[01:01:54.159] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[01:01:54.397] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:54.598] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:54.699] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:54.737] Browser ERROR   {}
+[01:01:54.776] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[01:01:54.810] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria7651939809-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[01:01:54.810] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[01:01:55.033] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[02:32:33.806] Server  LOG     ✓ Compiled in 1689ms
+[02:32:33.850] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:32:38.688] Browser ERROR   {}
+[02:32:45.358] Server  LOG     ✓ Compiled in 372ms
+[02:32:56.704] Server  LOG     ✓ Compiled in 406ms
+[02:33:05.854] Server  LOG     ✓ Compiled in 225ms
+[02:33:14.060] Server  LOG     ✓ Compiled in 724ms
+[02:33:32.178] Server  LOG     ✓ Compiled in 307ms
+[02:36:11.529] Server  LOG     ✓ Compiled in 241ms
+[02:36:13.252] Browser ERROR   uncaughtError: ReferenceError: setNichesText is not defined
+[02:36:15.287] Browser ERROR   uncaughtError: ReferenceError: setNichesText is not defined
+[02:36:18.890] Server  LOG     ✓ Compiled in 308ms
+[02:36:27.312] Server  LOG     ✓ Compiled in 165ms
+[02:36:32.146] Browser ERROR   uncaughtError: ReferenceError: nichesText is not defined
+[02:36:34.939] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:36:34.951] Server  LOG     ✓ Compiled in 290ms
+[02:36:36.569] Browser ERROR   uncaughtError: ReferenceError: nichesText is not defined
+[02:36:36.569] Browser ERROR   {}
+[02:36:41.867] Browser ERROR   {}
+[02:36:52.967] Browser ERROR   uncaughtError: ReferenceError: nichesText is not defined
+[02:36:54.032] Server  LOG     ✓ Compiled in 3s
+[02:36:54.041] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:36:55.673] Browser ERROR   {}
+[02:44:21.558] Browser ERROR   {}
+[02:48:20.433] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[02:48:21.799] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[02:48:54.459] Server  LOG     ✓ Compiled in 1050ms
+[02:49:04.024] Server  LOG     ✓ Compiled in 360ms
+[02:49:12.532] Server  LOG     ✓ Compiled in 672ms
+[02:50:06.024] Server  LOG     ✓ Compiled in 1185ms
+[02:50:54.343] Server  LOG     ✓ Compiled in 1025ms
+[02:56:36.539] Browser WARN    WARN: A component changed from controlled to uncontrolled.
+[02:56:36.546] Browser WARN    WARN: A component changed from controlled to uncontrolled.
+[02:59:15.923] Server  LOG     ✓ Compiled in 776ms
+[02:59:47.257] Browser ERROR   {}
+[02:59:58.317] Browser ERROR   {}
+[03:01:41.168] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/events/in..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[03:01:41.284] Browser ERROR   {}
+[03:03:44.178] Server  LOG     ✓ Compiled in 686ms
+[03:04:10.108] Server  LOG     ✓ Compiled in 527ms
