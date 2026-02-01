@@ -91,6 +91,7 @@ export default function AdminCampaignsPage() {
     const [confirmOpen, setConfirmOpen] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
     const [statusFilter, setStatusFilter] = useState<"all" | "pending_from_client" | "approved_by_client">("all");
+    const [isCreating, setIsCreating] = useState(false);
     const clipboard = useClipboard();
     const origin = typeof window !== "undefined" ? window.location.origin : "https://oneinflu.com";
 
@@ -288,6 +289,7 @@ export default function AdminCampaignsPage() {
 
     const onSave = async (close: () => void) => {
         try {
+            setIsCreating(true);
             if (!user?.username || !token) return;
             const dateIso = dateLocal ? new Date(dateLocal).toISOString() : "";
             const payload = {
@@ -396,7 +398,9 @@ export default function AdminCampaignsPage() {
             setOpen(false);
             setEditId(null);
             resetForm();
-        } catch {}
+        } catch {} finally {
+            setIsCreating(false);
+        }
     };
 
     return (
@@ -692,8 +696,8 @@ export default function AdminCampaignsPage() {
                                         <Button size="sm" color="secondary" onClick={() => state.close()}>
                                             Close
                                         </Button>
-                                        <Button size="sm" onClick={() => onSave(state.close)}>
-                                            Save & Publish
+                                        <Button size="sm" onClick={() => onSave(state.close)} disabled={isCreating}>
+                                            {isCreating ? "Processing..." : "Save & Publish"}
                                         </Button>
                                     </div>
                                 </div>
