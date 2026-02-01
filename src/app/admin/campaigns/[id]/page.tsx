@@ -2620,6 +2620,30 @@ function ApplicantsTab({ eventCode }: { eventCode?: string | null }) {
                     </table>
                 </div>
             </div>
+
+            {totalPages > 1 && (
+                <div className="flex items-center justify-between pt-4">
+                    <Button
+                        size="sm"
+                        color="secondary"
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </Button>
+                    <span className="text-sm text-tertiary">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <Button
+                        size="sm"
+                        color="secondary"
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                    >
+                        Next
+                    </Button>
+                </div>
+            )}
         </div>
     );
 }

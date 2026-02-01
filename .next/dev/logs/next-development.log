@@ -129,3 +129,6 @@ It can also happen if the client has a browser extension installed which messes 
 [00:02:31.200] Server  LOG     ✓ Compiled in 161ms
 [00:02:35.112] Browser WARN    WARN: A component changed from controlled to uncontrolled.
 [00:02:35.112] Browser WARN    WARN: A component changed from controlled to uncontrolled.
+[00:26:28.328] Server  LOG     ✓ Compiled in 204ms
+[00:26:59.599] Server  LOG     ✓ Compiled in 1244ms
+[00:27:08.819] Server  LOG     ✓ Compiled in 422ms

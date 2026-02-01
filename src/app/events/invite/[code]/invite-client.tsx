@@ -84,7 +84,7 @@ type PublicEvent = {
         platform: "instagram" | "youtube" | "x" | "blog";
         type: "reel" | "story" | "post" | "short" | "video";
         quantity: number;
-        deadline: { kind: "during_event" | "within_hours" | "within_days"; value: number | null };
+        deadline: { kind: "during_event" | "within_hours" | "within_days" | "scheduled_date"; value: number | null; date?: string };
         brandTagMandatory?: boolean;
         locationTagMandatory?: boolean;
         hashtagsRequired?: boolean;
@@ -119,6 +119,17 @@ const formatEventDate = (iso?: string) => {
         month: "short",
         hour: "2-digit",
         minute: "2-digit",
+    });
+};
+
+const formatDeadlineDate = (iso?: string) => {
+    if (!iso) return "";
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return "";
+    return date.toLocaleString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
     });
 };
 
@@ -859,6 +870,7 @@ export default function EventInviteClient() {
                                                         <Badge size="sm" color="warning" className="hidden sm:flex">
                                                             Due {d.deadline.kind === "during_event" ? "During Event" : 
                                                                  d.deadline.kind === "within_hours" ? `Within ${d.deadline.value}h` : 
+                                                                 d.deadline.kind === "scheduled_date" ? `${formatDeadlineDate(d.deadline.date)}` :
                                                                  `Within ${d.deadline.value}d`}
                                                         </Badge>
                                                     )}
@@ -871,6 +883,7 @@ export default function EventInviteClient() {
                                                             <AlertCircle className="w-4 h-4 text-orange-500" />
                                                             <span>Due {d.deadline.kind === "during_event" ? "During Event" : 
                                                                  d.deadline.kind === "within_hours" ? `Within ${d.deadline.value}h` : 
+                                                                 d.deadline.kind === "scheduled_date" ? `${formatDeadlineDate(d.deadline.date)}` :
                                                                  `Within ${d.deadline.value}d`}</span>
                                                         </div>
                                                     )}
