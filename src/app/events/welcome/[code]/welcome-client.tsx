@@ -637,7 +637,7 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                             type="tel"
                                             maxLength={10}
                                             inputMode="numeric"
-                                            placeholder="000 000 0000"
+                                            placeholder="Enter 10-digit number"
                                             value={phoneNumber}
                                             onChange={(val) => {
                                                 if (/^\d*$/.test(String(val)) && String(val).length <= 10) {
@@ -646,7 +646,7 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                                 }
                                             }}
                                             isInvalid={!!phoneError}
-                                            inputClassName="!bg-transparent text-white text-center text-xl font-mono tracking-[0.2em] font-bold placeholder:text-white/20 focus:ring-0 border-none outline-none"
+                                            inputClassName="!bg-transparent text-white text-lg font-medium placeholder:text-white/20 focus:ring-0 border-none outline-none"
                                             wrapperClassName="h-14 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors focus-within:border-brand-500/50 focus-within:ring-1 focus-within:ring-brand-500/20"
                                         />
                                     </div>
@@ -959,17 +959,23 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                                 placeholder="Enter full name" 
                                                 value={guestName}
                                                 onChange={(val) => setGuestName(String(val))}
-                                                inputClassName="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-brand-500 rounded-xl"
+                                                inputClassName="bg-black/40 border-white/10 text-white placeholder:text-gray-500 focus:border-brand-500 rounded-xl"
                                             />
                                         </div>
                                         <div>
                                             <label className="mb-1.5 block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Phone Number</label>
                                             <Input 
-                                                placeholder="+1 (555) 000-0000" 
+                                                placeholder="Enter 10-digit number" 
                                                 type="tel"
+                                                maxLength={10}
+                                                inputMode="numeric"
                                                 value={guestPhone}
-                                                onChange={(val) => setGuestPhone(String(val))}
-                                                inputClassName="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-brand-500 rounded-xl"
+                                                onChange={(val) => {
+                                                    if (/^\d*$/.test(String(val)) && String(val).length <= 10) {
+                                                        setGuestPhone(String(val));
+                                                    }
+                                                }}
+                                                inputClassName="bg-black/40 border-white/10 text-white placeholder:text-gray-500 focus:border-brand-500 rounded-xl"
                                             />
                                         </div>
                                         <div className="pt-2">

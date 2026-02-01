@@ -9986,6 +9986,10 @@
     color: var(--color-gray-400);
   }
 
+  .placeholder\:text-gray-500::placeholder {
+    color: var(--color-gray-500);
+  }
+
   .placeholder\:text-gray-600::placeholder {
     color: var(--color-gray-600);
   }
