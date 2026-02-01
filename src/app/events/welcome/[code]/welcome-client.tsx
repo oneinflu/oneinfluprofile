@@ -24,10 +24,14 @@ import {
     User01,
     CheckDone01,
     ArrowRight,
-    Edit01
+    Edit01,
+    Copy01,
+    Share04,
+    AlertCircle
 } from "@untitledui/icons";
 import { api, ApiError } from "@/utils/api";
 import { useAuth } from "@/providers/auth";
+import { useClipboard } from "@/hooks/use-clipboard";
 import { Button } from "@/components/base/buttons/button";
 import { Toggle } from "@/components/base/toggle/toggle";
 import { Badge } from "@/components/base/badges/badges";
@@ -106,6 +110,7 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     const code = String(params?.code || "");
     const { theme, setTheme } = useTheme();
     const { token: authToken, setToken, logout } = useAuth();
+    const { copied, copy } = useClipboard();
     
     const [mounted, setMounted] = useState(false);
     const [event, setEvent] = useState<PublicEvent | null>(null);
@@ -131,6 +136,9 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     const [guestPhone, setGuestPhone] = useState("");
     const [isUpdatingGuest, setIsUpdatingGuest] = useState(false);
     const [isEditingGuest, setIsEditingGuest] = useState(false);
+
+    // Accordion State
+    const [isGuidelinesOpen, setIsGuidelinesOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -479,7 +487,8 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     // New Full-Page "Not Invited" View
     if (authStep === "view" && !invitation) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col items-center justify-center p-6 relative overflow-hidden">
+            <div className="min-h-screen bg-zinc-950 flex justify-center items-center">
+                <div className="w-full max-w-md bg-gray-50 dark:bg-gray-950 min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden shadow-2xl">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 z-0 opacity-30 dark:opacity-20">
                      <div className="absolute -top-[20%] -left-[10%] h-[500px] w-[500px] rounded-full bg-red-200/50 blur-[100px] dark:bg-red-900/30" />
@@ -554,14 +563,16 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                     </motion.div>
                 </motion.div>
             </div>
-        );
-    }
+        </div>
+    );
+}
 
     // Login View (Loading / Phone / OTP)
     if (authStep !== "view") {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-gray-50 dark:bg-[#050505] transition-colors duration-700">
-                {/* Premium Background */}
+            <div className="min-h-screen bg-zinc-950 flex justify-center items-center">
+                <div className="w-full max-w-md min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-gray-50 dark:bg-[#050505] transition-colors duration-700 shadow-2xl">
+                    {/* Premium Background */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,_var(--tw-gradient-stops))] from-brand-100/20 via-transparent to-transparent dark:from-brand-900/20 dark:via-transparent dark:to-transparent" />
                     <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-[128px] animate-pulse-slow" />
@@ -733,206 +744,189 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                     </div>
                 </motion.div>
             </div>
-        );
-    }
+        </div>
+    );
+}
 
     const mapUrl = event.venue || event.city 
         ? `https://maps.google.com/maps?q=${encodeURIComponent(`${event.venue}, ${event.city}`)}&t=&z=15&ie=UTF8&iwloc=&output=embed`
         : null;
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-20 overflow-x-hidden">
-             {/* Background Gradients */}
-             <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-brand-500/10 blur-[120px] dark:bg-brand-500/5" />
-                <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[120px] dark:bg-purple-500/5" />
-             </div>
+        <div className="min-h-screen bg-zinc-950 flex justify-center">
+            <div className="w-full max-w-md bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-64 overflow-x-hidden min-h-screen relative shadow-2xl">
+            {/* 1. TOP HERO SECTION */}
+            <div className="relative h-[40vh] w-full overflow-hidden flex flex-col items-center justify-center text-center">
+                {/* Background Layers */}
+                <div className="absolute inset-0 z-0">
+                    {/* Dark Neon Gradient Base */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900 opacity-80" />
+                    
+                    {/* Event Banner / Vibe Image */}
+                    <div 
+                        className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-60"
+                        style={{ 
+                            backgroundImage: `url('${event.invitationBannerUrl || "/banner.webp"}')`,
+                            filter: "blur(2px) contrast(1.1) brightness(0.8)"
+                        }} 
+                    />
+                    
+                    {/* Noise/Grain Texture for Premium Feel */}
+                    <div className="absolute inset-0 opacity-[0.15] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+                    
+                    {/* Gradient Fade at Bottom */}
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] to-transparent" />
+                </div>
 
-            {/* Hero / Header */}
-            <div className="relative h-[400px] w-full overflow-hidden lg:h-[500px] z-10">
-                {mounted && (
-                    <div className="absolute top-6 right-6 z-50">
-                        <Button
-                            size="md"
-                            className="rounded-full bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 shadow-lg transition-transform hover:scale-105"
-                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                            iconLeading={theme === 'dark' ? Sun : Moon01}
-                        />
-                    </div>
-                )}
-                <motion.div 
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 10, ease: "linear" }}
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${event.invitationBannerUrl || "/banner.webp"}')` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/90" />
-                <div className="absolute inset-0 flex flex-col justify-center items-center p-6 lg:p-12">
+                {/* Content Overlay */}
+                <div className="relative z-10 flex flex-col items-center px-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="mx-auto w-full max-w-2xl text-center"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                        className="mb-2"
                     >
-                        <motion.div
-                             initial={{ opacity: 0, scale: 0.9 }}
-                             animate={{ opacity: 1, scale: 1 }}
-                             transition={{ delay: 0.2, duration: 0.5 }}
-                             className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium tracking-wide"
-                        >
-                            YOU ARE INVITED
-                        </motion.div>
-                        
-                        <h1 className="text-display-md font-bold text-white md:text-display-lg drop-shadow-2xl tracking-tight">
-                            {event.eventName}
-                        </h1>
-
-                        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-white/90">
-                            <motion.div 
-                                whileHover={{ scale: 1.05 }}
-                                className="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 backdrop-blur-md border border-white/10 shadow-lg"
-                            >
-                                <Calendar className="size-5 text-brand-300" />
-                                <span className="font-medium">
-                                    {event.date ? new Date(event.date).toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long" }) : "Date TBA"}
-                                </span>
-                            </motion.div>
-                            <motion.div 
-                                whileHover={{ scale: 1.05 }}
-                                className="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 backdrop-blur-md border border-white/10 shadow-lg"
-                            >
-                                <Clock className="size-5 text-brand-300" />
-                                <span className="font-medium">
-                                    {event.date ? new Date(event.date).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) : "Time TBA"}
-                                </span>
-                            </motion.div>
-                        </div>
+                        <span className="text-3xl md:text-4xl">🎉</span>
                     </motion.div>
+                    
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
+                        You’re In!
+                    </h2>
+                    
+                    <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-white to-pink-200 tracking-tighter drop-shadow-lg mb-4 max-w-2xl leading-tight">
+                        Welcome to {event.eventName}
+                    </h1>
+
+                    <div className="flex flex-col items-center gap-1 mb-6">
+                        <p className="text-sm md:text-base text-gray-300 font-medium tracking-wide">
+                            Hosted by <span className="text-white font-semibold">{event.user?.name || "Milie"}</span>
+                        </p>
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold">
+                            Powered by INFLU
+                        </p>
+                    </div>
+
+                    <div className="px-4 py-1.5 rounded-full border border-green-500/30 bg-green-500/10 backdrop-blur-md flex items-center gap-2 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-green-400">Approved & Exclusive</span>
+                    </div>
                 </div>
             </div>
 
-            <div className="mx-auto max-w-2xl px-4 -mt-16 relative z-20 space-y-6">
+            {/* 2. TICKET & DETAILS SECTION */}
+            <div className="relative z-20 max-w-md mx-auto px-4 -mt-8 space-y-6">
                 
-                {/* Ticket Section */}
+                {/* Ticket Section - Premium Floating Card */}
                 <motion.div 
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="relative overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
+                    className="relative"
                 >
-                    {/* Ticket Visuals - Top Holes */}
-                    <div className="absolute -left-3 top-20 h-6 w-6 rounded-full bg-gray-50 dark:bg-gray-950 z-10" />
-                    <div className="absolute -right-3 top-20 h-6 w-6 rounded-full bg-gray-50 dark:bg-gray-950 z-10" />
-                    
-                    <div className="border-b-2 border-dashed border-gray-100 dark:border-gray-800 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900 px-6 py-6 text-center pb-8">
-                        <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-tertiary">
-                            OFFICIAL INVITATION
-                        </h2>
-                    </div>
-                    
-                    <div className="p-8 pt-10">
-                        {invitation && (
-                            <div className="text-center">
-                                <div className="mb-2 text-display-lg font-mono font-bold tracking-widest text-brand-solid break-all">
-                                    {invitation.inviteCode || "—"}
-                                </div>
-                                <p className="text-xs text-tertiary uppercase tracking-wider mb-6">Invitation Code</p>
+                    <div className="group relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-5 shadow-2xl ring-1 ring-white/10">
+                        
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                                {event.code && (
-                                    <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-100 dark:border-gray-800">
-                                        <p className="text-xl font-mono font-semibold text-primary tracking-widest">
-                                            {event.code}
-                                        </p>
-                                        <p className="text-xs text-tertiary uppercase tracking-wider mt-1">Event Code</p>
+                        <div className="flex items-center gap-5 relative z-10">
+                            {/* Left: Host Avatar with Gradient Ring */}
+                            <div className="relative shrink-0">
+                                <div className="h-16 w-16 rounded-full p-[2px] bg-gradient-to-br from-brand-400 to-purple-600">
+                                    <div className="h-full w-full rounded-full border-2 border-[#09090b] overflow-hidden bg-zinc-800">
+                                        {event?.user?.avatarUrl ? (
+                                            <img src={event.user.avatarUrl} alt="Host" className="h-full w-full object-cover" />
+                                        ) : (
+                                            <div className="h-full w-full flex items-center justify-center bg-zinc-800 text-gray-500">
+                                                <User01 className="size-6" />
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                                <div className="inline-flex items-center gap-2 rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-green-700 dark:bg-green-900/20 dark:text-green-400">
-                                    <CheckDone01 className="size-3" />
-                                    {invitation.status === "invited" ? "Confirmed Invitation" : "Status: " + invitation.status}
                                 </div>
-                               
+                                <div className="absolute -bottom-1 -right-1 bg-green-500 text-black text-[9px] font-extrabold px-1.5 py-0.5 rounded-full border-2 border-[#09090b] uppercase tracking-wider">
+                                    IN
+                                </div>
                             </div>
-                        )}
+
+                            {/* Right: Code & Actions */}
+                            <div className="flex-1 min-w-0 flex flex-col justify-center">
+                                <div className="flex items-center justify-between mb-1">
+                                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
+                                        Invitation Code
+                                    </p>
+                                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-green-400 uppercase tracking-wider bg-green-500/10 px-2 py-0.5 rounded-full border border-green-500/20">
+                                        <CheckDone01 className="size-3" />
+                                        <span>Approved</span>
+                                    </div>
+                                </div>
+                                
+                                <button 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        copy(invitation?.inviteCode || "", "invite-code");
+                                    }}
+                                    className="group/btn flex items-center gap-3 text-left w-full"
+                                >
+                                    <span className="text-2xl font-mono font-bold text-white tracking-[0.15em] group-hover/btn:text-brand-200 transition-colors">
+                                        {invitation?.inviteCode || "—"}
+                                    </span>
+                                    <div className="p-1.5 rounded-md bg-white/5 text-gray-500 group-hover/btn:bg-white/10 group-hover/btn:text-white transition-colors border border-white/5">
+                                        {copied === "invite-code" ? (
+                                            <CheckDone01 className="size-3.5 text-green-400" />
+                                        ) : (
+                                            <Copy01 className="size-3.5" />
+                                        )}
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
 
-                {/* Location & Map */}
+                {/* Event Details - Clean & Skimmable */}
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="overflow-hidden rounded-2xl bg-white shadow-sm dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
+                    transition={{ delay: 0.3 }}
+                    className="rounded-2xl bg-[#09090b] border border-white/10 shadow-lg divide-y divide-white/5"
                 >
-                    <div className="flex items-center gap-3 border-b border-gray-200 px-6 py-4 dark:border-gray-800">
-                        <div className="rounded-lg bg-brand-50 p-2 text-brand-600 dark:bg-brand-900/20 dark:text-brand-400">
-                            <Map02 className="size-5" />
+                    {/* Venue */}
+                    <div className="flex items-start gap-4 p-4">
+                        <div className="p-2.5 rounded-xl bg-white/5 text-white shrink-0 border border-white/5">
+                            <MarkerPin01 className="size-5" />
                         </div>
-                        <h2 className="font-semibold text-primary">Location Details</h2>
+                        <div>
+                            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Venue</h3>
+                            <p className="text-sm font-bold text-white leading-tight">{event.venue}</p>
+                            {event.city && <p className="text-xs text-gray-400 mt-0.5">{event.city}</p>}
+                        </div>
                     </div>
-                    <div className="p-6">
-                        <div className="mb-6 flex items-start gap-3">
-                            <MarkerPin01 className="mt-1 size-5 shrink-0 text-tertiary" />
-                            <div>
-                                <h3 className="font-medium text-primary">{event.venue}</h3>
-                                <p className="text-tertiary">{event.city}</p>
-                            </div>
+
+                    {/* Date */}
+                    <div className="flex items-start gap-4 p-4">
+                        <div className="p-2.5 rounded-xl bg-white/5 text-white shrink-0 border border-white/5">
+                            <Calendar className="size-5" />
                         </div>
-                        {mapUrl && (
-                            <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-                                <iframe 
-                                    width="100%" 
-                                    height="300" 
-                                    frameBorder="0" 
-                                    scrolling="no" 
-                                    marginHeight={0} 
-                                    marginWidth={0} 
-                                    src={mapUrl}
-                                    className="grayscale filter dark:invert-[.9]"
-                                />
-                            </div>
-                        )}
-                        <div className="mt-4 text-center">
-                            <Button 
-                                size="sm" 
-                                color="secondary" 
-                                onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${event.venue}, ${event.city}`)}`, '_blank')}
-                                iconLeading={Map02}
-                                className="w-full justify-center"
-                            >
-                                Open in Google Maps
-                            </Button>
+                        <div>
+                            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Date</h3>
+                            <p className="text-sm font-bold text-white">
+                                {event.date ? new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }) : 'TBA'}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Time */}
+                    <div className="flex items-start gap-4 p-4">
+                        <div className="p-2.5 rounded-xl bg-white/5 text-white shrink-0 border border-white/5">
+                            <Clock className="size-5" />
+                        </div>
+                        <div>
+                            <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Entry Time</h3>
+                            <p className="text-sm font-bold text-white">
+                                {event.date ? new Date(event.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : 'TBA'}
+                            </p>
                         </div>
                     </div>
                 </motion.div>
-
-                {/* Food & Beverage Menu */}
-                <motion.section
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="space-y-4"
-                >
-                     <div className="flex items-center gap-2">
-                        <File04 className="size-5 text-brand-solid" />
-                        <h3 className="font-display text-lg font-semibold text-primary">Menu</h3>
-                    </div>
-                    <div className="rounded-xl border border-tertiary bg-secondary/50 p-4">
-                        <div className="flex items-start gap-4">
-                            <div className="rounded-full bg-brand-solid/10 p-2 text-brand-solid">
-                                <File04 className="size-5" />
-                            </div>
-                            <div className="space-y-1">
-                                <h4 className="font-medium text-primary">Food & Beverages</h4>
-                                <p className="text-sm text-secondary leading-relaxed">
-                                    {event.inhouseFoodandBeverages 
-                                        ? (event.isLimitedMenu ? "In-house food and beverages available (Limited Menu)." : "In-house food and beverages available.")
-                                        : (event.isLimitedMenu ? "Limited menu available." : "Food and beverages details pending.")}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </motion.section>
 
                 {/* +1 Guest */}
                 <motion.section 
@@ -943,8 +937,8 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <UserPlus01 className="size-5 text-brand-solid" />
-                            <h3 className="font-display text-lg font-semibold text-primary">+1 Guest</h3>
+                            <UserPlus01 className="size-5 text-brand-400" />
+                            <h3 className="font-display text-lg font-semibold text-gray-200">+1 Guest</h3>
                         </div>
                         <Toggle 
                             isSelected={isGuestInvited} 
@@ -963,45 +957,49 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                 className="overflow-hidden"
                             >
                                 {isEditingGuest ? (
-                                    <div className="rounded-xl border border-tertiary bg-secondary/50 p-6 space-y-4">
+                                    <div className="rounded-2xl border border-white/10 bg-[#09090b] p-5 shadow-lg space-y-4">
                                         <div>
-                                            <label className="mb-1.5 block text-sm font-medium text-secondary">Guest Name</label>
+                                            <label className="mb-1.5 block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Guest Name</label>
                                             <Input 
-                                                placeholder="Enter guest name" 
+                                                placeholder="Enter full name" 
                                                 value={guestName}
                                                 onChange={(val) => setGuestName(String(val))}
+                                                inputClassName="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-brand-500 rounded-xl"
                                             />
                                         </div>
                                         <div>
-                                            <label className="mb-1.5 block text-sm font-medium text-secondary">Guest Phone Number</label>
+                                            <label className="mb-1.5 block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Phone Number</label>
                                             <Input 
                                                 placeholder="+1 (555) 000-0000" 
                                                 type="tel"
                                                 value={guestPhone}
                                                 onChange={(val) => setGuestPhone(String(val))}
+                                                inputClassName="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-brand-500 rounded-xl"
                                             />
                                         </div>
                                         <div className="pt-2">
                                             <Button 
-                                                className="w-full justify-center" 
+                                                className="w-full justify-center bg-white text-black hover:bg-gray-200 border-0 rounded-xl font-semibold" 
                                                 onClick={() => handleGuestUpdate()}
                                                 disabled={isUpdatingGuest || !guestName || !guestPhone}
                                             >
-                                                {isUpdatingGuest ? "Updating..." : "Update Guest"}
+                                                {isUpdatingGuest ? "Saving..." : "Save Guest Details"}
                                             </Button>
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="rounded-xl border border-brand-solid/20 bg-brand-50/50 dark:bg-brand-900/10 p-6">
-                                        <div className="flex items-start justify-between gap-4">
+                                    <div className="rounded-2xl border border-brand-500/20 bg-brand-500/5 p-5 relative overflow-hidden group">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-brand-500/10 via-transparent to-transparent opacity-50" />
+                                        
+                                        <div className="relative flex items-start justify-between gap-4">
                                             <div className="flex items-center gap-4">
-                                                <div className="rounded-full bg-brand-solid/10 p-3 text-brand-solid">
+                                                <div className="rounded-xl bg-brand-500/20 p-2.5 text-brand-400 border border-brand-500/20">
                                                     <User01 className="size-6" />
                                                 </div>
                                                 <div>
-                                                    <h4 className="font-semibold text-primary text-lg">{guestName}</h4>
-                                                    <p className="text-tertiary">{guestPhone}</p>
-                                                    <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/20 dark:text-green-400">
+                                                    <h4 className="font-bold text-white text-base leading-tight">{guestName}</h4>
+                                                    <p className="text-sm text-gray-400 mt-0.5">{guestPhone}</p>
+                                                    <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-green-400 border border-green-500/20">
                                                         <CheckDone01 className="size-3" />
                                                         Confirmed
                                                     </div>
@@ -1011,7 +1009,8 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                                 size="sm"
                                                 color="secondary"
                                                 onClick={() => setIsEditingGuest(true)}
-                                                className="shrink-0"
+                                                className="shrink-0 bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-white rounded-lg"
+                                                iconLeading={Edit01}
                                             >
                                                 Edit
                                             </Button>
@@ -1023,17 +1022,149 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                     </AnimatePresence>
                 </motion.section>
 
-                {/* Scan QR Button */}
-                <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 z-50">
-                    <div className="mx-auto max-w-2xl">
-                        <Button 
-                            size="lg" 
-                            className="w-full justify-center shadow-lg"
-                            iconLeading={QrCode01}
+                {/* Important Notes - Accordion */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="overflow-hidden rounded-2xl bg-[#09090b] border border-white/10"
+                >
+                    <button
+                        onClick={() => setIsGuidelinesOpen(!isGuidelinesOpen)}
+                        className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-white/5"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="rounded-lg bg-red-500/20 p-2 text-red-400">
+                                <AlertCircle className="size-5" />
+                            </div>
+                            <span className="font-semibold text-gray-200">Entry Guidelines</span>
+                        </div>
+                        <ChevronDown 
+                            className={cx(
+                                "size-5 text-gray-500 transition-transform duration-300",
+                                isGuidelinesOpen && "rotate-180"
+                            )} 
+                        />
+                    </button>
+                    <AnimatePresence initial={false}>
+                        {isGuidelinesOpen && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                            >
+                                <div className="border-t border-white/10 px-6 pb-6 pt-4">
+                                    <ul className="space-y-3 text-sm text-gray-400">
+                                        <li className="flex items-start gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                                            <span>Entry allowed only with approved pass</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                                            <span>Carry valid ID for verification</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                                            <span>Management reserves rights to admission</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                                            <span>Re-entry not allowed once checked in</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
+
+                {/* Footer - Subtle Branding */}
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="flex flex-col items-center justify-center space-y-1 py-8 text-center"
+                >
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-medium">
+                        Powered by INFLU
+                    </p>
+                    <p className="text-xs text-white/20 font-serif italic tracking-wide">
+                        One pass. Many experiences.
+                    </p>
+                </motion.div>
+
+                {/* Sticky Footer Actions */}
+                <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center p-6 pointer-events-none">
+                    <div className="w-full max-w-md pointer-events-auto relative space-y-3">
+                        {/* Gradient Fade Overlay */}
+                        <div className="absolute -inset-x-6 -bottom-6 -top-32 bg-gradient-to-t from-[#050505] via-[#050505] to-transparent pointer-events-none -z-10" />
+                        
+                        {/* 1. Main Action: Scan QR */}
+                        <button
                             onClick={startCamera}
+                            className="group relative w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(249,115,22,0.4)] transition-all duration-300 hover:shadow-[0_8px_40px_rgba(249,115,22,0.5)] hover:-translate-y-1 active:translate-y-0 active:scale-[0.98]"
                         >
-                            Scan QR
-                        </Button>
+                            {/* Brand Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-600" />
+                            
+                            {/* Texture/Noise Overlay */}
+                            <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                            
+                            {/* Content */}
+                            <div className="relative flex flex-col items-center justify-center py-5 px-6">
+                                <div className="flex items-center gap-3 mb-1.5">
+                                    <div className="p-1.5 rounded-lg bg-white/20 backdrop-blur-sm">
+                                        <QrCode01 className="size-6 text-white" strokeWidth={2.5} />
+                                    </div>
+                                    <span className="text-xl font-black text-white tracking-wide">SCAN ENTRY QR</span>
+                                </div>
+                                <span className="text-[10px] font-bold text-white/90 uppercase tracking-[0.2em]">
+                                    Show this at the entrance
+                                </span>
+                            </div>
+                        </button>
+
+                        {/* 2. Secondary Actions */}
+                        <div className="grid grid-cols-2 gap-3">
+                            <Button
+                                size="lg"
+                                color="secondary"
+                                className="w-full justify-center bg-white/10 text-white hover:bg-white/20 border-white/10 backdrop-blur-md"
+                                iconLeading={Map02}
+                                onClick={() => {
+                                    const query = encodeURIComponent(`${event.venue || ''} ${event.city || ''}`);
+                                    window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
+                                }}
+                            >
+                                Get Directions
+                            </Button>
+                            <Button
+                                size="lg"
+                                color="secondary"
+                                className="w-full justify-center bg-white/10 text-white hover:bg-white/20 border-white/10 backdrop-blur-md"
+                                iconLeading={Share04}
+                                onClick={async () => {
+                                    const shareData = {
+                                        title: event.eventName,
+                                        text: `Join me at ${event.eventName}!`,
+                                        url: window.location.href
+                                    };
+                                    if (navigator.share) {
+                                        try {
+                                            await navigator.share(shareData);
+                                        } catch (err) {
+                                            console.error(err);
+                                        }
+                                    } else {
+                                        copy(window.location.href, "share-link");
+                                        alert("Link copied to clipboard!");
+                                    }
+                                }}
+                            >
+                                Share Pass
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1084,5 +1215,6 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                 )}
             </AnimatePresence>
         </div>
+            </div>
     );
 }
