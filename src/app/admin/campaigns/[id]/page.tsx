@@ -60,7 +60,7 @@ type EventDetail = {
         platform: string;
         type: string;
         quantity: number;
-        deadline?: { kind: string; value: number };
+        deadline?: { kind: string; value: number; date?: string };
         brandTagMandatory?: boolean;
         locationTagMandatory?: boolean;
         hashtagsRequired?: boolean;
@@ -128,6 +128,17 @@ export default function CampaignDetailPage() {
             year: "numeric",
             hour: "2-digit",
             minute: "2-digit",
+        });
+    };
+
+    const formatDeadlineDate = (iso?: string) => {
+        if (!iso) return "";
+        const date = new Date(iso);
+        if (Number.isNaN(date.getTime())) return "";
+        return date.toLocaleString("en-IN", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
         });
     };
 
@@ -600,6 +611,7 @@ export default function CampaignDetailPage() {
                                                                     <Clock className="mr-1.5 size-3.5" />
                                                                     {d.deadline.kind === "during_event" ? "Due During Event" : 
                                                                      d.deadline.kind === "within_hours" ? `Due in ${d.deadline.value}h` : 
+                                                                     d.deadline.kind === "scheduled_date" ? `Due ${formatDeadlineDate(d.deadline.date)}` :
                                                                      `Due in ${d.deadline.value} days`}
                                                                 </Badge>
                                                             </div>

@@ -12,9 +12,9 @@ export const ThemeFab = () => {
     useEffect(() => setMounted(true), []);
     const pathname = usePathname() || "/";
     const first = pathname.split("/").filter(Boolean)[0] || "";
-    const staticPages = new Set(["admin", "login", "register", "select-category", "select-platforms", "username", "onboarding", "verify", "add-links", "terms", "privacy", "creators", "hosts", "pricing"]);
-    const isProfilePage = false;
-    if (isProfilePage) return null;
+    const staticPages = new Set(["admin", "login", "register", "select-category", "select-platforms", "username", "onboarding", "verify", "add-links", "terms", "privacy", "creators", "hosts", "pricing", "events"]);
+    
+    if (staticPages.has(first)) return null;
 
     if (!mounted) return null;
     const isDark = resolvedTheme === "dark";
