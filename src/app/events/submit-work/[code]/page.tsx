@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import SubmitWorkClient from "./submit-work-client";
 
 export const metadata: Metadata = {
-  title: "Submit Work | Influu",
+  title: "Submit Work | INFLU",
   description: "Submit your content links for the event",
 };
 

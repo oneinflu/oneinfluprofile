@@ -67,7 +67,7 @@ export default function QrClient() {
     if (loading) return <div className="p-12 text-center">Loading...</div>;
     if (!eventCode) return <div className="p-12 text-center">Event code not found.</div>;
 
-    const checkinUrl = `${window.location.origin}/events/checkin/${eventCode}`;
+    const checkinUrl = `${window.location.origin}/events/checkin?eventCode=${eventCode}`;
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8 flex flex-col items-center justify-center gap-8">

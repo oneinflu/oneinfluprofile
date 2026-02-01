@@ -9,6 +9,7 @@ import {
     Users01, 
     Share04, 
     Check, 
+    RefreshCw01,
     UserPlus01,
     CreditCard01,
     File04,
@@ -1474,35 +1475,7 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
 
     return (
         <div className="relative flex flex-col gap-6">
-            {/* Action Bar */}
-            {doClientApprovalNeeded === false && selectedApplicantIds.length > 0 && (
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-primary p-2 rounded-lg ring-1 ring-secondary shadow-xs sticky top-0 z-10">
-                    <span className="text-sm font-medium text-primary px-2">
-                        {selectedApplicantIds.length} selected
-                    </span>
-                    <div className="hidden sm:block h-4 w-px bg-secondary mx-2" />
-                    <div className="flex gap-2 w-full sm:w-auto">
-                        <Button 
-                            size="sm" 
-                            color="secondary"
-                            onClick={() => handleBulkAction('approve')}
-                            disabled={isSubmitting}
-                            className="flex-1 sm:flex-none"
-                        >
-                            Approve Selected
-                        </Button>
-                        <Button 
-                            size="sm" 
-                            color="secondary"
-                            onClick={() => handleBulkAction('replace')}
-                            disabled={isSubmitting}
-                            className="flex-1 sm:flex-none"
-                        >
-                            Replace Selected
-                        </Button>
-                    </div>
-                </div>
-            )}
+
 
             {/* Mobile View - Cards */}
             <div className="md:hidden flex flex-col gap-4">
@@ -1657,6 +1630,32 @@ function ShortlistedTab({ eventCode, doClientApprovalNeeded }: { eventCode?: str
                     );
                 })}
             </div>
+
+            {/* Floating Action Buttons */}
+            {doClientApprovalNeeded === false && selectedApplicantIds.length > 0 && (
+                <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2 lg:pl-[300px] flex items-center gap-3">
+                    <Button
+                        size="md"
+                        color="primary-destructive"
+                        onClick={() => handleBulkAction('replace')}
+                        isLoading={isSubmitting}
+                        className="shadow-lg animate-in slide-in-from-bottom-4 fade-in duration-200"
+                        iconLeading={RefreshCw01}
+                    >
+                        Replace ({selectedApplicantIds.length})
+                    </Button>
+                    <Button
+                        size="md"
+                        color="primary"
+                        onClick={() => handleBulkAction('approve')}
+                        isLoading={isSubmitting}
+                        className="shadow-lg animate-in slide-in-from-bottom-4 fade-in duration-200"
+                        iconLeading={CheckCircle}
+                    >
+                        Approve ({selectedApplicantIds.length})
+                    </Button>
+                </div>
+            )}
 
             {/* Desktop View - Table */}
             <div className="hidden md:block rounded-xl bg-primary ring-1 ring-secondary shadow-xs overflow-hidden">
@@ -2076,6 +2075,13 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                     <table className="w-full text-left text-sm">
                         <thead className="bg-secondary text-tertiary">
                             <tr>
+                                <th className="px-4 py-3 w-10">
+                                    <Checkbox
+                                        isSelected={applicants.length > 0 && selectedIds.length === applicants.length}
+                                        isIndeterminate={selectedIds.length > 0 && selectedIds.length < applicants.length}
+                                        onChange={(isSelected) => handleSelectAll(isSelected)}
+                                    />
+                                </th>
                                 <th className="px-4 py-3 font-medium">Candidate</th>
                                 <th className="px-4 py-3 font-medium">Instagram</th>
                                 <th className="px-4 py-3 font-medium">Phone</th>
@@ -2086,8 +2092,18 @@ function ApprovedProfilesTab({ eventCode }: { eventCode?: string | null }) {
                         <tbody className="divide-y divide-secondary">
                             {paginatedApplicants.map((app, i) => {
                                 const appId = getAppId(app);
+                                const isSelected = selectedIds.includes(appId);
                                 return (
-                                <tr key={appId || i} className="hover:bg-primary_hover transition-colors">
+                                <tr key={appId || i} className={`hover:bg-primary_hover transition-colors ${isSelected ? "bg-primary_hover" : ""}`}>
+                                    <td className="px-4 py-3">
+                                        <Checkbox
+                                            isSelected={isSelected}
+                                            onChange={(checked) => {
+                                                if (appId) handleSelectOne(appId, checked);
+                                            }}
+                                            isDisabled={!appId}
+                                        />
+                                    </td>
                                     <td className="px-4 py-3 font-medium text-primary">
                                         <div className="flex items-center gap-3">
                                             <img 

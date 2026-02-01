@@ -82,8 +82,8 @@ export default function SuperAdminLoginPage() {
                 <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-xl transition-all duration-300 hover:border-gray-300 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-2xl dark:backdrop-blur-xl dark:hover:border-white/20 dark:hover:bg-white/[0.07]">
                     <div className="mb-10 flex flex-col items-center">
                         <div className="mb-6 rounded-2xl  p-4">
-                            <img src="/light.svg" alt="Influu" className="h-10 w-auto dark:hidden" />
-                            <img src="/logo.svg" alt="Influu" className="hidden h-10 w-auto dark:block" />
+                            <img src="/light.svg" alt="INFLU" className="h-10 w-auto dark:hidden" />
+                            <img src="/logo.svg" alt="INFLU" className="hidden h-10 w-auto dark:block" />
                         </div>
                         <h1 className="text-center text-2xl font-medium tracking-tight text-gray-900 dark:text-white">
                             Super Admin

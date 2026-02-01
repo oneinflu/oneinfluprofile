@@ -2,23 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
+import NextImage from "next/image";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import jsQR from "jsqr";
 import { 
     Map02, 
-    Calendar, 
-    Clock, 
-    MarkerPin01, 
-    Users01, 
-    QrCode01, 
-    X, 
-    Check, 
-    UserPlus01, 
-    Camera01,
     ChevronDown,
-    File04,
-    Star01,
     Sun,
     Moon01,
     User01,
@@ -27,14 +17,19 @@ import {
     Edit01,
     Copy01,
     Share04,
-    AlertCircle
+    AlertCircle,
+    X,
+    MarkerPin01,
+    Calendar,
+    Clock,
+    UserPlus01,
+    QrCode01
 } from "@untitledui/icons";
 import { api, ApiError } from "@/utils/api";
 import { useAuth } from "@/providers/auth";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Button } from "@/components/base/buttons/button";
 import { Toggle } from "@/components/base/toggle/toggle";
-import { Badge } from "@/components/base/badges/badges";
 import { Input } from "@/components/base/input/input";
 import { PinInput } from "@/components/base/pin-input/pin-input";
 import { cx } from "@/utils/cx";
@@ -109,7 +104,7 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     const router = useRouter();
     const code = String(params?.code || "");
     const { theme, setTheme } = useTheme();
-    const { token: authToken, setToken, logout } = useAuth();
+    const { token: authToken, setToken } = useAuth();
     const { copied, copy } = useClipboard();
     
     const [mounted, setMounted] = useState(false);
@@ -124,7 +119,6 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     const [phoneError, setPhoneError] = useState("");
     const [otp, setOtp] = useState("");
     const [otpError, setOtpError] = useState("");
-    const [isFocused, setIsFocused] = useState(false);
 
     const [scanning, setScanning] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -184,7 +178,12 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     const fetchInvitation = async (token: string) => {
         setInvitationLoading(true);
         try {
-            const res = await api.get<any>(`/events/public/code/${encodeURIComponent(code)}/invitation/me`, { token });
+            const userId = localStorage.getItem("influu_user_id");
+            const url = userId 
+                ? `/events/public/code/${encodeURIComponent(code)}/invitation/me?userId=${userId}`
+                : `/events/public/code/${encodeURIComponent(code)}/invitation/me`;
+
+            const res = await api.get<any>(url, { token });
             
             // Expected response: { success: true, data: { event: {}, myApplication: {} } }
             const payload = res.data || res;
@@ -570,126 +569,117 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
     // Login View (Loading / Phone / OTP)
     if (authStep !== "view") {
         return (
-            <div className="min-h-screen bg-zinc-950 flex justify-center items-center">
-                <div className="w-full max-w-md min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-gray-50 dark:bg-[#050505] transition-colors duration-700 shadow-2xl">
-                    {/* Premium Background */}
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,_var(--tw-gradient-stops))] from-brand-100/20 via-transparent to-transparent dark:from-brand-900/20 dark:via-transparent dark:to-transparent" />
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-[128px] animate-pulse-slow" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[128px] animate-pulse-slow delay-1000" />
-                    
-                    {/* Grid Pattern */}
-                    <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02] dark:opacity-[0.05] invert dark:invert-0" />
-                    
-                    {/* Noise Texture */}
-                    <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+            <div className="min-h-screen bg-gray-950 overflow-hidden relative flex flex-col font-sans">
+                {/* Check-in Style Background */}
+                <div className="absolute inset-0 z-0 bg-[#050505]">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,_var(--tw-gradient-stops))] from-brand-900/20 via-[#050505] to-[#050505]" />
+                    <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"/>
+                    <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-500/10 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px]" />
                 </div>
 
-                {mounted && (
-                    <div className="absolute top-6 right-6 z-50">
-                        <Button
-                            size="md"
-                            className="rounded-full bg-white/40 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white/60 dark:hover:bg-white/10 transition-all duration-300"
-                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                            iconLeading={theme === 'dark' ? Sun : Moon01}
-                        />
-                    </div>
-                )}
-
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ duration: 0.8, type: "spring", stiffness: 50, damping: 20 }}
-                    className="w-full max-w-md relative z-10"
-                >
-                    <div className="text-center mb-12 space-y-4">
-                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="inline-flex items-center justify-center p-4 rounded-full bg-gradient-to-br from-brand-50 to-white dark:from-white/5 dark:to-white/0 border border-brand-100 dark:border-white/10 mb-4 shadow-xl dark:shadow-2xl ring-1 ring-white/50 dark:ring-white/5"
-                         >
-                            <div className="h-12 w-12 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center shadow-lg shadow-brand-500/30 text-white">
-                                <User01 className="size-6" />
+                <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 w-full">
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 0.8, type: "spring", stiffness: 50, damping: 20 }}
+                        className="w-full max-w-md relative z-10 space-y-8"
+                    >
+                         {/* Header Section */}
+                        <div className="text-center space-y-8">
+                             <motion.div 
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                className="inline-flex items-center justify-center h-24 w-24 rounded-3xl bg-[#7F56D9] border border-white/10 backdrop-blur-xl shadow-2xl mb-2 p-5 ring-1 ring-white/5"
+                            >
+                                <NextImage 
+                                    src="/faviconwhite.png" 
+                                    alt="INFLU" 
+                                    width={80} 
+                                    height={80} 
+                                    className="w-full h-full object-contain drop-shadow-lg" 
+                                />
+                            </motion.div>
+                            <div>
+                                <h1 className="text-4xl font-black text-white tracking-tighter mb-3">
+                                    {event?.eventName || "Welcome"}
+                                </h1>
+                                <p className="text-white/50 text-lg font-medium">
+                                    {authStep === "loading" ? "Verifying access..." : 
+                                     authStep === "otp" ? "Enter verification code" :
+                                     "Enter your mobile number to continue"}
+                                </p>
                             </div>
-                         </motion.div>
-                        <h1 className="text-4xl font-light text-gray-900 dark:text-white tracking-tight font-display">{event.eventName}</h1>
-                        <p className="text-brand-600 dark:text-brand-200/60 font-medium tracking-[0.2em] text-xs uppercase">Exclusive Invitation</p>
-                    </div>
+                        </div>
 
-                    <div className="relative group perspective-1000">
-                        {/* Ambient Glow */}
-                        <div className="absolute -inset-1 bg-gradient-to-r from-brand-500/10 via-purple-500/10 to-brand-500/10 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000" />
-                        
-                        <div className="relative rounded-[2rem] bg-white/70 dark:bg-black/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 p-10 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] ring-1 ring-white/20 dark:ring-white/5">
+                        {/* Form Container */}
+                        <div className="bg-[#0A0A0A]/80 backdrop-blur-2xl border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden group space-y-6">
+                            {/* Subtle Shine */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-transparent pointer-events-none" />
+                            
                             {authStep === "loading" && (
                                 <div className="flex flex-col items-center justify-center py-12 space-y-6">
                                     <div className="relative">
                                         <div className="h-16 w-16 rounded-full border-2 border-brand-500/20" />
                                         <div className="absolute inset-0 h-16 w-16 rounded-full border-2 border-brand-500 border-t-transparent animate-spin" />
                                     </div>
-                                    <p className="text-gray-500 dark:text-white/40 text-xs uppercase tracking-widest animate-pulse">Authenticating</p>
+                                    <p className="text-white/40 text-xs uppercase tracking-widest animate-pulse">Authenticating</p>
                                 </div>
                             )}
 
                             {authStep === "phone" && (
-                                <div className="space-y-10">
-                                    <div className="text-center space-y-3">
-                                        <h3 className="text-2xl font-light text-gray-900 dark:text-white">Welcome</h3>
-                                        <p className="text-sm text-gray-500 dark:text-white/40 font-light">Enter your mobile number to continue</p>
+                                <div className="space-y-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3 pl-1">
+                                            Mobile Number
+                                        </label>
+                                        <Input
+                                            type="tel"
+                                            maxLength={10}
+                                            inputMode="numeric"
+                                            placeholder="000 000 0000"
+                                            value={phoneNumber}
+                                            onChange={(val) => {
+                                                if (/^\d*$/.test(String(val)) && String(val).length <= 10) {
+                                                    setPhoneNumber(String(val));
+                                                    if (String(val).length === 10) setPhoneError("");
+                                                }
+                                            }}
+                                            isInvalid={!!phoneError}
+                                            inputClassName="!bg-transparent text-white text-center text-xl font-mono tracking-[0.2em] font-bold placeholder:text-white/20 focus:ring-0 border-none outline-none"
+                                            wrapperClassName="h-14 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors focus-within:border-brand-500/50 focus-within:ring-1 focus-within:ring-brand-500/20"
+                                        />
                                     </div>
-                                    <div className="space-y-8">
-                                        <div className="relative group/input">
-                                            <Input
-                                                type="tel"
-                                                maxLength={10}
-                                                inputMode="numeric"
-                                                placeholder="000 000 0000"
-                                                value={phoneNumber}
-                                                onChange={(val) => {
-                                                    if (/^\d*$/.test(String(val)) && String(val).length <= 10) {
-                                                        setPhoneNumber(String(val));
-                                                        if (String(val).length === 10) setPhoneError("");
-                                                    }
-                                                }}
-                                                isInvalid={!!phoneError}
-                                                inputClassName="bg-transparent border-0 border-b border-gray-200 dark:border-white/10 rounded-none px-0 py-3 text-center text-2xl tracking-widest font-light text-gray-900 dark:text-white placeholder:text-gray-200 dark:placeholder:text-white/5 focus:ring-0 focus:border-brand-500 transition-all duration-500"
-                                                className="bg-transparent"
-                                            />
-                                            <div className="absolute bottom-0 left-0 w-full h-px bg-brand-500 scale-x-0 group-focus-within/input:scale-x-100 transition-transform duration-500" />
-                                        </div>
-                                        {phoneError && (
-                                            <motion.p 
-                                                initial={{ opacity: 0, y: -10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                className="text-center text-sm text-red-500 dark:text-red-400 font-medium"
-                                            >
-                                                {phoneError}
-                                            </motion.p>
-                                        )}
-                                        <Button 
-                                            size="lg" 
-                                            className="w-full justify-center bg-gray-900 dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-white/90 border-0 shadow-lg shadow-gray-900/10 dark:shadow-white/10 py-3 text-base font-medium tracking-wide transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]"
-                                            onClick={handlePhoneSubmit}
+                                    {phoneError && (
+                                        <motion.p 
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="text-center text-sm text-red-400 font-medium"
                                         >
-                                            Continue
-                                        </Button>
-                                    </div>
+                                            {phoneError}
+                                        </motion.p>
+                                    )}
+                                    <Button 
+                                        size="xl" 
+                                        className="w-full h-14 bg-white text-black hover:bg-gray-200 font-bold text-lg rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-white/5"
+                                        onClick={handlePhoneSubmit}
+                                    >
+                                        Continue
+                                    </Button>
                                 </div>
                             )}
 
                             {authStep === "otp" && (
-                                <div className="space-y-10">
-                                    <div className="text-center space-y-3">
-                                        <h3 className="text-2xl font-light text-gray-900 dark:text-white">Verification</h3>
-                                        <p className="text-sm text-gray-500 dark:text-white/40 font-light">Code sent to +91 {phoneNumber}</p>
-                                    </div>
-                                    <div className="space-y-8">
-                                        <div className="flex justify-center py-2">
+                                <div className="space-y-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3 pl-1">
+                                            Verification Code
+                                        </label>
+                                        <div className="flex justify-center">
                                             <PinInput>
                                                 <PinInput.Group 
                                                     maxLength={6} 
-                                                    className="flex gap-4 justify-center"
+                                                    className="flex gap-2 justify-center w-full"
                                                     value={otp} 
                                                     onChange={(val) => {
                                                         setOtp(val);
@@ -700,53 +690,61 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                                         <PinInput.Slot 
                                                             key={index}
                                                             index={index} 
-                                                            className="h-12 w-10 border-b-2 border-gray-200 dark:border-white/10 bg-transparent rounded-none text-gray-900 dark:text-white text-2xl font-light focus:border-brand-500 transition-all duration-300"
+                                                            className="h-14 w-12 sm:w-14 rounded-xl bg-white/5 border border-white/10 text-white text-xl font-mono font-bold focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/20 transition-all duration-300"
                                                         />
                                                     ))}
                                                 </PinInput.Group>
                                             </PinInput>
                                         </div>
-                                        {otpError && (
-                                            <motion.p 
-                                                initial={{ opacity: 0, y: -10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                className="text-center text-sm text-red-500 dark:text-red-400 font-medium"
-                                            >
-                                                {otpError}
-                                            </motion.p>
-                                        )}
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <Button 
-                                                size="lg" 
-                                                onClick={() => setAuthStep("phone")}
-                                                className="w-full justify-center bg-transparent border border-gray-200 dark:border-white/10 text-gray-600 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/5 py-3 font-medium"
-                                            >
-                                                Back
-                                            </Button>
-                                            <Button 
-                                                size="lg" 
-                                                className="w-full justify-center bg-gray-900 dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-white/90 border-0 shadow-lg shadow-gray-900/10 dark:shadow-white/10 py-3 font-medium tracking-wide transition-all duration-300 hover:scale-[1.02]"
-                                                onClick={handleOtpVerify}
-                                            >
-                                                Verify
-                                            </Button>
-                                        </div>
+                                    </div>
+                                    {otpError && (
+                                        <motion.p 
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="text-center text-sm text-red-400 font-medium"
+                                        >
+                                            {otpError}
+                                        </motion.p>
+                                    )}
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <Button 
+                                            size="xl" 
+                                            onClick={() => setAuthStep("phone")}
+                                            className="w-full h-14 bg-white/5 text-white hover:bg-white/10 font-bold text-lg rounded-xl border border-white/10 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                        >
+                                            Back
+                                        </Button>
+                                        <Button 
+                                            size="xl" 
+                                            className="w-full h-14 bg-white text-black hover:bg-gray-200 font-bold text-lg rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-white/5"
+                                            onClick={handleOtpVerify}
+                                        >
+                                            Verify
+                                        </Button>
                                     </div>
                                 </div>
                             )}
                         </div>
-                    </div>
-                    
-                    <div className="mt-12 text-center">
-                        <p className="text-[10px] text-gray-400 dark:text-white/20 font-light tracking-[0.3em] uppercase opacity-60 hover:opacity-100 transition-opacity">
-                            Powered by Influu
-                        </p>
-                    </div>
-                </motion.div>
+
+                        {/* Footer */}
+                        <div className="p-8 text-center z-10">
+                            <div className="flex flex-col items-center justify-center gap-3 opacity-40 hover:opacity-60 transition-opacity">
+                                <p className="text-[10px] text-white uppercase tracking-[0.3em] font-bold">Powered by</p>
+                                <div className="relative h-6 w-24">
+                                    <NextImage 
+                                        src="/logo.svg" 
+                                        alt="INFLU" 
+                                        fill
+                                        className="object-contain brightness-0 invert" 
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 
     const mapUrl = event.venue || event.city 
         ? `https://maps.google.com/maps?q=${encodeURIComponent(`${event.venue}, ${event.city}`)}&t=&z=15&ie=UTF8&iwloc=&output=embed`
@@ -793,16 +791,13 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                         You’re In!
                     </h2>
                     
-                    <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-white to-pink-200 tracking-tighter drop-shadow-lg mb-4 max-w-2xl leading-tight">
+                    <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight drop-shadow-lg mb-4 max-w-2xl leading-none">
                         Welcome to {event.eventName}
                     </h1>
 
                     <div className="flex flex-col items-center gap-1 mb-6">
                         <p className="text-sm md:text-base text-gray-300 font-medium tracking-wide">
-                            Hosted by <span className="text-white font-semibold">{event.user?.name || "Milie"}</span>
-                        </p>
-                        <p className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold">
-                            Powered by INFLU
+                            Hosted by <span className="text-white font-semibold">{event.user?.name || "Host"}</span>
                         </p>
                     </div>
 
@@ -1079,16 +1074,23 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                     </AnimatePresence>
                 </motion.div>
 
-                {/* Footer - Subtle Branding */}
+                {/* Footer - Proper INFLU Branding */}
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="flex flex-col items-center justify-center space-y-1 py-8 text-center"
+                    className="flex flex-col items-center justify-center space-y-4 py-12 text-center"
                 >
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-medium">
-                        Powered by INFLU
-                    </p>
+                    <div className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity duration-500">
+                        <span className="text-[10px] font-bold text-white/60 tracking-[0.2em] uppercase">POWERED BY</span>
+                         <NextImage 
+                            src="/logo.svg" 
+                            alt="INFLU" 
+                            width={70} 
+                            height={24} 
+                            className="object-contain brightness-0 invert" 
+                        />
+                    </div>
                     <p className="text-xs text-white/20 font-serif italic tracking-wide">
                         One pass. Many experiences.
                     </p>
