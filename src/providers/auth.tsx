@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { api } from "@/utils/api";
 
-type User = { id: string; username: string; email: string; avatarUrl?: string };
+type User = { id: string; username: string; email: string; avatarUrl?: string; name?: string };
 type AuthContextType = {
   token: string | null;
   user: User | null;
@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (!token) return;
         const me = await api.get<{ id: string; username: string; email: string; name?: string; shortBio?: string; avatarUrl?: string; category?: string; upi?: string }>(`/users/me`, { token });
         if (!alive) return;
-        setUser({ id: me.id, username: me.username, email: me.email, avatarUrl: me.avatarUrl });
+        setUser({ id: me.id, username: me.username, email: me.email, avatarUrl: me.avatarUrl, name: me.name });
         try { localStorage.setItem("influu_user_id", me.id); } catch {}
       } catch (e: any) {
         // If the token is invalid, clear it to prevent redirection loops

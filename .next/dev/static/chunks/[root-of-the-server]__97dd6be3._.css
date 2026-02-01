@@ -12811,6 +12811,12 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:h-14 {
+      height: calc(var(--spacing) * 14);
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:h-56 {
       height: calc(var(--spacing) * 56);
     }

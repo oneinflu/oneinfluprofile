@@ -74,9 +74,12 @@ type CheckInResponse = {
     };
 };
 
+import { useAuth } from "@/providers/auth";
+
 export default function CheckinClient() {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const { user: authUser } = useAuth();
     
     // Auth State
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -124,16 +127,30 @@ export default function CheckinClient() {
                     const event = payload?.event;
 
                     if (myApplication) {
-                        const guestName = myApplication.user?.name || "Guest";
-                        const avatarUrl = myApplication.user?.avatarUrl;
+                        const guestName = myApplication.user?.name || authUser?.name || "Guest";
+                        const avatarUrl = myApplication.user?.avatarUrl || authUser?.avatarUrl;
                         
                         // 1. If already checked in -> Show Success immediately (skip form)
                         if (myApplication.checkedIn) {
+                             // Fetch full event details to ensure we have deliverables etc.
+                             let fullEvent = event || { code: currentEventCode };
+                             try {
+                                 // Only fetch if we suspect missing data (e.g. missing deliverables) or just always fetch to be safe
+                                 const eventRes = await api.get<any>(`/events/public/code/${encodeURIComponent(currentEventCode)}`);
+                                 const eventPayload = eventRes.data || eventRes;
+                                 const fetchedEvent = eventPayload?.event || eventPayload?.data?.event || eventPayload?.item;
+                                 if (fetchedEvent) {
+                                     fullEvent = fetchedEvent;
+                                 }
+                             } catch (err) {
+                                 console.warn("Failed to fetch full event details on restore", err);
+                             }
+
                              const data = {
                                  guestName,
                                  avatarUrl,
                                  application: myApplication,
-                                 event: event || { code: currentEventCode },
+                                 event: fullEvent,
                                  isRestored: true
                              };
                              setSuccessData(data);
@@ -248,17 +265,42 @@ export default function CheckinClient() {
             });
             
             if (res.success) {
-                if (res.data) {
-                    setSuccessData(res.data);
+                let finalData = res.data;
+                
+                if (finalData) {
+                    // 1. Fallback for user details using authUser
+                    if ((!finalData.guestName || finalData.guestName === "Guest") && authUser?.name) {
+                        finalData = { ...finalData, guestName: authUser.name };
+                    }
+                    if (!finalData.avatarUrl && authUser?.avatarUrl) {
+                        finalData = { ...finalData, avatarUrl: authUser.avatarUrl };
+                    }
+
+                    // 2. Ensure full event details (deliverables etc)
+                    // If the returned event doesn't have deliverables, fetch them
+                    if (!finalData.event.deliverables) {
+                         try {
+                             const eventRes = await api.get<any>(`/events/public/code/${encodeURIComponent(eventCode.trim())}`);
+                             const eventPayload = eventRes.data || eventRes;
+                             const fetchedEvent = eventPayload?.event || eventPayload?.data?.event || eventPayload?.item;
+                             if (fetchedEvent) {
+                                 finalData = { ...finalData, event: fetchedEvent };
+                             }
+                         } catch (err) {
+                             console.warn("Failed to fetch full event details during verify", err);
+                         }
+                    }
+
+                    setSuccessData(finalData);
                 }
                 setStatus("success");
                 
                 // Persist successful check-in
-                if (res.data) {
+                if (finalData) {
                     const checkinData = {
                         eventCode: eventCode.trim(),
                         inviteCode: inviteCode.trim(),
-                        successData: res.data,
+                        successData: finalData,
                         timestamp: new Date().toISOString()
                     };
                     localStorage.setItem("influu_checkin_verified", JSON.stringify(checkinData));

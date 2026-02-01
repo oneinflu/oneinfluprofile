@@ -613,7 +613,7 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                         </div>
 
                         {/* Form Container */}
-                        <div className="bg-[#0A0A0A]/80 backdrop-blur-2xl border border-white/5 rounded-3xl p-8 shadow-2xl relative overflow-hidden group space-y-6">
+                        <div className="bg-[#0A0A0A]/80 backdrop-blur-2xl border border-white/5 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden group space-y-6">
                             {/* Subtle Shine */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-transparent pointer-events-none" />
                             
@@ -678,22 +678,22 @@ export default function WelcomeClient({ fontClassName }: { fontClassName?: strin
                                         <div className="flex justify-center">
                                             <PinInput>
                                                 <PinInput.Group 
-                                                    maxLength={6} 
-                                                    className="flex gap-2 justify-center w-full"
-                                                    value={otp} 
-                                                    onChange={(val) => {
-                                                        setOtp(val);
-                                                        if (val.length === 6) setOtpError("");
-                                                    }}
-                                                >
-                                                    {[0, 1, 2, 3, 4, 5].map((index) => (
-                                                        <PinInput.Slot 
-                                                            key={index}
-                                                            index={index} 
-                                                            className="h-14 w-12 sm:w-14 rounded-xl bg-white/5 border border-white/10 text-white text-xl font-mono font-bold focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/20 transition-all duration-300"
-                                                        />
-                                                    ))}
-                                                </PinInput.Group>
+                                                maxLength={6} 
+                                                className="flex gap-1 sm:gap-2 justify-center w-full"
+                                                value={otp} 
+                                                onChange={(val) => {
+                                                    setOtp(val);
+                                                    if (val.length === 6) setOtpError("");
+                                                }}
+                                            >
+                                                {[0, 1, 2, 3, 4, 5].map((index) => (
+                                                    <PinInput.Slot 
+                                                        key={index}
+                                                        index={index} 
+                                                        className="h-12 w-10 sm:h-14 sm:w-14 rounded-xl bg-white/5 border border-white/10 text-white text-xl font-mono font-bold focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/20 transition-all duration-300"
+                                                    />
+                                                ))}
+                                            </PinInput.Group>
                                             </PinInput>
                                         </div>
                                     </div>
