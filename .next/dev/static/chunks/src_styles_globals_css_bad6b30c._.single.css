@@ -4264,6 +4264,10 @@
     border-color: var(--color-purple-600);
   }
 
+  .border-red-100 {
+    border-color: var(--color-red-100);
+  }
+
   .border-red-500\/20 {
     border-color: #fb2c3633;
   }
@@ -5382,6 +5386,10 @@
 
   .bg-quaternary {
     background-color: var(--background-color-quaternary);
+  }
+
+  .bg-red-50 {
+    background-color: var(--color-red-50);
   }
 
   .bg-red-100 {
@@ -9988,10 +9996,6 @@
 
   .placeholder\:text-gray-500::placeholder {
     color: var(--color-gray-500);
-  }
-
-  .placeholder\:text-gray-600::placeholder {
-    color: var(--color-gray-600);
   }
 
   .placeholder\:text-placeholder::placeholder {
