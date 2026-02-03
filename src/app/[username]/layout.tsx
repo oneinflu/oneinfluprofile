@@ -4,8 +4,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return children as any;
 }
 
-export async function generateMetadata({ params }: { params: { username: string } }): Promise<Metadata> {
-    const username = params.username;
+export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
+    const { username } = await params;
     let avatar: string | null = null;
     try {
         const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";

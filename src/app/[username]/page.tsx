@@ -406,10 +406,10 @@ function ProfileCard({
         <div className="w-full max-w-sm">
             <div className="relative flex flex-col gap-3 rounded-2xl bg-primary p-0 pb-5 shadow-none">
                 <div className="relative h-44 w-full overflow-hidden rounded-t-2xl sm:h-56">
-                    {profile?.avatarUrl ? (
+                    {profile?.avatarUrl && profile.avatarUrl !== "null" ? (
                         <img src={profile.avatarUrl} loading="lazy" alt="Avatar" className="size-full object-cover" />
                     ) : (
-                        <div className="size-full bg-primary_hover animate-pulse" />
+                        <img src="/avatar.svg" loading="lazy" alt="Avatar" className="size-full object-cover" />
                     )}
                     <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-b from-transparent to-primary dark:to-[#0b0f14]" />
                     <div className="absolute left-3 top-3 flex items-center gap-2">
