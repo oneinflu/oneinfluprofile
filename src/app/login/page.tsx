@@ -36,11 +36,16 @@ export default function LoginPage() {
         setErrorMsg(null);
 
         try {
-            // Using the specific API endpoint requested by user (same as invite/welcome client)
-            await api.post("/auth/register/phone/start-send", { phone: cleanPhone });
+            // Using login-specific endpoint to ensure we only log in existing users
+            await api.post("/auth/otp/send", { identifier: cleanPhone });
             setStep("otp");
         } catch (e: any) {
             console.error(e);
+            // If user not found, redirect to register
+            if (e?.response?.status === 404 || e?.message?.toLowerCase().includes("not found") || e?.response?.data?.message?.toLowerCase().includes("not found")) {
+                 router.push(`/register?phone=${cleanPhone}`);
+                 return;
+            }
             setErrorMsg(e.message || "Failed to send OTP. Please check the number and try again.");
         } finally {
             setLoading(false);
@@ -58,9 +63,9 @@ export default function LoginPage() {
         setErrorMsg(null);
 
         try {
-            // Using the specific API endpoint requested by user (same as invite/welcome client)
-            const res: any = await api.post("/auth/register/phone/otp/verify", { 
-                phone: identifier,
+            // Using login-specific endpoint
+            const res: any = await api.post("/auth/otp/login", { 
+                identifier: identifier,
                 code: otp 
             });
 

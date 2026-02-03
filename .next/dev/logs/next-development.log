@@ -228,3 +228,283 @@ It can also happen if the client has a browser extension installed which messes 
 [18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
 [18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
 [18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:05:56.723] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:05:56.723] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:05:56.983] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:06:03.176] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:06:03.176] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:37:22.919] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[18:38:15.593] Server  LOG     ✓ Compiled in 287ms
+[18:38:19.589] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[18:38:40.731] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:40.731] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:46.582] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:46.582] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:48.804] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:48.804] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:48.998] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:48.998] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:49.310] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:49.310] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:49.502] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:49.502] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:49.764] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:49.764] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:51.161] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:51.162] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:51.374] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:51.374] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:57.316] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:38:57.317] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:02.741] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:02.741] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:02.741] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:09.287] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[18:39:11.312] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:11.312] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:11.716] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:11.716] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:15.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:15.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:19.329] Browser LOG     Found niche: Business
+[18:39:29.976] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.401] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[18:39:38.402] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:38.402] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:38.402] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.402] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.404] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.404] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.412] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.413] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.413] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.413] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[18:39:40.846] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:40.846] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:42.204] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:42.204] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:44.044] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:44.044] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[18:39:45.188] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/login" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[18:39:50.510] Server  LOG     ✓ Finished writing to filesystem cache in 16.6s
+[18:40:03.019] Server  LOG     ✓ Finished filesystem cache database compaction in 12.5s
+[18:40:03.085] Server  LOG     ✓ Finished writing to filesystem cache in 10.6s
