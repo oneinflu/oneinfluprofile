@@ -47,6 +47,7 @@ const projectsData = [
         totalTowers: 3,
         floorsPerTower: "15-18",
         totalFlats: 450,
+        bookedFlats: 320,
         flatConfigurations: ["2BHK", "3BHK"],
         configs: [
              { type: "2 BHK", area: "1200-1350 sft", price: "₹ 89.09 L", emi: "₹ 65k/mo", facing: ["East", "West"] },
@@ -70,9 +71,9 @@ const projectsData = [
             { title: "Doors & Windows", details: ["Main Door: Teak wood frame & shutter.", "Windows: UPVC sliding windows with mosquito mesh."] }
         ],
         videos: [
-            { id: 1, title: "Project Walkthrough", thumbnail: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop", type: "Walkthrough" },
-            { id: 2, title: "Locality Tour", thumbnail: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1000&auto=format&fit=crop", type: "Locality" },
-            { id: 3, title: "Clubhouse Tour", thumbnail: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop", type: "Amenities" }
+            { id: 1, title: "Project Walkthrough", thumbnail: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop", type: "Walkthrough", url: "https://oneinflu.b-cdn.net/1.mp4" },
+            { id: 2, title: "Locality Tour", thumbnail: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1000&auto=format&fit=crop", type: "Locality", url: "https://oneinflu.b-cdn.net/2.mp4" },
+            { id: 3, title: "Clubhouse Tour", thumbnail: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop", type: "Amenities", url: "https://oneinflu.b-cdn.net/3.mp4" }
         ]
     },
     {
@@ -89,6 +90,7 @@ const projectsData = [
         totalTowers: 4,
         floorsPerTower: "12",
         totalFlats: 320,
+        bookedFlats: 150,
         flatConfigurations: ["2BHK", "2.5BHK"],
         configs: [
              { type: "2 BHK", area: "1100-1250 sft", price: "₹ 65.09 L", emi: "₹ 45k/mo", facing: ["East", "West"] },
@@ -124,6 +126,7 @@ const projectsData = [
         totalTowers: 5,
         floorsPerTower: "20",
         totalFlats: 600,
+        bookedFlats: 580,
         flatConfigurations: ["3BHK", "4BHK"],
         configs: [
              { type: "3 BHK", area: "2000-2400 sft", price: "₹ 1.5 Cr", emi: "₹ 1.1L/mo", facing: ["East", "West", "North"] },
@@ -168,6 +171,7 @@ export default function ProjectDetailPage() {
     const router = useRouter();
     const projectId = params?.projectId ? parseInt(params.projectId as string) : null;
     const [isMasterPlanOpen, setIsMasterPlanOpen] = useState(false);
+    const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
@@ -256,17 +260,22 @@ export default function ProjectDetailPage() {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="relative -mt-8 bg-white dark:bg-black rounded-t-[32px] px-5 pt-6 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_-8px_30px_rgba(255,255,255,0.05)] space-y-4 z-20"
+                className="relative -mt-8 bg-gray-50 dark:bg-gray-900 rounded-t-[32px] px-5 pt-8 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_-8px_30px_rgba(255,255,255,0.05)] space-y-6 z-20 min-h-screen"
             >
                 
-                {/* 3. COMPACT SNAPSHOT (Horizontal Scroll) */}
+                {/* 3. COMPACT SNAPSHOT (Clean Strip) */}
                 <motion.section variants={itemVariants}>
-                    <div className="flex overflow-x-auto gap-3 pb-2 -mx-5 px-5 scrollbar-hide snap-x">
+                    <div className="flex overflow-x-auto gap-6 pb-2 -mx-5 px-5 scrollbar-hide snap-x items-center">
                         <CompactStat label="Acres" value={project.landSize} />
+                        <div className="w-px h-8 bg-gray-200 dark:bg-white/10 shrink-0" />
                         <CompactStat label="Open Space" value={project.openSpace} />
+                        <div className="w-px h-8 bg-gray-200 dark:bg-white/10 shrink-0" />
                         <CompactStat label="Towers" value={project.totalTowers} />
+                        <div className="w-px h-8 bg-gray-200 dark:bg-white/10 shrink-0" />
                         <CompactStat label="Floors" value={project.floorsPerTower} />
+                        <div className="w-px h-8 bg-gray-200 dark:bg-white/10 shrink-0" />
                         <CompactStat label="Units" value={project.totalFlats} />
+                        <div className="w-px h-8 bg-gray-200 dark:bg-white/10 shrink-0" />
                         <CompactStat label="Configs" value={project.flatConfigurations.join(", ")} wide />
                     </div>
                 </motion.section>
@@ -274,21 +283,58 @@ export default function ProjectDetailPage() {
                 {/* 4. VIDEO GALLERY (Shorts Style) - Moved Up */}
                 {project.videos.length > 0 && (
                     <motion.section variants={itemVariants}>
-                        <SectionTitle title="Video Tour" className="mb-2 px-1" />
+                        <SectionTitle title="Video Tour" className="mb-3 px-1" />
                         <div className="flex overflow-x-auto gap-3 pb-2 -mx-5 px-5 scrollbar-hide snap-x">
                             {project.videos.map((video) => (
-                                <VideoCard key={video.id} video={video} />
+                                <div key={video.id} onClick={() => setSelectedVideo(video.url)}>
+                                    <VideoCard video={video} />
+                                </div>
                             ))}
                         </div>
                     </motion.section>
                 )}
 
+                {/* Video Modal */}
+                <AnimatePresence>
+                    {selectedVideo && (
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md"
+                            onClick={() => setSelectedVideo(null)}
+                        >
+                            <motion.div 
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.9, opacity: 0 }}
+                                className="relative w-full h-full md:max-w-4xl md:h-auto md:aspect-video bg-black"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <button 
+                                    onClick={() => setSelectedVideo(null)}
+                                    className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
+                                >
+                                    <XClose className="w-6 h-6" />
+                                </button>
+                                <video 
+                                    src={selectedVideo} 
+                                    className="w-full h-full object-contain"
+                                    controls 
+                                    autoPlay
+                                    playsInline
+                                />
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
                 {/* 5. MASTER PLAN - Moved Up */}
                 <motion.section variants={itemVariants}>
-                    <SectionTitle title="Master Plan" className="mb-2 px-1" />
+                    <SectionTitle title="Master Plan" className="mb-3 px-1" />
                     <div 
                         onClick={() => setIsMasterPlanOpen(true)}
-                        className="relative rounded-2xl overflow-hidden bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-white/5 group cursor-zoom-in"
+                        className="relative rounded-2xl overflow-hidden bg-white dark:bg-black shadow-sm group cursor-zoom-in"
                     >
                         <img src={project.masterPlanImage} alt="Master Plan" className="w-full h-56 object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20 backdrop-blur-[2px]">
@@ -329,7 +375,7 @@ export default function ProjectDetailPage() {
                 </AnimatePresence>
 
                 {/* 6. CONFIGURATIONS (Premium Cards) */}
-                <motion.section variants={itemVariants} className="space-y-3">
+                <motion.section variants={itemVariants} className="space-y-4">
                     <div className="flex justify-between items-end px-1">
                         <SectionTitle title="Configurations" />
                         <span className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">
@@ -337,18 +383,18 @@ export default function ProjectDetailPage() {
                         </span>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                         {project.configs.map((config, idx) => (
                             <motion.div 
                                 key={idx} 
                                 whileTap={{ scale: 0.98 }}
-                                className="group relative overflow-hidden bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/10 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all"
+                                className="group relative overflow-hidden bg-white dark:bg-black rounded-2xl p-6 shadow-sm border border-transparent hover:border-gray-200 dark:hover:border-white/10 transition-all"
                             >
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <div className="flex items-baseline gap-2.5">
                                             <h3 className="text-xl font-bold text-gray-900 dark:text-white">{config.type}</h3>
-                                            <span className="text-xs text-gray-500 font-medium px-2 py-0.5 bg-gray-100 dark:bg-white/5 rounded-full">{config.area}</span>
+                                            <span className="text-xs text-gray-500 font-medium px-2 py-0.5 bg-gray-100 dark:bg-white/10 rounded-full">{config.area}</span>
                                         </div>
                                         <div className="flex items-center gap-4 mt-3 text-xs text-gray-500 dark:text-gray-400 font-medium">
                                             <span className="flex items-center gap-1.5">
@@ -372,8 +418,8 @@ export default function ProjectDetailPage() {
 
                 {/* 7. PROJECT STATUS (Timeline) */}
                 <motion.section variants={itemVariants}>
-                    <SectionTitle title="Project Status" className="mb-2 px-1" />
-                    <div className="p-5 rounded-2xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-white/5 space-y-4">
+                    <SectionTitle title="Project Status" className="mb-3 px-1" />
+                    <div className="p-6 rounded-2xl bg-white dark:bg-black shadow-sm space-y-5">
                         <div className="flex justify-between items-start">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 bg-white dark:bg-white/10 rounded-xl shadow-sm">
@@ -407,7 +453,45 @@ export default function ProjectDetailPage() {
                             </div>
                         </div>
 
-                        <div className="pt-3 border-t border-gray-200 dark:border-white/10 flex gap-4 text-xs text-gray-500">
+                        {/* Booking Status */}
+                        <div className="pt-4 mt-2 border-t border-gray-200 dark:border-white/10 space-y-2">
+                            <div className="flex justify-between items-end">
+                                <div>
+                                    <p className="text-xs text-gray-500 font-medium">Booking Status</p>
+                                    <div className="flex items-baseline gap-1.5">
+                                        <p className="text-lg font-bold text-gray-900 dark:text-white">
+                                            {project.bookedFlats || 0}
+                                        </p>
+                                        <p className="text-xs text-gray-500">Booked</p>
+                                        <span className="text-[10px] text-emerald-500 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded-full ml-1">
+                                            {Math.round(((project.bookedFlats || 0) / project.totalFlats) * 100)}% Sold
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-xs text-gray-500 font-medium">
+                                        {project.totalFlats - (project.bookedFlats || 0)} Units Left
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div className="h-2 w-full bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                <motion.div 
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: `${((project.bookedFlats || 0) / project.totalFlats) * 100}%` }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 1, delay: 0.7 }}
+                                    className="h-full bg-emerald-500 rounded-full"
+                                />
+                            </div>
+                            
+                            <div className="flex justify-between text-[10px] text-gray-400 font-medium">
+                                <span>{project.bookedFlats || 0} Booked</span>
+                                <span>{project.totalFlats} Total</span>
+                            </div>
+                        </div>
+
+                        <div className="pt-3 border-t border-gray-100 dark:border-white/10 flex gap-4 text-xs text-gray-500">
                             <div className="flex items-center gap-1.5">
                                 <LayersTwo01 className="w-3.5 h-3.5" />
                                 <span>{project.totalTowers} Towers</span>
@@ -423,13 +507,13 @@ export default function ProjectDetailPage() {
                 {/* 8. AMENITIES */}
                 <motion.section variants={itemVariants}>
                     <SectionTitle title="Lifestyle Highlights" className="mb-3 px-1" />
-                    <div className="flex flex-wrap gap-2.5">
+                    <div className="flex flex-wrap gap-2">
                         {project.amenitiesHighlights.map((item, i) => (
-                            <span key={i} className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 text-xs font-bold text-gray-900 dark:text-white bg-gray-100 dark:bg-white/10 shadow-sm">
+                            <span key={i} className="px-4 py-2 rounded-full border border-transparent bg-white dark:bg-black shadow-sm text-xs font-bold text-gray-900 dark:text-white hover:shadow-md transition-shadow">
                                 {item}
                             </span>
                         ))}
-                        <span className="px-4 py-2.5 rounded-xl border border-dashed border-gray-300 dark:border-white/20 text-xs font-bold text-gray-500 dark:text-gray-400 bg-transparent flex items-center gap-1">
+                        <span className="px-4 py-2 rounded-full border border-gray-200 dark:border-white/20 bg-transparent text-xs font-bold text-gray-500 dark:text-gray-400 flex items-center gap-1">
                             + More
                         </span>
                     </div>
@@ -437,9 +521,9 @@ export default function ProjectDetailPage() {
 
                 {/* 9. LOCATION */}
                 <motion.section variants={itemVariants}>
-                    <SectionTitle title="Neighborhood" className="mb-2 px-1" />
-                    <div className="rounded-2xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-white/5 overflow-hidden">
-                        <div className="flex items-center gap-4 p-4">
+                    <SectionTitle title="Neighborhood" className="mb-3 px-1" />
+                    <div className="rounded-2xl bg-white dark:bg-black shadow-sm overflow-hidden">
+                        <div className="flex items-center gap-4 p-5">
                             <div className="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
                                 <Map01 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                             </div>
@@ -457,19 +541,25 @@ export default function ProjectDetailPage() {
                     </div>
                 </motion.section>
 
-                {/* 10. SPECIFICATIONS (Accordion) - Moved Down */}
+                {/* 10. SPECIFICATIONS (Clean List) - Moved Down */}
                 <motion.section variants={itemVariants}>
-                    <SectionTitle title="Specifications" className="mb-2 px-1" />
-                    <div className="space-y-2.5">
+                    <SectionTitle title="Specifications" className="mb-3 px-1" />
+                    <div className="bg-white dark:bg-black rounded-2xl shadow-sm overflow-hidden">
                         {project.specifications.map((spec, i) => (
-                            <SpecificationItem key={i} title={spec.title} details={spec.details} />
+                            <div key={i} className={cx(
+                                "border-b border-gray-50 dark:border-white/5 last:border-0",
+                                i === 0 && "rounded-t-2xl",
+                                i === project.specifications.length - 1 && "rounded-b-2xl"
+                            )}>
+                                <SpecificationItem title={spec.title} details={spec.details} />
+                            </div>
                         ))}
                     </div>
                 </motion.section>
 
                 {/* 11. TRUST BADGES */}
                 <motion.section variants={itemVariants} className="pt-2 pb-24">
-                    <div className="flex justify-evenly items-center px-4 py-6 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/5">
+                    <div className="flex justify-evenly items-center px-4 py-6 bg-transparent">
                         <TrustItem icon={<ShieldTick />} label="RERA Approved" />
                         <div className="w-px h-8 bg-gray-200 dark:bg-white/10" />
                         <TrustItem icon={<Bank />} label="Bank Loan" />
@@ -488,6 +578,7 @@ export default function ProjectDetailPage() {
             >
                 <Button 
                     size="xl" 
+                    onClick={() => router.push(`/builder/${params?.username}/projects/${projectId}/towers`)}
                     className="w-full bg-gray-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-gray-100 rounded-2xl shadow-2xl px-6 py-4 h-auto group [&>[data-text]]:w-full [&>[data-text]]:flex [&>[data-text]]:items-center [&>[data-text]]:justify-between"
                 >
                     <div className="flex flex-col items-start">
@@ -516,8 +607,8 @@ function SectionTitle({ title, className }: { title: string, className?: string 
 function CompactStat({ label, value, wide }: { label: string, value: string | number, wide?: boolean }) {
     return (
         <div className={cx(
-            "shrink-0 flex flex-col justify-center px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-white/5 rounded-2xl min-w-[90px] snap-start",
-            wide && "min-w-[140px]"
+            "shrink-0 flex flex-col justify-center min-w-[60px] snap-start",
+            wide && "min-w-[120px]"
         )}>
             <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-0.5">{label}</p>
             <p className="text-sm font-bold text-gray-900 dark:text-white leading-tight">{value}</p>
@@ -527,7 +618,7 @@ function CompactStat({ label, value, wide }: { label: string, value: string | nu
 
 function TrustItem({ icon, label }: { icon: React.ReactNode, label: string }) {
     return (
-        <div className="flex flex-col items-center gap-2 opacity-80 hover:opacity-100 transition-opacity text-center">
+        <div className="flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity text-center">
             <div className="w-5 h-5 text-gray-900 dark:text-white [&>svg]:w-full [&>svg]:h-full">
                 {icon}
             </div>
@@ -540,10 +631,10 @@ function SpecificationItem({ title, details }: { title: string, details: string[
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="rounded-2xl border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-gray-900/50 overflow-hidden">
+        <div className="bg-transparent overflow-hidden">
             <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-4 text-left"
+                className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
             >
                 <span className="text-sm font-bold text-gray-900 dark:text-white">{title}</span>
                 <ChevronDown className={cx("w-5 h-5 text-gray-400 transition-transform duration-300", isOpen && "rotate-180")} />

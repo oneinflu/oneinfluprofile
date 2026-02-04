@@ -1,16 +1,6 @@
 {
-  "/[username]/page": "app/[username]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/add-links/page": "app/add-links/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/builder/[username]/page": "app/builder/[username]/page.js",
   "/builder/[username]/projects/[projectId]/page": "app/builder/[username]/projects/[projectId]/page.js",
-  "/builder/page": "app/builder/page.js",
-  "/login/page": "app/login/page.js",
-  "/onboarding/complete/page": "app/onboarding/complete/page.js",
-  "/onboarding/page": "app/onboarding/page.js",
-  "/page": "app/page.js",
-  "/register/page": "app/register/page.js",
-  "/select-category/page": "app/select-category/page.js",
-  "/select-platforms/page": "app/select-platforms/page.js"
+  "/builder/[username]/projects/[projectId]/towers/page": "app/builder/[username]/projects/[projectId]/towers/page.js",
+  "/page": "app/page.js"
 }
