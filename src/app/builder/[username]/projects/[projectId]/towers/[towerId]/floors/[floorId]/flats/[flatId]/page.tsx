@@ -141,7 +141,7 @@ const ScheduleVisitModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () 
         renderer: 'svg',
         loop: false,
         autoplay: true,
-        path: 'https://lottie.host/9e4d0706-5385-4556-9a5c-50201202517d/E8k07Q3Q4D.json' // Public Success Check Animation
+        path: '/sent.json' // Public Success Check Animation
       });
       return () => anim.destroy();
     }
@@ -189,7 +189,6 @@ const ScheduleVisitModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () 
             {step === "phone" && "Schedule a Visit"}
             {step === "otp" && "Verify Number"}
             {step === "details" && "Your Details"}
-            {step === "success" && "Request Sent"}
           </h3>
           {step !== "success" && (
             <button onClick={onClose} className="p-2 bg-gray-100 dark:bg-white/10 rounded-full hover:bg-gray-200 transition-colors">
