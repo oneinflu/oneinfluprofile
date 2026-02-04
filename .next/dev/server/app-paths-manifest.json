@@ -1,6 +1,7 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/builder/[username]/projects/[projectId]/page": "app/builder/[username]/projects/[projectId]/page.js",
+  "/builder/[username]/projects/[projectId]/towers/[towerId]/page": "app/builder/[username]/projects/[projectId]/towers/[towerId]/page.js",
   "/builder/[username]/projects/[projectId]/towers/page": "app/builder/[username]/projects/[projectId]/towers/page.js",
   "/page": "app/page.js"
 }

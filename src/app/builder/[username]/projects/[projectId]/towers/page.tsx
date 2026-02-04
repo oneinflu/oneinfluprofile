@@ -97,6 +97,7 @@ const towersData = [
 
 export default function TowersPage() {
   const router = useRouter();
+  const params = useParams();
   const [expandedTowerId, setExpandedTowerId] = useState<string | null>("B");
   const [selectedImage, setSelectedImage] = useState<{src: string, alt: string} | null>(null);
 
@@ -366,6 +367,10 @@ export default function TowersPage() {
                       <Button 
                         iconTrailing={ArrowRight}
                         className="w-full bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl py-6 text-sm font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all active:scale-[0.98] justify-between px-6"
+                        onClick={(e: React.MouseEvent) => {
+                          e.stopPropagation();
+                          router.push(`/builder/${params.username}/projects/${params.projectId}/towers/${tower.id}`);
+                        }}
                       >
                         Check Availability
                       </Button>

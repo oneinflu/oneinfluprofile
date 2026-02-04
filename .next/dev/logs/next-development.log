@@ -1107,3 +1107,6 @@ It can also happen if the client has a browser extension installed which messes 
 [00:35:12.439] Server  LOG     ✓ Compiled in 113ms
 [00:35:28.232] Server  LOG     ✓ Compiled in 166ms
 [00:36:31.305] Server  LOG     ✓ Compiled in 262ms
+[00:44:15.522] Server  LOG     ✓ Compiled in 4ms
+[00:44:52.322] Server  LOG     ✓ Compiled in 749ms
+[00:45:00.604] Server  LOG     ✓ Compiled in 360ms
