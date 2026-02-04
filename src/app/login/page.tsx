@@ -14,6 +14,7 @@ export default function LoginPage() {
     const [step, setStep] = useState<"phone" | "otp">("phone");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const [resendTimer, setResendTimer] = useState(0);
     const router = useRouter();
     const { token, setToken, setUser } = useAuth();
 
@@ -22,6 +23,13 @@ export default function LoginPage() {
             router.replace("/admin/my-profile");
         }
     }, [token, router]);
+
+    useEffect(() => {
+        if (resendTimer > 0) {
+            const timer = setTimeout(() => setResendTimer(resendTimer - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [resendTimer]);
 
     const handleSendOtp = async () => {
         if (loading) return;
@@ -39,6 +47,7 @@ export default function LoginPage() {
             // Using login-specific endpoint to ensure we only log in existing users
             await api.post("/auth/otp/send", { identifier: cleanPhone });
             setStep("otp");
+            setResendTimer(30);
         } catch (e: any) {
             console.error(e);
             // If user not found, redirect to register
@@ -162,18 +171,28 @@ export default function LoginPage() {
                                 </Button>
                                 
                                 {step === "otp" && (
-                                    <Button 
-                                        size="sm" 
-                                        color="link-gray" 
-                                        onClick={() => {
-                                            setStep("phone");
-                                            setErrorMsg(null);
-                                            setOtp("");
-                                        }}
-                                        className="self-center"
-                                    >
-                                        Change Phone Number
-                                    </Button>
+                                    <div className="flex flex-col gap-2 items-center">
+                                        <Button 
+                                            size="sm" 
+                                            color="link-gray" 
+                                            onClick={handleSendOtp}
+                                            isDisabled={resendTimer > 0 || loading}
+                                        >
+                                            {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : "Resend OTP"}
+                                        </Button>
+                                        <Button 
+                                            size="sm" 
+                                            color="link-gray" 
+                                            onClick={() => {
+                                                setStep("phone");
+                                                setErrorMsg(null);
+                                                setOtp("");
+                                            }}
+                                            className="self-center"
+                                        >
+                                            Change Phone Number
+                                        </Button>
+                                    </div>
                                 )}
                             </div>
 

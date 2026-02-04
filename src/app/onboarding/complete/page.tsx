@@ -54,45 +54,7 @@ const CompleteContent = () => {
                         </div>
                     </div>
 
-                    <div className="mt-6 rounded-2xl bg-primary p-4 ring-1 ring-secondary_alt">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-md font-semibold text-primary">Services</h2>
-                        </div>
-                        <ul className="mt-2 flex flex-col gap-2">
-                            {[0,1,2].map((i) => (
-                                <li key={i} className="rounded-2xl bg-primary p-4 shadow-xs ring-1 ring-secondary_alt">
-                                    <div className="flex items-start justify-between gap-3">
-                                        <div className="flex min-w-0 flex-col gap-1">
-                                            <div className="h-4 w-36 bg-primary_hover rounded animate-pulse" />
-                                            <div className="h-3 w-56 bg-primary_hover rounded animate-pulse" />
-                                        </div>
-                                        <div className="shrink-0">
-                                            <div className="h-4 w-24 bg-primary_hover rounded animate-pulse" />
-                                        </div>
-                                    </div>
-                                    <div className="mt-3">
-                                        <div className="h-8 w-full bg-primary_hover rounded-md animate-pulse" />
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className="mt-4 rounded-2xl bg-primary p-4 ring-1 ring-secondary_alt">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-md font-semibold text-primary">Work & Collaborations</h2>
-                        </div>
-                        <div className="mt-2 grid grid-cols-3 gap-2">
-                            {[0,1,2].map((i) => (
-                                <div key={i} className="overflow-hidden rounded-xl ring-1 ring-secondary_alt bg-primary">
-                                    <div className="aspect-square w-full bg-primary_hover animate-pulse" />
-                                    <div className="px-2 py-1">
-                                        <div className="h-3 w-24 bg-primary_hover rounded animate-pulse" />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
 

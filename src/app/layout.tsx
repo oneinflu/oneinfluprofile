@@ -4,9 +4,7 @@ import { Inter } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import { AuthProvider } from "@/providers/auth";
-import { ThemeFab } from "@/components/application/theme-toggle/theme-fab";
-import { SiteHeader } from "@/components/application/site-header";
-import { MarketingFooter } from "@/components/marketing/footer";
+import { MainLayout } from "@/layout/main-layout";
 import "@/styles/globals.css";
 import { cx } from "@/utils/cx";
 import Script from "next/script";
@@ -55,14 +53,9 @@ export default function RootLayout({
                 <RouteProvider>
                     <Theme>
                         <AuthProvider>
-                            <Suspense fallback={null}>
-                                <SiteHeader />
-                            </Suspense>
-                            {children}
-                            <Suspense fallback={null}>
-                                <MarketingFooter />
-                            </Suspense>
-                            <ThemeFab />
+                            <MainLayout>
+                                {children}
+                            </MainLayout>
                         </AuthProvider>
                     </Theme>
                 </RouteProvider>

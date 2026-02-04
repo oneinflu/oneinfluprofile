@@ -1,469 +1,9 @@
-[00:00:01.917] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:02.095] Server  LOG     ✓ Ready in 1541ms
-[00:00:04.715] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:04.971] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:12.571] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:12.823] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[17:48:50.039] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:02.901] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.089] Server  LOG     ✓ Ready in 2.9s
+[00:00:03.091] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[17:48:50.572] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
-      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
-        <RedirectBoundary>
-          <RedirectErrorBoundary router={{...}}>
-            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-              <SegmentViewNode type="page" pagePath="page.tsx">
-                <SegmentTrieNode>
-                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
-                  <HomeScreen params={Promise} searchParams={Promise}>
-                    <div className="min-h-scre...">
-                      <AnimatePresence>
-                      <HomeHero>
-                      <HomeProblems>
-                      <HomeFlow>
-                      <HomeCTA>
-                        <section className="py-12 md:p...">
-                          <div className="container ...">
-                            <div className="relative w...">
-                              <video
-                                autoPlay={true}
-                                loop={true}
-                                muted={true}
-                                playsInline={true}
-                                className="absolute inset-0 h-full w-full object-cover"
--                               data-video="0"
-                              >
-                              ...
-              ...
-            ...
-
-[17:48:50.572] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[17:48:55.047] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[17:52:08.603] Server  LOG     ✓ Compiled in 1375ms
-[18:00:50.940] Browser LOG     Found niche: Creator
-[18:00:51.342] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[18:00:51.878] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <J attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-      <V attribute="class" value={{light:"lig...", ...}} defaultTheme="dark" enableSystem={false}>
-        <script>
-        <AuthProvider>
-          <Suspense fallback={null}>
-            <SiteHeader>
-              <Header isFloating={true} className="sticky top...">
-                <header ref={{current:null}} className="flex w-ful...">
-                  <div className="flex size-...">
-                    <div className="flex w-ful...">
-                      <div>
-                      <div className="hidden ite...">
-                        <Button color="primary" size="md" href="/admin">
-                          <Link data-loading={undefined} data-icon-only={undefined} href="/admin" isDisabled={undefined} ...>
-                            <a
-                              ref={{current:null}}
-                              slot={undefined}
-                              data-loading={undefined}
-                              data-icon-only={undefined}
-+                             className="group relative inline-flex h-max cursor-pointer items-center justify-center w..."
--                             className="group relative inline-flex h-max cursor-pointer items-center justify-center w..."
-                              style={undefined}
-                              data-rac=""
-+                             href="/admin"
--                             href="/login"
-                              target={undefined}
-                              rel={undefined}
-                              download={undefined}
-                              ping={undefined}
-                              referrerPolicy={undefined}
-                              onFocus={function}
-                              onBlur={function}
-                              onKeyDown={function onKeyDown}
-                              onKeyUp={undefined}
-                              tabIndex={0}
-                              onClick={function onClick}
-                              onPointerDown={function}
-                              onMouseDown={function}
-                              onPointerUp={function}
-                              onPointerEnter={function}
-                              onPointerLeave={function}
-                              onDragStart={function}
-                              data-react-aria-pressable={true}
-                              aria-disabled={undefined}
-                              aria-current={undefined}
-                              data-focused={undefined}
-                              data-hovered={undefined}
-                              data-pressed={undefined}
-                              data-focus-visible={undefined}
-                              data-current={undefined}
-                              data-disabled={undefined}
-                            >
-                              <span data-text={true} className="transition-inherit-all px-0.5">
-+                               Go to My Profile
--                               Log in
-                      ...
-          ...
-
-[18:00:51.995] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:52.225] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:52.455] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:52.865] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:53.017] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:53.229] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:53.608] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:53.981] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:54.200] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:54.945] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:55.025] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:55.395] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:55.939] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:00:56.124] Server  WARN    Error: Route "/[username]" used `params.username`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[18:01:34.245] Server  LOG     ✓ Compiled in 259ms
-[18:03:37.964] Server  LOG     ✓ Compiled in 455ms
-[18:04:03.072] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[18:04:03.638] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[18:04:04.538] Browser LOG     Found niche: Creator
-[18:04:34.857] Server  ERROR   React does not recognize the `isReadOnly` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isreadonly` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-[18:04:34.871] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:37.536] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:37.536] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:37.536] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:37.536] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:37.536] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:37.536] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.019] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[18:04:38.019] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:04:38.019] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:04:38.019] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:04:38.019] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:04:38.019] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.019] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.019] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.019] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.019] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.019] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.019] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.019] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.019] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.020] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.337] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.337] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.337] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.337] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:04:38.337] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:05:56.723] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:05:56.723] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:05:56.983] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.310] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:06:00.883] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:00.883] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:01.041] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:01.041] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:06:03.176] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:06:03.176] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:06:03.176] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:37:22.919] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[18:38:15.593] Server  LOG     ✓ Compiled in 287ms
-[18:38:19.589] Browser WARN    WARN: A component changed from uncontrolled to controlled.
-[18:38:40.731] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:40.731] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:46.582] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:46.582] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:48.804] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:48.804] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:48.998] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:48.998] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:49.310] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:49.310] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:49.502] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:49.502] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:49.764] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:49.764] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:51.161] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:51.162] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:51.374] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:51.374] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:52.498] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:57.316] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:38:57.317] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:02.741] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:02.741] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:02.741] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:02.741] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:03.595] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:03.596] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:09.287] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[18:39:11.312] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:11.312] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.312] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.355] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.355] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:11.716] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:11.716] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:15.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:15.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:19.329] Browser LOG     Found niche: Business
-[18:39:29.976] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:35.980] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.401] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
-[18:39:38.402] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:38.402] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:38.402] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.402] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.404] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.404] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.404] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.412] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.413] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.413] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.413] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:38.413] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
-[18:39:40.846] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:40.846] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:42.204] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:42.204] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:44.044] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:44.044] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:44.044] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
-[18:39:45.188] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:06.459] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.600] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -505,6 +45,1271 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[18:39:50.510] Server  LOG     ✓ Finished writing to filesystem cache in 16.6s
-[18:40:03.019] Server  LOG     ✓ Finished filesystem cache database compaction in 12.5s
-[18:40:03.085] Server  LOG     ✓ Finished writing to filesystem cache in 10.6s
+[00:00:43.579] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:01:31.253] Server  LOG     ✓ Compiled in 290ms
+[00:01:40.058] Server  LOG     ✓ Compiled in 191ms
+[00:03:04.903] Browser ERROR   {"data":{"message":"User not found","status":"not_found","success":false},"name":"ApiError","status":404}
+[00:03:32.889] Browser WARN    WARN: A component changed from uncontrolled to controlled.
+[00:03:41.479] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:41.479] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:42.937] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:42.938] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.076] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.076] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.344] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.344] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.345] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.345] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.702] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.702] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.833] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:43.833] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.002] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.002] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.229] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.229] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.379] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.379] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.775] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.775] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.992] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:44.992] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.300] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.301] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.632] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.632] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.632] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.632] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.887] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.887] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.887] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:45.887] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:46.148] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:46.148] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:55.970] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:55.970] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:58.091] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:58.091] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:58.342] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:58.342] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:58.684] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:58.684] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.077] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.077] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.077] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.077] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.305] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.305] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.547] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.711] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.712] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:03:59.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.150] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.150] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.264] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.264] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.503] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.503] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.503] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.503] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.997] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:00.997] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:01.139] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:01.139] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:01.301] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:01.301] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:01.472] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:01.472] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.077] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.077] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.202] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.202] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.503] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.503] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.831] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:02.831] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.096] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.096] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.559] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.559] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.827] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.827] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.827] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.827] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.946] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:03.946] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:04.663] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:04.663] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.073] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.073] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.518] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.518] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.518] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.518] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.797] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.797] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.797] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.797] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.948] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:05.948] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.584] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.584] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.778] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.778] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.999] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:06.999] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.589] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.589] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:07.951] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.073] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.073] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.379] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.379] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.563] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.563] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.854] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.854] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.854] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:08.854] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:12.539] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:12.539] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:12.539] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:12.539] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:12.540] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:12.540] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:15.991] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:04:15.991] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:05:45.865] Server  LOG     ✓ Compiled in 351ms
+[00:05:53.708] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:05:53.708] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:53.708] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:53.708] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:05:53.708] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:05:53.708] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:53.708] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:54.182] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:54.182] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:54.182] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:54.182] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:05:54.182] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:05:54.182] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:05:54.182] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:05:54.182] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:05:54.182] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:05:54.182] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:03.618] Server  LOG     ✓ Compiled in 641ms
+[00:09:03.698] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:09:04.576] Server  ERROR   React does not recognize the `isReadOnly` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isreadonly` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+[00:09:04.595] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.589] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.589] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.589] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.589] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.589] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.589] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.942] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:09:06.942] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:06.942] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:06.942] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:06.942] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:06.942] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.942] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.942] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.943] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:06.943] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.943] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.943] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.943] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.943] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:06.943] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:07.156] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:07.156] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:07.156] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:07.156] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:07.156] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:07.156] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:07.156] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:07.156] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:07.156] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:07.156] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:14.913] Server  LOG     ✓ Compiled in 4.5s
+[00:09:15.208] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:09:15.286] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:09:16.206] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:20.434] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:20.434] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:20.434] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:20.434] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:20.434] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:21.614] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:21.614] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:21.614] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:21.614] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:21.614] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:21.614] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:21.614] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:21.614] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:21.614] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:21.614] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:09:40.842] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:09:40.843] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:33.681] Server  LOG     ✓ Compiled in 1331ms
+[00:10:33.716] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:10:35.167] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:36.891] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:10:37.205] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:10:37.205] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.205] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:10:37.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:10:37.205] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.205] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.799] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:10:37.799] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:10:37.799] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.799] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.799] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.799] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:37.799] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:37.799] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:37.799] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:37.799] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:37.799] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:37.799] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:38.606] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:38.606] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:38.606] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:38.606] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:10:38.606] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:38.606] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:38.606] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:38.606] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:38.606] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:10:38.606] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:46.400] Server  WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[01:26:50.621] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:50.621] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:50.621] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:50.621] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:50.621] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:50.621] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[01:26:57.638] Browser ERROR   uncaughtError: ChunkLoadError: Failed to load chunk /_next/static/chunks/node_modules_lottie-web_build_player_lottie_91ca1172.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:26:57.645] Browser ERROR   uncaughtError: ChunkLoadError: Failed to load chunk /_next/static/chunks/src_app_layout_tsx_1cf6b850._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:26:58.612] Browser ERROR   uncaughtError: ChunkLoadError: Failed to load chunk /_next/static/chunks/node_modules_845a3279._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:26:58.618] Browser ERROR   uncaughtError: ChunkLoadError: Failed to load chunk /_next/static/chunks/node_modules_%40react-aria_overlays_dist_e737afbb._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:26:58.619] Browser ERROR   uncaughtError: ChunkLoadError: Failed to load chunk /_next/static/chunks/src_app_icon_png_mjs_d9da556f._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:26:58.619] Browser ERROR   uncaughtError: ChunkLoadError: Failed to load chunk /_next/static/chunks/src_app_icon_png_mjs_d9da556f._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:28:39.273] Server  LOG     ○ Compiling /builder ...
+[01:28:45.237] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/builder" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[01:29:16.057] Server  LOG     ✓ Compiled in 386ms
+[01:31:38.289] Server  LOG     ✓ Compiled in 1378ms
+[01:36:48.712] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria9161697048-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[01:36:48.712] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[01:36:51.489] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria5389743305-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[01:36:51.489] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[01:36:55.619] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu?..." tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria3377980611-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[01:36:55.622] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[15:20:36.756] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria5171588765-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[15:20:36.756] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[15:20:38.544] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/oneinflu" tree={[...]} params={{username:"..."}} cacheNode={{rsc:<Fragment>, ...}} ...>
+          <SegmentViewNode type="page" pagePath="[username]...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ProfilePage} serverProvidedParams={{...}}>
+              <ProfilePage params={Promise} searchParams={Promise}>
+                <section className="lg:hidden ...">
+                  <ProfileCard username="oneinflu" profile={{id:"695534...", ...}} payEnabled={true} ...>
+                    <div className="w-full max...">
+                      <div>
+                      <ProfileServices>
+                      <ProfileShop>
+                      <ProfilePortfolio username="oneinflu" items={[...]}>
+                        <div className="mt-4">
+                          <div>
+                          <div className="mt-2 overf...">
+                            <div className="flex gap-2...">
+>                             <button
+>                               type="button"
+>                               className="snap-start w-44 sm:w-52 overflow-hidden rounded-xl ring-1 ring-secondary_al..."
+>                               onClick={function onClick}
+>                             >
+                                <div className="aspect-squ...">
+                                  <img>
+                                  <div className="absolute i...">
+                                    <Button size="sm" color="secondary" className="px-3" onClick={function onClick}>
+                                      <Button data-loading={undefined} data-icon-only={undefined} ...>
+>                                       <button
+>                                         data-loading={undefined}
+>                                         data-icon-only={undefined}
+>                                         className="group relative inline-flex h-max cursor-pointer items-center just..."
+>                                         style={undefined}
+>                                         data-rac=""
+>                                         type="button"
+>                                         disabled={undefined}
+>                                         form={undefined}
+>                                         formAction={undefined}
+>                                         formEncType={undefined}
+>                                         formMethod={undefined}
+>                                         formNoValidate={undefined}
+>                                         formTarget={undefined}
+>                                         name={undefined}
+>                                         value={undefined}
+>                                         onFocus={function}
+>                                         onBlur={function}
+>                                         onKeyDown={function onKeyDown}
+>                                         onKeyUp={undefined}
+>                                         tabIndex={0}
+>                                         onClick={function onClick}
+>                                         onPointerDown={function}
+>                                         onMouseDown={function}
+>                                         onPointerUp={function}
+>                                         onPointerEnter={function}
+>                                         onPointerLeave={function}
+>                                         onDragStart={function}
+>                                         data-react-aria-pressable={true}
+>                                         aria-haspopup={undefined}
+>                                         aria-expanded={undefined}
+>                                         aria-controls={undefined}
+>                                         aria-pressed={undefined}
+>                                         aria-current={undefined}
+>                                         aria-disabled={undefined}
+>                                         id="react-aria9065388720-_r_n_"
+>                                         ref={{current:null}}
+>                                         aria-labelledby={undefined}
+>                                         slot={undefined}
+>                                         data-disabled={undefined}
+>                                         data-pressed={undefined}
+>                                         data-hovered={undefined}
+>                                         data-focused={undefined}
+>                                         data-pending={undefined}
+>                                         data-focus-visible={undefined}
+>                                       >
+                                ...
+                              ...
+                          ...
+                      ...
+                  ...
+                ...
+          ...
+        ...
+
+[15:20:38.544] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+[15:23:34.588] Server  LOG     ✓ Compiled in 2.4s
+[15:24:50.104] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/builder/a..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[15:24:53.042] Server  LOG     ✓ Compiled in 7.6s
+[15:25:57.453] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/builder/s..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[15:29:38.071] Server  LOG     ✓ Compiled in 290ms
+[15:29:50.931] Server  LOG     ✓ Compiled in 1530ms
+[15:30:20.613] Server  LOG     ✓ Compiled in 0ms
+[15:35:02.291] Server  LOG     ✓ Compiled in 1724ms
+[15:37:34.900] Server  LOG     ✓ Compiled in 1273ms
+[15:40:18.583] Server  LOG     ✓ Compiled in 12.1s
+[15:40:18.807] Browser ERROR   ./src/app/builder/[username]/projects/[projectId]/page.tsx:6:1
+Export Car01 doesn't exist in target module
+   4 | import { useParams, useRouter } from "next/navigation";
+   5 | import { motion } from "motion/react";
+>  6 | import { 
+     | ^^^^^^^^^
+>  7 |     ArrowLeft, 
+     | ^^^^^^^^^^^^^^^
+>  8 |     Share04, 
+     | ^^^^^^^^^^^^^^^
+>  9 |     Heart, 
+     | ^^^^^^^^^^^^^^^
+> 10 |     MarkerPin01, 
+     | ^^^^^^^^^^^^^^^
+> 11 |     LayersTwo01, 
+     | ^^^^^^^^^^^^^^^
+> 12 |     Sun, 
+     | ^^^^^^^^^^^^^^^
+> 13 |     Clock,
+     | ^^^^^^^^^^^^^^^
+> 14 |     ArrowRight,
+     | ^^^^^^^^^^^^^^^
+> 15 |     Bank,
+     | ^^^^^^^^^^^^^^^
+> 16 |     Trophy01,
+     | ^^^^^^^^^^^^^^^
+> 17 |     ChevronRight,
+     | ^^^^^^^^^^^^^^^
+> 18 |     Map01,
+     | ^^^^^^^^^^^^^^^
+> 19 |     ShieldTick,
+     | ^^^^^^^^^^^^^^^
+> 20 |     Calculator,
+     | ^^^^^^^^^^^^^^^
+> 21 |     Car01
+     | ^^^^^^^^^^^^^^^
+> 22 | } from "@untitledui/icons";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  23 | import { Badge } from "@/components/base/badges/badges";
+  24 | import { Button } from "@/components/base/buttons/button";
+  25 | import { cx } from "@/utils/cx";
+
+The export Car01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
+Did you mean to import Camera01?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Client Component Browser]
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Client Component SSR]
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Server Component]
+[15:40:18.807] Browser ERROR   ./src/app/builder/[username]/projects/[projectId]/page.tsx:6:1
+Export Car01 doesn't exist in target module
+   4 | import { useParams, useRouter } from "next/navigation";
+   5 | import { motion } from "motion/react";
+>  6 | import { 
+     | ^^^^^^^^^
+>  7 |     ArrowLeft, 
+     | ^^^^^^^^^^^^^^^
+>  8 |     Share04, 
+     | ^^^^^^^^^^^^^^^
+>  9 |     Heart, 
+     | ^^^^^^^^^^^^^^^
+> 10 |     MarkerPin01, 
+     | ^^^^^^^^^^^^^^^
+> 11 |     LayersTwo01, 
+     | ^^^^^^^^^^^^^^^
+> 12 |     Sun, 
+     | ^^^^^^^^^^^^^^^
+> 13 |     Clock,
+     | ^^^^^^^^^^^^^^^
+> 14 |     ArrowRight,
+     | ^^^^^^^^^^^^^^^
+> 15 |     Bank,
+     | ^^^^^^^^^^^^^^^
+> 16 |     Trophy01,
+     | ^^^^^^^^^^^^^^^
+> 17 |     ChevronRight,
+     | ^^^^^^^^^^^^^^^
+> 18 |     Map01,
+     | ^^^^^^^^^^^^^^^
+> 19 |     ShieldTick,
+     | ^^^^^^^^^^^^^^^
+> 20 |     Calculator,
+     | ^^^^^^^^^^^^^^^
+> 21 |     Car01
+     | ^^^^^^^^^^^^^^^
+> 22 | } from "@untitledui/icons";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  23 | import { Badge } from "@/components/base/badges/badges";
+  24 | import { Button } from "@/components/base/buttons/button";
+  25 | import { cx } from "@/utils/cx";
+
+The export Car01 was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
+Did you mean to import Camera01?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Client Component Browser]
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Client Component SSR]
+    ./src/app/builder/[username]/projects/[projectId]/page.tsx [Server Component]
+[15:40:37.756] Server  LOG     ✓ Compiled in 471ms
+[15:40:39.103] Browser ERROR   uncaughtError: ReferenceError: Car01 is not defined
+[15:40:48.985] Server  LOG     ✓ Compiled in 2.1s
+[15:40:49.059] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[15:40:53.721] Server  LOG     ✓ Compiled in 2.4s
+[15:40:54.716] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[15:40:57.349] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/builder/s..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[15:41:08.864] Server  LOG     ✓ Finished filesystem cache database compaction in 23.9s
+[15:41:09.184] Server  LOG     ✓ Finished writing to filesystem cache in 15.6s
+[15:41:37.937] Server  LOG     ✓ Compiled in 1391ms
+[15:41:45.213] Server  LOG     ✓ Compiled in 200ms
+[15:48:34.861] Server  LOG     ✓ Compiled in 437ms
+[15:48:57.565] Server  LOG     ✓ Compiled in 176ms
+[15:49:27.245] Server  LOG     ✓ Compiled in 1512ms
+[15:49:28.111] Browser ERROR   uncaughtError: ReferenceError: SpecificationItem is not defined
+[15:49:55.674] Server  LOG     ✓ Compiled in 645ms
+[15:49:55.779] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[15:50:20.098] Server  LOG     ✓ Finished filesystem cache database compaction in 18.3s
+[15:50:25.531] Server  LOG     ✓ Compiled in 407ms
+[15:51:24.881] Server  LOG     ✓ Compiled in 842ms
+[15:51:31.691] Server  LOG     ✓ Compiled in 205ms
+[15:51:46.361] Server  LOG     ✓ Compiled in 1766ms
+[15:52:52.938] Server  LOG     ✓ Compiled in 937ms
+[15:54:36.790] Server  LOG     ✓ Compiled in 295ms
+[15:54:52.737] Server  LOG     ✓ Compiled in 312ms
+[15:55:00.711] Server  LOG     ✓ Compiled in 832ms
+[15:55:08.547] Server  LOG     ✓ Compiled in 395ms
+[15:59:20.816] Server  LOG     ✓ Compiled in 388ms
+[16:00:42.780] Server  LOG     ✓ Compiled in 263ms
+[16:00:53.380] Server  LOG     ✓ Compiled in 286ms
+[16:01:01.519] Server  LOG     ✓ Compiled in 359ms
+[16:01:17.995] Server  LOG     ✓ Compiled in 347ms
+[16:01:25.788] Server  LOG     ✓ Compiled in 785ms
+[16:02:46.898] Server  LOG     ✓ Compiled in 365ms
+[16:03:25.885] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/builder/s..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <head>
+                          <body
+                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+

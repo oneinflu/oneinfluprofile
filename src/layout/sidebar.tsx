@@ -3,6 +3,7 @@
 import {
     Archive,
     BarChartSquare02,
+    Calendar,
     CheckDone01,
     CurrencyDollarCircle,
     Grid03,
@@ -98,7 +99,11 @@ export const AppSidebar = () => {
     const isProfessional = category === "Professional";
     const navItemsSimple: NavItemType[] = isProfessional
         ? [...baseNavItems, ...professionalNavItems]
-        : baseNavItems;
+        : [
+              ...baseNavItems.slice(0, 2),
+              { label: "My Events", href: "/admin/campaigns", icon: Calendar },
+              ...baseNavItems.slice(2),
+          ];
     return (
         <SidebarNavigationSimple
             items={navItemsSimple}

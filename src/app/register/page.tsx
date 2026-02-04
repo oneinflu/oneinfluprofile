@@ -16,8 +16,16 @@ export default function RegisterPage() {
     const [step, setStep] = useState<"phone" | "otp">("phone");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const [resendTimer, setResendTimer] = useState(0);
     const router = useRouter();
     const { setToken, setUser } = useAuth();
+
+    useEffect(() => {
+        if (resendTimer > 0) {
+            const timer = setTimeout(() => setResendTimer(resendTimer - 1), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [resendTimer]);
 
     const handleSendOtp = async () => {
         if (loading) return;
@@ -34,6 +42,7 @@ export default function RegisterPage() {
         try {
             await api.post("/auth/register/phone/start-send", { phone: cleanPhone });
             setStep("otp");
+            setResendTimer(30);
         } catch (e: any) {
             console.error(e);
             setErrorMsg(e.message || "Failed to send OTP. Please check the number and try again.");
@@ -153,18 +162,28 @@ export default function RegisterPage() {
                                 </Button>
                                 
                                 {step === "otp" && (
-                                    <Button 
-                                        size="sm" 
-                                        color="link-gray" 
-                                        onClick={() => {
-                                            setStep("phone");
-                                            setErrorMsg(null);
-                                            setOtp("");
-                                        }}
-                                        className="self-center"
-                                    >
-                                        Change Phone Number
-                                    </Button>
+                                    <div className="flex flex-col gap-2 items-center">
+                                        <Button 
+                                            size="sm" 
+                                            color="link-gray" 
+                                            onClick={handleSendOtp}
+                                            isDisabled={resendTimer > 0 || loading}
+                                        >
+                                            {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : "Resend OTP"}
+                                        </Button>
+                                        <Button 
+                                            size="sm" 
+                                            color="link-gray" 
+                                            onClick={() => {
+                                                setStep("phone");
+                                                setErrorMsg(null);
+                                                setOtp("");
+                                            }}
+                                            className="self-center"
+                                        >
+                                            Change Phone Number
+                                        </Button>
+                                    </div>
                                 )}
                             </div>
 
