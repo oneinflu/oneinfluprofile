@@ -9,6 +9,7 @@ import { Suspense } from "react";
 export function MainLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isBuilder = pathname?.startsWith("/builder");
+    const isCreator = pathname?.startsWith("/creator");
 
     return (
         <>
@@ -23,7 +24,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
                     <MarketingFooter />
                 </Suspense>
             )}
-            {!isBuilder && <ThemeFab />}
+            {!isBuilder && !isCreator && <ThemeFab />}
         </>
     );
 }

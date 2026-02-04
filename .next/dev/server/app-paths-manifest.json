@@ -1,6 +1,5 @@
 {
-  "/[username]/page": "app/[username]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]/page": "app/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]/page.js",
+  "/creator/[username]/page": "app/creator/[username]/page.js",
   "/page": "app/page.js"
 }
