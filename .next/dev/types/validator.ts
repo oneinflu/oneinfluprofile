@@ -171,6 +171,24 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../../src/app/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]">> = Specific
+  const handler = {} as typeof import("../../../src/app/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]">> = Specific
+  const handler = {} as typeof import("../../../src/app/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../src/app/builder/[username]/projects/[projectId]/towers/[towerId]/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/builder/[username]/projects/[projectId]/towers/[towerId]">> = Specific

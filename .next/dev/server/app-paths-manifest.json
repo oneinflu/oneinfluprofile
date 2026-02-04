@@ -1,7 +1,6 @@
 {
+  "/[username]/page": "app/[username]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/builder/[username]/projects/[projectId]/page": "app/builder/[username]/projects/[projectId]/page.js",
-  "/builder/[username]/projects/[projectId]/towers/[towerId]/page": "app/builder/[username]/projects/[projectId]/towers/[towerId]/page.js",
-  "/builder/[username]/projects/[projectId]/towers/page": "app/builder/[username]/projects/[projectId]/towers/page.js",
+  "/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]/page": "app/builder/[username]/projects/[projectId]/towers/[towerId]/floors/[floorId]/flats/[flatId]/page.js",
   "/page": "app/page.js"
 }

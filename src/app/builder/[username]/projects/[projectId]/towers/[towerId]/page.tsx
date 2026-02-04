@@ -233,8 +233,7 @@ export default function FloorSelectionPage() {
                       </div>
                       <Button className="w-full" onClick={(e: React.MouseEvent) => {
                           e.stopPropagation();
-                          // Navigate to flats selection or next step
-                          alert(`Selected Floor ${floor.floorNumber}`);
+                          router.push(`/builder/${params.username}/projects/${params.projectId}/towers/${params.towerId}/floors/${floor.floorNumber}`);
                       }}>
                          View {floor.availableFlats} Flats
                       </Button>
