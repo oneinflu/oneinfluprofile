@@ -1,6 +1,7 @@
 {
+  "/[username]/page": "app/[username]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/admin/my-applications/[id]/page": "app/admin/my-applications/[id]/page.js",
-  "/admin/my-applications/page": "app/admin/my-applications/page.js",
+  "/admin/links/page": "app/admin/links/page.js",
+  "/admin/my-profile/page": "app/admin/my-profile/page.js",
   "/page": "app/page.js"
 }

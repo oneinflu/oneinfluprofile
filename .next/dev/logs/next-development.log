@@ -1,190 +1,85 @@
-[00:00:02.163] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:02.451] Server  LOG     ✓ Ready in 2.2s
-[00:00:02.506] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:03.899] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.953] Server  LOG     ✓ Ready in 3.7s
+[00:00:03.979] Server  ERROR   Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:03.986] Server  ERROR   ⨯ "unhandledRejection:" Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:03.995] Server  ERROR   ⨯ "unhandledRejection: " Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:04.089] Server  WARN    ⚠ "Failed to reload dynamic routes:" Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:04.102] Server  WARN    ⚠ "Failed to reload dynamic routes:" Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:04.165] Server  WARN    ⚠ "Failed to reload dynamic routes:" Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:04.203] Server  WARN    ⚠ "Failed to reload dynamic routes:" Error: You cannot use different slug names for the same dynamic path ('oldusername' !== 'username').
+[00:00:07.042] Server  LOG     ○ Compiling /_not-found/page ...
+[00:00:13.156] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:13.620] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:04.632] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:07.652] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:35.367] Server  LOG     ✓ Compiled in 3s
-[00:01:06.957] Server  LOG     ✓ Compiled in 767ms
-[00:01:07.100] Browser ERROR   uncaughtError: ReferenceError: useAuth is not defined
-[00:01:14.821] Server  LOG     ✓ Compiled in 546ms
-[00:01:14.832] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:01:15.153] Browser ERROR   uncaughtError: ReferenceError: useAuth is not defined
-[00:01:16.399] Server  ERROR   ⨯ ReferenceError: useAuth is not defined
-[00:01:18.152] Browser ERROR   uncaughtError: ReferenceError: useAuth is not defined
-[00:01:20.522] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:01:20.524] Server  LOG     ✓ Compiled in 609ms
-[00:01:22.071] Browser ERROR   Failed to fetch applications {}
-[00:01:23.664] Server  LOG     ✓ Compiled in 653ms
-[00:01:23.772] Browser ERROR   ./src/app/admin/my-applications/page.tsx:12:10
-Ecmascript file had an error
-  10 | import { Calendar, Building02, ArrowRight } from "@untitledui/icons";
-  11 | import { Application } from "./components/ApplicationDetailsModal";
-> 12 | import { useAuth } from "@/providers/auth";
-     |          ^^^^^^^
-  13 |
-  14 | export default function MyApplicationsPage() {
-  15 |   const { token } = useAuth();
+[00:00:33.031] Server  LOG     ○ Compiling / ...
+[00:00:39.527] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:53.238] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:00:58.346] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:01:02.735] Server  LOG     ✓ Finished writing to filesystem cache in 13.8s
+[00:01:08.096] Server  LOG     ○ Compiling /admin/links ...
+[00:01:15.635] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:15.635] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:15.635] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:15.635] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.636] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:01:16.638] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.639] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.639] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.639] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.639] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.640] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.640] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:16.640] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:18.736] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.223] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.226] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:19.228] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:21.048] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/newinflu","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:01:21.048] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
 
-the name `useAuth` is defined multiple times
+Check the render method of `SocialLinks`. 
+[00:01:25.455] Server  LOG     ✓ Finished filesystem cache database compaction in 22.7s
+[00:01:25.798] Server  LOG     ✓ Finished writing to filesystem cache in 21.1s
+[00:01:28.858] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:01:28.858] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
 
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/my-applications/page.tsx [Client Component Browser]
-    ./src/app/admin/my-applications/page.tsx [Server Component]
+Check the render method of `SocialLinks`. 
+[00:01:39.777] Server  LOG     ✓ Finished filesystem cache database compaction in 14.0s
+[00:01:42.625] Server  LOG     ✓ Finished writing to filesystem cache in 11.8s
+[00:03:29.329] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:03:29.329] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
 
-  Client Component SSR:
-    ./src/app/admin/my-applications/page.tsx [Client Component SSR]
-    ./src/app/admin/my-applications/page.tsx [Server Component]
-[00:01:28.880] Server  LOG     ✓ Finished filesystem cache database compaction in 10.8s
-[00:01:31.587] Server  LOG     ✓ Compiled in 300ms
-[00:01:52.766] Server  LOG     ✓ Compiled in 2.4s
-[00:02:31.622] Server  LOG     ✓ Compiled in 828ms
-[00:03:20.684] Server  LOG     ✓ Compiled in 273ms
-[00:03:41.232] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:04:48.535] Server  LOG     ✓ Compiled in 403ms
-[00:06:24.646] Browser ERROR   Application ID not found {"application":{"appliedAt":"2026-02-01T07:53:30.446Z","bringingPlusOne":false,"checkedIn":true,"checkedInAt":"2026-02-04T04:32:55.380Z","dashboardImageUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769932409/event_applications/c452be2a-54e2-423b-8172-7f48a7a7727b.png","doClientApprovalNeeded":false,"inviteCode":"RKVF9G","isInvitationShared":false,"plusOneName":null,"plusOnePhone":null,"shareProfessionalDashboard":true,"status":"invited","submittedLinks":[],"taskCompletion":false,"willingToAttend":true},"event":{"brandName":"ONEECO","city":"kk","code":"K9AZ5E2Z","creatorCountNeeded":39,"creatorCriteria":{"city":"kkk","minFollowers":10000,"niches":["kkk","kkk"]},"dashboardAccessRequired":true,"date":"2026-02-20T09:53:00.000Z","deliverables":[{"brandMusicProvided":false,"brandTagMandatory":true,"contentApprovalRequired":false,"deadline":{"date":null,"kind":"within_hours","value":24},"hashtagsRequired":true,"locationTagMandatory":true,"platform":"instagram","quantity":1,"type":"reel"}],"doClientApprovalNeeded":false,"entryType":"invite_only","eventName":"INFLU Launch","eventType":"barter","id":"697f06307a291cdc96b46d5a","inhouseFoodandBeverages":true,"invitationBannerUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769933013/event_banners/d6e1dcd6-d331-4647-97e4-e5a35f0ff3a9.jpg","isGuestsAllowedplusone":true,"isLimitedMenu":true,"payment":null,"qrCheckinRequired":true,"slug":"cc","status":"finally_approved","user":"695534ca815ce71ec10e05ff","venue":"kk"}}
-[00:06:45.452] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:07:25.255] Server  LOG     ✓ Compiled in 554ms
-[00:07:53.668] Server  LOG     ○ Compiling /admin/my-applications/[id] ...
-[00:07:57.956] Server  LOG     ✓ Compiled in 316ms
-[00:08:19.732] Server  LOG     ✓ Compiled in 423ms
-[00:08:52.176] Server  LOG     ✓ Compiled in 237ms
-[00:10:43.395] Server  LOG     ✓ Compiled in 1382ms
-[00:11:11.523] Server  LOG     ✓ Compiled in 255ms
-[00:11:27.216] Server  LOG     ✓ Compiled in 241ms
-[00:11:33.780] Server  LOG     ✓ Compiled in 787ms
-[00:13:57.638] Server  LOG     ✓ Compiled in 1646ms
-[00:14:28.909] Server  LOG     ✓ Compiled in 616ms
-[00:15:07.385] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:17:38.814] Server  LOG     ✓ Compiled in 1380ms
-[00:19:27.283] Browser ERROR   Camera error: {}
-[00:19:40.914] Server  LOG     ✓ Compiled in 1429ms
-[00:21:54.555] Server  LOG     ✓ Compiled in 628ms
-[00:25:10.121] Server  LOG     ✓ Compiled in 665ms
-[00:25:53.885] Server  LOG     ✓ Compiled in 636ms
-[00:26:35.224] Server  LOG     ✓ Compiled in 343ms
-[00:27:34.723] Server  LOG     ✓ Compiled in 291ms
+Check the render method of `SocialLinks`. 
+[00:03:39.406] Server  LOG     ✓ Compiled in 4.9s
+[00:03:40.279] Server  LOG     ✓ Compiled in 4ms
+[00:03:42.491] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:01.239] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:04:02.475] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:33.848] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU","https://www.youtube.com/shorts/6kfnN60d07c","https://www.youtube.com/shorts/M5f8CI1q9J0"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:05:34.000] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:05:54.800] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:05:55.027] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:06:16.288] Server  LOG     ✓ Compiled in 491ms
+[00:06:29.926] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Co-Founder & CTO of INFLU Media Tech","brandNames":["apple","Samsung"],"brands":["apple","Samsung"],"contentTags":["vlogging","tech and lifestyle"],"contentType":["Reels","Carousel","Posts"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU"],"id":"6982135e617843aa6b6abdb1","name":"Suurya Prabhat","niche":"AI, Technology & Digital Tools","role":"Creator","username":"newinflu","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:06:30.071] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:06:50.964] Server  LOG     ✓ Compiled in 2.3s
+[00:09:53.661] Server  LOG     ✓ Compiled in 1319ms
+[00:10:30.851] Server  LOG     ✓ Compiled in 467ms
+[00:17:30.117] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770132364/avatars/10f9a14f-7f36-4fcc-b825-61e85a829cce.png","bio":"Fashion & beauty content creator,Skincare • Makeup • Everyday style.📩 Open for brand collaborations","brandNames":["Nykaa","Zara","Myntra","Lakme","Plum"],"brands":["Nykaa","Zara","Myntra","Lakme","Plum"],"contentTags":["Fashion Reels","Beauty Tips","Skincare Routine","Makeup Looks","Outfit Ideas","Daily Fashion"],"contentType":["Reels","Carousel","Posts","Stories"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU"],"id":"6982135e617843aa6b6abdb1","name":"Ailisha Rao","niche":"Fashion & Beauty","role":"Creator","username":"glowwithailisha","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:17:30.263] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:20:58.446] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770274716/avatars/dd851d0b-89d5-4197-961d-a95032f133a1.png","bio":"Fashion & beauty content creator,Skincare • Makeup • Everyday style.📩 Open for brand collaborations","brandNames":["Nykaa","Zara","Myntra","Lakme","Plum"],"brands":["Nykaa","Zara","Myntra","Lakme","Plum"],"contentTags":["Fashion Reels","Beauty Tips","Skincare Routine","Makeup Looks","Outfit Ideas","Daily Fashion"],"contentType":["Reels","Carousel","Posts","Stories"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU"],"id":"6982135e617843aa6b6abdb1","name":"Ailisha Rao","niche":"Fashion & Beauty","role":"Creator","username":"glowwithailisha","verified":false,"workingMode":["On-site"]},"theme":"light"}
+[00:20:58.634] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes

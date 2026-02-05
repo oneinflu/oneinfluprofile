@@ -49,7 +49,7 @@ export default function RootLayout({
                 </Script>
                
             </head>
-            <body className={cx(inter.variable, "bg-primary antialiased")}>
+            <body className={cx(inter.variable, "bg-primary antialiased")} suppressHydrationWarning>
                 <RouteProvider>
                     <Theme>
                         <AuthProvider>
