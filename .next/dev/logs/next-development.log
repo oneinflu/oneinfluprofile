@@ -1,14 +1,47 @@
-[00:00:03.187] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.388] Server  LOG     ✓ Ready in 2.5s
-[00:00:03.391] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:02.163] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:02.451] Server  LOG     ✓ Ready in 2.2s
+[00:00:02.506] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:06.560] Server  LOG     ○ Compiling / ...
-[00:00:09.105] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:11.521] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:00:32.868] Server  LOG     ✓ Compiled in 261ms
-[00:02:28.462] Server  LOG     ✓ Compiled in 472ms
-[00:02:36.230] Server  LOG     ✓ Compiled in 262ms
-[00:02:46.297] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:04.632] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.652] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:35.367] Server  LOG     ✓ Compiled in 3s
+[00:01:06.957] Server  LOG     ✓ Compiled in 767ms
+[00:01:07.100] Browser ERROR   uncaughtError: ReferenceError: useAuth is not defined
+[00:01:14.821] Server  LOG     ✓ Compiled in 546ms
+[00:01:14.832] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:15.153] Browser ERROR   uncaughtError: ReferenceError: useAuth is not defined
+[00:01:16.399] Server  ERROR   ⨯ ReferenceError: useAuth is not defined
+[00:01:18.152] Browser ERROR   uncaughtError: ReferenceError: useAuth is not defined
+[00:01:20.522] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:20.524] Server  LOG     ✓ Compiled in 609ms
+[00:01:22.071] Browser ERROR   Failed to fetch applications {}
+[00:01:23.664] Server  LOG     ✓ Compiled in 653ms
+[00:01:23.772] Browser ERROR   ./src/app/admin/my-applications/page.tsx:12:10
+Ecmascript file had an error
+  10 | import { Calendar, Building02, ArrowRight } from "@untitledui/icons";
+  11 | import { Application } from "./components/ApplicationDetailsModal";
+> 12 | import { useAuth } from "@/providers/auth";
+     |          ^^^^^^^
+  13 |
+  14 | export default function MyApplicationsPage() {
+  15 |   const { token } = useAuth();
+
+the name `useAuth` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/my-applications/page.tsx [Client Component Browser]
+    ./src/app/admin/my-applications/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/my-applications/page.tsx [Client Component SSR]
+    ./src/app/admin/my-applications/page.tsx [Server Component]
+[00:01:28.880] Server  LOG     ✓ Finished filesystem cache database compaction in 10.8s
+[00:01:31.587] Server  LOG     ✓ Compiled in 300ms
+[00:01:52.766] Server  LOG     ✓ Compiled in 2.4s
+[00:02:31.622] Server  LOG     ✓ Compiled in 828ms
+[00:03:20.684] Server  LOG     ✓ Compiled in 273ms
+[00:03:41.232] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -26,7 +59,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -50,8 +83,9 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[00:04:27.737] Server  LOG     ✓ Compiled in 4s
-[00:04:37.561] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:04:48.535] Server  LOG     ✓ Compiled in 403ms
+[00:06:24.646] Browser ERROR   Application ID not found {"application":{"appliedAt":"2026-02-01T07:53:30.446Z","bringingPlusOne":false,"checkedIn":true,"checkedInAt":"2026-02-04T04:32:55.380Z","dashboardImageUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769932409/event_applications/c452be2a-54e2-423b-8172-7f48a7a7727b.png","doClientApprovalNeeded":false,"inviteCode":"RKVF9G","isInvitationShared":false,"plusOneName":null,"plusOnePhone":null,"shareProfessionalDashboard":true,"status":"invited","submittedLinks":[],"taskCompletion":false,"willingToAttend":true},"event":{"brandName":"ONEECO","city":"kk","code":"K9AZ5E2Z","creatorCountNeeded":39,"creatorCriteria":{"city":"kkk","minFollowers":10000,"niches":["kkk","kkk"]},"dashboardAccessRequired":true,"date":"2026-02-20T09:53:00.000Z","deliverables":[{"brandMusicProvided":false,"brandTagMandatory":true,"contentApprovalRequired":false,"deadline":{"date":null,"kind":"within_hours","value":24},"hashtagsRequired":true,"locationTagMandatory":true,"platform":"instagram","quantity":1,"type":"reel"}],"doClientApprovalNeeded":false,"entryType":"invite_only","eventName":"INFLU Launch","eventType":"barter","id":"697f06307a291cdc96b46d5a","inhouseFoodandBeverages":true,"invitationBannerUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1769933013/event_banners/d6e1dcd6-d331-4647-97e4-e5a35f0ff3a9.jpg","isGuestsAllowedplusone":true,"isLimitedMenu":true,"payment":null,"qrCheckinRequired":true,"slug":"cc","status":"finally_approved","user":"695534ca815ce71ec10e05ff","venue":"kk"}}
+[00:06:45.452] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -69,7 +103,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -93,17 +127,18 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[00:06:21.302] Server  LOG     ✓ Compiled in 877ms
-[00:06:41.288] Server  LOG     ✓ Compiled in 1252ms
-[00:06:41.554] Browser ERROR   uncaughtError: ReferenceError: useEffect is not defined
-[00:06:52.922] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:06:52.929] Server  LOG     ✓ Compiled in 188ms
-[00:07:17.231] Server  LOG     ✓ Compiled in 613ms
-[00:07:32.369] Server  LOG     ✓ Compiled in 310ms
-[00:07:57.127] Server  LOG     ✓ Compiled in 520ms
-[00:08:08.530] Server  LOG     ✓ Compiled in 307ms
-[00:08:13.309] Server  LOG     ✓ Compiled in 286ms
-[00:08:24.709] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:07:25.255] Server  LOG     ✓ Compiled in 554ms
+[00:07:53.668] Server  LOG     ○ Compiling /admin/my-applications/[id] ...
+[00:07:57.956] Server  LOG     ✓ Compiled in 316ms
+[00:08:19.732] Server  LOG     ✓ Compiled in 423ms
+[00:08:52.176] Server  LOG     ✓ Compiled in 237ms
+[00:10:43.395] Server  LOG     ✓ Compiled in 1382ms
+[00:11:11.523] Server  LOG     ✓ Compiled in 255ms
+[00:11:27.216] Server  LOG     ✓ Compiled in 241ms
+[00:11:33.780] Server  LOG     ✓ Compiled in 787ms
+[00:13:57.638] Server  LOG     ✓ Compiled in 1646ms
+[00:14:28.909] Server  LOG     ✓ Compiled in 616ms
+[00:15:07.385] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -121,7 +156,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/my-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -145,220 +180,11 @@ It can also happen if the client has a browser extension installed which messes 
                           >
                   ...
 
-[00:09:16.799] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:09:43.006] Server  LOG     ✓ Compiled in 876ms
-[00:13:39.383] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:14:06.151] Server  LOG     ✓ Compiled in 1471ms
-[00:14:23.017] Server  LOG     ✓ Finished filesystem cache database compaction in 11.4s
-[00:15:06.108] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:15:44.780] Server  LOG     ✓ Compiled in 616ms
-[00:18:23.087] Server  LOG     ✓ Compiled in 1042ms
-[00:18:30.654] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:20:55.689] Server  LOG     ✓ Compiled in 330ms
-[00:21:14.723] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/creator/o..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head>
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="layout.tsx">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en" suppressHydrationWarning={true}>
-                          <head>
-                          <body
-                            className="inter_2fe1ab3d-module__-T-KAq__variable bg-primary antialiased"
--                           cz-shortcut-listen="true"
-                          >
-                  ...
-
-[00:24:52.074] Server  LOG     ✓ Compiled in 919ms
+[00:17:38.814] Server  LOG     ✓ Compiled in 1380ms
+[00:19:27.283] Browser ERROR   Camera error: {}
+[00:19:40.914] Server  LOG     ✓ Compiled in 1429ms
+[00:21:54.555] Server  LOG     ✓ Compiled in 628ms
+[00:25:10.121] Server  LOG     ✓ Compiled in 665ms
+[00:25:53.885] Server  LOG     ✓ Compiled in 636ms
+[00:26:35.224] Server  LOG     ✓ Compiled in 343ms
+[00:27:34.723] Server  LOG     ✓ Compiled in 291ms

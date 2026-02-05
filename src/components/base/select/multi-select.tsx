@@ -13,7 +13,7 @@ import type { IconComponentType } from "@/components/base/badges/badge-types";
 import { HintText } from "@/components/base/input/hint-text";
 import { Label } from "@/components/base/input/label";
 import { Popover } from "@/components/base/select/popover";
-import { type SelectItemType, sizes } from "@/components/base/select/select";
+import { type SelectItemType, sizes } from "@/components/base/select/select-context";
 import { TagCloseX } from "@/components/base/tags/base-components/tag-close-x";
 import { useResizeObserver } from "@/hooks/use-resize-observer";
 import { cx } from "@/utils/cx";

@@ -7,8 +7,7 @@ import { ListBoxItem as AriaListBoxItem, Text as AriaText } from "react-aria-com
 import { Avatar } from "@/components/base/avatar/avatar";
 import { cx } from "@/utils/cx";
 import { isReactComponent } from "@/utils/is-react-component";
-import type { SelectItemType } from "./select";
-import { SelectContext } from "./select";
+import { type SelectItemType, SelectContext } from "./select-context";
 
 const sizes = {
     sm: "p-2 pr-2.5",

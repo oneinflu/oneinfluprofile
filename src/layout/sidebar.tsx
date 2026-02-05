@@ -97,13 +97,28 @@ export const AppSidebar = () => {
     }, [token, getMe]);
 
     const isProfessional = category === "Professional";
-    const navItemsSimple: NavItemType[] = isProfessional
-        ? [...baseNavItems, ...professionalNavItems]
-        : [
+    
+    let navItemsSimple: NavItemType[] = [];
+    
+    if (isProfessional) {
+        navItemsSimple = [...baseNavItems, ...professionalNavItems];
+    } else {
+        const myEventsItem: NavItemType = category === "Creator" 
+            ? {
+                label: "My Events",
+                icon: Calendar,
+                items: [
+                    { label: "My Applications", href: "/admin/my-applications" }
+                ]
+              }
+            : { label: "My Events", href: "/admin/campaigns", icon: Calendar };
+
+        navItemsSimple = [
               ...baseNavItems.slice(0, 2),
-              { label: "My Events", href: "/admin/campaigns", icon: Calendar },
+              myEventsItem,
               ...baseNavItems.slice(2),
-          ];
+        ];
+    }
     return (
         <SidebarNavigationSimple
             items={navItemsSimple}
