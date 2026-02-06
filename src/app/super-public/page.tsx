@@ -5,6 +5,8 @@ import { api } from "@/utils/api";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { SearchLg } from "@untitledui/icons";
+// @ts-ignore
+import NotificationSubscriber from "../../NotificationSubscriber";
 
 export default function SuperPublicPage() {
     const [creators, setCreators] = useState<any[]>([]);
@@ -202,6 +204,12 @@ export default function SuperPublicPage() {
                             </tbody>
                         </table>
                     </div>
+                </section>
+
+                {/* Section 4: Notifications */}
+                <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 max-w-xl">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-6">Notifications</h2>
+                    <NotificationSubscriber />
                 </section>
             </div>
         </div>
