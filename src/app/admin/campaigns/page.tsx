@@ -78,8 +78,10 @@ export default function AdminCampaignsPage() {
         }>
     >([]);
     const [paymentType, setPaymentType] = useState<"range" | "fixed" | "variable" | null>(null);
+    const [fixedAmount, setFixedAmount] = useState<number | undefined>(undefined);
     const [minAmount, setMinAmount] = useState<number | undefined>(undefined);
     const [maxAmount, setMaxAmount] = useState<number | undefined>(undefined);
+    const [currency, setCurrency] = useState("INR");
     const [timeline, setTimeline] = useState<string | null>(null);
     const [invoiceRequired, setInvoiceRequired] = useState(false);
     const [isGuestsAllowedplusone, setIsGuestsAllowedplusone] = useState(true);
@@ -169,8 +171,10 @@ export default function AdminCampaignsPage() {
         setDoClientApprovalNeeded(false);
         setDeliverables([]);
         setPaymentType(null);
+        setFixedAmount(undefined);
         setMinAmount(undefined);
         setMaxAmount(undefined);
+        setCurrency("INR");
         setTimeline(null);
         setInvoiceRequired(false);
         setIsGuestsAllowedplusone(true);
@@ -194,9 +198,8 @@ export default function AdminCampaignsPage() {
         if (rawDate) {
             const d = new Date(rawDate);
             if (!Number.isNaN(d.getTime())) {
-                const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
                 const pad = (n: number) => String(n).padStart(2, "0");
-                const s = `${local.getFullYear()}-${pad(local.getMonth() + 1)}-${pad(local.getDate())}T${pad(local.getHours())}:${pad(local.getMinutes())}`;
+                const s = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
                 setDateLocal(s);
             } else {
                 setDateLocal("");
@@ -220,6 +223,9 @@ export default function AdminCampaignsPage() {
         setDashboardAccessRequired(Boolean((e as any).dashboardAccessRequired));
         setQrCheckinRequired(Boolean((e as any).qrCheckinRequired));
         setDoClientApprovalNeeded(Boolean((e as any).doClientApprovalNeeded));
+        setIsGuestsAllowedplusone(Boolean((e as any).isGuestsAllowedplusone));
+        setIsLimitedMenu(Boolean((e as any).isLimitedMenu));
+        setInhouseFoodandBeverages(Boolean((e as any).inhouseFoodandBeverages));
         const ds = Array.isArray((e as any).deliverables) ? ((e as any).deliverables as any[]) : [];
         setDeliverables(
             ds.map((d) => ({
@@ -241,14 +247,18 @@ export default function AdminCampaignsPage() {
         if ((e as any).eventType === "paid" && (e as any).payment) {
             const p = (e as any).payment;
             setPaymentType((p.type as "fixed" | "range" | "variable" | null) ?? null);
+            setFixedAmount(typeof p.fixedAmount === "number" ? (p.fixedAmount as number) : undefined);
             setMinAmount(typeof p.minAmount === "number" ? (p.minAmount as number) : undefined);
             setMaxAmount(typeof p.maxAmount === "number" ? (p.maxAmount as number) : undefined);
+            setCurrency(p.currency || "INR");
             setTimeline((p.timeline as string | null) ?? null);
             setInvoiceRequired(Boolean(p.invoiceRequired));
         } else {
             setPaymentType(null);
+            setFixedAmount(undefined);
             setMinAmount(undefined);
             setMaxAmount(undefined);
+            setCurrency("INR");
             setTimeline(null);
             setInvoiceRequired(false);
         }
@@ -331,8 +341,10 @@ export default function AdminCampaignsPage() {
                     ? {
                           payment: {
                               type: paymentType,
+                              fixedAmount: Number(fixedAmount || 0),
                               minAmount: Number(minAmount || 0),
                               maxAmount: Number(maxAmount || 0),
+                              currency,
                               timeline,
                               invoiceRequired,
                           },
@@ -1042,22 +1054,35 @@ export default function AdminCampaignsPage() {
                                             >
                                                 {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
                                             </Select>
-                                            <Input
-                                                size="md"
-                                                label="Min amount"
-                                                type="number"
-                                                placeholder="5000"
-                                                value={String(minAmount ?? "")}
-                                                onChange={(v) => setMinAmount(Number(v || 0) || undefined)}
-                                            />
-                                            <Input
-                                                size="md"
-                                                label="Max amount"
-                                                type="number"
-                                                placeholder="10000"
-                                                value={String(maxAmount ?? "")}
-                                                onChange={(v) => setMaxAmount(Number(v || 0) || undefined)}
-                                            />
+                                            {paymentType === "fixed" ? (
+                                                <Input
+                                                    size="md"
+                                                    label="Fixed amount"
+                                                    type="number"
+                                                    placeholder="5000"
+                                                    value={String(fixedAmount ?? "")}
+                                                    onChange={(v) => setFixedAmount(Number(v || 0) || undefined)}
+                                                />
+                                            ) : (
+                                                <>
+                                                    <Input
+                                                        size="md"
+                                                        label="Min amount"
+                                                        type="number"
+                                                        placeholder="5000"
+                                                        value={String(minAmount ?? "")}
+                                                        onChange={(v) => setMinAmount(Number(v || 0) || undefined)}
+                                                    />
+                                                    <Input
+                                                        size="md"
+                                                        label="Max amount"
+                                                        type="number"
+                                                        placeholder="10000"
+                                                        value={String(maxAmount ?? "")}
+                                                        onChange={(v) => setMaxAmount(Number(v || 0) || undefined)}
+                                                    />
+                                                </>
+                                            )}
                                             <Select
                                                 size="md"
                                                 label="Payment Timeline"
