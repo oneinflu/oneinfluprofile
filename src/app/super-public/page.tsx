@@ -16,6 +16,9 @@ export default function SuperPublicPage() {
     const [eventStatsLoading, setEventStatsLoading] = useState(false);
     const [eventStatsError, setEventStatsError] = useState("");
 
+    const [applicants, setApplicants] = useState<any[]>([]);
+    const [applicantsLoading, setApplicantsLoading] = useState(false);
+
     const fetchCreators = async () => {
         setCreatorsLoading(true);
         try {
@@ -38,24 +41,35 @@ export default function SuperPublicPage() {
         fetchCreators();
     }, []);
 
-    const fetchEventStats = async () => {
+    const fetchApplicants = async () => {
         if (!eventCode) return;
+        setApplicantsLoading(true);
         setEventStatsLoading(true);
-        setEventStatsError("");
+        setApplicants([]);
         setEventStats(null);
+        setEventStatsError("");
         try {
-            const res: any = await api.get(`/events/public/code/${eventCode}/applications/counts`);
-            // Example: { success: true, data: { totalApplications: 56, ... } }
+            const res: any = await api.get(`/events/public/code/${eventCode}/applicants/checkedin`);
             const payload = res.data || res;
             if (payload) {
-                setEventStats(payload);
+                if (payload.applications) {
+                    setApplicants(payload.applications);
+                }
+                if (payload.counts) {
+                    setEventStats(payload.counts);
+                }
             }
         } catch (e) {
-            console.error("Failed to fetch event stats", e);
-            setEventStatsError("Failed to fetch stats. Check event code.");
+            console.error("Failed to fetch applicants", e);
+            setEventStatsError("Failed to fetch data. Check event code.");
         } finally {
+            setApplicantsLoading(false);
             setEventStatsLoading(false);
         }
+    };
+
+    const handleCheck = () => {
+        fetchApplicants();
     };
 
     return (
@@ -125,7 +139,7 @@ export default function SuperPublicPage() {
                                 onChange={(val) => setEventCode(val)}
                             />
                         </div>
-                        <Button onClick={fetchEventStats} disabled={eventStatsLoading || !eventCode} iconLeading={SearchLg}>
+                        <Button onClick={handleCheck} disabled={eventStatsLoading || applicantsLoading || !eventCode} iconLeading={SearchLg}>
                             Check
                         </Button>
                      </div>
@@ -139,11 +153,55 @@ export default function SuperPublicPage() {
                      {eventStats && (
                          <div className="grid grid-cols-2 gap-4">
                              <StatCard label="Total Applications" value={eventStats.totalApplications} />
-                             <StatCard label="Applied" value={eventStats.applied} />
-                             <StatCard label="Shortlisted" value={eventStats.shortlisted} />
+                             <StatCard label="Not Invited" value={eventStats.applied} />
                              <StatCard label="Invited" value={eventStats.invited} />
+                             <StatCard label="Checkin" value={eventStats.checkedIn} />
                          </div>
                      )}
+                </section>
+
+                {/* Section 3: Checked-in Applicants */}
+                <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-6">Checked-in Applicants</h2>
+                    <div className="overflow-x-auto rounded-lg border border-gray-100">
+                        <table className="w-full text-left text-sm text-gray-600">
+                            <thead className="bg-gray-50 text-gray-900 font-medium">
+                                <tr>
+                                    <th className="px-4 py-3 border-b border-gray-200">Name</th>
+                                    <th className="px-4 py-3 border-b border-gray-200">Instagram</th>
+                                    <th className="px-4 py-3 border-b border-gray-200">Phone</th>
+                                    <th className="px-4 py-3 border-b border-gray-200">Checked In At</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100">
+                                {applicantsLoading ? (
+                                    <tr><td colSpan={4} className="px-4 py-8 text-center text-gray-500">Loading...</td></tr>
+                                ) : applicants.length === 0 ? (
+                                    <tr><td colSpan={4} className="px-4 py-8 text-center text-gray-500">No applicants found</td></tr>
+                                ) : (
+                                    applicants.map((app) => (
+                                        <tr key={app.applicationId} className="hover:bg-gray-50 transition-colors">
+                                            <td className="px-4 py-3 font-medium text-gray-900 flex items-center gap-2">
+                                                {app.user?.avatarUrl && <img src={app.user.avatarUrl} alt="" className="w-6 h-6 rounded-full" />}
+                                                {app.user?.name || app.user?.username || "-"}
+                                            </td>
+                                            <td className="px-4 py-3 text-blue-600">
+                                                 {app.instagramUrl ? (
+                                                    <a href={app.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                                                        {app.instagramHandle || "Link"}
+                                                    </a>
+                                                ) : "-"}
+                                            </td>
+                                            <td className="px-4 py-3 font-mono text-gray-600">{(app.user as any).phone || "-"}</td>
+                                            <td className="px-4 py-3 text-gray-500">
+                                                {app.checkedInAt ? new Date(app.checkedInAt).toLocaleString() : "-"}
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </div>
         </div>
