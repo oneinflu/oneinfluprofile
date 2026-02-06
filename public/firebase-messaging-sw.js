@@ -1,14 +1,7 @@
-getToken(messaging, { vapidKey: 'BJxIqaSbyq-7PHeE0r799GvMJVc3586UXAqgB_FLqqmYt_2ZtbFmQBb0p5rD8gQT4fqsnIL5BiMnRZP_ety0Tlo' })
-
-// firebase-messaging-sw.js
-
-// Import the Firebase SDK for Firebase Cloud Messaging.
-// Make sure to use the 'messaging/sw' path for the service worker.
-import { initializeApp } from 'firebase/app';
-import { getMessaging } from 'firebase/messaging/sw';
+importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js');
 
 // Your web app's Firebase configuration
-// (Replace these with your actual configuration values from the Firebase console)
 const firebaseConfig = {
   apiKey: "AIzaSyAY2x1tyeFVHxl2jSqBgEvUNmdNiDKV3T0",
   authDomain: "oneinfluapp.firebaseapp.com",
@@ -19,36 +12,45 @@ const firebaseConfig = {
   measurementId: "G-HV9VTX2ZD1"
 };
 
-// Initialize the Firebase app in the service worker
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 // Retrieve an instance of Firebase Messaging for the service worker
-const messaging = getMessaging(app);
+const messaging = firebase.messaging();
 
-// Optional: Handle background messages
-// This function is called when a push message is received while your app is in the background.
+// Handle background messages
 messaging.onBackgroundMessage((payload) => {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
 
-  // Customize notification here
   const notificationTitle = payload.notification.title || 'Background Message Title';
   const notificationOptions = {
     body: payload.notification.body || 'Background Message Body',
-    icon: '/firebase-logo.png' // You can specify an icon for the notification
-    // Add other options like image, actions, etc.
+    icon: '/firebase-logo.png' // Ensure this icon exists or remove/change it
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-// Optional: Handle notification clicks (e.g., open a URL)
+// Handle notification clicks
 self.addEventListener('notificationclick', (event) => {
   console.log('[firebase-messaging-sw.js] Notification clicked', event);
-  event.notification.close(); // Close the notification
+  event.notification.close();
 
-  // Example: Open a URL when the notification is clicked
-  if (event.action === 'open_url' || event.notification.data?.url) {
-    const urlToOpen = event.notification.data.url || 'https://oneinflu.com'; // Your website URL
-    event.waitUntil(clients.openWindow(urlToOpen));
-  }
+  // Open the app when notification is clicked
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
+      // Check if there is already a window open and focus it
+      for (let i = 0; i < windowClients.length; i++) {
+        const client = windowClients[i];
+        if (client.url.includes('oneinflu.com') && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      // If no window is open, open a new one
+      if (clients.openWindow) {
+        const urlToOpen = event.notification.data?.url || '/';
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
 });
