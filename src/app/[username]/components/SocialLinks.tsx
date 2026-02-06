@@ -30,32 +30,56 @@ export function SocialLinks({ links }: SocialLinksProps) {
       telegram: "/telegram.png",
       threads: "/threads.png",
       website: "/web.png",
-      web: "/web.png"
+      web: "/web.png",
+      snapchat: "/logo.png", // Using logo.png as seen in other files for snapchat, or generic
+      google: "/google.png",
+      "google-business": "/google.png"
     };
     return map[p] || "/web.png";
   };
 
   const getDisplayHandle = (link: SocialLink) => {
     try {
-      const urlObj = new URL(link.url.startsWith('http') ? link.url : `https://${link.url}`);
-      const path = urlObj.pathname;
-      
-      // Instagram / Twitter / TikTok / Threads
-      if (['instagram', 'twitter', 'x', 'tiktok', 'threads'].some(p => link.platform.toLowerCase().includes(p))) {
-        const handle = path.split('/').filter(Boolean)[0];
+      let urlStr = link.url;
+      if (!urlStr.startsWith('http')) {
+        urlStr = `https://${urlStr}`;
+      }
+      const urlObj = new URL(urlStr);
+      const path = urlObj.pathname.replace(/\/$/, ""); // Remove trailing slash
+      const platform = link.platform.toLowerCase();
+
+      // Helper to extract last segment
+      const getLastSegment = () => path.split('/').filter(Boolean).pop();
+
+      if (platform.includes('instagram') || platform.includes('twitter') || platform.includes('x') || platform.includes('tiktok') || platform.includes('threads') || platform.includes('pinterest') || platform.includes('telegram')) {
+        const handle = getLastSegment();
         return handle ? `@${handle}` : link.platform;
       }
       
-      // YouTube
-      if (link.platform.toLowerCase().includes('youtube')) {
-        if (path.includes('@')) return path.split('@')[1] ? `@${path.split('@')[1]}` : link.platform;
-        return link.platform;
+      if (platform.includes('youtube')) {
+        // Handle /c/, /user/, /channel/, /@username
+        if (path.includes('/@')) {
+          return `@${path.split('/@')[1]}`;
+        }
+        const handle = getLastSegment();
+        return handle ? `@${handle}` : link.platform;
       }
 
-      // LinkedIn
-      if (link.platform.toLowerCase().includes('linkedin')) {
-        const parts = path.split('/').filter(Boolean);
-        return parts.length > 1 ? parts[parts.length - 1] : link.platform;
+      if (platform.includes('linkedin')) {
+        // Handle /in/username or /company/name
+        const handle = getLastSegment();
+        return handle ? handle : link.platform;
+      }
+
+      if (platform.includes('facebook')) {
+        const handle = getLastSegment();
+        return handle ? handle : link.platform;
+      }
+
+      // Default: try to get the last segment if it looks like a user profile
+      const segments = path.split('/').filter(Boolean);
+      if (segments.length > 0) {
+        return segments[segments.length - 1];
       }
 
       return link.platform;

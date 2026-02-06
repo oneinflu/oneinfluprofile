@@ -719,6 +719,13 @@ export default function EventInviteClient() {
     const deliverables = Array.isArray(event.deliverables) ? event.deliverables : [];
     const isDark = mounted && resolvedTheme === "dark";
     const themeLabel = isDark ? "Switch to light" : "Switch to dark";
+    const isExpired = event?.date ? (() => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const eventDate = new Date(event.date);
+        eventDate.setHours(0, 0, 0, 0);
+        return today > eventDate;
+    })() : false;
 
     return (
         <main className="min-h-screen w-full bg-[#F2F4F7] dark:bg-[#0C111D] sm:py-8 flex items-center justify-center font-sans">
@@ -978,367 +985,396 @@ export default function EventInviteClient() {
 
                     {/* Footer / CTA */}
                     <div className="mt-auto pt-8">
-                        <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                           By Proceeding you are agreeing to the terms and conditions of host
-                        </p>
-                        
-                        <div className="flex gap-2 justify-center">
-                            <DialogTrigger>
-                                <Button
-                                    size="lg"
-                                    color="primary"
-                                    className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
-                                    iconLeading={ArrowRight}
-                                >
-                                    {step === "success" ? "Already Applied" : "Apply for Invitation"}
-                                </Button>
-                                <BottomSheetOverlay className={isFocused ? "!items-center" : ""}>
-                                    <BottomSheetModal>
-                                        <Dialog className="outline-none">
-                                            {({ close }) => (
-                                                <div className="w-full pb-20">
-                                                    {step === "phone" && (
-                                                        <>
-                                                            <div className="text-center mb-6">
-                                                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
-                                                                    <User01 className="w-6 h-6" />
-                                                                </div>
-                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                    Enter Phone Number
-                                                                </h3>
-                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                    Please enter your 10-digit phone number to continue with the application.
-                                                                </p>
-                                                            </div>
-
-                                                            <div className="space-y-6">
-                                                                <div className="flex justify-center px-4">
-                                                                    <Input
-                                                                        type="tel"
-                                                                        maxLength={10}
-                                                                        inputMode="numeric"
-                                                                        placeholder="XXXXXXXXXX"
-                                                                        value={phoneNumber}
-                                                                        onFocus={() => setIsFocused(true)}
-                                                                        onBlur={() => setIsFocused(false)}
-                                                                        onChange={(val) => {
-                                                                            // Allow only numbers
-                                                                            if (/^\d*$/.test(val) && val.length <= 10) {
-                                                                                setPhoneNumber(val);
-                                                                                if (val.length === 10) setPhoneError("");
-                                                                            }
-                                                                        }}
-                                                                        isInvalid={!!phoneError}
-                                                                        inputClassName="text-center text-xl tracking-[0.2em] font-mono"
-                                                                        size="md"
-                                                                    />
-                                                                </div>
-                                                                
-                                                                {phoneError && (
-                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
-                                                                        {phoneError}
-                                                                    </p>
-                                                                )}
-
-                                                                <div className="grid grid-cols-2 gap-3 pt-2">
-                                                                    <Button 
-                                                                        size="lg" 
-                                                                        color="secondary" 
-                                                                        onClick={close}
-                                                                        className="w-full"
-                                                                    >
-                                                                        Cancel
-                                                                    </Button>
-                                                                    <Button 
-                                                                        size="lg" 
-                                                                        color="primary" 
-                                                                        onClick={handleContinue}
-                                                                        className="w-full"
-                                                                    >
-                                                                        Continue
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                    )}
-
-                                                    {step === "otp" && (
-                                                        <>
-                                                            <div className="text-center mb-6">
-                                                                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
-                                                                    <CheckDone01 className="w-6 h-6" />
-                                                                </div>
-                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                    Verify OTP
-                                                                </h3>
-                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                    OTP has been sent to XXXXXXX{phoneNumber.slice(-3)}
-                                                                </p>
-                                                            </div>
-
-                                                            <div className="space-y-6">
-                                                                <div className="flex justify-center">
-                                                                    <PinInput>
-                                                                        <PinInput.Group 
-                                                                            maxLength={6} 
-                                                                            className="flex gap-2 justify-center flex-wrap"
-                                                                            value={otp} 
-                                                                            onFocus={() => setIsFocused(true)}
-                                                                            onBlur={() => setIsFocused(false)}
-                                                                            onChange={(val) => {
-                                                                                setOtp(val);
-                                                                                if (val.length === 6) setOtpError("");
-                                                                            }}
-                                                                        >
-                                                                            {Array.from({ length: 6 }).map((_, i) => (
-                                                                                <PinInput.Slot 
-                                                                                    key={i} 
-                                                                                    index={i} 
-                                                                                    className="w-10 h-12 text-xl rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" 
-                                                                                />
-                                                                            ))}
-                                                                        </PinInput.Group>
-                                                                    </PinInput>
-                                                                </div>
-                                                                
-                                                                {otpError && (
-                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
-                                                                        {otpError}
-                                                                    </p>
-                                                                )}
-
-                                                                <div className="grid grid-cols-2 gap-3 pt-2">
-                                                                    <Button 
-                                                                        size="lg" 
-                                                                        color="secondary" 
-                                                                        onClick={handleBack}
-                                                                        className="w-full"
-                                                                    >
-                                                                        Back
-                                                                    </Button>
-                                                                    <Button 
-                                                                        size="lg" 
-                                                                        color="primary" 
-                                                                        onClick={handleVerify}
-                                                                        className="w-full"
-                                                                    >
-                                                                        Verify
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                    )}
-
-                                                    {step === "notifications" && (
-                                                        <>
-                                                            <div className="text-center mb-6">
-                                                                <div className="mx-auto w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
-                                                                    {notificationEnabled ? (
-                                                                        <CheckDone01 className="w-6 h-6 text-green-600 dark:text-green-400" />
-                                                                    ) : (
-                                                                        <Bell01 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                                                                    )}
-                                                                </div>
-                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                    {notificationEnabled ? "Notifications Enabled!" : "Enable Notifications"}
-                                                                </h3>
-                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                    {notificationEnabled 
-                                                                        ? "Great! You'll receive updates about your application status."
-                                                                        : "Stay updated with real-time alerts for your event application status and exclusive opportunities."
-                                                                    }
-                                                                </p>
-                                                            </div>
-
-                                                            <div className="space-y-4">
-                                                                {!notificationEnabled && !isSubscribing ? (
-                                                                    <>
-                                                                        <Button 
-                                                                            size="lg" 
-                                                                            color="primary" 
-                                                                            className="w-full"
-                                                                            onClick={handleSubscribe}
-                                                                        >
-                                                                            Enable Notifications
-                                                                        </Button>
-                                                                        <Button 
-                                                                            size="lg" 
-                                                                            color="secondary" 
-                                                                            className="w-full border-none shadow-none bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800"
-                                                                            onClick={() => setStep("details")}
-                                                                        >
-                                                                            Skip for now
-                                                                        </Button>
-                                                                    </>
-                                                                ) : (
-                                                                    <div className="flex justify-center">
-                                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                        {isExpired ? (
+                            <div className="flex flex-col gap-4 w-full">
+                                <div className="text-center p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800">
+                                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 mb-4">
+                                        <Calendar className="w-6 h-6" />
+                                    </div>
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                                        Registrations Closed
+                                    </h3>
+                                    <p className="font-medium text-gray-900 dark:text-white mb-1">
+                                        This event is over and registrations are closed
+                                    </p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                                        Register with INFLU for upcoming events
+                                    </p>
+                                    <Button
+                                        size="lg"
+                                        color="primary"
+                                        className="w-full"
+                                        onClick={() => router.push('/register')}
+                                    >
+                                        Register Now
+                                    </Button>
+                                </div>
+                            </div>
+                        ) : (
+                            <>
+                                <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                                   By Proceeding you are agreeing to the terms and conditions of host
+                                </p>
+                                
+                                <div className="flex gap-2 justify-center">
+                                    <DialogTrigger>
+                                        <Button
+                                            size="lg"
+                                            color="primary"
+                                            className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
+                                            iconLeading={ArrowRight}
+                                        >
+                                            {step === "success" ? "Already Applied" : "Apply for Invitation"}
+                                        </Button>
+                                        <BottomSheetOverlay className={isFocused ? "!items-center" : ""}>
+                                            <BottomSheetModal>
+                                                <Dialog className="outline-none">
+                                                    {({ close }) => (
+                                                        <div className="w-full pb-20">
+                                                            {step === "phone" && (
+                                                                <>
+                                                                    <div className="text-center mb-6">
+                                                                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
+                                                                            <User01 className="w-6 h-6" />
+                                                                        </div>
+                                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                            Enter Phone Number
+                                                                        </h3>
+                                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                            Please enter your 10-digit phone number to continue with the application.
+                                                                        </p>
                                                                     </div>
-                                                                )}
-                                                            </div>
-                                                        </>
-                                                    )}
 
-                                                    {step === "details" && (
-                                                        <>
-                                                            <div className="text-center mb-6">
-                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                    Complete your profile
-                                                                </h3>
-                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                    Tell us a bit about yourself
-                                                                </p>
-                                                            </div>
-
-                                                            <div className="space-y-6">
-                                                                <div className="flex flex-col items-center gap-4">
-                                                                    <div className="relative group cursor-pointer">
-                                                                        <input 
-                                                                            type="file" 
-                                                                            accept="image/*" 
-                                                                            className="hidden" 
-                                                                            id="avatar-upload"
-                                                                            onChange={handlePhotoChange}
-                                                                        />
-                                                                        <label htmlFor="avatar-upload" className="cursor-pointer block relative">
-                                                                            <Avatar 
-                                                                                size="xl" 
-                                                                                src={photoPreview} 
-                                                                                placeholderIcon={User01}
-                                                                                className="w-24 h-24"
+                                                                    <div className="space-y-6">
+                                                                        <div className="flex justify-center px-4">
+                                                                            <Input
+                                                                                type="tel"
+                                                                                maxLength={10}
+                                                                                inputMode="numeric"
+                                                                                placeholder="XXXXXXXXXX"
+                                                                                value={phoneNumber}
+                                                                                onFocus={() => setIsFocused(true)}
+                                                                                onBlur={() => setIsFocused(false)}
+                                                                                onChange={(val) => {
+                                                                                    // Allow only numbers
+                                                                                    if (/^\d*$/.test(val) && val.length <= 10) {
+                                                                                        setPhoneNumber(val);
+                                                                                        if (val.length === 10) setPhoneError("");
+                                                                                    }
+                                                                                }}
+                                                                                isInvalid={!!phoneError}
+                                                                                inputClassName="text-center text-xl tracking-[0.2em] font-mono"
+                                                                                size="md"
                                                                             />
-                                                                            <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                                                <Camera01 className="w-8 h-8 text-white" />
-                                                                            </div>
-                                                                            <div className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md border border-gray-200 dark:border-gray-700">
-                                                                                <Camera01 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
+                                                                        </div>
+                                                                        
+                                                                        {phoneError && (
+                                                                            <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                                {phoneError}
+                                                                            </p>
+                                                                        )}
 
-                                                                <Input 
-                                                                    placeholder="Full Name" 
-                                                                    value={name}
-                                                                    onChange={setName}
-                                                                />
-
-                                                                <Input 
-                                                                    placeholder="username" 
-                                                                    icon={Instagram}
-                                                                    value={instagramHandle}
-                                                                    onChange={setInstagramHandle}
-                                                                />
-
-                                                                <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
-                                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Willing to attend event?</span>
-                                                                    <Toggle isSelected={willingToAttend} onChange={setWillingToAttend} />
-                                                                </div>
-
-                                                                {event?.dashboardAccessRequired === true && (
-                                                                    <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
-                                                                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Share professional dashboard?</span>
-                                                                        <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
-                                                                    </div>
-                                                                )}
-
-                                                                {detailsError && (
-                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
-                                                                        {detailsError}
-                                                                    </p>
-                                                                )}
-
-                                                                <div className="pt-2">
-                                                                    <Button 
-                                                                        size="lg" 
-                                                                        color="primary" 
-                                                                        onClick={handleDetailsSubmit} 
-                                                                        className="w-full"
-                                                                        disabled={isSubmittingDetails}
-                                                                    >
-                                                                        {isSubmittingDetails ? "Processing..." : "Next Step"}
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                    )}
-
-                                                    {step === "dashboard" && (
-                                                        <>
-                                                            <div className="text-center mb-6">
-                                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                    One Last Step
-                                                                </h3>
-                                                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                    Upload your professional dashboard screenshot
-                                                                </p>
-                                                            </div>
-
-                                                            <div className="space-y-6">
-                                                                {dashboardScreenshot ? (
-                                                                    <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
-                                                                        <img src={dashboardPreview!} alt="Dashboard" className="w-full h-48 object-cover" />
-                                                                        <button 
-                                                                            onClick={handleRemoveDashboard}
-                                                                            className="absolute top-2 right-2 p-2 bg-white/90 rounded-full shadow-sm hover:bg-red-50 text-red-500"
-                                                                        >
-                                                                            <Trash01 className="w-4 h-4" />
-                                                                        </button>
-                                                                        <div className="p-3 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex items-center gap-2">
-                                                                            <CheckCircle className="w-5 h-5 text-green-500" />
-                                                                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Ready to submit</span>
+                                                                        <div className="grid grid-cols-2 gap-3 pt-2">
+                                                                            <Button 
+                                                                                size="lg" 
+                                                                                color="secondary" 
+                                                                                onClick={close}
+                                                                                className="w-full"
+                                                                            >
+                                                                                Cancel
+                                                                            </Button>
+                                                                            <Button 
+                                                                                size="lg" 
+                                                                                color="primary" 
+                                                                                onClick={handleContinue}
+                                                                                className="w-full"
+                                                                            >
+                                                                                Continue
+                                                                            </Button>
                                                                         </div>
                                                                     </div>
-                                                                ) : (
-                                                                    <FileUpload.DropZone 
-                                                                        onDropFiles={handleDashboardDrop}
-                                                                        accept="image/*"
-                                                                        hint="Upload screenshot (PNG, JPG)"
-                                                                        allowsMultiple={false}
-                                                                    />
-                                                                )}
+                                                                </>
+                                                            )}
 
-                                                                <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl p-4 border border-blue-100 dark:border-blue-900/20">
-                                                                    <h4 className="text-sm font-bold text-blue-800 dark:text-blue-300 mb-2">Dos & Don'ts</h4>
-                                                                    <ul className="space-y-2 text-xs text-blue-700 dark:text-blue-400">
-                                                                        <li className="flex items-start gap-2">
-                                                                            <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                                                                            <span>Ensure metrics are clearly visible</span>
-                                                                        </li>
-                                                                        <li className="flex items-start gap-2">
-                                                                            <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                                                                            <span>Capture recent data (last 30 days)</span>
-                                                                        </li>
-                                                                        <li className="flex items-start gap-2">
-                                                                            <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                                                                            <span>Don't crop out the profile name</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                            {step === "otp" && (
+                                                                <>
+                                                                    <div className="text-center mb-6">
+                                                                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
+                                                                            <CheckDone01 className="w-6 h-6" />
+                                                                        </div>
+                                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                            Verify OTP
+                                                                        </h3>
+                                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                            OTP has been sent to XXXXXXX{phoneNumber.slice(-3)}
+                                                                        </p>
+                                                                    </div>
 
-                                                                {dashboardError && (
-                                                                    <p className="text-center text-sm text-red-500 dark:text-red-400">
-                                                                        {dashboardError}
-                                                                    </p>
-                                                                )}
+                                                                    <div className="space-y-6">
+                                                                        <div className="flex justify-center">
+                                                                            <PinInput>
+                                                                                <PinInput.Group 
+                                                                                    maxLength={6} 
+                                                                                    className="flex gap-2 justify-center flex-wrap"
+                                                                                    value={otp} 
+                                                                                    onFocus={() => setIsFocused(true)}
+                                                                                    onBlur={() => setIsFocused(false)}
+                                                                                    onChange={(val) => {
+                                                                                        setOtp(val);
+                                                                                        if (val.length === 6) setOtpError("");
+                                                                                    }}
+                                                                                >
+                                                                                    {Array.from({ length: 6 }).map((_, i) => (
+                                                                                        <PinInput.Slot 
+                                                                                            key={i} 
+                                                                                            index={i} 
+                                                                                            className="w-10 h-12 text-xl rounded-lg border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" 
+                                                                                        />
+                                                                                    ))}
+                                                                                </PinInput.Group>
+                                                                            </PinInput>
+                                                                        </div>
+                                                                        
+                                                                        {otpError && (
+                                                                            <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                                {otpError}
+                                                                            </p>
+                                                                        )}
 
-                                                                <div className="pt-2">
-                                                                    <Button size="lg" color="primary" onClick={handleFinalSubmit} className="w-full">
-                                                                        Apply for the event
-                                                                    </Button>
-                                                                </div>
-                                                            </div>
-                                                        </>
+                                                                        <div className="grid grid-cols-2 gap-3 pt-2">
+                                                                            <Button 
+                                                                                size="lg" 
+                                                                                color="secondary" 
+                                                                                onClick={handleBack}
+                                                                                className="w-full"
+                                                                            >
+                                                                                Back
+                                                                            </Button>
+                                                                            <Button 
+                                                                                size="lg" 
+                                                                                color="primary" 
+                                                                                onClick={handleVerify}
+                                                                                className="w-full"
+                                                                            >
+                                                                                Verify
+                                                                            </Button>
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            )}
+
+                                                            {step === "notifications" && (
+                                                                <>
+                                                                    <div className="text-center mb-6">
+                                                                        <div className="mx-auto w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+                                                                            {notificationEnabled ? (
+                                                                                <CheckDone01 className="w-6 h-6 text-green-600 dark:text-green-400" />
+                                                                            ) : (
+                                                                                <Bell01 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                                                                            )}
+                                                                        </div>
+                                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                            {notificationEnabled ? "Notifications Enabled!" : "Enable Notifications"}
+                                                                        </h3>
+                                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                            {notificationEnabled 
+                                                                                ? "Great! You'll receive updates about your application status."
+                                                                                : "Stay updated with real-time alerts for your event application status and exclusive opportunities."
+                                                                            }
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div className="space-y-4">
+                                                                        {!notificationEnabled && !isSubscribing ? (
+                                                                            <>
+                                                                                <Button 
+                                                                                    size="lg" 
+                                                                                    color="primary" 
+                                                                                    className="w-full"
+                                                                                    onClick={handleSubscribe}
+                                                                                >
+                                                                                    Enable Notifications
+                                                                                </Button>
+                                                                                <Button 
+                                                                                    size="lg" 
+                                                                                    color="secondary" 
+                                                                                    className="w-full border-none shadow-none bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800"
+                                                                                    onClick={() => setStep("details")}
+                                                                                >
+                                                                                    Skip for now
+                                                                                </Button>
+                                                                            </>
+                                                                        ) : (
+                                                                            <div className="flex justify-center">
+                                                                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+                                                                </>
+                                                            )}
+
+                                                            {step === "details" && (
+                                                                <>
+                                                                    <div className="text-center mb-6">
+                                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                            Complete your profile
+                                                                        </h3>
+                                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                            Tell us a bit about yourself
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div className="space-y-6">
+                                                                        <div className="flex flex-col items-center gap-4">
+                                                                            <div className="relative group cursor-pointer">
+                                                                                <input 
+                                                                                    type="file" 
+                                                                                    accept="image/*" 
+                                                                                    className="hidden" 
+                                                                                    id="avatar-upload"
+                                                                                    onChange={handlePhotoChange}
+                                                                                />
+                                                                                <label htmlFor="avatar-upload" className="cursor-pointer block relative">
+                                                                                    <Avatar 
+                                                                                        size="xl" 
+                                                                                        src={photoPreview} 
+                                                                                        placeholderIcon={User01}
+                                                                                        className="w-24 h-24"
+                                                                                    />
+                                                                                    <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                                        <Camera01 className="w-8 h-8 text-white" />
+                                                                                    </div>
+                                                                                    <div className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md border border-gray-200 dark:border-gray-700">
+                                                                                        <Camera01 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                                                                                    </div>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <Input 
+                                                                            placeholder="Full Name" 
+                                                                            value={name}
+                                                                            onChange={setName}
+                                                                        />
+
+                                                                        <Input 
+                                                                            placeholder="username" 
+                                                                            icon={Instagram}
+                                                                            value={instagramHandle}
+                                                                            onChange={setInstagramHandle}
+                                                                        />
+
+                                                                        <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
+                                                                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Willing to attend event?</span>
+                                                                            <Toggle isSelected={willingToAttend} onChange={setWillingToAttend} />
+                                                                        </div>
+
+                                                                        {event?.dashboardAccessRequired === true && (
+                                                                            <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
+                                                                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Share professional dashboard?</span>
+                                                                                <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
+                                                                            </div>
+                                                                        )}
+
+                                                                        {detailsError && (
+                                                                            <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                                {detailsError}
+                                                                            </p>
+                                                                        )}
+
+                                                                        <div className="pt-2">
+                                                                            <Button 
+                                                                                size="lg" 
+                                                                                color="primary" 
+                                                                                onClick={handleDetailsSubmit} 
+                                                                                className="w-full"
+                                                                                disabled={isSubmittingDetails}
+                                                                            >
+                                                                                {isSubmittingDetails ? "Processing..." : "Next Step"}
+                                                                            </Button>
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            )}
+
+                                                            {step === "dashboard" && (
+                                                                <>
+                                                                    <div className="text-center mb-6">
+                                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                                                            One Last Step
+                                                                        </h3>
+                                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                                                            Upload your professional dashboard screenshot
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div className="space-y-6">
+                                                                        {dashboardScreenshot ? (
+                                                                            <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+                                                                                <img src={dashboardPreview!} alt="Dashboard" className="w-full h-48 object-cover" />
+                                                                                <button 
+                                                                                    onClick={handleRemoveDashboard}
+                                                                                    className="absolute top-2 right-2 p-2 bg-white/90 rounded-full shadow-sm hover:bg-red-50 text-red-500"
+                                                                                >
+                                                                                    <Trash01 className="w-4 h-4" />
+                                                                                </button>
+                                                                                <div className="p-3 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex items-center gap-2">
+                                                                                    <CheckCircle className="w-5 h-5 text-green-500" />
+                                                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Ready to submit</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        ) : (
+                                                                            <FileUpload.DropZone 
+                                                                                onDropFiles={handleDashboardDrop}
+                                                                                accept="image/*"
+                                                                                hint="Upload screenshot (PNG, JPG)"
+                                                                                allowsMultiple={false}
+                                                                            />
+                                                                        )}
+
+                                                                        <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl p-4 border border-blue-100 dark:border-blue-900/20">
+                                                                            <h4 className="text-sm font-bold text-blue-800 dark:text-blue-300 mb-2">Dos & Don'ts</h4>
+                                                                            <ul className="space-y-2 text-xs text-blue-700 dark:text-blue-400">
+                                                                                <li className="flex items-start gap-2">
+                                                                                    <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                                                                                    <span>Ensure metrics are clearly visible</span>
+                                                                                </li>
+                                                                                <li className="flex items-start gap-2">
+                                                                                    <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                                                                                    <span>Capture recent data (last 30 days)</span>
+                                                                                </li>
+                                                                                <li className="flex items-start gap-2">
+                                                                                    <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                                                                                    <span>Don't crop out the profile name</span>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+
+                                                                        {dashboardError && (
+                                                                            <p className="text-center text-sm text-red-500 dark:text-red-400">
+                                                                                {dashboardError}
+                                                                            </p>
+                                                                        )}
+
+                                                                        <div className="pt-2">
+                                                                            <Button size="lg" color="primary" onClick={handleFinalSubmit} className="w-full">
+                                                                                Apply for the event
+                                                                            </Button>
+                                                                        </div>
+                                                                    </div>
+                                                                </>
+                                                            )}
+
+                                                            {step === "success" && <SuccessView />}
+                                                        </div>
                                                     )}
-
-                                                    {step === "success" && <SuccessView />}
-                                                </div>
-                                            )}
-                                        </Dialog>
-                                    </BottomSheetModal>
-                                </BottomSheetOverlay>
-                            </DialogTrigger>
-                        </div>
+                                                </Dialog>
+                                            </BottomSheetModal>
+                                        </BottomSheetOverlay>
+                                    </DialogTrigger>
+                                </div>
+                            </>
+                        )}
                         
                         <p className="text-center text-[10px] text-gray-400 dark:text-gray-500 font-medium mt-4 uppercase tracking-widest">
                             Powered by INFLU
@@ -1350,4 +1386,3 @@ export default function EventInviteClient() {
         </main>
     );
 }
-

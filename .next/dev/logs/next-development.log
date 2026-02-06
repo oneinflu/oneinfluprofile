@@ -83,3 +83,50 @@ Check the render method of `SocialLinks`.
 [00:17:30.263] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:20:58.446] Browser LOG     API Response: {"contact":{"email":null,"method":"whatsapp","whatsapp":"+919182151640"},"links":[{"icon":"/instagram.png","platform":"instagram","url":"https://instagram.com/suuryaprabhat.ig","visible":true}],"offers":[{"cta":"service","delivery":"3 days","description":"I will do the best reel promotion iwth maximum reach and visibliy","includes":["1 Instagram Reel","1 Post Mention"],"price":5000,"priceType":"starting","title":"Instagram Promotion"}],"payment":{"payEnabled":true,"upiId":"7673925340@ybl"},"portfolio":[],"profile":{"availableFor":["One-time","Event-based"],"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770274716/avatars/dd851d0b-89d5-4197-961d-a95032f133a1.png","bio":"Fashion & beauty content creator,Skincare • Makeup • Everyday style.📩 Open for brand collaborations","brandNames":["Nykaa","Zara","Myntra","Lakme","Plum"],"brands":["Nykaa","Zara","Myntra","Lakme","Plum"],"contentTags":["Fashion Reels","Beauty Tips","Skincare Routine","Makeup Looks","Outfit Ideas","Daily Fashion"],"contentType":["Reels","Carousel","Posts","Stories"],"coverUrl":"/profile.jpg","featuredWorks":["https://www.youtube.com/shorts/nykKrSN0GjI","https://www.youtube.com/shorts/u3ucmhfKsRU"],"id":"6982135e617843aa6b6abdb1","name":"Ailisha Rao","niche":"Fashion & Beauty","role":"Creator","username":"glowwithailisha","verified":false,"workingMode":["On-site"]},"theme":"light"}
 [00:20:58.634] Browser WARN    Image with src "/instagram.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[19:56:21.251] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
+                  <HomeScreen params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <AnimatePresence>
+                      <HomeHero>
+                      <HomeProblems>
+                      <HomeFlow>
+                      <HomeCTA>
+                        <section className="py-12 md:p...">
+                          <div className="container ...">
+                            <div className="relative w...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="absolute inset-0 h-full w-full object-cover"
+-                               data-video="0"
+                              >
+                              ...
+              ...
+            ...
+
+[19:56:21.252] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[19:56:32.729] Server  LOG     ○ Compiling /events/invite/[code] ...
+[20:11:51.640] Server  LOG     ✓ Compiled in 548ms
+[20:11:57.510] Server  LOG     ✓ Compiled in 243ms
