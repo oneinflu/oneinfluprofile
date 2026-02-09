@@ -1,17 +1,48 @@
-[00:00:02.302] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:02.516] Server  LOG     ✓ Ready in 2.3s
-[00:00:09.986] Server  WARN    ⚠ Cross origin request detected from 172.20.10.3 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.975] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:02.312] Server  LOG     ✓ Ready in 2.1s
+[00:00:09.049] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:13.435] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
-[00:01:09.733] Browser LOG     handleDetailsSubmit: Starting submission
-[00:01:09.734] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"698a0e3a449424b2ae6046da","username":"315a1qvhvo"}
-[00:01:18.900] Browser LOG     handleFinalSubmit: Starting final submission
-[00:01:18.900] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/V5P6DK8F/apply
-[00:01:20.946] Browser LOG     handleFinalSubmit: Success {"data":{"application":{"_id":"698a12fb54d31ff7cd96c2c0","appliedAt":"2026-02-09T17:01:47.067Z","bringingPlusOne":false,"checkedIn":false,"checkedInAt":null,"dashboardImageUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770656506/event_applications/2618697e-62dd-44d3-8312-3c76434e6a42.jpg","doClientApprovalNeeded":false,"inviteCode":null,"isInvitationShared":false,"plusOneName":null,"plusOnePhone":null,"replacedReason":null,"shareProfessionalDashboard":true,"status":"applied","submittedLinks":[],"taskCompletion":false,"user":"698a0e3a449424b2ae6046da","willingToAttend":true}},"message":"Applied successfully","status":"ok","success":true}
-[00:01:20.947] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"","name":"","otp":"628421","phoneNumber":"9492111182","photo":null,"shareDashboard":true,"willingToAttend":true}
-[00:11:26.626] Browser LOG     handleDetailsSubmit: Starting submission
-[00:11:26.626] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"698a0e3a449424b2ae6046da","username":"315a1qvhvo"}
-[00:11:35.110] Browser LOG     handleFinalSubmit: Starting final submission
-[00:11:35.110] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/V5P6DK8F/apply
-[00:11:36.921] Browser LOG     handleFinalSubmit: Success {"data":{"application":{"_id":"698a156354d31ff7cd96c3bb","appliedAt":"2026-02-09T17:12:03.134Z","bringingPlusOne":false,"checkedIn":false,"checkedInAt":null,"dashboardImageUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770657122/event_applications/74d266f9-574d-4f2f-bd65-8e2ec0cdf1d4.jpg","doClientApprovalNeeded":false,"inviteCode":null,"isInvitationShared":false,"plusOneName":null,"plusOnePhone":null,"replacedReason":null,"shareProfessionalDashboard":true,"status":"applied","submittedLinks":[],"taskCompletion":false,"user":"698a0e3a449424b2ae6046da","willingToAttend":true}},"message":"Applied successfully","status":"ok","success":true}
-[00:11:36.921] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"","name":"","otp":"958914","phoneNumber":"9492111182","photo":null,"shareDashboard":false,"willingToAttend":true}
+[00:00:09.827] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
+                  <HomeScreen params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <AnimatePresence>
+                      <HomeHero>
+                      <HomeProblems>
+                      <HomeFlow>
+                      <HomeCTA>
+                        <section className="py-12 md:p...">
+                          <div className="container ...">
+                            <div className="relative w...">
+                              <video
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                playsInline={true}
+                                className="absolute inset-0 h-full w-full object-cover"
+-                               data-video="0"
+                              >
+                              ...
+              ...
+            ...
+
+[00:00:09.827] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.

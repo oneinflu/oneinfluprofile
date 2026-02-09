@@ -65,10 +65,60 @@ export default function ShortlistedPage() {
     const [success, setSuccess] = useState(false);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
 
+    // Dashboard preview state
+    const [downloadProgress, setDownloadProgress] = useState(0);
+    const [isDownloading, setIsDownloading] = useState(false);
+    const [previewBlobUrl, setPreviewBlobUrl] = useState<string | null>(null);
+
     // Lottie ref
     const lottieContainer = useRef<HTMLDivElement>(null);
 
     const hasReplacementPending = applicants.some(app => app.status === 'replaced');
+
+    const handleViewDashboard = (url: string) => {
+        setPreviewImage(url);
+        setIsDownloading(true);
+        setDownloadProgress(0);
+        setPreviewBlobUrl(null);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'blob';
+
+        xhr.onprogress = (event) => {
+            if (event.lengthComputable) {
+                const percentComplete = Math.round((event.loaded / event.total) * 100);
+                setDownloadProgress(percentComplete);
+            }
+        };
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                const blob = xhr.response;
+                const blobUrl = URL.createObjectURL(blob);
+                setPreviewBlobUrl(blobUrl);
+                setIsDownloading(false);
+            } else {
+                setIsDownloading(false);
+            }
+        };
+
+        xhr.onerror = () => {
+            console.error("Error loading image");
+            setIsDownloading(false);
+        };
+
+        xhr.send();
+    };
+
+    const handleClosePreview = () => {
+        setPreviewImage(null);
+        if (previewBlobUrl) {
+            URL.revokeObjectURL(previewBlobUrl);
+            setPreviewBlobUrl(null);
+        }
+        setIsDownloading(false);
+    };
 
     useEffect(() => {
         let alive = true;
@@ -206,9 +256,46 @@ export default function ShortlistedPage() {
 
     if (loading) {
         return (
-            <div className="flex min-h-screen items-center justify-center bg-secondary">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-            </div>
+            <main className="min-h-screen w-full bg-[#F2F4F7] dark:bg-[#0C111D] sm:py-8 flex items-start justify-center font-sans">
+                <div className="w-full max-w-3xl px-4 sm:px-0 animate-pulse">
+                    <div className="rounded-[2rem] bg-white dark:bg-[#161B26] shadow-xl overflow-hidden ring-1 ring-gray-900/5">
+                        <div className="p-6 sm:p-10 border-b border-gray-100 dark:border-gray-800">
+                             {/* Header Skeleton */}
+                             <div className="flex justify-between items-center mb-4">
+                                <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                <div className="h-6 w-24 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                             </div>
+                             <div className="h-8 w-64 bg-gray-200 dark:bg-gray-700 rounded mb-4">
+                                 <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded"></div>
+                             </div>
+                             <div className="h-4 w-full max-w-md bg-gray-200 dark:bg-gray-700 rounded"></div>
+                             
+                             {/* Tabs Skeleton */}
+                             <div className="mt-8 flex gap-2">
+                                 <div className="h-9 w-20 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
+                                 <div className="h-9 w-24 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
+                                 <div className="h-9 w-24 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
+                                 <div className="h-9 w-24 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
+                             </div>
+                        </div>
+                        <div className="p-6 sm:p-10 pt-6 bg-gray-50/50 dark:bg-[#161B26]">
+                             {/* List Skeleton */}
+                             {[1, 2, 3].map(i => (
+                                 <div key={i} className="mb-4 p-5 rounded-2xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+                                     <div className="flex items-start gap-4">
+                                         <div className="h-14 w-14 bg-gray-200 dark:bg-gray-700 rounded-2xl shrink-0"></div>
+                                         <div className="flex-1">
+                                             <div className="h-6 w-48 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+                                             <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+                                             <div className="h-8 w-36 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             ))}
+                        </div>
+                    </div>
+                </div>
+            </main>
         );
     }
 
@@ -391,7 +478,7 @@ export default function ShortlistedPage() {
                                                             className="inline-flex items-center gap-1.5 rounded-lg bg-purple-50 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors border border-gray-100 dark:border-gray-600 cursor-pointer"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
-                                                                setPreviewImage(app.dashboardImageUrl as string);
+                                                                handleViewDashboard(app.dashboardImageUrl as string);
                                                             }}
                                                         >
                                                             <ArrowUpRight className="size-3.5" />
@@ -513,7 +600,7 @@ export default function ShortlistedPage() {
             {/* Dashboard Preview Modal */}
             <ModalOverlay 
                 isOpen={!!previewImage} 
-                onOpenChange={() => setPreviewImage(null)}
+                onOpenChange={handleClosePreview}
                 isDismissable
                 className={cx(
                     "fixed inset-0 z-[60] flex min-h-dvh w-full items-center justify-center overflow-y-auto bg-black/80 backdrop-blur-md p-4",
@@ -528,20 +615,34 @@ export default function ShortlistedPage() {
                     )}
                 >
                     <Dialog className="outline-none relative" aria-label="Dashboard Preview">
-                        {previewImage && (
-                            <div className="relative rounded-lg overflow-hidden bg-white dark:bg-gray-900">
+                        {(previewImage || isDownloading) && (
+                            <div className="relative rounded-lg overflow-hidden bg-white dark:bg-gray-900 min-h-[300px] flex items-center justify-center">
                                 <button 
-                                    onClick={() => setPreviewImage(null)}
+                                    onClick={handleClosePreview}
                                     className="absolute top-3 right-3 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10 backdrop-blur-sm"
                                     aria-label="Close preview"
                                 >
                                     <X className="size-5" />
                                 </button>
-                                <img 
-                                    src={previewImage} 
-                                    alt="Professional Dashboard" 
-                                    className="w-full h-auto max-h-[80vh] object-contain"
-                                />
+                                
+                                {isDownloading ? (
+                                    <div className="flex flex-col items-center gap-4 p-12">
+                                         <div className="relative size-20 flex items-center justify-center">
+                                            <svg className="size-full -rotate-90" viewBox="0 0 36 36">
+                                                <path className="text-gray-100 dark:text-gray-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                                                <path className="text-brand-500 transition-all duration-200 ease-out" strokeDasharray={`${downloadProgress}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                            </svg>
+                                            <span className="absolute text-sm font-bold text-gray-900 dark:text-white">{downloadProgress}%</span>
+                                         </div>
+                                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 animate-pulse">Loading dashboard...</p>
+                                    </div>
+                                ) : (
+                                    <img 
+                                        src={previewBlobUrl || previewImage || ""} 
+                                        alt="Professional Dashboard" 
+                                        className="w-full h-auto max-h-[80vh] object-contain"
+                                    />
+                                )}
                             </div>
                         )}
                     </Dialog>

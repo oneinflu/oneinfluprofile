@@ -3563,6 +3563,10 @@
     min-height: 44px;
   }
 
+  .min-h-\[300px\] {
+    min-height: 300px;
+  }
+
   .min-h-dvh {
     min-height: 100dvh;
   }
@@ -9101,6 +9105,10 @@
     .text-fg-white\/70 {
       color: color-mix(in oklab, var(--color-fg-white) 70%, transparent);
     }
+  }
+
+  .text-gray-100 {
+    color: var(--color-gray-100);
   }
 
   .text-gray-200 {
