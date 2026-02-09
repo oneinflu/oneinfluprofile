@@ -12,6 +12,7 @@ export default function LoginPage() {
     const [identifier, setIdentifier] = useState("");
     const [otp, setOtp] = useState("");
     const [step, setStep] = useState<"phone" | "otp">("phone");
+    const [loginMethod, setLoginMethod] = useState<"phone" | "email">("phone");
     const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const [resendTimer, setResendTimer] = useState(0);
@@ -34,10 +35,18 @@ export default function LoginPage() {
     const handleSendOtp = async () => {
         if (loading) return;
         
-        const cleanPhone = identifier.trim();
-        if (!/^\d{10}$/.test(cleanPhone)) {
-            setErrorMsg("Please enter a valid 10-digit phone number");
-            return;
+        const cleanIdentifier = identifier.trim();
+        
+        if (loginMethod === "phone") {
+            if (!/^\d{10}$/.test(cleanIdentifier)) {
+                setErrorMsg("Please enter a valid 10-digit phone number");
+                return;
+            }
+        } else {
+            if (!cleanIdentifier) {
+                setErrorMsg("Please enter your email or username");
+                return;
+            }
         }
 
         setLoading(true);
@@ -45,14 +54,14 @@ export default function LoginPage() {
 
         try {
             // Using login-specific endpoint to ensure we only log in existing users
-            await api.post("/auth/otp/send", { identifier: cleanPhone });
+            await api.post("/auth/otp/send", { identifier: cleanIdentifier });
             setStep("otp");
             setResendTimer(30);
         } catch (e: any) {
             console.error(e);
             // If user not found, redirect to register
             if (e?.response?.status === 404 || e?.message?.toLowerCase().includes("not found") || e?.response?.data?.message?.toLowerCase().includes("not found")) {
-                 router.push(`/register?phone=${cleanPhone}`);
+                 router.push(`/register?phone=${cleanIdentifier}`);
                  return;
             }
             setErrorMsg(e.message || "Failed to send OTP. Please check the number and try again.");
@@ -74,7 +83,7 @@ export default function LoginPage() {
         try {
             // Using login-specific endpoint
             const res: any = await api.post("/auth/otp/login", { 
-                identifier: identifier,
+                identifier: identifier.trim(),
                 code: otp 
             });
 
@@ -118,29 +127,45 @@ export default function LoginPage() {
                                 </h1>
                                 <p className="text-md text-tertiary">
                                     {step === "phone" 
-                                        ? "Access your account with your phone number." 
+                                        ? (loginMethod === "phone" ? "Access your account with your phone number." : "Access your account with your email or username.") 
                                         : `Enter the code sent to ${identifier}`}
                                 </p>
                             </div>
 
                             <div className="flex flex-col gap-4">
                                 {step === "phone" ? (
-                                    <Input
-                                        label="Phone Number"
-                                        placeholder="Enter 10-digit number"
-                                        value={identifier}
-                                        onChange={(v) => {
-                                            const val = String(v).replace(/\D/g, '').slice(0, 10);
-                                            setIdentifier(val);
-                                            if (errorMsg) setErrorMsg(null);
-                                        }}
-                                        type="tel"
-                                        inputMode="numeric"
-                                        maxLength={10}
-                                        className="flex-1"
-                                        isInvalid={!!errorMsg}
-                                        hint={errorMsg || undefined}
-                                    />
+                                    loginMethod === "phone" ? (
+                                        <Input
+                                            label="Phone Number"
+                                            placeholder="Enter 10-digit number"
+                                            value={identifier}
+                                            onChange={(v) => {
+                                                const val = String(v).replace(/\D/g, '').slice(0, 10);
+                                                setIdentifier(val);
+                                                if (errorMsg) setErrorMsg(null);
+                                            }}
+                                            type="tel"
+                                            inputMode="numeric"
+                                            maxLength={10}
+                                            className="flex-1"
+                                            isInvalid={!!errorMsg}
+                                            hint={errorMsg || undefined}
+                                        />
+                                    ) : (
+                                        <Input
+                                            label="Email or Username"
+                                            placeholder="Enter your email or username"
+                                            value={identifier}
+                                            onChange={(v) => {
+                                                setIdentifier(String(v));
+                                                if (errorMsg) setErrorMsg(null);
+                                            }}
+                                            type="text"
+                                            className="flex-1"
+                                            isInvalid={!!errorMsg}
+                                            hint={errorMsg || undefined}
+                                        />
+                                    )
                                 ) : (
                                     <Input
                                         label="One-Time Password"
@@ -164,11 +189,41 @@ export default function LoginPage() {
                                     size="lg"
                                     color="secondary"
                                     onClick={step === "phone" ? handleSendOtp : handleVerifyOtp}
-                                    isDisabled={loading || (step === "phone" ? identifier.length < 10 : otp.length < 4)}
+                                    isDisabled={
+                                        loading || 
+                                        (step === "phone" 
+                                            ? (loginMethod === "phone" ? identifier.length < 10 : identifier.length < 1)
+                                            : otp.length < 4)
+                                    }
                                     isLoading={loading}
                                 >
                                     {step === "phone" ? "Send OTP" : "Verify & Login"}
                                 </Button>
+                                
+                                {step === "phone" && (
+                                    <div className="mt-2 flex flex-col gap-4">
+                                        <div className="relative">
+                                            <div className="absolute inset-0 flex items-center">
+                                                <span className="w-full border-t border-gray-200" />
+                                            </div>
+                                            <div className="relative flex justify-center text-sm">
+                                                <span className="bg-white px-2 text-gray-500">Or login with</span>
+                                            </div>
+                                        </div>
+                                        <Button
+                                            size="lg"
+                                            color="link-gray"
+                                            className="w-full border border-gray-200"
+                                            onClick={() => {
+                                                setLoginMethod(loginMethod === "phone" ? "email" : "phone");
+                                                setIdentifier("");
+                                                setErrorMsg(null);
+                                            }}
+                                        >
+                                            {loginMethod === "phone" ? "Email or Username" : "Phone Number"}
+                                        </Button>
+                                    </div>
+                                )}
                                 
                                 {step === "otp" && (
                                     <div className="flex flex-col gap-2 items-center">
@@ -190,7 +245,7 @@ export default function LoginPage() {
                                             }}
                                             className="self-center"
                                         >
-                                            Change Phone Number
+                                            {loginMethod === "phone" ? "Change Phone Number" : "Change Email/Username"}
                                         </Button>
                                     </div>
                                 )}

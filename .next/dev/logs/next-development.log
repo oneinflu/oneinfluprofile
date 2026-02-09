@@ -1,48 +1,6 @@
-[00:00:01.975] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:02.312] Server  LOG     ✓ Ready in 2.1s
-[00:00:09.049] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.879] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:02.082] Server  LOG     ✓ Ready in 1755ms
+[00:00:07.185] Server  LOG     ○ Compiling / ...
+[00:00:08.730] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:09.827] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
-      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
-        <RedirectBoundary>
-          <RedirectErrorBoundary router={{...}}>
-            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
-              <SegmentViewNode type="page" pagePath="page.tsx">
-                <SegmentTrieNode>
-                <ClientPageRoot Component={function HomeScreen} serverProvidedParams={{...}}>
-                  <HomeScreen params={Promise} searchParams={Promise}>
-                    <div className="min-h-scre...">
-                      <AnimatePresence>
-                      <HomeHero>
-                      <HomeProblems>
-                      <HomeFlow>
-                      <HomeCTA>
-                        <section className="py-12 md:p...">
-                          <div className="container ...">
-                            <div className="relative w...">
-                              <video
-                                autoPlay={true}
-                                loop={true}
-                                muted={true}
-                                playsInline={true}
-                                className="absolute inset-0 h-full w-full object-cover"
--                               data-video="0"
-                              >
-                              ...
-              ...
-            ...
-
-[00:00:09.827] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:10.131] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.

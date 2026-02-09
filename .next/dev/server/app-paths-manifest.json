@@ -1,4 +1,5 @@
 {
-  "/events/shortlisted/[code]/page": "app/events/shortlisted/[code]/page.js",
+  "/admin/my-profile/page": "app/admin/my-profile/page.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }
