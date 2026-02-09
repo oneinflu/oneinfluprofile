@@ -643,7 +643,9 @@ export default function EventInviteClient() {
 
             // 2. Save preferences to localStorage
             localStorage.setItem("influu_isWillingToAttend", String(willingToAttend));
-            localStorage.setItem("influu_shareProfessionalDashboard", String(shareDashboard));
+            // Treat shareDashboard as true if dashboardAccessRequired is true, regardless of toggle
+            const finalShareDashboard = event?.dashboardAccessRequired === true ? true : shareDashboard;
+            localStorage.setItem("influu_shareProfessionalDashboard", String(finalShareDashboard));
 
             if (event?.dashboardAccessRequired === true || shareDashboard) {
                 setStep("dashboard");
@@ -1292,7 +1294,7 @@ export default function EventInviteClient() {
                                                                             <Toggle isSelected={willingToAttend} onChange={setWillingToAttend} />
                                                                         </div>
 
-                                                                        {event?.dashboardAccessRequired === true && (
+                                                                        {event?.dashboardAccessRequired !== true && (
                                                                             <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
                                                                                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Share professional dashboard?</span>
                                                                                 <Toggle isSelected={shareDashboard} onChange={setShareDashboard} />
