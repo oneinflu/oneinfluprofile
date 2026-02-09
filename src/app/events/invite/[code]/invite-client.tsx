@@ -244,6 +244,7 @@ export default function EventInviteClient() {
     const [willingToAttend, setWillingToAttend] = useState(false);
     const [shareDashboard, setShareDashboard] = useState(false);
     const [isSubmittingDetails, setIsSubmittingDetails] = useState(false);
+    const [isExistingUser, setIsExistingUser] = useState(false);
 
     // Step 4: Dashboard Upload State
     const [dashboardScreenshot, setDashboardScreenshot] = useState<File | null>(null);
@@ -317,6 +318,13 @@ export default function EventInviteClient() {
             }
             if (user?.id) localStorage.setItem("influu_user_id", user.id);
             if (user?.username) localStorage.setItem("influu_username", user.username);
+            
+            // Set existing user state based on API response
+            if (isNewUser === false) {
+                setIsExistingUser(true);
+            } else {
+                setIsExistingUser(false);
+            }
 
             if (token) {
                 const applied = await checkExistingApplication(token);
@@ -557,18 +565,20 @@ export default function EventInviteClient() {
         console.log("handleDetailsSubmit: Starting submission");
         setDetailsError(null);
 
-        // Validation: All fields are mandatory
-        if (!photo) {
-            setDetailsError("Please upload a profile photo");
-            return;
-        }
-        if (!name.trim()) {
-            setDetailsError("Please enter your full name");
-            return;
-        }
-        if (!instagramHandle.trim()) {
-            setDetailsError("Please enter your Instagram handle");
-            return;
+        // Validation: All fields are mandatory only for new users
+        if (!isExistingUser) {
+            if (!photo) {
+                setDetailsError("Please upload a profile photo");
+                return;
+            }
+            if (!name.trim()) {
+                setDetailsError("Please enter your full name");
+                return;
+            }
+            if (!instagramHandle.trim()) {
+                setDetailsError("Please enter your Instagram handle");
+                return;
+            }
         }
 
         try {
@@ -599,35 +609,37 @@ export default function EventInviteClient() {
                  return;
             }
 
-            // 1. Update basic profile with all details
-            const formData = new FormData();
-            formData.append("name", name);
-            if (photo instanceof File) {
-                formData.append("avatar", photo);
+            // 1. Update basic profile with all details only if it's a new user
+            if (!isExistingUser) {
+                const formData = new FormData();
+                formData.append("name", name);
+                if (photo instanceof File) {
+                    formData.append("avatar", photo);
+                }
+                // "instagramUserId or instagramHandle or instagramUrl" - using instagramHandle as the key
+                formData.append("instagramHandle", instagramHandle);
+
+                const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
+                console.log("handleDetailsSubmit: Sending profile update to", `${baseUrl}/users/${storedUsername}/profile/basic`);
+                
+                const profileRes = await fetch(`${baseUrl}/users/${storedUsername}/profile/basic`, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: formData
+                });
+
+                if (!profileRes.ok) {
+                    const errorText = await profileRes.text();
+                    console.error("Failed to update profile", errorText);
+                    setDetailsError("Failed to update profile. Please try again.");
+                    return;
+                } 
+                
+                const profileData = await profileRes.json();
+                console.log("handleDetailsSubmit: Profile updated successfully", profileData);
             }
-            // "instagramUserId or instagramHandle or instagramUrl" - using instagramHandle as the key
-            formData.append("instagramHandle", instagramHandle);
-
-            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
-            console.log("handleDetailsSubmit: Sending profile update to", `${baseUrl}/users/${storedUsername}/profile/basic`);
-            
-            const profileRes = await fetch(`${baseUrl}/users/${storedUsername}/profile/basic`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData
-            });
-
-            if (!profileRes.ok) {
-                const errorText = await profileRes.text();
-                console.error("Failed to update profile", errorText);
-                setDetailsError("Failed to update profile. Please try again.");
-                return;
-            } 
-            
-            const profileData = await profileRes.json();
-            console.log("handleDetailsSubmit: Profile updated successfully", profileData);
 
             // 2. Save preferences to localStorage
             localStorage.setItem("influu_isWillingToAttend", String(willingToAttend));
@@ -1224,52 +1236,56 @@ export default function EventInviteClient() {
                                                                 <>
                                                                     <div className="text-center mb-6">
                                                                         <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                            Complete your profile
+                                                                            {isExistingUser ? "Confirm Details" : "Complete your profile"}
                                                                         </h3>
                                                                         <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                            Tell us a bit about yourself
+                                                                            {isExistingUser ? "Please confirm your attendance" : "Tell us a bit about yourself"}
                                                                         </p>
                                                                     </div>
 
                                                                     <div className="space-y-6">
-                                                                        <div className="flex flex-col items-center gap-4">
-                                                                            <div className="relative group cursor-pointer">
-                                                                                <input 
-                                                                                    type="file" 
-                                                                                    accept="image/*" 
-                                                                                    className="hidden" 
-                                                                                    id="avatar-upload"
-                                                                                    onChange={handlePhotoChange}
+                                                                        {!isExistingUser && (
+                                                                            <>
+                                                                                <div className="flex flex-col items-center gap-4">
+                                                                                    <div className="relative group cursor-pointer">
+                                                                                        <input 
+                                                                                            type="file" 
+                                                                                            accept="image/*" 
+                                                                                            className="hidden" 
+                                                                                            id="avatar-upload"
+                                                                                            onChange={handlePhotoChange}
+                                                                                        />
+                                                                                        <label htmlFor="avatar-upload" className="cursor-pointer block relative">
+                                                                                            <Avatar 
+                                                                                                size="xl" 
+                                                                                                src={photoPreview} 
+                                                                                                placeholderIcon={User01}
+                                                                                                className="w-24 h-24"
+                                                                                            />
+                                                                                            <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                                                <Camera01 className="w-8 h-8 text-white" />
+                                                                                            </div>
+                                                                                            <div className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md border border-gray-200 dark:border-gray-700">
+                                                                                                <Camera01 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <Input 
+                                                                                    placeholder="Full Name" 
+                                                                                    value={name}
+                                                                                    onChange={setName}
                                                                                 />
-                                                                                <label htmlFor="avatar-upload" className="cursor-pointer block relative">
-                                                                                    <Avatar 
-                                                                                        size="xl" 
-                                                                                        src={photoPreview} 
-                                                                                        placeholderIcon={User01}
-                                                                                        className="w-24 h-24"
-                                                                                    />
-                                                                                    <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                                                        <Camera01 className="w-8 h-8 text-white" />
-                                                                                    </div>
-                                                                                    <div className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-md border border-gray-200 dark:border-gray-700">
-                                                                                        <Camera01 className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                                                                                    </div>
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
 
-                                                                        <Input 
-                                                                            placeholder="Full Name" 
-                                                                            value={name}
-                                                                            onChange={setName}
-                                                                        />
-
-                                                                        <Input 
-                                                                            placeholder="username" 
-                                                                            icon={Instagram}
-                                                                            value={instagramHandle}
-                                                                            onChange={setInstagramHandle}
-                                                                        />
+                                                                                <Input 
+                                                                                    placeholder="username" 
+                                                                                    icon={Instagram}
+                                                                                    value={instagramHandle}
+                                                                                    onChange={setInstagramHandle}
+                                                                                />
+                                                                            </>
+                                                                        )}
 
                                                                         <div className="flex items-center justify-between p-3 rounded-xl border border-gray-200 dark:border-gray-800">
                                                                             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Willing to attend event?</span>
