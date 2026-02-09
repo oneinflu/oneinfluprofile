@@ -1,25 +1,16 @@
-[00:00:01.506] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:01.707] Server  LOG     ✓ Ready in 1487ms
-[00:00:01.708] Server  WARN    ⚠ Cross origin request detected from 192.168.0.6 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:02.183] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:02.222] Server  LOG     ✓ Ready in 1839ms
+[00:00:07.449] Server  LOG     ○ Compiling / ...
+[00:00:09.287] Server  WARN    ⚠ Cross origin request detected from 192.168.0.4 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:03.350] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'addEventListener')
-[00:00:03.350] Browser ERROR   unhandledRejection: FirebaseError: Messaging: This browser doesn't support the API's required to use the Firebase SDK. (messaging/unsupported-browser).
-[00:00:39.675] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:00:39.676] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/firebase.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:00:39.677] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:00:39.680] Server  LOG     ✓ Compiled in 949ms
-[00:00:40.611] Browser ERROR   Firebase messaging initialization failed: {}
-[00:00:40.611] Browser LOG     Click a button or initiate subscription to request notification permission.
-[00:00:40.611] Browser LOG     [2;38;2;124;124;124m%s[0m Click a button or initiate subscription to request notification permission.
-[00:00:40.611] Browser ERROR   unhandledRejection: FirebaseError: Messaging: This browser doesn't support the API's required to use the Firebase SDK. (messaging/unsupported-browser).
-[00:01:04.490] Browser ERROR   Firebase messaging initialization failed: {}
-[00:01:04.490] Browser LOG     Click a button or initiate subscription to request notification permission.
-[00:01:04.490] Browser LOG     [2;38;2;124;124;124m%s[0m Click a button or initiate subscription to request notification permission.
-[00:01:04.490] Browser ERROR   unhandledRejection: FirebaseError: Messaging: This browser doesn't support the API's required to use the Firebase SDK. (messaging/unsupported-browser).
-[00:01:54.851] Server  LOG     ✓ Compiled in 306ms
-[00:01:55.611] Browser DEBUG   Firebase messaging initialization skipped: Cannot read properties of undefined (reading 'addEventListener')
-[00:01:55.611] Browser ERROR   unhandledRejection: FirebaseError: Messaging: This browser doesn't support the API's required to use the Firebase SDK. (messaging/unsupported-browser).
-[00:02:10.331] Browser DEBUG   Firebase messaging initialization skipped: Cannot read properties of undefined (reading 'addEventListener')
-[00:02:10.331] Browser LOG     Click a button or initiate subscription to request notification permission.
-[00:02:10.331] Browser LOG     [2;38;2;124;124;124m%s[0m Click a button or initiate subscription to request notification permission.
-[00:02:10.331] Browser ERROR   unhandledRejection: FirebaseError: Messaging: This browser doesn't support the API's required to use the Firebase SDK. (messaging/unsupported-browser).
+[00:00:10.030] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:24.592] Browser WARN    Image with src "/faviconwhite.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:01:26.617] Browser LOG     handleDetailsSubmit: Starting submission
+[00:01:26.617] Browser LOG     handleDetailsSubmit: Credentials {"token":true,"userId":"698a0e3a449424b2ae6046da","username":"315a1qvhvo"}
+[00:01:26.617] Browser LOG     handleDetailsSubmit: Sending profile update to https://newyearbackendcode-zrp62.ondigitalocean.app/users/315a1qvhvo/profile/basic
+[00:01:28.421] Browser LOG     handleDetailsSubmit: Profile updated successfully {"data":{"instagram":"https://www.instagram.com/test","user":{"avatarUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770655307/avatars/315a1qvhvo.jpg","id":"698a0e3a449424b2ae6046da","name":"test","niche":null,"username":"315a1qvhvo"}},"status":"ok","success":true}
+[00:01:38.983] Browser LOG     handleFinalSubmit: Starting final submission
+[00:01:38.983] Browser LOG     handleFinalSubmit: Submitting to https://newyearbackendcode-zrp62.ondigitalocean.app/events/public/code/V5P6DK8F/apply
+[00:01:42.716] Browser LOG     handleFinalSubmit: Success {"data":{"application":{"_id":"698a0e5a449424b2ae604769","appliedAt":"2026-02-09T16:42:02.457Z","bringingPlusOne":false,"checkedIn":false,"checkedInAt":null,"dashboardImageUrl":"https://res.cloudinary.com/dzaktmq58/image/upload/v1770655321/event_applications/b2876f17-071f-4674-942e-3d104eac4829.png","doClientApprovalNeeded":false,"inviteCode":null,"isInvitationShared":false,"plusOneName":null,"plusOnePhone":null,"replacedReason":null,"shareProfessionalDashboard":true,"status":"applied","submittedLinks":[],"taskCompletion":false,"user":"698a0e3a449424b2ae6046da","willingToAttend":true}},"message":"Applied successfully","status":"ok","success":true}
+[00:01:42.717] Browser LOG     {"dashboardScreenshot":{},"instagramHandle":"test","name":"test","otp":"636811","phoneNumber":"9492111182","photo":{},"shareDashboard":true,"willingToAttend":true}

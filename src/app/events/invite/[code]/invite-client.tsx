@@ -250,6 +250,7 @@ export default function EventInviteClient() {
     const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
     const [detailsError, setDetailsError] = useState<string | null>(null);
     const [dashboardError, setDashboardError] = useState<string | null>(null);
+    const [isSubmittingFinal, setIsSubmittingFinal] = useState(false);
 
     // Focus state for mobile keyboard handling
     const [isFocused, setIsFocused] = useState(false);
@@ -483,9 +484,11 @@ export default function EventInviteClient() {
         // Here you would typically submit all the data to the backend
         console.log("handleFinalSubmit: Starting final submission");
         setDashboardError(null);
+        setIsSubmittingFinal(true);
 
         if ((event?.dashboardAccessRequired === true || shareDashboard) && !dashboardScreenshot) {
             setDashboardError("Please upload your dashboard screenshot");
+            setIsSubmittingFinal(false);
             return;
         }
         
@@ -494,6 +497,7 @@ export default function EventInviteClient() {
             if (!token) {
                 console.error("handleFinalSubmit: Missing token");
                 // Should redirect to login or show error
+                setIsSubmittingFinal(false);
                 return;
             }
 
@@ -524,6 +528,7 @@ export default function EventInviteClient() {
                 const errorText = await res.text();
                 console.error("handleFinalSubmit: Submission failed", errorText);
                 // Handle error (show toast etc)
+                setIsSubmittingFinal(false);
                 return;
             }
 
@@ -541,8 +546,10 @@ export default function EventInviteClient() {
                 dashboardScreenshot
             });
             setStep("success");
+            setIsSubmittingFinal(false);
         } catch (e) {
             console.error("handleFinalSubmit: Error during submission", e);
+            setIsSubmittingFinal(false);
         }
     };
 
@@ -1357,8 +1364,21 @@ export default function EventInviteClient() {
                                                                         )}
 
                                                                         <div className="pt-2">
-                                                                            <Button size="lg" color="primary" onClick={handleFinalSubmit} className="w-full">
-                                                                                Apply for the event
+                                                                            <Button 
+                                                                                size="lg" 
+                                                                                color="primary" 
+                                                                                onClick={handleFinalSubmit} 
+                                                                                className="w-full"
+                                                                                disabled={isSubmittingFinal}
+                                                                            >
+                                                                                {isSubmittingFinal ? (
+                                                                                    <>
+                                                                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                                                                                        Processing...
+                                                                                    </>
+                                                                                ) : (
+                                                                                    "Apply for the event"
+                                                                                )}
                                                                             </Button>
                                                                         </div>
                                                                     </div>

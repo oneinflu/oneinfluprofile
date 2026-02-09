@@ -5315,6 +5315,10 @@
     border-top-color: #0000;
   }
 
+  .border-t-white {
+    border-top-color: var(--color-white);
+  }
+
   .\!bg-\[\#47AE4C\] {
     background-color: #47ae4c !important;
   }
@@ -6835,6 +6839,10 @@
     .bg-yellow-400\/10 {
       background-color: color-mix(in oklab, var(--color-yellow-400) 10%, transparent);
     }
+  }
+
+  .bg-yellow-500 {
+    background-color: var(--color-yellow-500);
   }
 
   .bg-zinc-800 {
@@ -12467,6 +12475,16 @@
       .hover\:bg-blue-100\/50:where(:not([data-rac])):hover {
         background-color: color-mix(in oklab, var(--color-blue-100) 50%, transparent);
       }
+    }
+  }
+
+  .hover\:bg-blue-700:where([data-rac])[data-hovered] {
+    background-color: var(--color-blue-700);
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-blue-700:where(:not([data-rac])):hover {
+      background-color: var(--color-blue-700);
     }
   }
 
