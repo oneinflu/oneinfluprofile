@@ -309,7 +309,7 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 // Validate ../../src/app/hosts/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/hosts">> = Specific
-  const handler = {} as typeof import("../../src/app/hosts/page.js")
+  const handler = {} as typeof import("../../src/app/for-events/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Influencer Event Management for Hosts & Agencies | INFLU",
         description: "Manage influencer events end-to-end — creator applications, shortlisting, QR entry, content tracking and final reports. Built for hosts & agencies.",
-        url: "https://oneinflu.com/hosts",
+        url: "https://oneinflu.com/for-events",
         siteName: "INFLU",
         images: [
             {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     },
     other: {
         "twitter:domain": "oneinflu.com",
-        "twitter:url": "https://oneinflu.com/hosts",
+        "twitter:url": "https://oneinflu.com/for-events",
     },
 };
 

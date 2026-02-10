@@ -20,8 +20,6 @@ type HeaderNavItem = {
 const headerNavItems: HeaderNavItem[] = [
     { label: "Home", href: "/" },
     { label: "For Creators", href: "/creators" },
-    { label: "For Hosts", href: "/hosts" },
-    { label: "Pricing", href: "/pricing" },
 ];
 
 const footerNavItems = [
