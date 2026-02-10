@@ -1,26 +1,15 @@
 "use client";
 
 import {
-    Archive,
-    BarChartSquare02,
-    Calendar,
-    CheckDone01,
     CurrencyDollarCircle,
     Grid03,
     HomeLine,
     LayoutAlt01,
-    LineChartUp03,
     LogOut01,
     MessageChatCircle,
-    NotificationBox,
-    Package,
-    PieChart03,
     Link02,
-    Settings01,
     Star01,
     User01,
-    Users01,
-    UsersPlus,
 } from "@untitledui/icons";
 import { FeaturedCardProgressBar } from "@/components/application/app-navigation/base-components/featured-cards";
 import type { NavItemType } from "@/components/application/app-navigation/config";
@@ -47,7 +36,6 @@ const baseNavItems: NavItemType[] = [
 ];
 
 const professionalNavItems: NavItemType[] = [
-    { label: "Campaigns", href: "/admin/campaigns", icon: PieChart03 },
     { label: "Payments", href: "/admin/payments", icon: CurrencyDollarCircle },
 ];
 
@@ -103,21 +91,7 @@ export const AppSidebar = () => {
     if (isProfessional) {
         navItemsSimple = [...baseNavItems, ...professionalNavItems];
     } else {
-        const myEventsItem: NavItemType = category === "Creator" 
-            ? {
-                label: "My Events",
-                icon: Calendar,
-                items: [
-                    { label: "My Applications", href: "/admin/my-applications" }
-                ]
-              }
-            : { label: "My Events", href: "/admin/campaigns", icon: Calendar };
-
-        navItemsSimple = [
-              ...baseNavItems.slice(0, 2),
-              myEventsItem,
-              ...baseNavItems.slice(2),
-        ];
+        navItemsSimple = baseNavItems;
     }
     return (
         <SidebarNavigationSimple
