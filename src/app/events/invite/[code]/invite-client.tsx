@@ -9,28 +9,16 @@ import {
     Calendar, 
     MarkerPin01, 
     User01, 
-    Check, 
     Share04, 
-    UsersPlus, 
     Star01,
     PieChart03,
     CheckDone01,
-    Link02,
     LayoutAlt01,
     AlertCircle,
     PlayCircle,
     Tag01,
     ArrowRight,
-    Copy01,
-    Globe02,
-    Link01,
-    Map02,
-    Phone,
     Camera01,
-    UploadCloud02,
-    CheckCircle,
-    XCircle,
-    Trash01,
     Bell01
 } from "@untitledui/icons";
 import { Avatar } from "@/components/base/avatar/avatar";
@@ -47,7 +35,6 @@ import { Input } from "@/components/base/input/input";
 import { cx } from "@/utils/cx";
 import { PinInput } from "@/components/base/pin-input/pin-input";
 import { Toggle } from "@/components/base/toggle/toggle";
-import { FileUpload } from "@/components/application/file-upload/file-upload-base";
 
 type PublicEvent = {
     id?: string;
@@ -157,65 +144,6 @@ const BottomSheetModal = ({ className, ...props }: React.ComponentProps<typeof M
     />
 );
 
-const SuccessView = () => {
-    const animRef = useRef<HTMLDivElement>(null);
-    const router = useRouter();
-    const { token } = useAuth();
-
-    useEffect(() => {
-        let anim: any;
-        let alive = true;
-        (async () => {
-            try {
-                const mod = await import("lottie-web");
-                if (!alive || !animRef.current) return;
-                anim = mod.default.loadAnimation({
-                    container: animRef.current,
-                    renderer: "svg",
-                    loop: false,
-                    autoplay: true,
-                    path: "/sent.json"
-                });
-            } catch {}
-        })();
-        return () => { 
-            alive = false;
-            if (anim) anim.destroy(); 
-        };
-    }, []);
-
-    return (
-        <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div ref={animRef} className="w-32 h-32 mb-4" />
-            
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                You have applied for invitation for the event
-            </h3>
-            
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs mx-auto mb-8">
-                Wait for the confirmation message you will receives once you are shortlisted
-            </p>
-
-            <Button 
-                size="lg" 
-                color="primary" 
-                className="w-full"
-                onClick={() => {
-                    // Ensure cookie is set before navigation as a fallback
-                    if (token) {
-                        const d = new Date();
-                        d.setTime(d.getTime() + 7 * 24 * 60 * 60 * 1000);
-                        document.cookie = `influu_token=${token};expires=${d.toUTCString()};path=/`;
-                    }
-                    router.push(`/admin/my-profile`);
-                }}
-            >
-                Manage Your Profile
-            </Button>
-        </div>
-    );
-};
-
 export default function EventInviteClient() {
     const params = useParams();
     const router = useRouter();
@@ -226,11 +154,10 @@ export default function EventInviteClient() {
     const { resolvedTheme, setTheme } = useTheme();
     const { token: authToken, setToken } = useAuth();
     const [mounted, setMounted] = useState(false);
-    const clipboard = useClipboard();
     
     const [phoneNumber, setPhoneNumber] = useState("");
     const [phoneError, setPhoneError] = useState("");
-    const [step, setStep] = useState<"phone" | "otp" | "notifications" | "details" | "dashboard" | "success">("phone");
+    const [step, setStep] = useState<"phone" | "otp" | "notifications" | "details" | "success">("phone");
     const [otp, setOtp] = useState("");
     const [otpError, setOtpError] = useState("");
     const [notificationEnabled, setNotificationEnabled] = useState(false);
@@ -241,17 +168,24 @@ export default function EventInviteClient() {
     const [photo, setPhoto] = useState<File | null>(null);
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
     const [instagramHandle, setInstagramHandle] = useState("");
-    const [willingToAttend, setWillingToAttend] = useState(false);
-    const [shareDashboard, setShareDashboard] = useState(false);
+    const [willingToAttend, setWillingToAttend] = useState(() => {
+        if (typeof window !== 'undefined') {
+             return localStorage.getItem("influu_isWillingToAttend") === "true";
+        }
+        return false;
+    });
+    const [shareDashboard, setShareDashboard] = useState(() => {
+        if (typeof window !== 'undefined') {
+             return localStorage.getItem("influu_shareProfessionalDashboard") === "true";
+        }
+        return false;
+    });
     const [isSubmittingDetails, setIsSubmittingDetails] = useState(false);
     const [isExistingUser, setIsExistingUser] = useState(false);
 
-    // Step 4: Dashboard Upload State
-    const [dashboardScreenshot, setDashboardScreenshot] = useState<File | null>(null);
-    const [dashboardPreview, setDashboardPreview] = useState<string | null>(null);
+    // Dashboard state removed
     const [detailsError, setDetailsError] = useState<string | null>(null);
-    const [dashboardError, setDashboardError] = useState<string | null>(null);
-    const [isSubmittingFinal, setIsSubmittingFinal] = useState(false);
+    const [hasExistingApplication, setHasExistingApplication] = useState(false);
 
     // Focus state for mobile keyboard handling
     const [isFocused, setIsFocused] = useState(false);
@@ -260,17 +194,27 @@ export default function EventInviteClient() {
 
     const checkExistingApplication = async (tokenToCheck?: string) => {
         const t = tokenToCheck || authToken || localStorage.getItem("influu_token");
-        if (!t || !code) return false;
+        const userId = localStorage.getItem("influu_user_id");
+        
+        if (!t || !code || !userId) return false;
 
         try {
-            const res = await api.get<any>(`/events/public/code/${encodeURIComponent(code)}/application`, { token: t });
+            const res = await api.get<any>(`/events/public/code/${encodeURIComponent(code)}/application/user/${userId}`, { token: t });
             if (res?.success && res?.data?.application) {
-                setStep("success");
+                setHasExistingApplication(true);
                 return true;
             }
         } catch (e) {
             // No application found or error
         }
+
+        // User is logged in (has token & userId) but hasn't applied for this event yet.
+        // Skip phone/otp and go to details.
+        setIsExistingUser(true);
+        if (step === "phone") {
+            setStep("details");
+        }
+
         return false;
     };
 
@@ -352,8 +296,6 @@ export default function EventInviteClient() {
         } else if (step === "details") {
             // Skip notifications for now
             setStep("otp");
-        } else if (step === "dashboard") {
-            setStep("details");
         }
     };
 
@@ -488,79 +430,6 @@ export default function EventInviteClient() {
         }
     };
 
-    const handleFinalSubmit = async () => {
-        // Here you would typically submit all the data to the backend
-        console.log("handleFinalSubmit: Starting final submission");
-        setDashboardError(null);
-        setIsSubmittingFinal(true);
-
-        if ((event?.dashboardAccessRequired === true || shareDashboard) && !dashboardScreenshot) {
-            setDashboardError("Please upload your dashboard screenshot");
-            setIsSubmittingFinal(false);
-            return;
-        }
-        
-        try {
-            const token = authToken || localStorage.getItem("influu_token");
-            if (!token) {
-                console.error("handleFinalSubmit: Missing token");
-                // Should redirect to login or show error
-                setIsSubmittingFinal(false);
-                return;
-            }
-
-            const isWilling = localStorage.getItem("influu_isWillingToAttend");
-            const shareDash = localStorage.getItem("influu_shareProfessionalDashboard");
-            
-            const formData = new FormData();
-            formData.append("willingToAttend", isWilling || "false");
-            formData.append("shareProfessionalDashboard", shareDash || "false");
-            
-            if (dashboardScreenshot) {
-                formData.append("dashboard", dashboardScreenshot);
-            }
-
-            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://newyearbackendcode-zrp62.ondigitalocean.app";
-            const endpoint = `/events/public/code/${encodeURIComponent(code)}/apply`;
-            console.log("handleFinalSubmit: Submitting to", `${baseUrl}${endpoint}`);
-
-            const res = await fetch(`${baseUrl}${endpoint}`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData
-            });
-
-            if (!res.ok) {
-                const errorText = await res.text();
-                console.error("handleFinalSubmit: Submission failed", errorText);
-                // Handle error (show toast etc)
-                setIsSubmittingFinal(false);
-                return;
-            }
-
-            const data = await res.json();
-            console.log("handleFinalSubmit: Success", data);
-
-            console.log({
-                phoneNumber,
-                otp,
-                name,
-                photo,
-                instagramHandle,
-                willingToAttend,
-                shareDashboard,
-                dashboardScreenshot
-            });
-            setStep("success");
-            setIsSubmittingFinal(false);
-        } catch (e) {
-            console.error("handleFinalSubmit: Error during submission", e);
-            setIsSubmittingFinal(false);
-        }
-    };
-
     const handleDetailsSubmit = async () => {
         console.log("handleDetailsSubmit: Starting submission");
         setDetailsError(null);
@@ -647,11 +516,8 @@ export default function EventInviteClient() {
             const finalShareDashboard = event?.dashboardAccessRequired === true ? true : shareDashboard;
             localStorage.setItem("influu_shareProfessionalDashboard", String(finalShareDashboard));
 
-            if (event?.dashboardAccessRequired === true || shareDashboard) {
-                setStep("dashboard");
-            } else {
-                await handleFinalSubmit();
-            }
+            // Navigate to final step page
+            router.push(`/events/invite/${code}/final-step`);
         } catch (e: any) {
             console.error("Failed to update profile", e);
             setDetailsError(e.message || "An unexpected error occurred.");
@@ -659,21 +525,6 @@ export default function EventInviteClient() {
             setIsSubmittingDetails(false);
         }
     };
-
-    const handleDashboardDrop = (files: FileList) => {
-        if (files.length > 0) {
-            const file = files[0];
-            setDashboardScreenshot(file);
-            setDashboardPreview(URL.createObjectURL(file));
-        }
-    };
-
-    const handleRemoveDashboard = () => {
-        setDashboardScreenshot(null);
-        setDashboardPreview(null);
-    };
-
-
 
     useEffect(() => setMounted(true), []);
 
@@ -790,7 +641,7 @@ export default function EventInviteClient() {
                             </div>
                         )}
                         <div className="inline-flex items-center justify-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 mb-4">
-                            {step === "success" ? "Already Applied" : "Apply for Invitation"}
+                            {hasExistingApplication || step === "success" ? "Show Application Status" : "Apply for Invitation"}
                         </div>
                         <h2 className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
                             {event.brandName ? event.brandName : "EXCLUSIVE EVENT"}
@@ -1038,16 +889,27 @@ export default function EventInviteClient() {
                                 </p>
                                 
                                 <div className="flex gap-2 justify-center">
-                                    <DialogTrigger>
+                                    {hasExistingApplication || step === "success" ? (
                                         <Button
                                             size="lg"
                                             color="primary"
                                             className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
                                             iconLeading={ArrowRight}
+                                            onClick={() => router.push("/admin/my-applications")}
                                         >
-                                            {step === "success" ? "Already Applied" : "Apply for Invitation"}
+                                            Show Application Status
                                         </Button>
-                                        <BottomSheetOverlay className={isFocused ? "!items-center" : ""}>
+                                    ) : (
+                                        <DialogTrigger>
+                                            <Button
+                                                size="lg"
+                                                color="primary"
+                                                className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 rounded-xl"
+                                                iconLeading={ArrowRight}
+                                            >
+                                                Apply for Invitation
+                                            </Button>
+                                            <BottomSheetOverlay className={isFocused ? "!items-center" : ""}>
                                             <BottomSheetModal>
                                                 <Dialog className="outline-none">
                                                     {({ close }) => (
@@ -1321,95 +1183,13 @@ export default function EventInviteClient() {
                                                                     </div>
                                                                 </>
                                                             )}
-
-                                                            {step === "dashboard" && (
-                                                                <>
-                                                                    <div className="text-center mb-6">
-                                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                                                                            One Last Step
-                                                                        </h3>
-                                                                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                                                            Upload your professional dashboard screenshot
-                                                                        </p>
-                                                                    </div>
-
-                                                                    <div className="space-y-6">
-                                                                        {dashboardScreenshot ? (
-                                                                            <div className="relative rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
-                                                                                <img src={dashboardPreview!} alt="Dashboard" className="w-full h-48 object-cover" />
-                                                                                <button 
-                                                                                    onClick={handleRemoveDashboard}
-                                                                                    className="absolute top-2 right-2 p-2 bg-white/90 rounded-full shadow-sm hover:bg-red-50 text-red-500"
-                                                                                >
-                                                                                    <Trash01 className="w-4 h-4" />
-                                                                                </button>
-                                                                                <div className="p-3 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex items-center gap-2">
-                                                                                    <CheckCircle className="w-5 h-5 text-green-500" />
-                                                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Ready to submit</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        ) : (
-                                                                            <FileUpload.DropZone 
-                                                                                onDropFiles={handleDashboardDrop}
-                                                                                accept="image/*"
-                                                                                hint="Upload screenshot (PNG, JPG)"
-                                                                                allowsMultiple={false}
-                                                                            />
-                                                                        )}
-
-                                                                        <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl p-4 border border-blue-100 dark:border-blue-900/20">
-                                                                            <h4 className="text-sm font-bold text-blue-800 dark:text-blue-300 mb-2">Dos & Don'ts</h4>
-                                                                            <ul className="space-y-2 text-xs text-blue-700 dark:text-blue-400">
-                                                                                <li className="flex items-start gap-2">
-                                                                                    <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                                                                                    <span>Ensure metrics are clearly visible</span>
-                                                                                </li>
-                                                                                <li className="flex items-start gap-2">
-                                                                                    <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                                                                                    <span>Capture recent data (last 30 days)</span>
-                                                                                </li>
-                                                                                <li className="flex items-start gap-2">
-                                                                                    <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                                                                                    <span>Don't crop out the profile name</span>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-
-                                                                        {dashboardError && (
-                                                                            <p className="text-center text-sm text-red-500 dark:text-red-400">
-                                                                                {dashboardError}
-                                                                            </p>
-                                                                        )}
-
-                                                                        <div className="pt-2">
-                                                                            <Button 
-                                                                                size="lg" 
-                                                                                color="primary" 
-                                                                                onClick={handleFinalSubmit} 
-                                                                                className="w-full"
-                                                                                disabled={isSubmittingFinal}
-                                                                            >
-                                                                                {isSubmittingFinal ? (
-                                                                                    <>
-                                                                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                                                                                        Processing...
-                                                                                    </>
-                                                                                ) : (
-                                                                                    "Apply for the event"
-                                                                                )}
-                                                                            </Button>
-                                                                        </div>
-                                                                    </div>
-                                                                </>
-                                                            )}
-
-                                                            {step === "success" && <SuccessView />}
                                                         </div>
                                                     )}
                                                 </Dialog>
                                             </BottomSheetModal>
                                         </BottomSheetOverlay>
                                     </DialogTrigger>
+                                    )}
                                 </div>
                             </>
                         )}

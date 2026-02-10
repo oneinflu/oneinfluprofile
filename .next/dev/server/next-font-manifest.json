@@ -1,12 +1,15 @@
 {
   "app": {
-    "[project]/src/app/admin/my-profile/page": [
+    "[project]/src/app/admin/my-applications/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/src/app/login/page": [
+    "[project]/src/app/events/invite/[code]/final-step/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ],
-    "[project]/src/app/page": [
+    "[project]/src/app/events/invite/[code]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/src/app/events/invite/[code]/success/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ]
   },

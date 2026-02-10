@@ -9013,6 +9013,10 @@
     color: var(--color-emerald-900);
   }
 
+  .text-error-500 {
+    color: var(--color-error-500);
+  }
+
   .text-error-600 {
     color: var(--color-error-600);
   }
