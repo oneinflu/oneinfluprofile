@@ -22,7 +22,7 @@ const problems = [
         id: 3,
         question: "What if uninvited creators show up? 😤",
         sub: "Chaos at the gate kills brand trust.",
-        answer: "INFLU shows live guest list + approval status to hosts & bouncers."
+        answer: "INFLU shows live guest list + approval status to managers & bouncers."
     },
     {
         id: 4,
@@ -46,7 +46,7 @@ const problems = [
         id: 7,
         question: "How do I manage 40–100 creators at once? 🧠",
         sub: "Manual shortlisting doesn’t scale.",
-        answer: "INFLU lets hosts filter, shortlist, approve — all logged."
+        answer: "INFLU lets Brand filter, shortlist, approve — all logged."
     },
     {
         id: 8,
@@ -80,7 +80,7 @@ const problems = [
     },
     {
         id: 13,
-        question: "How do I manage multiple events as a host? 🗓️",
+        question: "How do I manage multiple events as a Brand? 🗓️",
         sub: "Everything blurs together.",
         answer: "Each event has its own dashboard, guest list, and report."
     },

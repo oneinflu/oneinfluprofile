@@ -61,7 +61,7 @@ const Step1Content = () => (
         </h3>
         <div className="text-base md:text-lg text-gray-400 max-w-lg mx-auto lg:mx-0 space-y-4">
             <p>
-                Social media creates attention. INFLU converts that attention into profiles, permissions, and participation — for creators, hosts, and brands, all in one system.
+                Social media creates attention. INFLU converts that attention into profiles, permissions, and participation — for creators, and brands, all in one system.
             </p>
             <p className="font-medium text-gray-300">
                 No forms. No WhatsApp chaos. No confusion at the gate.
@@ -132,7 +132,7 @@ const Step2Content = () => (
         </h3>
         <div className="text-base md:text-lg text-gray-400 max-w-lg mx-auto lg:mx-0 space-y-4">
             <p>
-                Brands approve campaigns. Hosts shortlist creators. Creators enter only with verified invitations.
+                Brands approve campaigns. Brands can shortlist creators. Creators enter only with verified invitations.
             </p>
             <p className="font-medium text-gray-300">
                 Every step is tracked. Every participant is known. Every deliverable is expected.

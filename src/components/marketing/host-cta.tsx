@@ -31,7 +31,7 @@ export const HostCTA = () => {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 ring-1 ring-white/20"
                     >
                         <Stars02 className="w-4 h-4 text-brand-400" />
-                        <span className="text-sm font-medium text-gray-300">Join 2,000+ elite hosts</span>
+                        <span className="text-sm font-medium text-gray-300">Join 2,000+ elite Brands</span>
                     </motion.div>
 
                     {/* Heading */}
