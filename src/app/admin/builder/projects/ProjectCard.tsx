@@ -52,19 +52,14 @@ type Props = {
 export function ProjectCard({ project, userUsername }: Props) {
   const router = useRouter();
 
-  const normalizedImage =
-    project.image && !project.image.startsWith("http") && !project.image.startsWith("/")
-      ? `/${project.image}`
-      : project.image;
-
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-primary/90 ring-1 ring-secondary_alt transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
 
       {/* PROJECT IMAGE */}
       <div className="relative h-36 w-full overflow-hidden">
-        {normalizedImage ? (
+        {project.image ? (
           <Image
-            src={normalizedImage}
+            src={project.image}
             alt={project.name}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
