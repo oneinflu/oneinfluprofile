@@ -12,7 +12,6 @@ import { Table, TableCard } from "@/components/application/table/table";
 import { Suspense, useMemo, useEffect, useState } from "react";
 import { useClipboard } from "@/hooks/use-clipboard";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
-import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { useAuth } from "@/providers/auth";
 import { api } from "@/utils/api";
 import Link from "next/link";
@@ -33,7 +32,7 @@ export default function AdminHomePage() {
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 md:px-8 pt-8 pb-12">
-                <div className=" w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
+                <div className=" w-full max-w-8xl grid gap-8">
                     <div>
                         <Suspense fallback={null}>
                             <ProfileLinkCTA />
@@ -46,26 +45,11 @@ export default function AdminHomePage() {
                         </div>
                        
                     </div>
-
-                    <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
-
-                    <div className="hidden lg:block">
-                        <div className="lg:sticky top-6">
-                            <Suspense fallback={null}>
-                                <AdminPreviewPhone />
-                            </Suspense>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
     );
 }
-
-const AdminPreviewPhone = () => {
-    const { user } = useAuth();
-    return <PhonePreview username={user?.username || undefined} />;
-};
 
 const ProfileLinkCTA = () => {
     const clipboard = useClipboard();

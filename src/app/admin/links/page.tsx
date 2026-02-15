@@ -99,7 +99,7 @@ export default function SocialLinksPage() {
             </div>
 
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
-                <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
+                <div className="w-full max-w-8xl grid gap-8">
                     {loading && (
                         <>
                             <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
@@ -664,13 +664,7 @@ export default function SocialLinksPage() {
                                 </ul>
                             </div>
 
-                            <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
-
-                            <div className="hidden lg:block">
-                                <div className="lg:sticky top-6">
-                                    <AdminPreviewPhone username={username} version={previewVersion} ctas={ctas} />
-                                </div>
-                            </div>
+                            
                         </>
                     )}
                 </div>
@@ -678,13 +672,3 @@ export default function SocialLinksPage() {
         </section>
     );
 }
-
-const AdminPreviewPhone = ({ username, version, ctas }: { username: string; version: number; ctas: Array<{ id: "request" | "whatsapp" | "pay"; label: string; enabled: boolean; connected?: boolean }> }) => {
-    return (
-        <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#222] via-[#000] to-[#444] dark:from-[#d4d7da] dark:via-[#bfc3c7] dark:to-[#eceff1] p-1 shadow-2xl">
-            <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary relative">
-                <iframe key={version} title="Profile preview" src={`/${username}?v=${version}`} className="size-full border-0" />
-            </div>
-        </div>
-    );
-};

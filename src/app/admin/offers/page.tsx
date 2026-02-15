@@ -7,10 +7,8 @@ import { Input } from "@/components/base/input/input";
 import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { Rows01, Trash01, Edit01 } from "@untitledui/icons";
-import { AvatarProfilePhoto } from "@/components/base/avatar/avatar-profile-photo";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
-import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { api } from "@/utils/api";
 import { useAuth } from "@/providers/auth";
 
@@ -22,7 +20,7 @@ export default function AdminOffersPage() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [confirmOpen, setConfirmOpen] = useState(false);
     const [confirmIndex, setConfirmIndex] = useState<number | null>(null);
-    const [previewVersion, setPreviewVersion] = useState(0);
+    
     const [saving, setSaving] = useState(false);
     const [saveError, setSaveError] = useState<string | null>(null);
     const [draft, setDraft] = useState<{ title: string; description: string; priceType: "fixed" | "starting" | "consultation" | "subscription" | "free" | "enquiry"; price?: number; delivery?: string; includes: string[]; cta: "consultation" | "quote" | "appointment" | "call" | "service"; visible: boolean; locationCity: string; locationMode: "online" | "onsite" | "both"; category: "interior" | "fitness" | "beauty" | "education" | "professional" | "events" | ""; availability: string; image?: string; file?: File | null }>({
@@ -41,16 +39,6 @@ export default function AdminOffersPage() {
         image: undefined,
         file: null,
     });
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
-    const handlePhotoPick = () => fileInputRef.current?.click();
-    const handlePhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const url = URL.createObjectURL(file);
-            setDraft((d) => ({ ...d, file, image: url }));
-        }
-    };
 
     useEffect(() => {
         let alive = true;
@@ -197,7 +185,6 @@ export default function AdminOffersPage() {
                     image: o.image || (o as any).imageUrl,
                 };
                 setOffers((prev) => [nextItem, ...prev]);
-                setPreviewVersion((v) => v + 1);
             } else {
                 const id = offers[editIndex].id;
                 const res = await api.patch<{ success: boolean; status: string; data: { offer: { _id: string; title: string; description: string; priceType: "fixed" | "starting" | "consultation" | "subscription" | "free" | "enquiry"; price?: number | null; includes?: string[]; cta?: "consultation" | "quote" | "appointment" | "call" | "service" | null; delivery?: string | null; visible: boolean; locationCity?: string; locationMode?: "online" | "onsite" | "both"; category?: "interior" | "fitness" | "beauty" | "education" | "professional" | "events"; availability?: string; image?: string } } }>(
@@ -225,7 +212,6 @@ export default function AdminOffersPage() {
                     image: o.image || (o as any).imageUrl,
                 };
                 setOffers((prev) => prev.map((ov, i) => (i === editIndex ? nextItem : ov)));
-                setPreviewVersion((v) => v + 1);
             }
             ok = true;
         } catch (e: any) {
@@ -255,17 +241,16 @@ export default function AdminOffersPage() {
             </div>
 
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
-                <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
+                <div className="w-full max-w-8xl">
                     <div className="flex flex-col gap-6">
                         {loading ? (
-                            <div className="grid grid-cols-1 gap-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {[...Array(4)].map((_, idx) => (
-                                    <div key={idx} className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
-                                        <div className="h-5 w-40 bg-primary_hover animate-pulse rounded" />
-                                        <div className="mt-2 h-3 w-64 bg-primary_hover animate-pulse rounded" />
-                                        <div className="mt-4 grid grid-cols-2 gap-2">
-                                            <div className="h-3 bg-primary_hover animate-pulse rounded" />
-                                            <div className="h-3 bg-primary_hover animate-pulse rounded" />
+                                    <div key={idx} className="rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt overflow-hidden">
+                                        <div className="aspect-[4/3] bg-primary_hover animate-pulse" />
+                                        <div className="p-4">
+                                            <div className="h-5 w-40 bg-primary_hover animate-pulse rounded" />
+                                            <div className="mt-2 h-3 w-64 bg-primary_hover animate-pulse rounded" />
                                         </div>
                                     </div>
                                 ))}
@@ -289,7 +274,6 @@ export default function AdminOffersPage() {
                                                 api.patch(`/users/id/${user.id}/offers/${o.id}`, { order: i + 1 }, { token }),
                                             ),
                                         );
-                                        setPreviewVersion((v) => v + 1);
                                     } catch {}
                                 }}
                                 onToggle={async (index, isSelected) => {
@@ -298,22 +282,12 @@ export default function AdminOffersPage() {
                                         if (!user?.id || !token) return;
                                         const id = offers[index].id;
                                         await api.patch(`/users/id/${user.id}/offers/${id}`, { visible: isSelected }, { token });
-                                        setPreviewVersion((v) => v + 1);
                                     } catch {}
                                 }}
                             />
                         )}
                     </div>
-
-                    <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
-
-                    <div className="hidden lg:block">
-                        <div className="lg:sticky top-6">
-                            <Suspense fallback={null}>
-                                <PhonePreview username={user?.username ? `${user.username}?v=${previewVersion}` : undefined} />
-                            </Suspense>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -341,7 +315,6 @@ export default function AdminOffersPage() {
                                                     const id = offers[confirmIndex].id;
                                                     await api.delete(`/users/id/${user.id}/offers/${id}`, { token });
                                                     setOffers((prev) => prev.filter((_, i) => i !== confirmIndex));
-                                                    setPreviewVersion((v) => v + 1);
                                                 } catch {} finally {
                                                     setConfirmIndex(null);
                                                     state.close();
@@ -384,38 +357,7 @@ export default function AdminOffersPage() {
                                 </div>
 
                                 <div className="flex flex-col gap-6 px-4 py-4">
-                                    <div className="flex flex-col gap-2">
-                                        <h3 className="text-md font-semibold text-primary">Image</h3>
-                                        <div className="flex items-center gap-4">
-                                            <AvatarProfilePhoto
-                                                size="lg"
-                                                src={draft.image}
-                                                initials={draft.title?.charAt(0) || "?"}
-                                            />
-                                            <div className="flex flex-col gap-2">
-                                                <input
-                                                    type="file"
-                                                    ref={fileInputRef}
-                                                    className="hidden"
-                                                    accept="image/*"
-                                                    onChange={handlePhotoSelected}
-                                                />
-                                                <div className="flex gap-2">
-                                                    <Button size="sm" color="secondary" onClick={handlePhotoPick}>
-                                                        {draft.image ? "Change photo" : "Add photo"}
-                                                    </Button>
-                                                    {draft.image && (
-                                                        <Button size="sm" color="tertiary" onClick={() => setDraft((d) => ({ ...d, image: undefined, file: null }))}>
-                                                            Remove
-                                                        </Button>
-                                                    )}
-                                                </div>
-                                                <p className="text-xs text-tertiary">Recommended: Square JPG, PNG. Max 5MB.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <div className="flex min-w-0 flex-col gap-2">
+                                    <div className="flex min-w-0 flex-col gap-2">
                                     {saveError && <p className="text-sm text-error-solid">{saveError}</p>}
                                         <h3 className="text-md font-semibold text-primary">Basic Info</h3>
                                         <Input label="Offer title" placeholder="e.g. Instagram Reel Promotion" value={draft.title} onChange={(v) => setDraft((d) => ({ ...d, title: v }))} />
@@ -553,7 +495,6 @@ const OffersList = ({
     onToggle: (index: number, isSelected: boolean) => void | Promise<void>;
 }) => {
     const [dragIndex, setDragIndex] = useState<number | null>(null);
-    const isTouch = typeof window !== "undefined" && "ontouchstart" in window;
     const formatINR = useMemo(() => new Intl.NumberFormat("en-IN"), []);
 
     if (offers.length === 0) {
@@ -571,78 +512,57 @@ const OffersList = ({
     }
 
     return (
-        <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
-            <div className="flex min-w-0 flex-col">
-                <ul className="flex flex-col gap-2">
-                    {offers.map((offer, index) => (
-                        <li
-                            key={offer.id}
-                            draggable={!isTouch}
-                            onDragStart={() => setDragIndex(index)}
-                            onDragOver={(e) => e.preventDefault()}
-                            onDrop={async () => {
-                                if (dragIndex === null || dragIndex === index) return;
-                                const next = [...offers];
-                                const [moved] = next.splice(dragIndex, 1);
-                                next.splice(index, 0, moved);
-                                await onReorder(next);
-                                setDragIndex(null);
-                            }}
-                            className="rounded-xl bg-primary p-3 ring-1 ring-secondary active:scale-[0.99]"
-                        >
-                            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                                <div className="flex items-center gap-3">
-                                    <ButtonUtility aria-label="Drag to reorder" icon={Rows01} size="sm" />
-                                    <AvatarProfilePhoto
-                                        size="md"
-                                        src={offer.image}
-                                        initials={offer.title.charAt(0)}
-                                    />
-                                    <div className="flex min-w-0 flex-col">
-                                        <div className="flex items-center gap-2">
-                                            <p className="text-md font-semibold text-primary">{offer.title}</p>
-                                            {offer.category && (
-                                                <span className="inline-flex items-center rounded-md bg-secondary/10 px-2 py-0.5 text-xs font-medium text-secondary ring-1 ring-inset ring-secondary/20 capitalize">
-                                                    {offer.category}
-                                                </span>
-                                            )}
-                                        </div>
-                                        <div className="flex items-center gap-1.5 text-sm text-tertiary">
-                                            {offer.priceType !== "free" && offer.priceType !== "enquiry" ? (
-                                                <span className="font-medium text-primary">₹{formatINR.format(offer.price)}</span>
-                                            ) : (
-                                                <span className="font-medium text-primary capitalize">{offer.priceType}</span>
-                                            )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {offers.map((offer, index) => (
+                <div key={offer.id} className="group rounded-2xl bg-primary shadow-xs ring-1 ring-secondary_alt overflow-hidden">
+                    <div className="aspect-[4/3] bg-secondary">
+                        {offer.image ? (
+                            <img src={offer.image} alt={offer.title} className="w-full h-full object-cover select-none" />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center text-tertiary">No image</div>
+                        )}
+                    </div>
+                    <div className="p-4 flex flex-col gap-2">
+                        <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                                <p className="text-md font-semibold text-primary truncate">{offer.title}</p>
+                                <div className="mt-1 flex items-center gap-1.5 text-sm text-tertiary">
+                                    {offer.priceType !== "free" && offer.priceType !== "enquiry" ? (
+                                        <span className="font-medium text-primary">₹{formatINR.format(offer.price)}</span>
+                                    ) : (
+                                        <span className="font-medium text-primary capitalize">{offer.priceType}</span>
+                                    )}
+                                    <span className="text-quaternary">•</span>
+                                    {offer.delivery && (
+                                        <>
+                                            <span>{offer.delivery}</span>
                                             <span className="text-quaternary">•</span>
-                                            {offer.delivery && (
-                                                <>
-                                                    <span>{offer.delivery}</span>
-                                                    <span className="text-quaternary">•</span>
-                                                </>
-                                            )}
-                                            <span className="capitalize">
-                                                {offer.locationMode === "onsite" || offer.locationMode === "both"
-                                                    ? offer.locationCity || "On-site"
-                                                    : "Online"}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="hidden md:flex items-center gap-2">
-                                    <Toggle slim size="md" isSelected={offer.visible} onChange={(isSelected) => onToggle(index, isSelected)} aria-label={`Show ${offer.title} on profile`} />
-                                    <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => onEdit(index)} />
-                                    <ButtonUtility aria-label="Delete" icon={Trash01} size="sm" onClick={() => onDelete(index)} />
+                                        </>
+                                    )}
+                                    <span className="capitalize">
+                                        {offer.locationMode === "onsite" || offer.locationMode === "both"
+                                            ? offer.locationCity || "On-site"
+                                            : "Online"}
+                                    </span>
                                 </div>
                             </div>
-                            <div className="mt-2 flex md:hidden items-center gap-2 justify-end">
-                                <Toggle slim size="md" isSelected={offer.visible} onChange={(isSelected) => onToggle(index, isSelected)} aria-label={`Show ${offer.title} on profile`} />
-                                <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => onEdit(index)} />
-                                <ButtonUtility aria-label="Delete" icon={Trash01} size="sm" onClick={() => onDelete(index)} />
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                            {offer.category && (
+                                <span className="shrink-0 inline-flex items-center rounded-md bg-secondary/10 px-2 py-0.5 text-xs font-medium text-secondary ring-1 ring-inset ring-secondary/20 capitalize">
+                                    {offer.category}
+                                </span>
+                            )}
+                        </div>
+                        {offer.description && (
+                            <p className="text-sm text-tertiary line-clamp-2">{offer.description}</p>
+                        )}
+                        <div className="mt-2 flex items-center justify-end gap-2">
+                            <Toggle slim size="md" isSelected={offer.visible} onChange={(isSelected) => onToggle(index, isSelected)} aria-label={`Show ${offer.title} on profile`} />
+                            <ButtonUtility aria-label="Edit" icon={Edit01} size="sm" onClick={() => onEdit(index)} />
+                            <ButtonUtility aria-label="Delete" icon={Trash01} size="sm" onClick={() => onDelete(index)} />
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };

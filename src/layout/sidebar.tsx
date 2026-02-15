@@ -10,6 +10,11 @@ import {
     Link02,
     Star01,
     User01,
+    Package,
+    Users01,
+    NotificationBox,
+    Archive,
+    LineChartUp03,
 } from "@untitledui/icons";
 import { FeaturedCardProgressBar } from "@/components/application/app-navigation/base-components/featured-cards";
 import type { NavItemType } from "@/components/application/app-navigation/config";
@@ -44,6 +49,7 @@ export const AppSidebar = () => {
     const [progress, setProgress] = useState(0);
     const [desc, setDesc] = useState("Loading storage…");
     const [category, setCategory] = useState<string | null>(null);
+    const username = user?.username || "";
     const shareHref = `/${user?.username || ""}`;
     useEffect(() => {
         let alive = true;
@@ -85,11 +91,22 @@ export const AppSidebar = () => {
     }, [token, getMe]);
 
     const isProfessional = category === "Professional";
+    const isBuilder = category === "Builder";
+    const builderNavItems: NavItemType[] = [
+        { label: "Projects", href: "/admin/builder/projects", icon: Grid03 },
+        { label: "Units", href: `/builder/${username}`, icon: Package },
+        { label: "Buyers", href: `/builder/${username}`, icon: Users01 },
+        { label: "Site Updates", href: `/builder/${username}`, icon: NotificationBox },
+        { label: "Supply", href: `/builder/${username}`, icon: Archive },
+        { label: "Payments Timeline", href: `/builder/${username}`, icon: LineChartUp03 },
+    ];
     
     let navItemsSimple: NavItemType[] = [];
     
     if (isProfessional) {
         navItemsSimple = [...baseNavItems, ...professionalNavItems];
+    } else if (isBuilder) {
+        navItemsSimple = [baseNavItems[0], ...builderNavItems, ...baseNavItems.slice(1)];
     } else {
         navItemsSimple = baseNavItems;
     }

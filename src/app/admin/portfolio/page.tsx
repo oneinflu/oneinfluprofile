@@ -9,9 +9,8 @@ import { TextArea } from "@/components/base/textarea/textarea";
 import { Select } from "@/components/base/select/select";
 import { Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Modal as AriaModal, ModalOverlay as AriaModalOverlay } from "react-aria-components";
 import { Edit01, Trash01 } from "@untitledui/icons";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { PhonePreview } from "@/components/application/preview/phone-preview";
 import { api } from "@/utils/api";
 import { useAuth } from "@/providers/auth";
 
@@ -258,7 +257,7 @@ export default function AdminPortfolioPage() {
             </div>
 
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
-                <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
+                <div className="w-full max-w-8xl grid gap-8">
                     <div className="flex flex-col gap-6">
                         <PortfolioGrid
                             items={items}
@@ -279,16 +278,6 @@ export default function AdminPortfolioPage() {
                                 } catch {}
                             }}
                         />
-                    </div>
-
-                    <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
-
-                    <div className="hidden lg:block">
-                        <div className="lg:sticky top-6">
-                            <Suspense fallback={null}>
-                                <PhonePreview username={user?.username ? `${user.username}?v=${previewVersion}` : undefined} />
-                            </Suspense>
-                        </div>
                     </div>
                 </div>
             </div>

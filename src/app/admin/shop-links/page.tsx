@@ -401,7 +401,7 @@ export default function ShopLinksPage() {
             </div>
 
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 md:px-8 pt-8 pb-12">
-                <div className="w-full max-w-8xl grid gap-8 lg:grid-cols-[1fr_1px_360px]">
+                <div className="w-full max-w-8xl grid gap-8">
                     {loading && (
                         <>
                             <div className="rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
@@ -438,8 +438,7 @@ export default function ShopLinksPage() {
                                         <Button size="sm" color="secondary" onClick={() => setShowAddDrawer(true)}>+ Add Shop Product</Button>
                                         <Button size="sm" color="secondary" onClick={() => setShowManageCategories(true)}>Manage Categories</Button>
                                     </div>
-                                    <p className="text-sm text-tertiary order-3 md:order-none">Link marketplaces and checkout pages</p>
-                                </div>
+                                    </div>
 
                                 <div className="mt-3 flex flex-wrap items-center gap-2">
                                     <div
@@ -780,14 +779,14 @@ export default function ShopLinksPage() {
                                     </SlideoutMenu>
                                 </SlideoutMenu.Trigger>
 
-                                <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
+                                <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4 xl:grid-cols-6">
                                     {(() => {
                                         const filtered = selectedCategory === "All" ? products : products.filter((p) => p.categoryName === selectedCategory);
                                         return filtered.map((p) => (
-                                            <div key={p.id} className="rounded-2xl bg-primary ring-1 ring-secondary_alt shadow-xs overflow-hidden relative">
-                                                <div className="aspect-square w-full bg-primary_hover">
-                                                    <img src={p.image} alt={p.title} className="size-full object-cover" />
-                                                    <div className="absolute top-2 right-2 flex items-center gap-1">
+                                            <div key={p.id} className="group rounded-2xl bg-primary ring-1 ring-secondary_alt shadow-xs overflow-hidden relative transition-all hover:shadow-sm hover:ring-secondary">
+                                                <div className="aspect-square w-full bg-secondary">
+                                                    <img src={p.image} alt={p.title} className="size-full object-cover select-none" />
+                                                    <div className="absolute top-2 right-2 flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
                                                         <ButtonUtility
                                                             aria-label="Edit"
                                                             icon={Edit01}
@@ -838,13 +837,13 @@ export default function ShopLinksPage() {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="p-3 flex flex-col gap-2">
+                                                <div className="p-2 flex flex-col gap-1.5">
                                                     <div className="min-w-0">
-                                                        <p className="text-md font-semibold text-primary truncate">{p.title}</p>
-                                                        <p className="text-xs text-secondary truncate">{p.platformLabel}{p.categoryName ? ` · ${p.categoryName}` : ""}</p>
+                                                        <p className="text-sm font-semibold text-primary truncate">{p.title}</p>
+                                                        <p className="text-2xs text-secondary truncate">{p.platformLabel}{p.categoryName ? ` · ${p.categoryName}` : ""}</p>
                                                     </div>
                                                     {p.tags && (p.tags.affiliate || p.tags.personallyUsed || p.tags.brandPartner) && (
-                                                        <div className="flex flex-wrap items-center gap-2">
+                                                        <div className="flex flex-wrap items-center gap-1.5">
                                                             {p.tags.affiliate && <Badge size="sm" color="brand">Affiliate</Badge>}
                                                             {p.tags.personallyUsed && <Badge size="sm" color="gray">Personally used</Badge>}
                                                             {p.tags.brandPartner && <Badge size="sm" color="success">Brand partner</Badge>}
@@ -858,13 +857,7 @@ export default function ShopLinksPage() {
                                 </div>
                             </div>
 
-                            <div aria-hidden className="hidden lg:block self-stretch w-px bg-border-secondary" />
-
-                            <div className="hidden lg:block">
-                                <div className="lg:sticky top-6">
-                                    <AdminPreviewPhone username={username} version={previewVersion} ctas={ctas} />
-                                </div>
-                            </div>
+                            
                         </>
                     )}
                 </div>
@@ -872,13 +865,3 @@ export default function ShopLinksPage() {
         </section>
     );
 }
-
-const AdminPreviewPhone = ({ username, version, ctas }: { username: string; version: number; ctas: Array<{ id: "request" | "whatsapp" | "pay"; label: string; enabled: boolean; connected?: boolean }> }) => {
-    return (
-        <div className="mx-auto aspect-[9/19] w-full max-w-sm rounded-[2rem] bg-linear-to-b from-[#222] via-[#000] to-[#444] dark:from-[#d4d7da] dark:via-[#bfc3c7] dark:to-[#eceff1] p-1 shadow-2xl">
-            <div className="size-full overflow-hidden rounded-[inherit] bg-alpha-black ring-1 ring-primary relative">
-                <iframe key={version} title="Profile preview" src={`/${username}?v=${version}`} className="size-full border-0" />
-            </div>
-        </div>
-    );
-};
