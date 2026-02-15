@@ -15,7 +15,7 @@ const projects: Project[] = [
   {
       id: "1",
       name: "Signature Altius",
-      image: "./altius.jpg",
+      image: "/altius.jpg",
       stage: "Ongoing",
       deadlineLabel: "Possession Jun 2026",
       money: { dueThisWeek: 1420000, overdueAmount: 380000, loanPending: 21000000, health: "watch" },
@@ -26,7 +26,7 @@ const projects: Project[] = [
   {
       id: "2",
       name: "Signature Fortius",
-      image: "./fortius.jpg",
+      image: "/fortius.jpg",
       stage: "Pre-launch",
       deadlineLabel: "RERA Feb 2027",
       money: { dueThisWeek: 480000, overdueAmount: 0, loanPending: 14000000, health: "healthy" },
@@ -37,7 +37,7 @@ const projects: Project[] = [
   {
       id: "3",
       name: "Signature Horizon",
-      image: "./horizon.jpg",
+      image: "/horizon.jpg",
       stage: "Near possession",
       deadlineLabel: "Handover Dec 2025",
       money: { dueThisWeek: 2250000, overdueAmount: 830000, loanPending: 8000000, health: "risk" },
@@ -51,7 +51,7 @@ const projects: Project[] = [
 
 const stageOrder: Record<Project["stage"], number> = {
   "Pre-launch": 0,
-  Ongoing: 1,
+  "Ongoing": 1,
   "Near possession": 2,
 };
 

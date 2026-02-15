@@ -1,595 +1,80 @@
-[00:00:08.005] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:08.398] Server  LOG     ✓ Ready in 5.4s
-[00:00:08.403] Server  WARN    ⚠ Cross origin request detected from 192.168.0.2 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:02.913] Server  WARN    ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:03.101] Server  LOG     ✓ Ready in 2.7s
+[00:00:07.523] Server  LOG     ○ Compiling / ...
+[00:00:08.999] Server  WARN    ⚠ Cross origin request detected from 192.168.0.2 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:12.058] Server  LOG     ○ Compiling /admin/builder/projects ...
-[00:00:18.649] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.649] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.649] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:18.650] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:19.518] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:19.518] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:19.519] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:19.519] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:19.519] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:00:19.519] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.499] Server  LOG     ✓ Compiled in 679ms
-[00:01:26.714] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.714] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:26.715] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.418] Server  LOG     ✓ Compiled in 245ms
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:01:56.556] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.609] Server  LOG     ✓ Compiled in 1640ms
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[00:06:21.821] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.029] Server  LOG     ✓ Compiled in 2.5s
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:20:43.185] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:46.607] Server  LOG     ✓ Compiled in 461ms
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:22:47.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.489] Server  LOG     ✓ Compiled in 352ms
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.673] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.674] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.676] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.676] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.676] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:33:19.676] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.944] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:07.945] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:08.205] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.212] Server  LOG     ✓ Compiled in 759ms
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:34:44.671] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.287] Server  LOG     ✓ Compiled in 1169ms
-[07:36:07.438] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.438] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:07.439] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.050] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:36:20.249] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.757] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:37:04.950] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:52.800] Server  LOG     ✓ Compiled in 537ms
-[07:38:53.678] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:53.679] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:53.679] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:53.679] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:53.679] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:53.679] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.401] Server  LOG     ✓ Compiled in 222ms
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:38:59.672] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.095] Server  LOG     ✓ Compiled in 548ms
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:39:13.670] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:05.468] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:05.475] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:05.475] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:05.475] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:05.476] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:05.476] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:08.998] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:08.998] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.007] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:54:09.260] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:55:45.613] Server  LOG     ✓ Compiled in 7.4s
-[07:55:46.693] Browser ERROR   ./src/app/admin/builder/projects/ProjectCard.tsx:6:1
-Export MoreHorizontal doesn't exist in target module
-  4 | import { Button } from "@/components/base/buttons/button";
-  5 | import { useRouter } from "next/navigation";
-> 6 | import { ArrowRight, AlertCircle, MoreHorizontal } from "@untitledui/icons";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 |
-  8 | export type MoneyHealth = "healthy" | "watch" | "risk";
-  9 |
+[00:00:09.735] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:13.826] Browser ERROR   React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. isReadOnly isreadonly
+[00:00:13.826] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:13.826] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.042] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:14.042] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:00:14.042] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.042] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.537] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.538] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.538] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.538] Browser WARN    An aria-label or aria-labelledby prop is required for accessibility.
+[00:00:14.538] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:14.538] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:14.538] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:14.538] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:14.538] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:14.538] Browser ERROR   uncaughtError: Error: A table must have at least one Column with the isRowHeader prop set to true
+[00:00:15.873] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:00:15.873] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:00:15.873] Browser ERROR   uncaughtError: Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:05.845] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:05.846] Server  LOG     ✓ Compiled in 667ms
+[00:01:06.641] Server  ERROR   TypeError: Invalid URL
+[00:01:06.683] Server  ERROR   ⨯ Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:08.300] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:01:08.301] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:01:08.301] Browser ERROR   uncaughtError: Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:10.026] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:10.034] Server  LOG     ✓ Compiled in 172ms
+[00:01:10.491] Server  ERROR   TypeError: Invalid URL
+[00:01:10.520] Server  ERROR   ⨯ Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:11.778] Browser ERROR   uncaughtError: Error: Switched to client rendering because the server rendering errored:
 
-The export MoreHorizontal was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-client] (ecmascript).
-Did you mean to import DotsHorizontal?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:11.779] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:01:11.779] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:01:11.779] Browser ERROR   uncaughtError: Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:16.264] Server  ERROR   TypeError: Invalid URL
+[00:01:16.279] Server  ERROR   ⨯ Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:17.394] Browser ERROR   uncaughtError: Error: Switched to client rendering because the server rendering errored:
 
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/builder/projects/ProjectCard.tsx [Client Component Browser]
-    ./src/app/admin/builder/projects/page.tsx [Client Component Browser]
-    ./src/app/admin/builder/projects/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/builder/projects/ProjectCard.tsx [Client Component SSR]
-    ./src/app/admin/builder/projects/page.tsx [Client Component SSR]
-    ./src/app/admin/builder/projects/page.tsx [Server Component]
-[07:55:46.694] Browser ERROR   ./src/app/admin/builder/projects/ProjectCard.tsx:6:1
-Export MoreHorizontal doesn't exist in target module
-  4 | import { Button } from "@/components/base/buttons/button";
-  5 | import { useRouter } from "next/navigation";
-> 6 | import { ArrowRight, AlertCircle, MoreHorizontal } from "@untitledui/icons";
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  7 |
-  8 | export type MoneyHealth = "healthy" | "watch" | "risk";
-  9 |
-
-The export MoreHorizontal was not found in module [project]/node_modules/@untitledui/icons/dist/index.mjs [app-ssr] (ecmascript).
-Did you mean to import DotsHorizontal?
-All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
-
-Import traces:
-  Client Component Browser:
-    ./src/app/admin/builder/projects/ProjectCard.tsx [Client Component Browser]
-    ./src/app/admin/builder/projects/page.tsx [Client Component Browser]
-    ./src/app/admin/builder/projects/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./src/app/admin/builder/projects/ProjectCard.tsx [Client Component SSR]
-    ./src/app/admin/builder/projects/page.tsx [Client Component SSR]
-    ./src/app/admin/builder/projects/page.tsx [Server Component]
-[07:57:18.990] Server  LOG     ✓ Compiled in 1805ms
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:20.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:24.664] Server  LOG     ✓ Compiled in 279ms
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:57:25.695] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[07:59:41.377] Server  LOG     ✓ Compiled in 432ms
-[07:59:41.714] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'root')
-[08:00:14.339] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:00:14.347] Server  LOG     ✓ Compiled in 293ms
-[08:00:15.322] Server  ERROR   ⨯ TypeError: Cannot read properties of undefined (reading 'root')
-[08:00:15.335] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'root')
-[08:00:16.682] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'root')
-[08:00:26.430] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:00:26.447] Server  LOG     ✓ Compiled in 163ms
-[08:00:27.686] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.688] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.688] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.688] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.689] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.691] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.691] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.691] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.693] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.693] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.693] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:27.693] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:33.196] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:33.196] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:33.196] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:33.196] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:00:34.887] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/projects/horizon.jpg" "received" null
-[08:00:34.891] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/projects/altius.jpg" "received" null
-[08:00:34.892] Server  ERROR   ⨯ "The requested resource isn't a valid image for" "/projects/fortius.jpg" "received" null
-[08:01:06.143] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:01:06.143] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:01:06.143] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:01:06.143] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.104] Server  LOG     ✓ Compiled in 1382ms
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:04:14.449] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:14.449] Browser ERROR   uncaughtError: Error: Failed to parse src "./altius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:04:15.477] Server  LOG     ✓ Compiled in 955ms
-[08:04:15.631] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:04:15.853] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:15.853] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:15.853] Browser ERROR   uncaughtError: Error: Failed to parse src "./altius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:04:17.499] Server  ERROR   TypeError: Invalid URL
-[08:04:17.578] Server  ERROR   ⨯ Error: Failed to parse src "./altius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:04:19.705] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:19.707] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:19.707] Browser ERROR   uncaughtError: Error: Failed to parse src "./altius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:04:21.530] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:04:21.552] Server  LOG     ✓ Compiled in 435ms
-[08:04:22.236] Server  ERROR   TypeError: Invalid URL
-[08:04:22.270] Server  ERROR   ⨯ Error: Failed to parse src "./altius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:04:23.684] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:23.686] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:04:23.686] Browser ERROR   uncaughtError: Error: Failed to parse src "./altius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:05:10.717] Server  LOG     ✓ Compiled in 1443ms
-[08:05:10.722] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:05:11.604] Server  ERROR   TypeError: Invalid URL
-[08:05:11.657] Server  ERROR   ⨯ Error: Failed to parse src "./fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:05:13.746] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:05:13.748] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
-[08:05:13.748] Browser ERROR   uncaughtError: Error: Failed to parse src "./fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
-[08:08:39.821] Server  LOG     ✓ Compiled in 1238ms
-[08:08:39.875] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:08:40.621] Server  ERROR   ⨯ ReferenceError: MoreHorizontal is not defined
-[08:08:41.683] Browser ERROR   uncaughtError: ReferenceError: MoreHorizontal is not defined
-[08:09:56.627] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:09:56.644] Server  LOG     ✓ Compiled in 265ms
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    Image with src "/./fortius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:09:58.837] Browser WARN    Image with src "/./horizon.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:09:58.837] Browser WARN    Image with src "/./horizon.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:17.394] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:01:17.395] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:01:17.395] Browser ERROR   uncaughtError: Error: Failed to parse src "fortius.jpg" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:01:34.346] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:01:34.366] Server  LOG     ✓ Compiled in 282ms
+[00:01:35.874] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.874] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.874] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.874] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:35.875] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:36.334] Browser WARN    Image with src "/fortius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:36.334] Browser WARN    Image with src "/fortius.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[08:09:58.837] Browser WARN    Image with src "/./altius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:09:58.837] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:10:12.235] Server  LOG     ✓ Finished filesystem cache database compaction in 10.5s
-[08:21:27.923] Server  LOG     ✓ Compiled in 411ms
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:28.675] Browser ERROR   uncaughtError: ReferenceError: Coins is not defined
-[08:21:36.070] Server  LOG     ✓ Compiled in 1670ms
-[08:21:36.129] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:21:36.968] Server  ERROR   ⨯ ReferenceError: AlertCircle is not defined
-[08:21:36.972] Browser ERROR   uncaughtError: ReferenceError: AlertCircle is not defined
-[08:21:38.688] Browser ERROR   uncaughtError: ReferenceError: AlertCircle is not defined
-[08:21:42.476] Server  LOG     ✓ Finished filesystem cache database compaction in 10.9s
-[08:21:51.606] Server  LOG     ✓ Compiled in 1000ms
-[08:21:51.627] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:53.949] Browser WARN    Image with src "/./fortius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:21:53.949] Browser WARN    Image with src "/./altius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:21:53.949] Browser WARN    Image with src "/./horizon.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:21:54.097] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.062] Server  LOG     ✓ Compiled in 520ms
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:11.683] Browser ERROR   uncaughtError: ReferenceError: ArrowRight is not defined
-[08:22:17.343] Server  LOG     ✓ Compiled in 331ms
-[08:22:17.363] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:19.234] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    Image with src "/./fortius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:22:20.629] Browser WARN    Image with src "/./altius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:22:20.629] Browser WARN    Image with src "/./horizon.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
-[08:22:20.629] Browser WARN    If you do not provide a visible label, you must specify an aria-label or aria-labelledby attribute for accessibility
+[00:01:36.644] Browser WARN    Image with src "/horizon.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:36.644] Browser WARN    Image with src "/horizon.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:01:36.644] Browser WARN    Image with src "/altius.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
