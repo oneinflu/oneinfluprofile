@@ -1,139 +1,144 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/base/buttons/button";
-import { useRouter } from "next/navigation";
-import { ArrowRight, AlertCircle, DotsHorizontal } from "@untitledui/icons";
+import { Badge } from "@/components/base/badges/badges";
 
-export type MoneyHealth = "healthy" | "watch" | "risk";
+type ProjectStatus = "selling" | "construction" | "handover";
 
-export type Project = {
-  city: string;
-  id: string;
-  name: string;
-  image?: string;
-  stage: "Pre-launch" | "Ongoing" | "Near possession";
-  deadlineLabel: string;
-  money: {
-    dueThisWeek: number;
-    overdueAmount: number;
-    loanPending: number;
-    health: MoneyHealth;
-  };
-  sales: {
-    availableUnits: number;
-    bookedThisMonth: number;
-    salesSpeed: "fast" | "steady" | "slow";
-  };
-  site: {
-    lastUpdate: string;
-    inspectionsPending: number;
-  };
-};
-
-export const formatCurrencyShort = (value: number) => {
-  if (value >= 10000000) return `₹ ${(value / 10000000).toFixed(1)}Cr`;
-  if (value >= 100000) return `₹ ${(value / 100000).toFixed(1)}L`;
-  if (value === 0) return "₹ 0";
-  return `₹ ${value.toLocaleString("en-IN")}`;
-};
-
-const healthTone: Record<MoneyHealth, string> = {
-  healthy: "text-success-solid",
-  watch: "text-warning-solid",
-  risk: "text-error-solid",
-};
+export type AttentionFlag = "payments_pending" | "stock_issue" | "slow_sales" | "bank_pending";
 
 type Props = {
-  project: Project;
-  userUsername?: string;
+    name: string;
+    location: string;
+    status: ProjectStatus;
+    unitsSold: number;
+    totalUnits: number;
+    revenueLocked: string;
+    constructionPercent: number;
+    unitsSoldPercent: number;
+    flags?: AttentionFlag[] | readonly AttentionFlag[];
+    dashboardHref?: string;
+    unitsHref?: string;
+    shareQrHref?: string;
 };
 
-export function ProjectCard({ project, userUsername }: Props) {
-  const router = useRouter();
+const statusLabel: Record<ProjectStatus, string> = {
+    selling: "Selling",
+    construction: "Construction",
+    handover: "Near Handover",
+};
 
-  return (
-    <div className="group relative overflow-hidden rounded-2xl bg-primary/90 ring-1 ring-secondary_alt transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+const statusColor: Record<ProjectStatus, "brand" | "warning" | "success"> = {
+    selling: "brand",
+    construction: "warning",
+    handover: "success",
+};
 
-      {/* PROJECT IMAGE */}
-      <div className="relative h-36 w-full overflow-hidden">
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        ) : (
-          <div className="h-full w-full bg-gradient-to-br from-secondary_alt/30 to-secondary_alt/5" />
-        )}
+const flagConfig: Record<
+    AttentionFlag,
+    { label: string; color: "error" | "warning" | "brand" }
+> = {
+    payments_pending: { label: "Payments pending", color: "error" },
+    stock_issue: { label: "Stock issue", color: "warning" },
+    slow_sales: { label: "Slow sales", color: "warning" },
+    bank_pending: { label: "Bank approval pending", color: "brand" },
+};
 
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+export const ProjectCard = ({
+    name,
+    location,
+    status,
+    unitsSold,
+    totalUnits,
+    revenueLocked,
+    constructionPercent,
+    unitsSoldPercent,
+    flags,
+    dashboardHref,
+    unitsHref,
+    shareQrHref,
+}: Props) => {
+    const safeUnitsSold = Math.max(0, Math.min(unitsSold, totalUnits));
+    const soldLabel = `${safeUnitsSold} / ${totalUnits}`;
+    const constructionLabel = `${constructionPercent}%`;
+    const primaryPercent = Math.max(0, Math.min(unitsSoldPercent, 100));
 
-        {/* TITLE + STATUS */}
-        <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
-          <div>
-            <p className="text-lg font-semibold text-white">{project.name}</p>
-            <p className="text-xs text-white/80">
-              {project.stage} • {project.deadlineLabel}
-            </p>
-          </div>
+    return (
+        <div className="flex flex-col gap-4 rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
+            <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0 space-y-1">
+                    <p className="text-sm font-semibold text-primary truncate">
+                        {name}
+                    </p>
+                    <p className="text-xs text-tertiary truncate">
+                        {location}
+                    </p>
+                </div>
+                <Badge type="color" size="sm" color={statusColor[status]}>
+                    {statusLabel[status]}
+                </Badge>
+            </div>
 
-          <div className={`text-xs font-medium ${healthTone[project.money.health]}`}>
-            {project.money.health === "risk" ? "Action needed" :
-             project.money.health === "watch" ? "Watch" : "Healthy"}
-          </div>
+            <div className="space-y-2">
+                <div className="flex items-center justify-between text-xs text-tertiary">
+                    <span>Units sold</span>
+                    <span className="font-medium text-secondary">
+                        {primaryPercent}%
+                    </span>
+                </div>
+                <div className="h-1.5 rounded-full bg-secondary_alt/40 overflow-hidden">
+                    <div
+                        className="h-full rounded-full bg-brand-primary"
+                        style={{ width: `${primaryPercent}%` }}
+                    />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3 text-xs">
+                <div className="space-y-0.5">
+                    <p className="text-tertiary">Sold / Total</p>
+                    <p className="text-sm font-semibold text-primary">
+                        {soldLabel}
+                    </p>
+                </div>
+                <div className="space-y-0.5">
+                    <p className="text-tertiary">Revenue locked</p>
+                    <p className="text-sm font-semibold text-primary">
+                        {revenueLocked}
+                    </p>
+                </div>
+                <div className="space-y-0.5">
+                    <p className="text-tertiary">Construction</p>
+                    <p className="text-sm font-semibold text-primary">
+                        {constructionLabel}
+                    </p>
+                </div>
+            </div>
+
+            {flags && flags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                    {flags.map((flag) => {
+                        const cfg = flagConfig[flag];
+                        return (
+                            <Badge key={flag} type="pill-color" size="sm" color={cfg.color}>
+                                {cfg.label}
+                            </Badge>
+                        );
+                    })}
+                </div>
+            )}
+
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+                <Button size="sm" color="secondary" href={dashboardHref}>
+                    Open Dashboard
+                </Button>
+                <Button size="sm" color="secondary" href={unitsHref}>
+                    Units
+                </Button>
+                <Button size="sm" color="secondary" href={shareQrHref}>
+                    Share QR
+                </Button>
+            </div>
         </div>
-      </div>
-
-      {/* CONTENT */}
-      <div className="p-4">
-
-        {/* HERO MONEY */}
-        <div>
-          <p className="text-2xl font-semibold text-primary">
-            {formatCurrencyShort(project.money.dueThisWeek)}
-          </p>
-          <p className="text-xs text-secondary">Due this week</p>
-
-          <p className="mt-1 text-xs text-tertiary">
-            {formatCurrencyShort(project.money.loanPending)} loan •{" "}
-            {formatCurrencyShort(project.money.overdueAmount)} overdue
-          </p>
-        </div>
-
-        {/* INLINE STATS */}
-        <div className="mt-4 flex items-center justify-between text-xs text-secondary">
-          <span>{project.sales.availableUnits} units</span>
-          <span>{project.sales.bookedThisMonth} sold</span>
-          <span>{project.site.lastUpdate}</span>
-        </div>
-
-        {/* ACTION BAR */}
-        <div className="mt-4 flex items-center justify-between">
-          <Button
-            size="sm"
-            color="primary"
-            className="h-9 px-4 text-xs"
-            iconTrailing={ArrowRight}
-            onClick={() => {
-              if (!userUsername) return;
-              router.push(`/builder/${userUsername}/projects/${project.id}`);
-            }}
-          >
-            Open Project
-          </Button>
-
-          <Button
-            size="sm"
-            color="secondary"
-            className="h-9 w-9 p-0"
-          >
-            <DotsHorizontal className="size-4" />
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
+    );
+};

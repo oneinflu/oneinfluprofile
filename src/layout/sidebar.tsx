@@ -93,12 +93,55 @@ export const AppSidebar = () => {
     const isProfessional = category === "Professional";
     const isBuilder = category === "Builder";
     const builderNavItems: NavItemType[] = [
-        { label: "Projects", href: "/admin/builder/projects", icon: Grid03 },
-        { label: "Units", href: `/builder/${username}`, icon: Package },
-        { label: "Buyers", href: `/builder/${username}`, icon: Users01 },
-        { label: "Site Updates", href: `/builder/${username}`, icon: NotificationBox },
-        { label: "Supply", href: `/builder/${username}`, icon: Archive },
-        { label: "Payments Timeline", href: `/builder/${username}`, icon: LineChartUp03 },
+        {
+            label: "Projects",
+            icon: Grid03,
+            items: [
+                { label: "All Projects", href: "/admin/builder/projects" },
+                { label: "Create New Project", href: "/admin/builder/projects/create" },
+                { label: "Project Settings", href: "/admin/builder/projects/settings" },
+            ],
+        },
+        {
+            label: "Units & Pricing",
+            href: "/admin/builder/projects/signature-altius/units",
+            icon: Package,
+        },
+        {
+            label: "Customers & Bookings",
+            href: `/builder/${username}`,
+            icon: Users01,
+        },
+        {
+            label: "QR & Listings",
+            href: `/builder/${username}`,
+            icon: Link02,
+        },
+        {
+            label: "Construction Updates",
+            href: `/builder/${username}`,
+            icon: NotificationBox,
+        },
+        {
+            label: "Vendors & Supply",
+            href: `/builder/${username}`,
+            icon: Archive,
+        },
+        {
+            label: "Notifications & Activity Log",
+            href: `/builder/${username}`,
+            icon: NotificationBox,
+        },
+        {
+            label: "Reports & Insights",
+            href: `/builder/${username}`,
+            icon: LineChartUp03,
+        },
+        {
+            label: "Settings",
+            href: "/settings",
+            icon: User01,
+        },
     ];
     
     let navItemsSimple: NavItemType[] = [];
@@ -106,7 +149,8 @@ export const AppSidebar = () => {
     if (isProfessional) {
         navItemsSimple = [...baseNavItems, ...professionalNavItems];
     } else if (isBuilder) {
-        navItemsSimple = [baseNavItems[0], ...builderNavItems, ...baseNavItems.slice(1)];
+        // Builder: show Home, builder-specific items, and Enquiries only
+        navItemsSimple = [baseNavItems[0], ...builderNavItems, baseNavItems[5]];
     } else {
         navItemsSimple = baseNavItems;
     }

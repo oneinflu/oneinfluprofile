@@ -72,6 +72,78 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../src/app/admin/builder/projects/[projectId]/units/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/[projectId]/units">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/[projectId]/units/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/commercials/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create/commercials">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/commercials/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/media/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create/media">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/media/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/pricing/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create/pricing">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/pricing/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/review/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create/review">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/review/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/structure/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create/structure">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/structure/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/admin/builder/projects/create/units/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects/create/units">> = Specific
+  const handler = {} as typeof import("../../src/app/admin/builder/projects/create/units/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/admin/builder/projects/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/admin/builder/projects">> = Specific
