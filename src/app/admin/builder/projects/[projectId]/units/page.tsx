@@ -6,6 +6,8 @@ import { Button } from "@/components/base/buttons/button";
 import { Select } from "@/components/base/select/select";
 import { Input } from "@/components/base/input/input";
 import { Modal, ModalOverlay, Dialog } from "@/components/application/modals/modal";
+import { SlideoutMenu } from "@/components/application/slideout-menus/slideout-menu";
+import { FileUpload } from "@/components/application/file-upload/file-upload-base";
 
 type RouteParams = {
     projectId?: string;
@@ -234,6 +236,101 @@ export default function ProjectUnitsPricingPage() {
     const [unitPriceOverrides, setUnitPriceOverrides] = useState<Record<string, string>>(
         {},
     );
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [bookingStep, setBookingStep] = useState<1 | 2 | 3 | 4>(1);
+    const [bookingSeed, setBookingSeed] = useState<{
+        towerId?: string;
+        floorId?: string;
+        unitIndex?: number;
+        unit?: UnitTile | null;
+    }>({});
+    const [bookingProjectId, setBookingProjectId] = useState<string | undefined>(projectId);
+    const [bookingTowerId, setBookingTowerId] = useState<string>("all");
+    const [bookingFloorId, setBookingFloorId] = useState<string | null>(null);
+    const [bookingUnitIndex, setBookingUnitIndex] = useState<number | null>(null);
+    const [buyerName, setBuyerName] = useState("");
+    const [buyerPhone, setBuyerPhone] = useState("");
+    const [buyerEmail, setBuyerEmail] = useState("");
+    const [buyerPan, setBuyerPan] = useState("");
+    const [buyerAddress, setBuyerAddress] = useState("");
+    const [existingBuyer, setExistingBuyer] = useState<{ name: string; phone: string; email?: string } | null>(null);
+    const [advanceAmount, setAdvanceAmount] = useState<string>("");
+    const [paymentPlan, setPaymentPlan] = useState<"construction" | "custom" | "one_time">("construction");
+    const [isLoan, setIsLoan] = useState<"yes" | "no">("no");
+    const [loanBank, setLoanBank] = useState("");
+    const [loanAmount, setLoanAmount] = useState<string>("");
+    const [paymentMode, setPaymentMode] = useState<"Cash" | "Bank" | "UPI" | "Cheque">("Cash");
+    const [receiptFiles, setReceiptFiles] = useState<Array<{ name: string; size: number; progress: number }>>([]);
+
+    const bookingFaces = ["East", "West", "North", "South"];
+    const bookingSelectedUnitDetails = useMemo(() => {
+        const tower = bookingTowerId;
+        const floorNumber = bookingFloorId ? Number(bookingFloorId) : null;
+        const index = bookingUnitIndex;
+        if (!tower || !floorNumber || index === null || index === undefined) return null;
+        const areaBase = 1200;
+        const areaStep = 50;
+        const area = areaBase + areaStep * (index % 4);
+        const rate = getPricePerSft(tower, floorNumber, index);
+        const total = rate * area;
+        const unitNumber = `${floorNumber * 100 + (index + 1)}`;
+        const facing = bookingFaces[index % bookingFaces.length];
+        return {
+            unitLabel: `Unit ${unitNumber}`,
+            area,
+            areaLabel: `${area.toLocaleString("en-IN")} sft`,
+            rate,
+            rateLabel: `₹ ${rate.toLocaleString("en-IN")}`,
+            total,
+            totalLabel: `₹ ${total.toLocaleString("en-IN")}`,
+            facing,
+            floor: floorNumber,
+        };
+    }, [bookingTowerId, bookingFloorId, bookingUnitIndex]);
+
+    const handlePhoneCheck = (value: string) => {
+        setBuyerPhone(value);
+        const clean = value.replace(/\s+/g, "");
+        const known = [
+            { name: "Rohit Mehta", phone: "9876543210", email: "rohit@example.com" },
+            { name: "Neha Gupta", phone: "9123456789", email: "neha@example.com" },
+        ];
+        const match = known.find((b) => b.phone === clean || b.phone === value);
+        setExistingBuyer(match ?? null);
+    };
+
+    const resetBookingFlow = () => {
+        setBookingStep(1);
+        setBookingSeed({});
+        setBookingProjectId(projectId);
+        setBookingTowerId("all");
+        setBookingFloorId(null);
+        setBookingUnitIndex(null);
+        setBuyerName("");
+        setBuyerPhone("");
+        setBuyerEmail("");
+        setBuyerPan("");
+        setBuyerAddress("");
+        setExistingBuyer(null);
+        setAdvanceAmount("");
+        setPaymentPlan("construction");
+        setIsLoan("no");
+        setLoanBank("");
+        setLoanAmount("");
+        setPaymentMode("Cash");
+        setReceiptFiles([]);
+    };
+
+    const startBookingForUnit = (unit: UnitTile, towerId: string, floorId: string, index: number) => {
+        const params = new URLSearchParams();
+        if (projectId) params.set("projectId", projectId);
+        params.set("towerId", towerId);
+        params.set("floorId", floorId);
+        params.set("unitIndex", String(index));
+        const returnTo = `/admin/builder/projects/${projectId}/units`;
+        params.set("returnTo", returnTo);
+        router.push(`/admin/builder/customers-bookings/add-booking?${params.toString()}`);
+    };
 
     const summaryItems = [
         {
@@ -557,20 +654,33 @@ export default function ProjectUnitsPricingPage() {
                                                 reserved, and handed over units.
                                             </p>
                                         </div>
-                                        <div className="flex flex-wrap items-center gap-2 text-[11px] text-tertiary">
-                                            {UNIT_STATUS_ORDER.map((status) => (
-                                                <div
-                                                    key={status}
-                                                    className="flex items-center gap-1"
-                                                >
-                                                    <span
-                                                        className={`h-2 w-2 rounded-full ${UNIT_STATUS_DOT_CLASSES[status]}`}
-                                                    />
-                                                    <span>
-                                                        {UNIT_STATUS_LABEL[status]}
-                                                    </span>
-                                                </div>
-                                            ))}
+                                        <div className="flex items-center gap-2">
+                                            <Button
+                                                size="sm"
+                                                onClick={() => {
+                                                    const params = new URLSearchParams();
+                                                    if (projectId) params.set("projectId", projectId);
+                                                    params.set("returnTo", `/admin/builder/projects/${projectId}/units`);
+                                                    router.push(`/admin/builder/customers-bookings/add-booking?${params.toString()}`);
+                                                }}
+                                            >
+                                                New booking
+                                            </Button>
+                                            <div className="flex flex-wrap items-center gap-2 text-[11px] text-tertiary">
+                                                {UNIT_STATUS_ORDER.map((status) => (
+                                                    <div
+                                                        key={status}
+                                                        className="flex items-center gap-1"
+                                                    >
+                                                        <span
+                                                            className={`h-2 w-2 rounded-full ${UNIT_STATUS_DOT_CLASSES[status]}`}
+                                                        />
+                                                        <span>
+                                                            {UNIT_STATUS_LABEL[status]}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                     {unitsForSelectedFloor.length === 0 ? (
@@ -650,6 +760,22 @@ export default function ProjectUnitsPricingPage() {
                                                                     {unit.totalValue}
                                                                 </p>
                                                             </div>
+                                                        </div>
+                                                        <div className="mt-1">
+                                                            {unit.status === "available" && (
+                                                                <Button
+                                                                    size="sm"
+                                                                    className="w-full"
+                                                                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                                                        e.stopPropagation();
+                                                                        const [towerId, floorId, indexStr] = unit.id.split("-");
+                                                                        const unitIndex = Number(indexStr);
+                                                                        startBookingForUnit(unit, towerId, floorId, unitIndex);
+                                                                    }}
+                                                                >
+                                                                    Book this unit
+                                                                </Button>
+                                                            )}
                                                         </div>
                                                     </button>
                                                 );
@@ -859,6 +985,19 @@ export default function ProjectUnitsPricingPage() {
                                             >
                                                 Mark sold
                                             </Button>
+                                            {selectedUnit?.status === "available" && (
+                                                <Button
+                                                    size="sm"
+                                                    onClick={() => {
+                                                        const [towerId, floorId, indexStr] = selectedUnit.id.split("-");
+                                                        const unitIndex = Number(indexStr);
+                                                        setIsUnitModalOpen(false);
+                                                        startBookingForUnit(selectedUnit, towerId, floorId, unitIndex);
+                                                    }}
+                                                >
+                                                    Start booking
+                                                </Button>
+                                            )}
                                         </div>
                                         <Button
                                             size="sm"
@@ -874,6 +1013,439 @@ export default function ProjectUnitsPricingPage() {
                     );
                 }}
             </ModalOverlay>
+
+            <SlideoutMenu.Trigger
+                isOpen={isBookingOpen}
+                onOpenChange={(open) => {
+                    setIsBookingOpen(open);
+                    if (!open) resetBookingFlow();
+                }}
+            >
+                <Button slot="trigger" className="hidden">
+                    Open Add Booking
+                </Button>
+                <SlideoutMenu
+                    isDismissable
+                    className="flex items-end justify-end"
+                    dialogClassName="fixed inset-0 h-full w-full bg-primary ring-1 ring-secondary_alt md:max-w-[720px] md:ml-auto"
+                >
+                    {({ close }) => (
+                        <>
+                            <SlideoutMenu.Header onClose={close} className="border-b border-secondary">
+                                <div className="flex min-w-0 flex-col gap-1">
+                                    <h3 className="text-lg font-semibold text-primary">Add Booking</h3>
+                                    <p className="text-sm text-tertiary">Unit → Buyer → Payment</p>
+                                </div>
+                                <div className="mt-3 flex items-center gap-2">
+                                    {[1, 2, 3].map((s) => (
+                                        <div
+                                            key={s}
+                                            className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${
+                                                bookingStep === s
+                                                    ? "bg-brand-primary/10 text-secondary ring-1 ring-brand-primary"
+                                                    : "bg-secondary/20 text-tertiary"
+                                            }`}
+                                        >
+                                            {s === 1 ? "Unit" : s === 2 ? "Buyer" : "Payment"}
+                                        </div>
+                                    ))}
+                                </div>
+                            </SlideoutMenu.Header>
+                            <SlideoutMenu.Content className="p-4 md:p-6 overflow-y-auto">
+                                {bookingStep === 1 && (
+                                    <div className="flex flex-col gap-4">
+                                        <div className="grid gap-3 md:grid-cols-2">
+                                            <Select
+                                                size="sm"
+                                                label="Project"
+                                                selectedKey={bookingProjectId}
+                                                onSelectionChange={(key) => setBookingProjectId(String(key))}
+                                                items={[
+                                                    { id: "signature-altius", label: "Signature Altius" },
+                                                    { id: "signature-fortius", label: "Signature Fortius" },
+                                                    { id: "signature-horizon", label: "Signature Horizon" },
+                                                ]}
+                                            >
+                                                {(item) => <div className="text-sm">{item.label}</div>}
+                                            </Select>
+                                            <Select
+                                                size="sm"
+                                                label="Tower"
+                                                selectedKey={bookingTowerId}
+                                                onSelectionChange={(key) => setBookingTowerId(String(key))}
+                                                items={towerItems}
+                                            >
+                                                {(item) => <div className="text-sm">{item.label}</div>}
+                                            </Select>
+                                            <Select
+                                                size="sm"
+                                                label="Floor"
+                                                selectedKey={bookingFloorId ?? undefined}
+                                                onSelectionChange={(key) => setBookingFloorId(String(key))}
+                                                items={Array.from({ length: 15 }, (_, i) => {
+                                                    const floor = 15 - i;
+                                                    return { id: String(floor), label: `${floor}F` };
+                                                })}
+                                            >
+                                                {(item) => <div className="text-sm">{item.label}</div>}
+                                            </Select>
+                                            <Select
+                                                size="sm"
+                                                label="Unit"
+                                                selectedKey={bookingUnitIndex !== null ? String(bookingUnitIndex) : undefined}
+                                                onSelectionChange={(key) => setBookingUnitIndex(Number(key))}
+                                                items={Array.from({ length: 8 }, (_, i) => {
+                                                    const floorNumber = bookingFloorId ? Number(bookingFloorId) : 0;
+                                                    const unitNumber = floorNumber * 100 + (i + 1);
+                                                    return { id: String(i), label: `Unit ${unitNumber}` };
+                                                })}
+                                            >
+                                                {(item) => <div className="text-sm">{item.label}</div>}
+                                            </Select>
+                                        </div>
+                                        {bookingSelectedUnitDetails ? (
+                                            <div className="rounded-xl bg-primary_hover/30 p-4 ring-1 ring-secondary_alt">
+                                                <p className="text-xs font-semibold text-secondary">Unit summary</p>
+                                                <div className="mt-2 grid grid-cols-2 gap-3 text-xs">
+                                                    <div>
+                                                        <p className="text-[10px] text-tertiary">Area</p>
+                                                        <p className="text-sm font-semibold text-secondary">
+                                                            {bookingSelectedUnitDetails.areaLabel}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] text-tertiary">Price / sft</p>
+                                                        <p className="text-sm font-semibold text-secondary">
+                                                            {bookingSelectedUnitDetails.rateLabel}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] text-tertiary">Total value</p>
+                                                        <p className="text-sm font-semibold text-secondary">
+                                                            {bookingSelectedUnitDetails.totalLabel}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] text-tertiary">Facing • Floor</p>
+                                                        <p className="text-sm font-semibold text-secondary">
+                                                            {bookingSelectedUnitDetails.facing} • {bookingSelectedUnitDetails.floor}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="rounded-xl bg-primary_hover/20 p-4 ring-1 ring-secondary_alt text-xs text-tertiary">
+                                                Select tower, floor and unit to see summary.
+                                            </div>
+                                        )}
+                                        <div className="flex justify-end">
+                                            <Button isDisabled={!bookingSelectedUnitDetails} onClick={() => setBookingStep(2)}>
+                                                Confirm Unit
+                                            </Button>
+                                        </div>
+                                    </div>
+                                )}
+                                {bookingStep === 2 && (
+                                    <div className="flex flex-col gap-4">
+                                        <div className="grid gap-3 md:grid-cols-2">
+                                            <Input size="sm" label="Buyer name" value={buyerName} onChange={setBuyerName} placeholder="Full name" />
+                                            <Input size="sm" label="Phone number" value={buyerPhone} onChange={handlePhoneCheck} placeholder="e.g. 98765 43210" />
+                                            <Input size="sm" label="Email (optional)" value={buyerEmail} onChange={setBuyerEmail} placeholder="name@example.com" />
+                                            <Input size="sm" label="PAN / ID (optional)" value={buyerPan} onChange={setBuyerPan} placeholder="ABCDE1234F" />
+                                            <Input size="sm" label="Address (optional)" value={buyerAddress} onChange={setBuyerAddress} placeholder="Street, City" />
+                                        </div>
+                                        {existingBuyer && (
+                                            <div className="rounded-xl bg-brand-primary/5 p-3 ring-1 ring-brand-primary/40 text-xs">
+                                                <div className="flex items-center justify-between gap-2">
+                                                    <p className="text-secondary">
+                                                        Existing buyer found: <span className="font-semibold">{existingBuyer.name}</span> ({existingBuyer.phone})
+                                                    </p>
+                                                    <Button
+                                                        size="sm"
+                                                        onClick={() => {
+                                                            setBuyerName(existingBuyer.name);
+                                                            setBuyerEmail(existingBuyer.email ?? "");
+                                                        }}
+                                                    >
+                                                        Use existing profile
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        )}
+                                        <div className="flex justify-between">
+                                            <Button color="secondary" onClick={() => setBookingStep(1)}>
+                                                Back
+                                            </Button>
+                                            <Button onClick={() => setBookingStep(3)}>Continue</Button>
+                                        </div>
+                                    </div>
+                                )}
+                                {bookingStep === 3 && (
+                                    <div className="flex flex-col gap-5">
+                                        <div className="rounded-xl bg-primary_hover/30 p-4 ring-1 ring-secondary_alt">
+                                            <p className="text-xs font-semibold text-secondary">Booking amount</p>
+                                            <div className="mt-2 grid gap-3 md:grid-cols-2">
+                                                <Input
+                                                    size="sm"
+                                                    label="Advance paid now"
+                                                    type="number"
+                                                    value={advanceAmount}
+                                                    onChange={setAdvanceAmount}
+                                                    placeholder="e.g. 500000"
+                                                />
+                                                <div className="flex flex-col justify-end">
+                                                    <p className="text-[10px] text-tertiary">Remaining value</p>
+                                                    <p className="text-sm font-semibold text-secondary">
+                                                        {(() => {
+                                                            const adv = Number(advanceAmount || "0");
+                                                            const total = bookingSelectedUnitDetails?.total ?? 0;
+                                                            const remaining = Math.max(0, total - (Number.isFinite(adv) ? adv : 0));
+                                                            return `₹ ${remaining.toLocaleString("en-IN")}`;
+                                                        })()}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="rounded-xl bg-primary_hover/30 p-4 ring-1 ring-secondary_alt">
+                                            <p className="text-xs font-semibold text-secondary">Payment plan</p>
+                                            <div className="mt-2 grid gap-3 md:grid-cols-2">
+                                                <Select
+                                                    size="sm"
+                                                    label="Plan"
+                                                    selectedKey={paymentPlan}
+                                                    onSelectionChange={(key) => setPaymentPlan(key as any)}
+                                                    items={[
+                                                        { id: "construction", label: "Construction-linked plan" },
+                                                        { id: "custom", label: "Custom schedule" },
+                                                        { id: "one_time", label: "One-time payment" },
+                                                    ]}
+                                                >
+                                                    {(item) => <div className="text-sm">{item.label}</div>}
+                                                </Select>
+                                            </div>
+                                            <div className="mt-3">
+                                                <p className="text-[11px] text-tertiary">Schedule</p>
+                                                <div className="mt-2 grid gap-2">
+                                                    {(() => {
+                                                        const total = bookingSelectedUnitDetails?.total ?? 0;
+                                                        const adv = Number(advanceAmount || "0");
+                                                        const remaining = Math.max(0, total - (Number.isFinite(adv) ? adv : 0));
+                                                        if (paymentPlan === "one_time") {
+                                                            return (
+                                                                <div className="flex items-center justify-between rounded-lg bg-primary p-3 ring-1 ring-secondary_alt text-sm">
+                                                                    <span>Final payment</span>
+                                                                    <span className="font-semibold text-secondary">₹ {remaining.toLocaleString("en-IN")}</span>
+                                                                </div>
+                                                            );
+                                                        }
+                                                        const parts = paymentPlan === "construction" ? 3 : 4;
+                                                        const labels =
+                                                            paymentPlan === "construction"
+                                                                ? ["Slab payment", "Plaster stage", "Final payment"]
+                                                                : ["Milestone 1", "Milestone 2", "Milestone 3", "Final payment"];
+                                                        const per = parts > 0 ? Math.floor(remaining / parts) : 0;
+                                                        return labels.map((label, idx) => {
+                                                            const isLast = idx === labels.length - 1;
+                                                            const amount = isLast ? remaining - per * (labels.length - 1) : per;
+                                                            return (
+                                                                <div
+                                                                    key={label}
+                                                                    className="flex items-center justify-between rounded-lg bg-primary p-3 ring-1 ring-secondary_alt text-sm"
+                                                                >
+                                                                    <span>{label}</span>
+                                                                    <span className="font-semibold text-secondary">
+                                                                        ₹ {Math.max(0, amount).toLocaleString("en-IN")}
+                                                                    </span>
+                                                                </div>
+                                                            );
+                                                        });
+                                                    })()}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="rounded-xl bg-primary_hover/30 p-4 ring-1 ring-secondary_alt">
+                                            <p className="text-xs font-semibold text-secondary">Loan</p>
+                                            <div className="mt-2 grid gap-3 md:grid-cols-3">
+                                                <Select
+                                                    size="sm"
+                                                    label="Buyer taking loan?"
+                                                    selectedKey={isLoan}
+                                                    onSelectionChange={(key) => setIsLoan(key as any)}
+                                                    items={[
+                                                        { id: "no", label: "No" },
+                                                        { id: "yes", label: "Yes" },
+                                                    ]}
+                                                >
+                                                    {(item) => <div className="text-sm">{item.label}</div>}
+                                                </Select>
+                                                {isLoan === "yes" && (
+                                                    <>
+                                                        <Input size="sm" label="Bank name" value={loanBank} onChange={setLoanBank} placeholder="e.g. HDFC Bank" />
+                                                        <Input
+                                                            size="sm"
+                                                            label="Loan amount (optional)"
+                                                            type="number"
+                                                            value={loanAmount}
+                                                            onChange={setLoanAmount}
+                                                            placeholder="e.g. 3000000"
+                                                        />
+                                                    </>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="rounded-xl bg-primary_hover/30 p-4 ring-1 ring-secondary_alt">
+                                            <p className="text-xs font-semibold text-secondary">Payment mode</p>
+                                            <div className="mt-2 grid gap-3 md:grid-cols-3">
+                                                <Select
+                                                    size="sm"
+                                                    label="Mode"
+                                                    selectedKey={paymentMode}
+                                                    onSelectionChange={(key) => setPaymentMode(key as any)}
+                                                    items={[
+                                                        { id: "Cash", label: "Cash" },
+                                                        { id: "Bank", label: "Bank" },
+                                                        { id: "UPI", label: "UPI" },
+                                                        { id: "Cheque", label: "Cheque" },
+                                                    ]}
+                                                >
+                                                    {(item) => <div className="text-sm">{item.label}</div>}
+                                                </Select>
+                                            </div>
+                                            <div className="mt-3">
+                                                <p className="text-[11px] text-tertiary">Upload receipt (optional)</p>
+                                                <FileUpload.Root className="mt-2">
+                                                    <FileUpload.DropZone
+                                                        hint="PDF or image files"
+                                                        accept="image/*,application/pdf"
+                                                        onDropFiles={(files) => {
+                                                            const arr = Array.from(files);
+                                                            setReceiptFiles((prev) => [
+                                                                ...prev,
+                                                                ...arr.map((f) => ({ name: f.name, size: f.size, progress: 100 })),
+                                                            ]);
+                                                        }}
+                                                    />
+                                                    {receiptFiles.length > 0 && (
+                                                        <FileUpload.List>
+                                                            {receiptFiles.map((f, i) => (
+                                                                <FileUpload.ListItemProgressBar
+                                                                    key={`${f.name}-${i}`}
+                                                                    name={f.name}
+                                                                    size={f.size}
+                                                                    progress={f.progress}
+                                                                    onDelete={() =>
+                                                                        setReceiptFiles((prev) => prev.filter((_, idx) => idx !== i))
+                                                                    }
+                                                                />
+                                                            ))}
+                                                        </FileUpload.List>
+                                                    )}
+                                                </FileUpload.Root>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <Button color="secondary" onClick={() => setBookingStep(2)}>
+                                                Back
+                                            </Button>
+                                            <Button onClick={() => setBookingStep(4)}>Review</Button>
+                                        </div>
+                                    </div>
+                                )}
+                                {bookingStep === 4 && (
+                                    <div className="flex flex-col gap-4">
+                                        <div className="rounded-xl bg-primary_hover/30 p-4 ring-1 ring-secondary_alt">
+                                            <p className="text-xs font-semibold text-secondary">Summary</p>
+                                            <div className="mt-2 grid gap-3 md:grid-cols-2 text-sm">
+                                                <div>
+                                                    <p className="text-[11px] text-tertiary">Unit</p>
+                                                    <p className="font-semibold text-secondary">{bookingSelectedUnitDetails?.unitLabel ?? "—"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-[11px] text-tertiary">Buyer</p>
+                                                    <p className="font-semibold text-secondary">{buyerName || "—"}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-[11px] text-tertiary">Advance</p>
+                                                    <p className="font-semibold text-secondary">
+                                                        ₹ {Number(advanceAmount || "0").toLocaleString("en-IN")}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-[11px] text-tertiary">Pending</p>
+                                                    <p className="font-semibold text-secondary">
+                                                        {(() => {
+                                                            const adv = Number(advanceAmount || "0");
+                                                            const total = bookingSelectedUnitDetails?.total ?? 0;
+                                                            const remaining = Math.max(0, total - (Number.isFinite(adv) ? adv : 0));
+                                                            return `₹ ${remaining.toLocaleString("en-IN")}`;
+                                                        })()}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-[11px] text-tertiary">Next due</p>
+                                                    <p className="font-semibold text-secondary">
+                                                        {paymentPlan === "construction"
+                                                            ? "Slab stage"
+                                                            : paymentPlan === "one_time"
+                                                            ? "Final payment"
+                                                            : "Milestone 1"}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <Button color="secondary" onClick={() => setBookingStep(3)}>
+                                                Back
+                                            </Button>
+                                            <div className="flex gap-2">
+                                                <Button
+                                                    color="secondary"
+                                                    onClick={() => {
+                                                        close();
+                                                        resetBookingFlow();
+                                                    }}
+                                                >
+                                                    Save Draft
+                                                </Button>
+                                                <Button
+                                                    onClick={() => {
+                                                        close();
+                                                        resetBookingFlow();
+                                                    }}
+                                                >
+                                                    Confirm Booking
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </SlideoutMenu.Content>
+                            <SlideoutMenu.Footer className="border-t border-secondary p-4 md:p-6">
+                                <div className="flex w-full items-center justify-between">
+                                    <p className="text-xs text-tertiary">You can close anytime — progress is retained while open.</p>
+                                    <div className="flex gap-2">
+                                        {bookingStep > 1 && bookingStep < 4 && (
+                                            <Button size="sm" color="secondary" onClick={() => setBookingStep((bookingStep - 1) as any)}>
+                                                Back
+                                            </Button>
+                                        )}
+                                        {bookingStep < 3 && (
+                                            <Button size="sm" onClick={() => setBookingStep((bookingStep + 1) as any)}>
+                                                Continue
+                                            </Button>
+                                        )}
+                                        {bookingStep === 3 && (
+                                            <Button size="sm" onClick={() => setBookingStep(4)}>
+                                                Review
+                                            </Button>
+                                        )}
+                                    </div>
+                                </div>
+                            </SlideoutMenu.Footer>
+                        </>
+                    )}
+                </SlideoutMenu>
+            </SlideoutMenu.Trigger>
 
             {selectedUnitIds.length > 0 && (
                 <div className="fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 pb-4 pt-2 pointer-events-none">

@@ -7,7 +7,7 @@
   "static/chunks/node_modules_@react-aria_interactions_dist_ad330f40._.js",
   "static/chunks/node_modules_@react-aria_overlays_dist_f4339eb5._.js",
   "static/chunks/node_modules_tailwind-merge_dist_bundle-mjs_mjs_56b6fd65._.js",
-  "static/chunks/node_modules_797056f2._.js"
+  "static/chunks/node_modules_23c5714d._.js"
 ],
     source: "dynamic"
 });

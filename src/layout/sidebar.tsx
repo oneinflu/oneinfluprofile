@@ -109,17 +109,17 @@ export const AppSidebar = () => {
         },
         {
             label: "Customers & Bookings",
-            href: `/builder/${username}`,
+            href: "/admin/builder/customers-bookings",
             icon: Users01,
         },
         {
             label: "QR & Listings",
-            href: `/builder/${username}`,
+            href: `/admin/builder/qr-listings`,
             icon: Link02,
         },
         {
             label: "Construction Updates",
-            href: `/builder/${username}`,
+            href: `/admin/builder/construction-updates`,
             icon: NotificationBox,
         },
         {
