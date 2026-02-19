@@ -99,7 +99,6 @@ export const AppSidebar = () => {
             items: [
                 { label: "All Projects", href: "/admin/builder/projects" },
                 { label: "Create New Project", href: "/admin/builder/projects/create" },
-                { label: "Project Settings", href: "/admin/builder/projects/settings" },
             ],
         },
         {

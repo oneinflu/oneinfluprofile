@@ -12,7 +12,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     useEffect(() => {
         try {
             const t = token || localStorage.getItem("influu_token");
-            if (!t) router.replace("/login");
+            if (!t) {
+                router.replace("/login");
+                return;
+            }
+            const hasCookie = document.cookie.includes("influu_token=");
+            if (!hasCookie) {
+                const d = new Date();
+                d.setTime(d.getTime() + 7 * 24 * 60 * 60 * 1000);
+                document.cookie = `influu_token=${t};expires=${d.toUTCString()};path=/`;
+            }
         } catch {
             router.replace("/login");
         }

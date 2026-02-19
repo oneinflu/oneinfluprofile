@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { Input } from "@/components/base/input/input";
 import { Button } from "@/components/base/buttons/button";
@@ -18,12 +18,14 @@ export default function LoginPage() {
     const [resendTimer, setResendTimer] = useState(0);
     const router = useRouter();
     const { token, setToken, setUser } = useAuth();
+    const search = useSearchParams();
+    const nextPath = (search.get("next") || "/admin").trim() || "/admin";
 
     useEffect(() => {
         if (token) {
-            router.replace("/admin/my-profile");
+            router.replace(nextPath.startsWith("/") ? nextPath : "/admin");
         }
-    }, [token, router]);
+    }, [token, router, nextPath]);
 
     useEffect(() => {
         if (resendTimer > 0) {
@@ -101,6 +103,8 @@ export default function LoginPage() {
                     if (user.id) localStorage.setItem("influu_user_id", user.id);
                     if (user.username) localStorage.setItem("influu_username", user.username);
                 }
+                router.replace(nextPath.startsWith("/") ? nextPath : "/admin");
+                return;
             } else {
                 throw new Error("No token received");
             }

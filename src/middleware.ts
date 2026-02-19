@@ -7,6 +7,8 @@ export function middleware(req: NextRequest) {
   if (pathname.startsWith("/admin") && !token) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
+    const next = req.nextUrl.pathname + (req.nextUrl.search || "");
+    url.searchParams.set("next", next);
     return NextResponse.redirect(url);
   }
   return NextResponse.next();

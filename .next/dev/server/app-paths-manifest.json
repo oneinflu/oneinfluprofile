@@ -1,14 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/builder/construction-updates/page": "app/admin/builder/construction-updates/page.js",
-  "/admin/builder/customers-bookings/[id]/page": "app/admin/builder/customers-bookings/[id]/page.js",
-  "/admin/builder/customers-bookings/add-booking/page": "app/admin/builder/customers-bookings/add-booking/page.js",
-  "/admin/builder/customers-bookings/page": "app/admin/builder/customers-bookings/page.js",
-  "/admin/builder/projects/[projectId]/units/page": "app/admin/builder/projects/[projectId]/units/page.js",
-  "/admin/builder/projects/create/page": "app/admin/builder/projects/create/page.js",
+  "/admin/builder/projects/[projectId]/construction/page": "app/admin/builder/projects/[projectId]/construction/page.js",
+  "/admin/builder/projects/[projectId]/settings/page": "app/admin/builder/projects/[projectId]/settings/page.js",
   "/admin/builder/projects/page": "app/admin/builder/projects/page.js",
-  "/admin/builder/qr-listings/page": "app/admin/builder/qr-listings/page.js",
-  "/admin/my-profile/page": "app/admin/my-profile/page.js",
+  "/admin/page": "app/admin/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }

@@ -13,6 +13,7 @@ import { ProjectCard } from "./ProjectCard";
 type ViewMode = "grid" | "list";
 
 type LifecycleStatus = "ongoing" | "completed" | "upcoming";
+type FilterStatus = "all" | "ongoing" | "completed";
 
 type ProjectStatus = "selling" | "construction" | "handover";
 
@@ -30,6 +31,9 @@ type Project = {
     constructionPercent: number;
     unitsSoldPercent: number;
     flags?: AttentionFlag[];
+    pendingPayments?: number;
+    repairsOpen?: number;
+    buyerChangesPending?: number;
 };
 
 const stageLabel: Record<ProjectStatus, string> = {
@@ -65,6 +69,9 @@ const projects: Project[] = [
         constructionPercent: 52,
         unitsSoldPercent: 72,
         flags: ["payments_pending"],
+        pendingPayments: 3,
+        repairsOpen: 1,
+        buyerChangesPending: 0,
     },
     {
         id: "signature-fortius",
@@ -78,6 +85,9 @@ const projects: Project[] = [
         constructionPercent: 38,
         unitsSoldPercent: 54,
         flags: [],
+        pendingPayments: 0,
+        repairsOpen: 2,
+        buyerChangesPending: 1,
     },
     {
         id: "signature-horizon",
@@ -91,6 +101,9 @@ const projects: Project[] = [
         constructionPercent: 96,
         unitsSoldPercent: 92,
         flags: [],
+        pendingPayments: 0,
+        repairsOpen: 0,
+        buyerChangesPending: 0,
     },
     {
         id: "green-valley",
@@ -104,6 +117,9 @@ const projects: Project[] = [
         constructionPercent: 12,
         unitsSoldPercent: 22,
         flags: ["slow_sales"],
+        pendingPayments: 1,
+        repairsOpen: 0,
+        buyerChangesPending: 2,
     },
     {
         id: "sky-heights",
@@ -117,19 +133,23 @@ const projects: Project[] = [
         constructionPercent: 41,
         unitsSoldPercent: 45,
         flags: ["bank_pending"],
+        pendingPayments: 5,
+        repairsOpen: 1,
+        buyerChangesPending: 0,
     },
 ];
 
 export default function BuilderProjectsPage() {
     const router = useRouter();
-    const [statusFilter, setStatusFilter] = useState<LifecycleStatus>("ongoing");
+    const [statusFilter, setStatusFilter] = useState<FilterStatus>("ongoing");
     const [search, setSearch] = useState("");
     const [viewMode, setViewMode] = useState<ViewMode>("grid");
 
     const filteredProjects = useMemo(() => {
         const term = search.trim().toLowerCase();
         return projects.filter((project) => {
-            const matchesStatus = project.lifecycleStatus === statusFilter;
+            const matchesStatus =
+                statusFilter === "all" ? true : project.lifecycleStatus === statusFilter;
             const matchesSearch = !term || project.name.toLowerCase().includes(term);
             return matchesStatus && matchesSearch;
         });
@@ -142,7 +162,7 @@ export default function BuilderProjectsPage() {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div className="flex flex-col gap-1">
                             <h1 className="text-display-sm font-semibold text-primary">Projects</h1>
-                            <p className="text-md text-tertiary">Scan all projects in one glance.</p>
+                            <p className="text-md text-tertiary">Manage and operate your active projects</p>
                         </div>
                         <div className="mt-3 md:mt-0 grid grid-cols-1 gap-2 md:flex md:items-center md:gap-2">
                             <Button
@@ -158,11 +178,11 @@ export default function BuilderProjectsPage() {
                                     placeholder="Filter (Status)"
                                     items={[
                                         { id: "ongoing", label: "Ongoing" },
-                                        { id: "upcoming", label: "Upcoming" },
                                         { id: "completed", label: "Completed" },
+                                        { id: "all", label: "All" },
                                     ]}
                                     selectedKey={statusFilter}
-                                    onSelectionChange={(key) => setStatusFilter(String(key) as LifecycleStatus)}
+                                    onSelectionChange={(key) => setStatusFilter(String(key) as FilterStatus)}
                                 >
                                     {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
                                 </Select>
@@ -218,6 +238,9 @@ export default function BuilderProjectsPage() {
                                     constructionPercent={project.constructionPercent}
                                     unitsSoldPercent={project.unitsSoldPercent}
                                     flags={project.flags}
+                                    pendingPayments={project.pendingPayments}
+                                    repairsOpen={project.repairsOpen}
+                                    buyerChangesPending={project.buyerChangesPending}
                                     dashboardHref={`/admin/builder/projects/${project.id}`}
                                     unitsHref={`/admin/builder/projects/${project.id}/units`}
                                     shareQrHref={`/admin/builder/projects/${project.id}/qr`}
@@ -291,6 +314,9 @@ export default function BuilderProjectsPage() {
                                         constructionPercent={project.constructionPercent}
                                         unitsSoldPercent={project.unitsSoldPercent}
                                         flags={project.flags}
+                                        pendingPayments={project.pendingPayments}
+                                        repairsOpen={project.repairsOpen}
+                                        buyerChangesPending={project.buyerChangesPending}
                                         dashboardHref={`/admin/builder/projects/${project.id}`}
                                         unitsHref={`/admin/builder/projects/${project.id}/units`}
                                         shareQrHref={`/admin/builder/projects/${project.id}/qr`}

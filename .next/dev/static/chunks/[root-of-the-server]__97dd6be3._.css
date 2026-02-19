@@ -2896,10 +2896,6 @@
     margin-top: calc(var(--spacing) * 12);
   }
 
-  .mt-20 {
-    margin-top: calc(var(--spacing) * 20);
-  }
-
   .mt-auto {
     margin-top: auto;
   }
@@ -3591,10 +3587,6 @@
     height: 100vh;
   }
 
-  .max-h-64 {
-    max-height: calc(var(--spacing) * 64);
-  }
-
   .max-h-64\! {
     max-height: calc(var(--spacing) * 64) !important;
   }
@@ -4081,14 +4073,6 @@
 
   .min-w-\[120px\] {
     min-width: 120px;
-  }
-
-  .min-w-\[140px\] {
-    min-width: 140px;
-  }
-
-  .min-w-\[160px\] {
-    min-width: 160px;
   }
 
   .flex-1 {
@@ -6883,10 +6867,6 @@
 
   .bg-success-50 {
     background-color: var(--color-success-50);
-  }
-
-  .bg-success-200 {
-    background-color: var(--color-success-200);
   }
 
   .bg-success-primary\/10 {
@@ -11423,6 +11403,26 @@
     }
   }
 
+  .group-hover\:text-primary:is(:where(.group):where([data-rac])[data-hovered] *) {
+    color: var(--text-color-primary);
+  }
+
+  @media (hover: hover) {
+    .group-hover\:text-primary:is(:where(.group):where(:not([data-rac])):hover *) {
+      color: var(--text-color-primary);
+    }
+  }
+
+  .group-hover\:text-secondary:is(:where(.group):where([data-rac])[data-hovered] *) {
+    color: var(--text-color-secondary);
+  }
+
+  @media (hover: hover) {
+    .group-hover\:text-secondary:is(:where(.group):where(:not([data-rac])):hover *) {
+      color: var(--text-color-secondary);
+    }
+  }
+
   .group-hover\:text-secondary_hover:is(:where(.group):where([data-rac])[data-hovered] *) {
     color: var(--text-color-secondary_hover);
   }
@@ -15510,12 +15510,6 @@
   }
 
   @media (min-width: 48rem) {
-    .md\:w-\[760px\] {
-      width: 760px;
-    }
-  }
-
-  @media (min-width: 48rem) {
     .md\:w-auto {
       width: auto;
     }
@@ -15536,18 +15530,6 @@
   @media (min-width: 48rem) {
     .md\:max-w-\[720px\] {
       max-width: 720px;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:max-w-\[760px\] {
-      max-width: 760px;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:max-w-\[1200px\] {
-      max-width: 1200px;
     }
   }
 
@@ -15639,20 +15621,8 @@
   }
 
   @media (min-width: 48rem) {
-    .md\:grid-cols-\[minmax\(0\,0\.9fr\)_minmax\(0\,1\.6fr\)_minmax\(0\,1fr\)\] {
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.6fr) minmax(0, 1fr);
-    }
-  }
-
-  @media (min-width: 48rem) {
     .md\:grid-cols-\[minmax\(0\,1\.1fr\)_minmax\(0\,0\.9fr\)\] {
       grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:grid-cols-\[minmax\(0\,1\.2fr\)_minmax\(0\,0\.8fr\)_minmax\(0\,1fr\)\] {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr) minmax(0, 1fr);
     }
   }
 
@@ -15683,12 +15653,6 @@
   @media (min-width: 48rem) {
     .md\:grid-cols-\[minmax\(0\,1fr\)_minmax\(0\,0\.8fr\)\] {
       grid-template-columns: minmax(0, 1fr) minmax(0, .8fr);
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:grid-cols-\[minmax\(0\,1fr\)_minmax\(0\,1fr\)\] {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
   }
 
@@ -16518,12 +16482,6 @@
   }
 
   @media (min-width: 64rem) {
-    .lg\:grid-cols-6 {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 64rem) {
     .lg\:grid-cols-12 {
       grid-template-columns: repeat(12, minmax(0, 1fr));
     }
@@ -16756,12 +16714,6 @@
   @media (min-width: 80rem) {
     .xl\:grid-cols-6 {
       grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 80rem) {
-    .xl\:grid-cols-8 {
-      grid-template-columns: repeat(8, minmax(0, 1fr));
     }
   }
 

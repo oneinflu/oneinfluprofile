@@ -1,7 +1,11 @@
 "use client";
 
+import type React from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
+import { ButtonUtility } from "@/components/base/buttons/button-utility";
+import { Settings01, CurrencyDollarCircle, AlertCircle, Users01 } from "@untitledui/icons";
 
 type ProjectStatus = "selling" | "construction" | "handover";
 
@@ -20,6 +24,10 @@ type Props = {
     dashboardHref?: string;
     unitsHref?: string;
     shareQrHref?: string;
+    settingsHref?: string;
+    pendingPayments?: number;
+    repairsOpen?: number;
+    buyerChangesPending?: number;
 };
 
 const statusLabel: Record<ProjectStatus, string> = {
@@ -57,14 +65,24 @@ export const ProjectCard = ({
     dashboardHref,
     unitsHref,
     shareQrHref,
+    settingsHref,
+    pendingPayments = 0,
+    repairsOpen = 0,
+    buyerChangesPending = 0,
 }: Props) => {
+    const router = useRouter();
     const safeUnitsSold = Math.max(0, Math.min(unitsSold, totalUnits));
     const soldLabel = `${safeUnitsSold} / ${totalUnits}`;
     const constructionLabel = `${constructionPercent}%`;
     const primaryPercent = Math.max(0, Math.min(unitsSoldPercent, 100));
 
     return (
-        <div className="flex flex-col gap-4 rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt">
+        <div
+            className="flex flex-col gap-4 rounded-2xl bg-primary p-4 md:p-5 shadow-xs ring-1 ring-secondary_alt cursor-pointer"
+            onClick={() => {
+                if (dashboardHref) router.push(dashboardHref);
+            }}
+        >
             <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0 space-y-1">
                     <p className="text-sm font-semibold text-primary truncate">
@@ -74,9 +92,21 @@ export const ProjectCard = ({
                         {location}
                     </p>
                 </div>
-                <Badge type="color" size="sm" color={statusColor[status]}>
-                    {statusLabel[status]}
-                </Badge>
+                <div className="flex items-center gap-1">
+                    {settingsHref && (
+                        <ButtonUtility
+                            size="sm"
+                            color="secondary"
+                            icon={Settings01}
+                            tooltip="Project settings"
+                            href={settingsHref}
+                            aria-label="Open project settings"
+                        />
+                    )}
+                    <Badge type="color" size="sm" color={statusColor[status]}>
+                        {statusLabel[status]}
+                    </Badge>
+                </div>
             </div>
 
             <div className="space-y-2">
@@ -128,14 +158,52 @@ export const ProjectCard = ({
                 </div>
             )}
 
+            {(pendingPayments > 0 || repairsOpen > 0 || buyerChangesPending > 0) && (
+                <div className="flex items-center gap-3 pt-1 text-xs">
+                    {pendingPayments > 0 && (
+                        <div className="inline-flex items-center gap-1.5 rounded-full bg-secondary/40 px-2 py-0.5 text-secondary">
+                            <CurrencyDollarCircle className="size-3.5" />
+                            <span className="text-[11px] font-medium">{pendingPayments}</span>
+                        </div>
+                    )}
+                    {repairsOpen > 0 && (
+                        <div className="inline-flex items-center gap-1.5 rounded-full bg-secondary/40 px-2 py-0.5 text-secondary">
+                            <AlertCircle className="size-3.5" />
+                            <span className="text-[11px] font-medium">{repairsOpen}</span>
+                        </div>
+                    )}
+                    {buyerChangesPending > 0 && (
+                        <div className="inline-flex items-center gap-1.5 rounded-full bg-secondary/40 px-2 py-0.5 text-secondary">
+                            <Users01 className="size-3.5" />
+                            <span className="text-[11px] font-medium">{buyerChangesPending}</span>
+                        </div>
+                    )}
+                </div>
+            )}
+
             <div className="flex flex-wrap items-center gap-2 pt-1">
-                <Button size="sm" color="secondary" href={dashboardHref}>
+                <Button
+                    size="sm"
+                    color="secondary"
+                    href={dashboardHref}
+                    onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                >
                     Open Dashboard
                 </Button>
-                <Button size="sm" color="secondary" href={unitsHref}>
+                <Button
+                    size="sm"
+                    color="secondary"
+                    href={unitsHref}
+                    onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                >
                     Units
                 </Button>
-                <Button size="sm" color="secondary" href={shareQrHref}>
+                <Button
+                    size="sm"
+                    color="secondary"
+                    href={shareQrHref}
+                    onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                >
                     Share QR
                 </Button>
             </div>
